@@ -4,6 +4,10 @@ class User < ApplicationRecord
   validates :username, length: {maximum: 20}
   before_validation :ensure_session_token
 
+  has_many :adventures,
+    foreign_key: :author_id,
+    dependent: :destroy
+
   attr_reader :password
 
   def self.find_by_credentials(username, password)
