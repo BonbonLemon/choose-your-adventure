@@ -31,9 +31,18 @@
     function statusChangeCallback(response) {
       if (response.status == 'connected') {
         console.log("logged in");
+        // if (response.authResponse) {
+        //   window.location = '/auth/facebook/callback'
+        // }
       } else {
         console.log("not logged in");
       }
+    }
+
+    function checkLoginState() {
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
     }
     </script>
 
