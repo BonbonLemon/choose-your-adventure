@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def index
     render :new
   end
-  
+
   def new
   end
 
@@ -20,6 +20,5 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:username, :password)
-
   end
 end
