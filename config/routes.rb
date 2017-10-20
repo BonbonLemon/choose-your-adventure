@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root to: 'adventures#index'
 
   resources :users
+  resources :adventures
   resource :session
 
   # get '/users', to: 'users#index', as: 'users'
