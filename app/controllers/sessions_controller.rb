@@ -2,7 +2,13 @@ class SessionsController < ApplicationController
   def new
   end
 
+  def fbcreate
+    p 'hello'
+    debugger
+  end
+
   def create
+    debugger
     # @user = User.from_omniauth(env["omniauth.auth"])
 
     @user = User.find_by_credentials(

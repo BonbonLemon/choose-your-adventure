@@ -2,11 +2,14 @@
 <html>
   <head>
     <title>Choose Your Adventure</title>
+    <!-- <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %> -->
     <%= csrf_meta_tags %>
 
   </head>
 
   <body>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
     <script>
     window.fbAsyncInit = function() {
       FB.init({
@@ -54,10 +57,10 @@
       <%= link_to "Sign Up", new_user_url %>
     <% end %>
 
-    <fb:login-button
+    <!-- <fb:login-button
       scope="public_profile,email"
       onlogin="checkLoginState();">
-    </fb:login-button>
+    </fb:login-button> -->
 
     <%= yield %>
   </body>
