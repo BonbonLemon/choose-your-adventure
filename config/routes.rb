@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  get 'home/show'
+  # get 'home/show'
 
-  match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
-  match 'auth/failure', to: redirect('/'), via: [:get, :post]
+  # match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+  # match 'auth/failure', to: redirect('/'), via: [:get, :post]
 
-  root to: 'home#show'
+  root to: 'adventures#index'
 
   resources :users
   resource :session
