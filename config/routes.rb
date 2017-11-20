@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   root to: 'adventures#index'
 
   resources :users
-  resources :adventures
   resource :session
+  resources :adventures
+  resources :pages
 
   # get '/users', to: 'users#index', as: 'users'
   # post '/users', to: 'users#create'

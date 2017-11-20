@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    debugger
     # @user = User.from_omniauth(env["omniauth.auth"])
 
     @user = User.find_by_credentials(

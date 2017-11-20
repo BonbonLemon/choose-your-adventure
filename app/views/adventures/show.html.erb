@@ -1,6 +1,7 @@
 <ul>
   <li><%= @adventure.title %></li>
   <li>By <%= @adventure.author.username %></li>
+  <%= link_to "Start", pages_url(1) %>
 </ul>
 
 <%= link_to "Back", root_url %>
