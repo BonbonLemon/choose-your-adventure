@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
     )
     if @user
       login(@user)
+      redirect_to root_url
     else
       flash[:errors] = ["Invalid login credentials"]
     end
@@ -18,5 +19,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
+
+    redirect_to root_url
   end
 end

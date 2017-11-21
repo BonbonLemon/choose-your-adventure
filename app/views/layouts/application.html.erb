@@ -49,6 +49,8 @@
     }
     </script> -->
 
+    <%= link_to "Home", root_url %>
+
     <% if logged_in? %>
       <%= current_user.username %>
       <%= button_to "Sign Out", session_url, method: :delete %>
