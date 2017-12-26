@@ -11,17 +11,18 @@ class AdventuresController < ApplicationController
   end
 
   def new
-    
+
   end
 
   def create
     @adventure = Adventure.new(adventure_params)
-    # @adventure.user_id = current_user.id
+    @adventure.author_id = current_user.id
+
     if @adventure.save
-      redirect_to adventures_url(@adventure)
+      redirect_to adventure_url(@adventure)
     else
-      debugger
-      flash[:errors] = @adventure.errors.full_messages
+      flash.now[:errors] = @adventure.errors.full_messages
+      render :new
     end
   end
 
