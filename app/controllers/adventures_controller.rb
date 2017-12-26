@@ -1,4 +1,6 @@
 class AdventuresController < ApplicationController
+  before_action :require_login, only: [:new, :create]
+
   def index
     @adventures = Adventure.all
     render :index
@@ -9,15 +11,16 @@ class AdventuresController < ApplicationController
   end
 
   def new
-
+    
   end
 
   def create
     @adventure = Adventure.new(adventure_params)
-    @adventure.user_id = current_user.id
+    # @adventure.user_id = current_user.id
     if @adventure.save
       redirect_to adventures_url(@adventure)
     else
+      debugger
       flash[:errors] = @adventure.errors.full_messages
     end
   end
