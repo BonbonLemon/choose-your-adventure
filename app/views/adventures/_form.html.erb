@@ -1,0 +1,14 @@
+<% action = (adventure.persisted? ? adventure_url(adventure) : adventure_url) %>
+<% method = (adventure.persisted? ? :patch : :post) %>
+
+<form action="<%= action %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label>
+    Title
+    <input type="text" name="adventure[title]" value="<%= adventure.title %>">
+  </label>
+
+  <input type="submit" name="" value="Submit">
+</form>

@@ -11,7 +11,7 @@ class AdventuresController < ApplicationController
   end
 
   def new
-
+    @adventure = Adventure.new
   end
 
   def create
@@ -23,6 +23,20 @@ class AdventuresController < ApplicationController
     else
       flash.now[:errors] = @adventure.errors.full_messages
       render :new
+    end
+  end
+
+  def edit
+    @adventure = current_user.adventures.find(params[:id])
+  end
+
+  def update
+    @adventure = current_user.adventures.find(params[:id])
+    if @adventure.update_attributes(adventure_params)
+      redirect_to adventure_url(@adventure)
+    else
+      flash.now[:errors] = @adventure.errors.full_messages
+      render :edit
     end
   end
 

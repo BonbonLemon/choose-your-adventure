@@ -1,3 +1,7 @@
+<% if @adventure.author == current_user %>
+  <%= link_to "Edit Adventure", edit_adventure_url(@adventure) %>
+<% end %>
+
 <ul>
   <li><%= @adventure.title %></li>
   <li>By <%= @adventure.author.username %></li>
