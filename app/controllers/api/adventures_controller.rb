@@ -1,4 +1,6 @@
 class Api::AdventuresController < ApplicationController
+  before_action :require_login, only: [:create]
+
   def index
     @adventures = Adventure.all
     render json: Adventure.all, include: [:author, :pages]
