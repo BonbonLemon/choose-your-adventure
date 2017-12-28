@@ -2,3 +2,7 @@
 
 <%= render "shared/errors" %>
 <%= render "form", adventure: @adventure %>
+
+<%= link_to "Create New Page", new_page_url %>
+
+<%= link_to "Back", adventure_url(@adventure) %>

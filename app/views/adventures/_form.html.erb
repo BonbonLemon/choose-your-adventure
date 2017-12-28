@@ -1,4 +1,4 @@
-<% action = (adventure.persisted? ? adventure_url(adventure) : adventure_url) %>
+<% action = (adventure.persisted? ? adventure_url(adventure) : adventures_url) %>
 <% method = (adventure.persisted? ? :patch : :post) %>
 
 <form action="<%= action %>" method="post">

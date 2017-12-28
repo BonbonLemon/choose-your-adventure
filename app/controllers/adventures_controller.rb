@@ -12,6 +12,7 @@ class AdventuresController < ApplicationController
 
   def new
     @adventure = Adventure.new
+    render :new
   end
 
   def create
