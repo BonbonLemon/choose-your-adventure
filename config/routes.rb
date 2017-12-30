@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :adventures, only: [:index, :show, :create, :update, :destroy]
+    resources :users, only: [:index, :show, :create, :update]
   end
 
   # get '/users', to: 'users#index', as: 'users'

@@ -3,11 +3,12 @@ class Api::AdventuresController < ApplicationController
 
   def index
     @adventures = Adventure.all
-    render json: Adventure.all, include: [:author, :pages]
+    render :index
   end
 
   def show
-    render json: Adventure.find(params[:id]), include: [:author, :pages]
+    @adventure = Adventure.find(params[:id])
+    render :show
   end
 
   def create
@@ -15,7 +16,7 @@ class Api::AdventuresController < ApplicationController
     @adventure.author_id = current_user.id
 
     if @adventure.save
-      render json: @adventure, include: [:author, :pages]
+      render :show
     else
       render json: @adventure.errors.full_messages, status: 422
     end
