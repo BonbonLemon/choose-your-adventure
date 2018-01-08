@@ -6,14 +6,10 @@ Rails.application.routes.draw do
 
   root to: 'static_pages#root'
 
-  resources :users
-  resource :session
-  resources :adventures
-  resources :pages
-
   namespace :api, defaults: { format: :json } do
     resources :adventures, only: [:index, :show, :create, :update, :destroy]
-    resources :users, only: [:index, :show, :create, :update]
+    resource :user, only: [:create]
+    resource :session, only: [:create, :destroy, :show]
   end
 
   # get '/users', to: 'users#index', as: 'users'

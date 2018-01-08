@@ -3,13 +3,13 @@ import { Link, withRouter } from 'react-router-dom';
 
 class SessionForm extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       username: '',
       password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-  };
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.loggedIn) {
@@ -20,7 +20,7 @@ class SessionForm extends React.Component {
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
-    })
+    });
   }
 
   handleSubmit(e) {
@@ -51,13 +51,13 @@ class SessionForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          Welcome to Choose Your Adventure!
+      <div className="login-form-container">
+        <form onSubmit={this.handleSubmit} className="login-form-box">
+          Welcome to BenchBnB!
           <br/>
           Please {this.props.formType} or {this.navLink()}
           {this.renderErrors()}
-          <div>
+          <div className="login-form">
             <br/>
             <label>Username:
               <input type="text"

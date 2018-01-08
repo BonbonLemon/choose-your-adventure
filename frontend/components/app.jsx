@@ -14,9 +14,14 @@ import SessionFormContainer from './session_form/session_form_container';
 
 const App = () => (
   <div>
-    <NavbarContainer />
-    <h1>Choose Your Adventure</h1>
+    <header>
+      <Link to="/" className="header-link">
+        <h1>Choose Your Adventure</h1>
+      </Link>
+      <NavbarContainer />
+    </header>
 
+    <Route path="/" render={() => <span>One</span>} />
     <Route path="/login" component={SessionFormContainer} />
     <Route path="/signup" component={SessionFormContainer} />
   </div>
