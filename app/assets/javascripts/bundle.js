@@ -4319,7 +4319,6 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     store = (0, _store2.default)();
   }
-
   var root = document.getElementById('root');
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 });
@@ -26578,7 +26577,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state) {
   return {
     loggedIn: Boolean(state.session.currentUser),
-    errors: state.errors.session
+    errors: state.errors.session || []
   };
 };
 

@@ -1,7 +1,0 @@
-<%= link_to "Create a new adventure", new_adventure_url %>
-
-<ul>
-  <% @adventures.each do |adventure| %>
-  <li><%= link_to adventure.title, adventure_url(adventure) %></li>
-  <% end %>
-</ul>
