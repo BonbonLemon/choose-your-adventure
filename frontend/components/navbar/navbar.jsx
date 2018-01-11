@@ -2,18 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const sessionLinks = () => (
-  <nav className="login-signup">
-    <Link to="/login">Login</Link>
-    &nbsp;or&nbsp;
-    <Link to="/signup">Sign up!</Link>
-  </nav>
+  <ul className="navbar-nav">
+    <li className="nav-item">
+      <Link to="/login" className="nav-link active">Login</Link>
+    </li>
+    <li className="nav-item">
+      <Link to="/signup" className="nav-link active">Sign up</Link>
+    </li>
+  </ul>
 );
 
-const personalGreeting = (currentUser, logout) => (
-	<hgroup className="header-group">
-    <h2 className="header-name">Hi, {currentUser.username}!</h2>
-    <button className="header-button" onClick={logout}>Log Out</button>
-	</hgroup>
+const logoutLink = (currentUser, logout) => (
+  <ul className="navbar-nav">
+  	<li className="nav-item">
+      <a className="nav-link active" onClick={logout}>Log Out</a>
+  	</li>
+  </ul>
 );
 
 const Navbar = ({ currentUser, logout }) => (
@@ -25,9 +29,6 @@ const Navbar = ({ currentUser, logout }) => (
 
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav mr-auto">
-        <li className="nav-item active">
-          <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-        </li>
         <li className="nav-item">
           <a className="nav-link" href="#">Link</a>
         </li>
@@ -43,16 +44,16 @@ const Navbar = ({ currentUser, logout }) => (
           </div>
         </li>
         <li className="nav-item">
-          <a className="nav-link disabled" href="#">Disabled</a>
+          <a className="nav-link disabled">Disabled</a>
         </li>
       </ul>
-      <form className="form-inline my-2 my-lg-0">
+      <form className="form-inline my-2 my-lg-0 nav-item">
         <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
+      { currentUser ? logoutLink(currentUser, logout) : sessionLinks() }
     </div>
   </nav>
-  // currentUser ? personalGreeting(currentUser, logout) : sessionLinks()
 );
 
 export default Navbar;

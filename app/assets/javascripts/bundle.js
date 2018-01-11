@@ -26501,37 +26501,41 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var sessionLinks = function sessionLinks() {
   return _react2.default.createElement(
-    'nav',
-    { className: 'login-signup' },
+    'ul',
+    { className: 'navbar-nav' },
     _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/login' },
-      'Login'
+      'li',
+      { className: 'nav-item' },
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: '/login', className: 'nav-link active' },
+        'Login'
+      )
     ),
-    '\xA0or\xA0',
     _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/signup' },
-      'Sign up!'
+      'li',
+      { className: 'nav-item' },
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: '/signup', className: 'nav-link active' },
+        'Sign up'
+      )
     )
   );
 };
 
-var personalGreeting = function personalGreeting(currentUser, logout) {
+var logoutLink = function logoutLink(currentUser, logout) {
   return _react2.default.createElement(
-    'hgroup',
-    { className: 'header-group' },
+    'ul',
+    { className: 'navbar-nav' },
     _react2.default.createElement(
-      'h2',
-      { className: 'header-name' },
-      'Hi, ',
-      currentUser.username,
-      '!'
-    ),
-    _react2.default.createElement(
-      'button',
-      { className: 'header-button', onClick: logout },
-      'Log Out'
+      'li',
+      { className: 'nav-item' },
+      _react2.default.createElement(
+        'a',
+        { className: 'nav-link active', onClick: logout },
+        'Log Out'
+      )
     )
   );
 };
@@ -26558,20 +26562,6 @@ var Navbar = function Navbar(_ref) {
       _react2.default.createElement(
         'ul',
         { className: 'navbar-nav mr-auto' },
-        _react2.default.createElement(
-          'li',
-          { className: 'nav-item active' },
-          _react2.default.createElement(
-            'a',
-            { className: 'nav-link', href: '#' },
-            'Home ',
-            _react2.default.createElement(
-              'span',
-              { className: 'sr-only' },
-              '(current)'
-            )
-          )
-        ),
         _react2.default.createElement(
           'li',
           { className: 'nav-item' },
@@ -26615,25 +26605,24 @@ var Navbar = function Navbar(_ref) {
           { className: 'nav-item' },
           _react2.default.createElement(
             'a',
-            { className: 'nav-link disabled', href: '#' },
+            { className: 'nav-link disabled' },
             'Disabled'
           )
         )
       ),
       _react2.default.createElement(
         'form',
-        { className: 'form-inline my-2 my-lg-0' },
+        { className: 'form-inline my-2 my-lg-0 nav-item' },
         _react2.default.createElement('input', { className: 'form-control mr-sm-2', type: 'search', placeholder: 'Search', 'aria-label': 'Search' }),
         _react2.default.createElement(
           'button',
           { className: 'btn btn-outline-success my-2 my-sm-0', type: 'submit' },
           'Search'
         )
-      )
+      ),
+      currentUser ? logoutLink(currentUser, logout) : sessionLinks()
     )
-  )
-  // currentUser ? personalGreeting(currentUser, logout) : sessionLinks()
-  ;
+  );
 };
 
 exports.default = Navbar;
