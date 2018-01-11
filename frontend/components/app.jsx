@@ -14,9 +14,6 @@ import SessionFormContainer from './session_form/session_form_container';
 const App = () => (
   <div>
     <header>
-      <Link to="/" className="header-link">
-        <h1>Choose Your Adventure</h1>
-      </Link>
       <NavbarContainer />
     </header>
 
