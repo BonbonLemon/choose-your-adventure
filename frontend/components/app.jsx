@@ -10,6 +10,7 @@ import {
 
 import NavbarContainer from './navbar/navbar_container';
 import SessionFormContainer from './session_form/session_form_container';
+import AdventureIndex from './adventure/adventure_index_container';
 
 const App = () => (
   <div>
@@ -17,7 +18,7 @@ const App = () => (
       <NavbarContainer />
     </header>
 
-    <Route path="/" render={() => <span>One</span>} />
+    <Route path="/" component={AdventureIndex} />
     <Route path="/login" component={SessionFormContainer} />
     <Route path="/signup" component={SessionFormContainer} />
   </div>
