@@ -26952,11 +26952,13 @@ var _adventure_index = __webpack_require__(152);
 
 var _adventure_index2 = _interopRequireDefault(_adventure_index);
 
+var _selectors = __webpack_require__(227);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    adventures: state.adventures
+    adventures: (0, _selectors.asArray)(state.adventures)
   };
 };
 
@@ -27018,19 +27020,17 @@ var AdventureIndex = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var adventures = this.props.adventures[1] ? this.props.adventures : [];
-      debugger;
       return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(
           'ul',
           null,
-          Object.keys(adventures).map(function (key) {
+          this.props.adventures.map(function (adventure, idx) {
             return _react2.default.createElement(
               'li',
-              null,
-              adventures[key].title
+              { key: idx },
+              adventure.title
             );
           })
         )
@@ -29383,6 +29383,22 @@ var adventuresReducer = function adventuresReducer() {
 };
 
 exports.default = adventuresReducer;
+
+/***/ }),
+/* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var asArray = exports.asArray = function asArray(entities) {
+  return Object.keys(entities).map(function (key) {
+    return entities[key];
+  });
+};
 
 /***/ })
 /******/ ]);

@@ -15,14 +15,12 @@ class AdventureIndex extends React.Component {
   }
 
   render() {
-    const adventures = (this.props.adventures[1]) ? this.props.adventures : [];
-    debugger;
     return (
       <div>
         <ul>
-          {Object.keys(adventures).map(key => (
-            <li>
-              {adventures[key].title}
+          {this.props.adventures.map((adventure, idx) => (
+            <li key={idx}>
+              {adventure.title}
             </li>
           ))}
         </ul>
