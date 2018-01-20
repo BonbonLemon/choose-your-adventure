@@ -1260,11 +1260,11 @@ var logout = exports.logout = function logout() {
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var listCacheClear = __webpack_require__(160),
-    listCacheDelete = __webpack_require__(161),
-    listCacheGet = __webpack_require__(162),
-    listCacheHas = __webpack_require__(163),
-    listCacheSet = __webpack_require__(164);
+var listCacheClear = __webpack_require__(161),
+    listCacheDelete = __webpack_require__(162),
+    listCacheGet = __webpack_require__(163),
+    listCacheHas = __webpack_require__(164),
+    listCacheSet = __webpack_require__(165);
 
 /**
  * Creates an list cache object.
@@ -1369,8 +1369,8 @@ module.exports = eq;
 /***/ (function(module, exports, __webpack_require__) {
 
 var Symbol = __webpack_require__(68),
-    getRawTag = __webpack_require__(171),
-    objectToString = __webpack_require__(172);
+    getRawTag = __webpack_require__(172),
+    objectToString = __webpack_require__(173);
 
 /** `Object#toString` result references. */
 var nullTag = '[object Null]',
@@ -1414,7 +1414,7 @@ module.exports = nativeCreate;
 /* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isKeyable = __webpack_require__(186);
+var isKeyable = __webpack_require__(187);
 
 /**
  * Gets the data for `map`.
@@ -2091,8 +2091,8 @@ var createTransitionManager = function createTransitionManager() {
 /* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsNative = __webpack_require__(170),
-    getValue = __webpack_require__(176);
+var baseIsNative = __webpack_require__(171),
+    getValue = __webpack_require__(177);
 
 /**
  * Gets the native function at `key` of `object`.
@@ -3941,8 +3941,8 @@ var fetchAdventures = exports.fetchAdventures = function fetchAdventures(data) {
 /* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseMerge = __webpack_require__(158),
-    createAssigner = __webpack_require__(215);
+var baseMerge = __webpack_require__(159),
+    createAssigner = __webpack_require__(216);
 
 /**
  * This method is like `_.assign` except that it recursively merges own and
@@ -4065,7 +4065,7 @@ module.exports = defineProperty;
 /* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var overArg = __webpack_require__(200);
+var overArg = __webpack_require__(201);
 
 /** Built-in value references. */
 var getPrototype = overArg(Object.getPrototypeOf, Object);
@@ -4101,7 +4101,7 @@ module.exports = isPrototype;
 /* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsArguments = __webpack_require__(201),
+var baseIsArguments = __webpack_require__(202),
     isObjectLike = __webpack_require__(14);
 
 /** Used for built-in method references. */
@@ -4217,7 +4217,7 @@ module.exports = isLength;
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(7),
-    stubFalse = __webpack_require__(203);
+    stubFalse = __webpack_require__(204);
 
 /** Detect free variable `exports`. */
 var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -4261,9 +4261,9 @@ module.exports = isBuffer;
 /* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsTypedArray = __webpack_require__(205),
-    baseUnary = __webpack_require__(206),
-    nodeUtil = __webpack_require__(207);
+var baseIsTypedArray = __webpack_require__(206),
+    baseUnary = __webpack_require__(207),
+    nodeUtil = __webpack_require__(208);
 
 /* Node.js helper references. */
 var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
@@ -4294,8 +4294,8 @@ module.exports = isTypedArray;
 /* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayLikeKeys = __webpack_require__(211),
-    baseKeysIn = __webpack_require__(213),
+var arrayLikeKeys = __webpack_require__(212),
+    baseKeysIn = __webpack_require__(214),
     isArrayLike = __webpack_require__(41);
 
 /**
@@ -4402,7 +4402,7 @@ var _root = __webpack_require__(94);
 
 var _root2 = _interopRequireDefault(_root);
 
-var _store = __webpack_require__(153);
+var _store = __webpack_require__(154);
 
 var _store2 = _interopRequireDefault(_store);
 
@@ -26499,6 +26499,8 @@ var _adventure_index_container = __webpack_require__(151);
 
 var _adventure_index_container2 = _interopRequireDefault(_adventure_index_container);
 
+var _route_util = __webpack_require__(228);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -26510,9 +26512,9 @@ var App = function App() {
       null,
       _react2.default.createElement(_navbar_container2.default, null)
     ),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _adventure_index_container2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _session_form_container2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/signup', component: _session_form_container2.default })
+    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _adventure_index_container2.default }),
+    _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
+    _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default })
   );
 };
 
@@ -26952,7 +26954,7 @@ var _adventure_index = __webpack_require__(152);
 
 var _adventure_index2 = _interopRequireDefault(_adventure_index);
 
-var _selectors = __webpack_require__(227);
+var _selectors = __webpack_require__(153);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27053,18 +27055,34 @@ exports.default = (0, _reactRouterDom.withRouter)(AdventureIndex);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var asArray = exports.asArray = function asArray(entities) {
+  return Object.keys(entities).map(function (key) {
+    return entities[key];
+  });
+};
+
+/***/ }),
+/* 154 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 var _redux = __webpack_require__(17);
 
-var _reduxThunk = __webpack_require__(154);
+var _reduxThunk = __webpack_require__(155);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-var _reduxLogger = __webpack_require__(155);
+var _reduxLogger = __webpack_require__(156);
 
 var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
-var _root_reducer = __webpack_require__(156);
+var _root_reducer = __webpack_require__(157);
 
 var _root_reducer2 = _interopRequireDefault(_root_reducer);
 
@@ -27078,7 +27096,7 @@ var configureStore = function configureStore() {
 exports.default = configureStore;
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27107,7 +27125,7 @@ thunk.withExtraArgument = createThunkMiddleware;
 exports['default'] = thunk;
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {!function(e,t){ true?t(exports):"function"==typeof define&&define.amd?define(["exports"],t):t(e.reduxLogger=e.reduxLogger||{})}(this,function(e){"use strict";function t(e,t){e.super_=t,e.prototype=Object.create(t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}})}function r(e,t){Object.defineProperty(this,"kind",{value:e,enumerable:!0}),t&&t.length&&Object.defineProperty(this,"path",{value:t,enumerable:!0})}function n(e,t,r){n.super_.call(this,"E",e),Object.defineProperty(this,"lhs",{value:t,enumerable:!0}),Object.defineProperty(this,"rhs",{value:r,enumerable:!0})}function o(e,t){o.super_.call(this,"N",e),Object.defineProperty(this,"rhs",{value:t,enumerable:!0})}function i(e,t){i.super_.call(this,"D",e),Object.defineProperty(this,"lhs",{value:t,enumerable:!0})}function a(e,t,r){a.super_.call(this,"A",e),Object.defineProperty(this,"index",{value:t,enumerable:!0}),Object.defineProperty(this,"item",{value:r,enumerable:!0})}function f(e,t,r){var n=e.slice((r||t)+1||e.length);return e.length=t<0?e.length+t:t,e.push.apply(e,n),e}function u(e){var t="undefined"==typeof e?"undefined":N(e);return"object"!==t?t:e===Math?"math":null===e?"null":Array.isArray(e)?"array":"[object Date]"===Object.prototype.toString.call(e)?"date":"function"==typeof e.toString&&/^\/.*\//.test(e.toString())?"regexp":"object"}function l(e,t,r,c,s,d,p){s=s||[],p=p||[];var g=s.slice(0);if("undefined"!=typeof d){if(c){if("function"==typeof c&&c(g,d))return;if("object"===("undefined"==typeof c?"undefined":N(c))){if(c.prefilter&&c.prefilter(g,d))return;if(c.normalize){var h=c.normalize(g,d,e,t);h&&(e=h[0],t=h[1])}}}g.push(d)}"regexp"===u(e)&&"regexp"===u(t)&&(e=e.toString(),t=t.toString());var y="undefined"==typeof e?"undefined":N(e),v="undefined"==typeof t?"undefined":N(t),b="undefined"!==y||p&&p[p.length-1].lhs&&p[p.length-1].lhs.hasOwnProperty(d),m="undefined"!==v||p&&p[p.length-1].rhs&&p[p.length-1].rhs.hasOwnProperty(d);if(!b&&m)r(new o(g,t));else if(!m&&b)r(new i(g,e));else if(u(e)!==u(t))r(new n(g,e,t));else if("date"===u(e)&&e-t!==0)r(new n(g,e,t));else if("object"===y&&null!==e&&null!==t)if(p.filter(function(t){return t.lhs===e}).length)e!==t&&r(new n(g,e,t));else{if(p.push({lhs:e,rhs:t}),Array.isArray(e)){var w;e.length;for(w=0;w<e.length;w++)w>=t.length?r(new a(g,w,new i(void 0,e[w]))):l(e[w],t[w],r,c,g,w,p);for(;w<t.length;)r(new a(g,w,new o(void 0,t[w++])))}else{var x=Object.keys(e),S=Object.keys(t);x.forEach(function(n,o){var i=S.indexOf(n);i>=0?(l(e[n],t[n],r,c,g,n,p),S=f(S,i)):l(e[n],void 0,r,c,g,n,p)}),S.forEach(function(e){l(void 0,t[e],r,c,g,e,p)})}p.length=p.length-1}else e!==t&&("number"===y&&isNaN(e)&&isNaN(t)||r(new n(g,e,t)))}function c(e,t,r,n){return n=n||[],l(e,t,function(e){e&&n.push(e)},r),n.length?n:void 0}function s(e,t,r){if(r.path&&r.path.length){var n,o=e[t],i=r.path.length-1;for(n=0;n<i;n++)o=o[r.path[n]];switch(r.kind){case"A":s(o[r.path[n]],r.index,r.item);break;case"D":delete o[r.path[n]];break;case"E":case"N":o[r.path[n]]=r.rhs}}else switch(r.kind){case"A":s(e[t],r.index,r.item);break;case"D":e=f(e,t);break;case"E":case"N":e[t]=r.rhs}return e}function d(e,t,r){if(e&&t&&r&&r.kind){for(var n=e,o=-1,i=r.path?r.path.length-1:0;++o<i;)"undefined"==typeof n[r.path[o]]&&(n[r.path[o]]="number"==typeof r.path[o]?[]:{}),n=n[r.path[o]];switch(r.kind){case"A":s(r.path?n[r.path[o]]:n,r.index,r.item);break;case"D":delete n[r.path[o]];break;case"E":case"N":n[r.path[o]]=r.rhs}}}function p(e,t,r){if(r.path&&r.path.length){var n,o=e[t],i=r.path.length-1;for(n=0;n<i;n++)o=o[r.path[n]];switch(r.kind){case"A":p(o[r.path[n]],r.index,r.item);break;case"D":o[r.path[n]]=r.lhs;break;case"E":o[r.path[n]]=r.lhs;break;case"N":delete o[r.path[n]]}}else switch(r.kind){case"A":p(e[t],r.index,r.item);break;case"D":e[t]=r.lhs;break;case"E":e[t]=r.lhs;break;case"N":e=f(e,t)}return e}function g(e,t,r){if(e&&t&&r&&r.kind){var n,o,i=e;for(o=r.path.length-1,n=0;n<o;n++)"undefined"==typeof i[r.path[n]]&&(i[r.path[n]]={}),i=i[r.path[n]];switch(r.kind){case"A":p(i[r.path[n]],r.index,r.item);break;case"D":i[r.path[n]]=r.lhs;break;case"E":i[r.path[n]]=r.lhs;break;case"N":delete i[r.path[n]]}}}function h(e,t,r){if(e&&t){var n=function(n){r&&!r(e,t,n)||d(e,t,n)};l(e,t,n)}}function y(e){return"color: "+F[e].color+"; font-weight: bold"}function v(e){var t=e.kind,r=e.path,n=e.lhs,o=e.rhs,i=e.index,a=e.item;switch(t){case"E":return[r.join("."),n,"→",o];case"N":return[r.join("."),o];case"D":return[r.join(".")];case"A":return[r.join(".")+"["+i+"]",a];default:return[]}}function b(e,t,r,n){var o=c(e,t);try{n?r.groupCollapsed("diff"):r.group("diff")}catch(e){r.log("diff")}o?o.forEach(function(e){var t=e.kind,n=v(e);r.log.apply(r,["%c "+F[t].text,y(t)].concat(P(n)))}):r.log("—— no diff ——");try{r.groupEnd()}catch(e){r.log("—— diff end —— ")}}function m(e,t,r,n){switch("undefined"==typeof e?"undefined":N(e)){case"object":return"function"==typeof e[n]?e[n].apply(e,P(r)):e[n];case"function":return e(t);default:return e}}function w(e){var t=e.timestamp,r=e.duration;return function(e,n,o){var i=["action"];return i.push("%c"+String(e.type)),t&&i.push("%c@ "+n),r&&i.push("%c(in "+o.toFixed(2)+" ms)"),i.join(" ")}}function x(e,t){var r=t.logger,n=t.actionTransformer,o=t.titleFormatter,i=void 0===o?w(t):o,a=t.collapsed,f=t.colors,u=t.level,l=t.diff,c="undefined"==typeof t.titleFormatter;e.forEach(function(o,s){var d=o.started,p=o.startedTime,g=o.action,h=o.prevState,y=o.error,v=o.took,w=o.nextState,x=e[s+1];x&&(w=x.prevState,v=x.started-d);var S=n(g),k="function"==typeof a?a(function(){return w},g,o):a,j=D(p),E=f.title?"color: "+f.title(S)+";":"",A=["color: gray; font-weight: lighter;"];A.push(E),t.timestamp&&A.push("color: gray; font-weight: lighter;"),t.duration&&A.push("color: gray; font-weight: lighter;");var O=i(S,j,v);try{k?f.title&&c?r.groupCollapsed.apply(r,["%c "+O].concat(A)):r.groupCollapsed(O):f.title&&c?r.group.apply(r,["%c "+O].concat(A)):r.group(O)}catch(e){r.log(O)}var N=m(u,S,[h],"prevState"),P=m(u,S,[S],"action"),C=m(u,S,[y,h],"error"),F=m(u,S,[w],"nextState");if(N)if(f.prevState){var L="color: "+f.prevState(h)+"; font-weight: bold";r[N]("%c prev state",L,h)}else r[N]("prev state",h);if(P)if(f.action){var T="color: "+f.action(S)+"; font-weight: bold";r[P]("%c action    ",T,S)}else r[P]("action    ",S);if(y&&C)if(f.error){var M="color: "+f.error(y,h)+"; font-weight: bold;";r[C]("%c error     ",M,y)}else r[C]("error     ",y);if(F)if(f.nextState){var _="color: "+f.nextState(w)+"; font-weight: bold";r[F]("%c next state",_,w)}else r[F]("next state",w);l&&b(h,w,r,k);try{r.groupEnd()}catch(e){r.log("—— log end ——")}})}function S(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=Object.assign({},L,e),r=t.logger,n=t.stateTransformer,o=t.errorTransformer,i=t.predicate,a=t.logErrors,f=t.diffPredicate;if("undefined"==typeof r)return function(){return function(e){return function(t){return e(t)}}};if(e.getState&&e.dispatch)return console.error("[redux-logger] redux-logger not installed. Make sure to pass logger instance as middleware:\n// Logger with default options\nimport { logger } from 'redux-logger'\nconst store = createStore(\n  reducer,\n  applyMiddleware(logger)\n)\n// Or you can create your own logger with custom options http://bit.ly/redux-logger-options\nimport createLogger from 'redux-logger'\nconst logger = createLogger({\n  // ...options\n});\nconst store = createStore(\n  reducer,\n  applyMiddleware(logger)\n)\n"),function(){return function(e){return function(t){return e(t)}}};var u=[];return function(e){var r=e.getState;return function(e){return function(l){if("function"==typeof i&&!i(r,l))return e(l);var c={};u.push(c),c.started=O.now(),c.startedTime=new Date,c.prevState=n(r()),c.action=l;var s=void 0;if(a)try{s=e(l)}catch(e){c.error=o(e)}else s=e(l);c.took=O.now()-c.started,c.nextState=n(r());var d=t.diff&&"function"==typeof f?f(r,l):t.diff;if(x(u,Object.assign({},t,{diff:d})),u.length=0,c.error)throw c.error;return s}}}}var k,j,E=function(e,t){return new Array(t+1).join(e)},A=function(e,t){return E("0",t-e.toString().length)+e},D=function(e){return A(e.getHours(),2)+":"+A(e.getMinutes(),2)+":"+A(e.getSeconds(),2)+"."+A(e.getMilliseconds(),3)},O="undefined"!=typeof performance&&null!==performance&&"function"==typeof performance.now?performance:Date,N="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},P=function(e){if(Array.isArray(e)){for(var t=0,r=Array(e.length);t<e.length;t++)r[t]=e[t];return r}return Array.from(e)},C=[];k="object"===("undefined"==typeof global?"undefined":N(global))&&global?global:"undefined"!=typeof window?window:{},j=k.DeepDiff,j&&C.push(function(){"undefined"!=typeof j&&k.DeepDiff===c&&(k.DeepDiff=j,j=void 0)}),t(n,r),t(o,r),t(i,r),t(a,r),Object.defineProperties(c,{diff:{value:c,enumerable:!0},observableDiff:{value:l,enumerable:!0},applyDiff:{value:h,enumerable:!0},applyChange:{value:d,enumerable:!0},revertChange:{value:g,enumerable:!0},isConflict:{value:function(){return"undefined"!=typeof j},enumerable:!0},noConflict:{value:function(){return C&&(C.forEach(function(e){e()}),C=null),c},enumerable:!0}});var F={E:{color:"#2196F3",text:"CHANGED:"},N:{color:"#4CAF50",text:"ADDED:"},D:{color:"#F44336",text:"DELETED:"},A:{color:"#2196F3",text:"ARRAY:"}},L={level:"log",logger:console,logErrors:!0,collapsed:void 0,predicate:void 0,duration:!1,timestamp:!0,stateTransformer:function(e){return e},actionTransformer:function(e){return e},errorTransformer:function(e){return e},colors:{title:function(){return"inherit"},prevState:function(){return"#9E9E9E"},action:function(){return"#03A9F4"},nextState:function(){return"#4CAF50"},error:function(){return"#F20404"}},diff:!1,diffPredicate:void 0,transformer:void 0},T=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=e.dispatch,r=e.getState;return"function"==typeof t||"function"==typeof r?S()({dispatch:t,getState:r}):void console.error("\n[redux-logger v3] BREAKING CHANGE\n[redux-logger v3] Since 3.0.0 redux-logger exports by default logger with default settings.\n[redux-logger v3] Change\n[redux-logger v3] import createLogger from 'redux-logger'\n[redux-logger v3] to\n[redux-logger v3] import { createLogger } from 'redux-logger'\n")};e.defaults=L,e.createLogger=S,e.logger=T,e.default=T,Object.defineProperty(e,"__esModule",{value:!0})});
@@ -27115,7 +27133,7 @@ exports['default'] = thunk;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18)))
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27127,15 +27145,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(17);
 
-var _session_reducer = __webpack_require__(157);
+var _session_reducer = __webpack_require__(158);
 
 var _session_reducer2 = _interopRequireDefault(_session_reducer);
 
-var _errors_reducer = __webpack_require__(224);
+var _errors_reducer = __webpack_require__(225);
 
 var _errors_reducer2 = _interopRequireDefault(_errors_reducer);
 
-var _adventures_reducer = __webpack_require__(226);
+var _adventures_reducer = __webpack_require__(227);
 
 var _adventures_reducer2 = _interopRequireDefault(_adventures_reducer);
 
@@ -27150,7 +27168,7 @@ var rootReducer = (0, _redux.combineReducers)({
 exports.default = rootReducer;
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27189,13 +27207,13 @@ var sessionReducer = function sessionReducer() {
 exports.default = sessionReducer;
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Stack = __webpack_require__(159),
+var Stack = __webpack_require__(160),
     assignMergeValue = __webpack_require__(70),
-    baseFor = __webpack_require__(190),
-    baseMergeDeep = __webpack_require__(192),
+    baseFor = __webpack_require__(191),
+    baseMergeDeep = __webpack_require__(193),
     isObject = __webpack_require__(6),
     keysIn = __webpack_require__(79);
 
@@ -27236,15 +27254,15 @@ module.exports = baseMerge;
 
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var ListCache = __webpack_require__(22),
-    stackClear = __webpack_require__(165),
-    stackDelete = __webpack_require__(166),
-    stackGet = __webpack_require__(167),
-    stackHas = __webpack_require__(168),
-    stackSet = __webpack_require__(169);
+    stackClear = __webpack_require__(166),
+    stackDelete = __webpack_require__(167),
+    stackGet = __webpack_require__(168),
+    stackHas = __webpack_require__(169),
+    stackSet = __webpack_require__(170);
 
 /**
  * Creates a stack cache object to store key-value pairs.
@@ -27269,7 +27287,7 @@ module.exports = Stack;
 
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, exports) {
 
 /**
@@ -27288,7 +27306,7 @@ module.exports = listCacheClear;
 
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assocIndexOf = __webpack_require__(23);
@@ -27329,7 +27347,7 @@ module.exports = listCacheDelete;
 
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assocIndexOf = __webpack_require__(23);
@@ -27354,7 +27372,7 @@ module.exports = listCacheGet;
 
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assocIndexOf = __webpack_require__(23);
@@ -27376,7 +27394,7 @@ module.exports = listCacheHas;
 
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assocIndexOf = __webpack_require__(23);
@@ -27408,7 +27426,7 @@ module.exports = listCacheSet;
 
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var ListCache = __webpack_require__(22);
@@ -27429,7 +27447,7 @@ module.exports = stackClear;
 
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports) {
 
 /**
@@ -27453,7 +27471,7 @@ module.exports = stackDelete;
 
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports) {
 
 /**
@@ -27473,7 +27491,7 @@ module.exports = stackGet;
 
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports) {
 
 /**
@@ -27493,12 +27511,12 @@ module.exports = stackHas;
 
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var ListCache = __webpack_require__(22),
     Map = __webpack_require__(67),
-    MapCache = __webpack_require__(177);
+    MapCache = __webpack_require__(178);
 
 /** Used as the size to enable large array optimizations. */
 var LARGE_ARRAY_SIZE = 200;
@@ -27533,13 +27551,13 @@ module.exports = stackSet;
 
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isFunction = __webpack_require__(39),
-    isMasked = __webpack_require__(173),
+    isMasked = __webpack_require__(174),
     isObject = __webpack_require__(6),
-    toSource = __webpack_require__(175);
+    toSource = __webpack_require__(176);
 
 /**
  * Used to match `RegExp`
@@ -27586,7 +27604,7 @@ module.exports = baseIsNative;
 
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Symbol = __webpack_require__(68);
@@ -27638,7 +27656,7 @@ module.exports = getRawTag;
 
 
 /***/ }),
-/* 172 */
+/* 173 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -27666,10 +27684,10 @@ module.exports = objectToString;
 
 
 /***/ }),
-/* 173 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var coreJsData = __webpack_require__(174);
+var coreJsData = __webpack_require__(175);
 
 /** Used to detect methods masquerading as native. */
 var maskSrcKey = (function() {
@@ -27692,7 +27710,7 @@ module.exports = isMasked;
 
 
 /***/ }),
-/* 174 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var root = __webpack_require__(7);
@@ -27704,7 +27722,7 @@ module.exports = coreJsData;
 
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -27736,7 +27754,7 @@ module.exports = toSource;
 
 
 /***/ }),
-/* 176 */
+/* 177 */
 /***/ (function(module, exports) {
 
 /**
@@ -27755,14 +27773,14 @@ module.exports = getValue;
 
 
 /***/ }),
-/* 177 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var mapCacheClear = __webpack_require__(178),
-    mapCacheDelete = __webpack_require__(185),
-    mapCacheGet = __webpack_require__(187),
-    mapCacheHas = __webpack_require__(188),
-    mapCacheSet = __webpack_require__(189);
+var mapCacheClear = __webpack_require__(179),
+    mapCacheDelete = __webpack_require__(186),
+    mapCacheGet = __webpack_require__(188),
+    mapCacheHas = __webpack_require__(189),
+    mapCacheSet = __webpack_require__(190);
 
 /**
  * Creates a map cache object to store key-value pairs.
@@ -27793,10 +27811,10 @@ module.exports = MapCache;
 
 
 /***/ }),
-/* 178 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Hash = __webpack_require__(179),
+var Hash = __webpack_require__(180),
     ListCache = __webpack_require__(22),
     Map = __webpack_require__(67);
 
@@ -27820,14 +27838,14 @@ module.exports = mapCacheClear;
 
 
 /***/ }),
-/* 179 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var hashClear = __webpack_require__(180),
-    hashDelete = __webpack_require__(181),
-    hashGet = __webpack_require__(182),
-    hashHas = __webpack_require__(183),
-    hashSet = __webpack_require__(184);
+var hashClear = __webpack_require__(181),
+    hashDelete = __webpack_require__(182),
+    hashGet = __webpack_require__(183),
+    hashHas = __webpack_require__(184),
+    hashSet = __webpack_require__(185);
 
 /**
  * Creates a hash object.
@@ -27858,7 +27876,7 @@ module.exports = Hash;
 
 
 /***/ }),
-/* 180 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var nativeCreate = __webpack_require__(26);
@@ -27879,7 +27897,7 @@ module.exports = hashClear;
 
 
 /***/ }),
-/* 181 */
+/* 182 */
 /***/ (function(module, exports) {
 
 /**
@@ -27902,7 +27920,7 @@ module.exports = hashDelete;
 
 
 /***/ }),
-/* 182 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var nativeCreate = __webpack_require__(26);
@@ -27938,7 +27956,7 @@ module.exports = hashGet;
 
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var nativeCreate = __webpack_require__(26);
@@ -27967,7 +27985,7 @@ module.exports = hashHas;
 
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var nativeCreate = __webpack_require__(26);
@@ -27996,7 +28014,7 @@ module.exports = hashSet;
 
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getMapData = __webpack_require__(27);
@@ -28020,7 +28038,7 @@ module.exports = mapCacheDelete;
 
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, exports) {
 
 /**
@@ -28041,7 +28059,7 @@ module.exports = isKeyable;
 
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getMapData = __webpack_require__(27);
@@ -28063,7 +28081,7 @@ module.exports = mapCacheGet;
 
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getMapData = __webpack_require__(27);
@@ -28085,7 +28103,7 @@ module.exports = mapCacheHas;
 
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getMapData = __webpack_require__(27);
@@ -28113,10 +28131,10 @@ module.exports = mapCacheSet;
 
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var createBaseFor = __webpack_require__(191);
+var createBaseFor = __webpack_require__(192);
 
 /**
  * The base implementation of `baseForOwn` which iterates over `object`
@@ -28135,7 +28153,7 @@ module.exports = baseFor;
 
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports) {
 
 /**
@@ -28166,23 +28184,23 @@ module.exports = createBaseFor;
 
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assignMergeValue = __webpack_require__(70),
-    cloneBuffer = __webpack_require__(193),
-    cloneTypedArray = __webpack_require__(194),
-    copyArray = __webpack_require__(197),
-    initCloneObject = __webpack_require__(198),
+    cloneBuffer = __webpack_require__(194),
+    cloneTypedArray = __webpack_require__(195),
+    copyArray = __webpack_require__(198),
+    initCloneObject = __webpack_require__(199),
     isArguments = __webpack_require__(74),
     isArray = __webpack_require__(75),
-    isArrayLikeObject = __webpack_require__(202),
+    isArrayLikeObject = __webpack_require__(203),
     isBuffer = __webpack_require__(77),
     isFunction = __webpack_require__(39),
     isObject = __webpack_require__(6),
-    isPlainObject = __webpack_require__(204),
+    isPlainObject = __webpack_require__(205),
     isTypedArray = __webpack_require__(78),
-    toPlainObject = __webpack_require__(208);
+    toPlainObject = __webpack_require__(209);
 
 /**
  * A specialized version of `baseMerge` for arrays and objects which performs
@@ -28265,7 +28283,7 @@ module.exports = baseMergeDeep;
 
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(7);
@@ -28307,10 +28325,10 @@ module.exports = cloneBuffer;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)(module)))
 
 /***/ }),
-/* 194 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var cloneArrayBuffer = __webpack_require__(195);
+var cloneArrayBuffer = __webpack_require__(196);
 
 /**
  * Creates a clone of `typedArray`.
@@ -28329,10 +28347,10 @@ module.exports = cloneTypedArray;
 
 
 /***/ }),
-/* 195 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Uint8Array = __webpack_require__(196);
+var Uint8Array = __webpack_require__(197);
 
 /**
  * Creates a clone of `arrayBuffer`.
@@ -28351,7 +28369,7 @@ module.exports = cloneArrayBuffer;
 
 
 /***/ }),
-/* 196 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var root = __webpack_require__(7);
@@ -28363,7 +28381,7 @@ module.exports = Uint8Array;
 
 
 /***/ }),
-/* 197 */
+/* 198 */
 /***/ (function(module, exports) {
 
 /**
@@ -28389,10 +28407,10 @@ module.exports = copyArray;
 
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseCreate = __webpack_require__(199),
+var baseCreate = __webpack_require__(200),
     getPrototype = __webpack_require__(72),
     isPrototype = __webpack_require__(73);
 
@@ -28413,7 +28431,7 @@ module.exports = initCloneObject;
 
 
 /***/ }),
-/* 199 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(6);
@@ -28449,7 +28467,7 @@ module.exports = baseCreate;
 
 
 /***/ }),
-/* 200 */
+/* 201 */
 /***/ (function(module, exports) {
 
 /**
@@ -28470,7 +28488,7 @@ module.exports = overArg;
 
 
 /***/ }),
-/* 201 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(25),
@@ -28494,7 +28512,7 @@ module.exports = baseIsArguments;
 
 
 /***/ }),
-/* 202 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isArrayLike = __webpack_require__(41),
@@ -28533,7 +28551,7 @@ module.exports = isArrayLikeObject;
 
 
 /***/ }),
-/* 203 */
+/* 204 */
 /***/ (function(module, exports) {
 
 /**
@@ -28557,7 +28575,7 @@ module.exports = stubFalse;
 
 
 /***/ }),
-/* 204 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(25),
@@ -28625,7 +28643,7 @@ module.exports = isPlainObject;
 
 
 /***/ }),
-/* 205 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(25),
@@ -28691,7 +28709,7 @@ module.exports = baseIsTypedArray;
 
 
 /***/ }),
-/* 206 */
+/* 207 */
 /***/ (function(module, exports) {
 
 /**
@@ -28711,7 +28729,7 @@ module.exports = baseUnary;
 
 
 /***/ }),
-/* 207 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(69);
@@ -28740,10 +28758,10 @@ module.exports = nodeUtil;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)(module)))
 
 /***/ }),
-/* 208 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var copyObject = __webpack_require__(209),
+var copyObject = __webpack_require__(210),
     keysIn = __webpack_require__(79);
 
 /**
@@ -28778,10 +28796,10 @@ module.exports = toPlainObject;
 
 
 /***/ }),
-/* 209 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var assignValue = __webpack_require__(210),
+var assignValue = __webpack_require__(211),
     baseAssignValue = __webpack_require__(40);
 
 /**
@@ -28824,7 +28842,7 @@ module.exports = copyObject;
 
 
 /***/ }),
-/* 210 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseAssignValue = __webpack_require__(40),
@@ -28858,10 +28876,10 @@ module.exports = assignValue;
 
 
 /***/ }),
-/* 211 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseTimes = __webpack_require__(212),
+var baseTimes = __webpack_require__(213),
     isArguments = __webpack_require__(74),
     isArray = __webpack_require__(75),
     isBuffer = __webpack_require__(77),
@@ -28913,7 +28931,7 @@ module.exports = arrayLikeKeys;
 
 
 /***/ }),
-/* 212 */
+/* 213 */
 /***/ (function(module, exports) {
 
 /**
@@ -28939,12 +28957,12 @@ module.exports = baseTimes;
 
 
 /***/ }),
-/* 213 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(6),
     isPrototype = __webpack_require__(73),
-    nativeKeysIn = __webpack_require__(214);
+    nativeKeysIn = __webpack_require__(215);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -28978,7 +28996,7 @@ module.exports = baseKeysIn;
 
 
 /***/ }),
-/* 214 */
+/* 215 */
 /***/ (function(module, exports) {
 
 /**
@@ -29004,11 +29022,11 @@ module.exports = nativeKeysIn;
 
 
 /***/ }),
-/* 215 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseRest = __webpack_require__(216),
-    isIterateeCall = __webpack_require__(223);
+var baseRest = __webpack_require__(217),
+    isIterateeCall = __webpack_require__(224);
 
 /**
  * Creates a function like `_.assign`.
@@ -29047,12 +29065,12 @@ module.exports = createAssigner;
 
 
 /***/ }),
-/* 216 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var identity = __webpack_require__(81),
-    overRest = __webpack_require__(217),
-    setToString = __webpack_require__(219);
+    overRest = __webpack_require__(218),
+    setToString = __webpack_require__(220);
 
 /**
  * The base implementation of `_.rest` which doesn't validate or coerce arguments.
@@ -29070,10 +29088,10 @@ module.exports = baseRest;
 
 
 /***/ }),
-/* 217 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var apply = __webpack_require__(218);
+var apply = __webpack_require__(219);
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeMax = Math.max;
@@ -29112,7 +29130,7 @@ module.exports = overRest;
 
 
 /***/ }),
-/* 218 */
+/* 219 */
 /***/ (function(module, exports) {
 
 /**
@@ -29139,11 +29157,11 @@ module.exports = apply;
 
 
 /***/ }),
-/* 219 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseSetToString = __webpack_require__(220),
-    shortOut = __webpack_require__(222);
+var baseSetToString = __webpack_require__(221),
+    shortOut = __webpack_require__(223);
 
 /**
  * Sets the `toString` method of `func` to return `string`.
@@ -29159,10 +29177,10 @@ module.exports = setToString;
 
 
 /***/ }),
-/* 220 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var constant = __webpack_require__(221),
+var constant = __webpack_require__(222),
     defineProperty = __webpack_require__(71),
     identity = __webpack_require__(81);
 
@@ -29187,7 +29205,7 @@ module.exports = baseSetToString;
 
 
 /***/ }),
-/* 221 */
+/* 222 */
 /***/ (function(module, exports) {
 
 /**
@@ -29219,7 +29237,7 @@ module.exports = constant;
 
 
 /***/ }),
-/* 222 */
+/* 223 */
 /***/ (function(module, exports) {
 
 /** Used to detect hot functions by number of calls within a span of milliseconds. */
@@ -29262,7 +29280,7 @@ module.exports = shortOut;
 
 
 /***/ }),
-/* 223 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var eq = __webpack_require__(24),
@@ -29298,7 +29316,7 @@ module.exports = isIterateeCall;
 
 
 /***/ }),
-/* 224 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29310,7 +29328,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(17);
 
-var _session_errors_reducer = __webpack_require__(225);
+var _session_errors_reducer = __webpack_require__(226);
 
 var _session_errors_reducer2 = _interopRequireDefault(_session_errors_reducer);
 
@@ -29321,7 +29339,7 @@ exports.default = (0, _redux.combineReducers)({
 });
 
 /***/ }),
-/* 225 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29349,7 +29367,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 226 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29385,7 +29403,7 @@ var adventuresReducer = function adventuresReducer() {
 exports.default = adventuresReducer;
 
 /***/ }),
-/* 227 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29394,11 +29412,43 @@ exports.default = adventuresReducer;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var asArray = exports.asArray = function asArray(entities) {
-  return Object.keys(entities).map(function (key) {
-    return entities[key];
-  });
+exports.ProtectedRoute = exports.AuthRoute = undefined;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(10);
+
+var _reactRouterDom = __webpack_require__(11);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Auth = function Auth(_ref) {
+  var Component = _ref.component,
+      path = _ref.path,
+      loggedIn = _ref.loggedIn;
+  return _react2.default.createElement(_reactRouterDom.Route, { path: path, render: function render(props) {
+      return !loggedIn ? _react2.default.createElement(Component, props) : _react2.default.createElement(_reactRouterDom.Redirect, { to: '/' });
+    } });
 };
+
+var Protected = function Protected(_ref2) {
+  var Component = _ref2.component,
+      path = _ref2.path,
+      loggedIn = _ref2.loggedIn;
+  return _react2.default.createElement(_reactRouterDom.Route, { path: path, render: function render(props) {
+      return loggedIn ? _react2.default.createElement(Component, props) : _react2.default.createElement(_reactRouterDom.Redirect, { to: '/login' });
+    } });
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  return { loggedIn: Boolean(state.session.currentUser) };
+};
+
+var AuthRoute = exports.AuthRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(Auth));
+
+var ProtectedRoute = exports.ProtectedRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(Protected));
 
 /***/ })
 /******/ ]);
