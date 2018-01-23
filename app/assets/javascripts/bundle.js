@@ -27108,6 +27108,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(6);
 
+var _adventure_actions = __webpack_require__(70);
+
 var _adventure_form = __webpack_require__(155);
 
 var _adventure_form2 = _interopRequireDefault(_adventure_form);
@@ -27118,11 +27120,12 @@ var mapStateToProps = function mapStateToProps(state) {
   return {};
 };
 
-// import { createAdventure } from '../../actions/adventure_actions';
-
-
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    createAdventure: function createAdventure(adventure) {
+      return dispatch((0, _adventure_actions.createAdventure)(adventure));
+    }
+  };
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_adventure_form2.default);
@@ -27148,6 +27151,8 @@ var _reactRouter = __webpack_require__(156);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -27160,16 +27165,58 @@ var AdventureForm = function (_React$Component) {
   function AdventureForm(props) {
     _classCallCheck(this, AdventureForm);
 
-    return _possibleConstructorReturn(this, (AdventureForm.__proto__ || Object.getPrototypeOf(AdventureForm)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (AdventureForm.__proto__ || Object.getPrototypeOf(AdventureForm)).call(this, props));
+
+    _this.state = {
+      title: ''
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    return _this;
   }
 
   _createClass(AdventureForm, [{
+    key: 'update',
+    value: function update(property) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, property, e.target.value));
+      };
+    }
+  }, {
+    key: 'handleSubmit',
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var adventure = Object.assign({}, this.state);
+      this.props.createAdventure({ adventure: adventure });
+      this.props.history.push('/');
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var title = this.state.title;
+
       return _react2.default.createElement(
         'div',
         null,
-        'this is the adventure form...'
+        _react2.default.createElement(
+          'form',
+          { onSubmit: this.handleSubmit },
+          _react2.default.createElement(
+            'label',
+            null,
+            'Title'
+          ),
+          _react2.default.createElement('input', {
+            type: 'text',
+            value: title,
+            onChange: this.update('title')
+          }),
+          _react2.default.createElement('input', {
+            type: 'submit',
+            value: 'Create Adventure'
+          })
+        )
       );
     }
   }]);
