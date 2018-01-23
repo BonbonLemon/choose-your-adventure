@@ -17,6 +17,7 @@ class AdventureIndex extends React.Component {
   render() {
     return (
       <div>
+        <Link to="adventures/new">Create New Adventure</Link>
         <ul>
           {this.props.adventures.map((adventure, idx) => (
             <li key={idx}>

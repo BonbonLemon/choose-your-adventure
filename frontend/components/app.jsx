@@ -11,6 +11,7 @@ import {
 import NavbarContainer from './navbar/navbar_container';
 import SessionFormContainer from './session_form/session_form_container';
 import AdventureIndex from './adventure/adventure_index_container';
+import AdventureForm from './adventure_form/adventure_form_container';
 
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
@@ -23,6 +24,7 @@ const App = () => (
     <Route exact path="/" component={AdventureIndex} />
     <AuthRoute path="/login" component={SessionFormContainer} />
     <AuthRoute path="/signup" component={SessionFormContainer} />
+    <ProtectedRoute path="/adventures/new" component={AdventureForm} />
   </div>
 );
 
