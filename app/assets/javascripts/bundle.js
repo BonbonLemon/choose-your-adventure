@@ -27168,8 +27168,10 @@ var AdventureForm = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (AdventureForm.__proto__ || Object.getPrototypeOf(AdventureForm)).call(this, props));
 
     _this.state = {
-      title: ''
+      title: '',
+      image_url: ''
     };
+    _this.handleCloudinary = _this.handleCloudinary.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     return _this;
   }
@@ -27184,6 +27186,20 @@ var AdventureForm = function (_React$Component) {
       };
     }
   }, {
+    key: 'handleCloudinary',
+    value: function handleCloudinary(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function (error, results) {
+        if (error) {
+          console.log(error);
+        } else {
+          _this3.setState({ image_url: results[0].secure_url });
+        }
+      });
+    }
+  }, {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
       e.preventDefault();
@@ -27195,6 +27211,7 @@ var AdventureForm = function (_React$Component) {
     key: 'render',
     value: function render() {
       var title = this.state.title;
+      var image_url = this.state.image_url;
 
       return _react2.default.createElement(
         'div',
@@ -27212,6 +27229,14 @@ var AdventureForm = function (_React$Component) {
             value: title,
             onChange: this.update('title')
           }),
+          _react2.default.createElement(
+            'button',
+            {
+              onClick: this.handleCloudinary
+            },
+            'Add Cover Image'
+          ),
+          _react2.default.createElement('img', { src: image_url }),
           _react2.default.createElement('input', {
             type: 'submit',
             value: 'Create Adventure'
