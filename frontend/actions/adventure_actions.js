@@ -8,7 +8,7 @@ export const receiveAdventures = adventures => ({
   adventures
 });
 
-export const receiveAdventure = adveture => ({
+export const receiveAdventure = adventure => ({
   type: RECEIVE_ADVENTURE,
   adventure
 });
