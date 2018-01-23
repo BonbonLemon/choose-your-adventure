@@ -4482,7 +4482,7 @@ var withRouter = function withRouter(Component) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchAdventures = exports.receiveAdventures = exports.RECEIVE_ADVENTURES = undefined;
+exports.createAdventure = exports.fetchAdventures = exports.receiveAdventure = exports.receiveAdventures = exports.RECEIVE_ADVENTURE = exports.RECEIVE_ADVENTURES = undefined;
 
 var _adventure_api_util = __webpack_require__(71);
 
@@ -4491,6 +4491,7 @@ var APIUtil = _interopRequireWildcard(_adventure_api_util);
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var RECEIVE_ADVENTURES = exports.RECEIVE_ADVENTURES = 'RECEIVE_ADVENTURES';
+var RECEIVE_ADVENTURE = exports.RECEIVE_ADVENTURE = 'RECEIVE_ADVENTURE';
 
 var receiveAdventures = exports.receiveAdventures = function receiveAdventures(adventures) {
   return {
@@ -4499,10 +4500,25 @@ var receiveAdventures = exports.receiveAdventures = function receiveAdventures(a
   };
 };
 
+var receiveAdventure = exports.receiveAdventure = function receiveAdventure(adveture) {
+  return {
+    type: RECEIVE_ADVENTURE,
+    adventure: adventure
+  };
+};
+
 var fetchAdventures = exports.fetchAdventures = function fetchAdventures(filters) {
   return function (dispatch) {
     return APIUtil.fetchAdventures(filters).then(function (adventures) {
       return dispatch(receiveAdventures(adventures));
+    });
+  };
+};
+
+var createAdventure = exports.createAdventure = function createAdventure(adventure) {
+  return function (dispatch) {
+    return APIUtil.createAdventure(adventure).then(function (adventure) {
+      return dispatch(receiveAdventure(adventure));
     });
   };
 };
@@ -4520,6 +4536,14 @@ Object.defineProperty(exports, "__esModule", {
 var fetchAdventures = exports.fetchAdventures = function fetchAdventures(data) {
   return $.ajax({
     method: 'GET',
+    url: 'api/adventures',
+    data: data
+  });
+};
+
+var createAdventure = exports.createAdventure = function createAdventure(data) {
+  return $.ajax({
+    method: 'POST',
     url: 'api/adventures',
     data: data
   });

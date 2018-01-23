@@ -5,3 +5,11 @@ export const fetchAdventures = data => (
     data
   })
 );
+
+export const createAdventure = data => (
+  $.ajax({
+    method: 'POST',
+    url: 'api/adventures',
+    data
+  })
+)
