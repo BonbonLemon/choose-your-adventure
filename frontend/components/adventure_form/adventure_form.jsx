@@ -6,7 +6,7 @@ class AdventureForm extends React.Component{
     super(props);
     this.state = {
       title: '',
-      image_url: ''
+      cover_url: ''
     };
     this.handleCloudinary = this.handleCloudinary.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,7 +24,7 @@ class AdventureForm extends React.Component{
       if(error) {
         console.log(error);
       } else {
-        this.setState({ image_url: results[0].secure_url });
+        this.setState({ cover_url: results[0].secure_url });
       }
     });
   }
@@ -38,7 +38,7 @@ class AdventureForm extends React.Component{
 
   render() {
     const { title } = this.state;
-    const { image_url } = this.state;
+    const { cover_url } = this.state;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -53,7 +53,7 @@ class AdventureForm extends React.Component{
           >
             Add Cover Image
           </button>
-          <img src={image_url}/>
+          <img src={cover_url}/>
           <input
             type='submit'
             value='Create Adventure'

@@ -13,3 +13,67 @@
  *= require_tree .
  *= require_self
  */
+
+ h2 {
+   text-align: center;
+ }
+
+ ul {
+   list-style: none;
+   padding: 0;
+ }
+
+ li {
+   padding: 0;
+ }
+
+.adventure {
+  margin: 15px;
+  background-color: white;
+  box-shadow: 10px 10px 5px #888888;
+}
+
+.adventure:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 5px #888888;
+  transform: translateY(5px);
+  /*text-decoration: underline;*/
+}
+
+.adventure:active {
+  box-shadow: none;
+  transform: translateY(10px);
+}
+
+.adventure-image {
+  height: 250px;
+  overflow: hidden;
+  background-color: #5f5f5f;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.default-image {
+  font-size: 50px;
+  text-align: center;
+  line-height: 250px;
+}
+
+.adventure-author {
+  font-size: 12px;
+  color: #7e7e7e;
+}
+
+.adventure-description {
+  height: 100px;
+  padding: 10px;
+}
+
+.adventure-title {
+  font-size: 20px;
+}

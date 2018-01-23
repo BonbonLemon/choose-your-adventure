@@ -1,14 +1,12 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
+import AdventureIndexItem from './adventure_index_item';
+
 class AdventureIndex extends React.Component {
   constructor(props) {
     super(props);
   }
-
-  // componentWillMount() {
-  //   this.props.fetchAdventures();
-  // }
 
   componentDidMount() {
     this.props.fetchAdventures();
@@ -18,13 +16,16 @@ class AdventureIndex extends React.Component {
     return (
       <div>
         <Link to="adventures/new">Create New Adventure</Link>
-        <ul>
-          {this.props.adventures.map((adventure, idx) => (
-            <li key={idx}>
-              {adventure.title}
-            </li>
-          ))}
-        </ul>
+        <div className="container-fluid">
+          <div className="row">
+            {this.props.adventures.map((adventure) => (
+              <AdventureIndexItem
+                adventure={adventure}
+                key={adventure.id}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }

@@ -33,6 +33,6 @@ class Api::AdventuresController < ApplicationController
 
   private
   def adventure_params
-    params.require(:adventure).permit(:title)
+    params.require(:adventure).permit(:title, :cover_url)
   end
 end
