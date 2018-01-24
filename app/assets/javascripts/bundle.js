@@ -27158,7 +27158,7 @@ var AdventureIndexItem = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'adventure-author' },
-              author.name
+              author.username
             ),
             _react2.default.createElement(
               'div',

@@ -29,7 +29,7 @@ class AdventureIndexItem extends React.Component {
           </div>
           <div className="adventure-description">
             <div className="adventure-author">
-              {author.name}
+              {author.username}
             </div>
             <div className="adventure-title">
               {title}
