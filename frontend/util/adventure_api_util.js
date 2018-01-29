@@ -9,7 +9,7 @@ export const fetchAdventures = data => (
 export const fetchAdventure = id => (
   $.ajax({
     method: 'GET',
-    url: `api/adventures${id}`
+    url: `api/adventures/${id}`
   })
 );
 

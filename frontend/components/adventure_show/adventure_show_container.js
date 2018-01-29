@@ -2,13 +2,19 @@ import { connect } from 'react-redux';
 
 import AdventureShow from './adventure_show';
 import { fetchAdventure } from '../../actions/adventure_actions';
+import { selectAdventure } from '../../reducers/selectors';
 
-const mapStateToProps = state => ({
-  adventure: state.adventure
-});
+const mapStateToProps = (state, ownProps) => {
+  const adventureId = parseInt(ownProps.match.params.adventureId);
+  const adventure = selectAdventure(state.adventures, adventureId);
+  return {
+    adventure: adventure,
+    adventureId: adventureId
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  fetchAdventure: () => dispatch(fetchAdventure())
+  fetchAdventure: id => dispatch(fetchAdventure(id))
 });
 
 export default connect(

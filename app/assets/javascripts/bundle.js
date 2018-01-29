@@ -4552,7 +4552,7 @@ var fetchAdventures = exports.fetchAdventures = function fetchAdventures(data) {
 var fetchAdventure = exports.fetchAdventure = function fetchAdventure(id) {
   return $.ajax({
     method: 'GET',
-    url: 'api/adventures' + id
+    url: 'api/adventures/' + id
   });
 };
 
@@ -26559,11 +26559,15 @@ var App = function App() {
       null,
       _react2.default.createElement(_navbar_container2.default, null)
     ),
-    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _adventure_index_container2.default }),
-    _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
-    _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default }),
-    _react2.default.createElement(_route_util.ProtectedRoute, { path: '/adventures/new', component: _adventure_form_container2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId', component: _adventure_show_container2.default })
+    _react2.default.createElement(
+      _reactRouterDom.Switch,
+      null,
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _adventure_index_container2.default }),
+      _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
+      _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default }),
+      _react2.default.createElement(_route_util.ProtectedRoute, { path: '/adventures/new', component: _adventure_form_container2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId', component: _adventure_show_container2.default })
+    )
   );
 };
 
@@ -27209,6 +27213,11 @@ exports.default = (0, _reactRouterDom.withRouter)(AdventureIndexItem);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var selectAdventure = exports.selectAdventure = function selectAdventure(adventures, id) {
+  var adventure = adventures[id] || {};
+  return adventure;
+};
+
 var asArray = exports.asArray = function asArray(entities) {
   return Object.keys(entities).map(function (key) {
     return entities[key];
@@ -27437,18 +27446,23 @@ var _adventure_show2 = _interopRequireDefault(_adventure_show);
 
 var _adventure_actions = __webpack_require__(24);
 
+var _selectors = __webpack_require__(154);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var adventureId = parseInt(ownProps.match.params.adventureId);
+  var adventure = (0, _selectors.selectAdventure)(state.adventures, adventureId);
   return {
-    adventure: state.adventure
+    adventure: adventure,
+    adventureId: adventureId
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchAdventure: function fetchAdventure() {
-      return dispatch((0, _adventure_actions.fetchAdventure)());
+    fetchAdventure: function fetchAdventure(id) {
+      return dispatch((0, _adventure_actions.fetchAdventure)(id));
     }
   };
 };
@@ -27495,13 +27509,18 @@ var AdventureShow = function (_React$Component) {
   }
 
   _createClass(AdventureShow, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.fetchAdventure(this.props.adventureId);
+    }
+  }, {
     key: 'render',
     value: function render() {
-      // {this.props.adventure.title}
       return _react2.default.createElement(
         'div',
         null,
-        'This is the adventure page.'
+        'This is the adventure page.',
+        this.props.adventure.title
       );
     }
   }]);
@@ -29885,6 +29904,8 @@ var _adventure_actions = __webpack_require__(24);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var adventuresReducer = function adventuresReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments[1];
@@ -29895,6 +29916,10 @@ var adventuresReducer = function adventuresReducer() {
   switch (action.type) {
     case _adventure_actions.RECEIVE_ADVENTURES:
       return action.adventures;
+    case _adventure_actions.RECEIVE_ADVENTURE:
+      // debugger;
+      var newAdventure = _defineProperty({}, action.adventure.id, action.adventure);
+      return (0, _merge2.default)({}, state, newAdventure);
     default:
       return state;
   }

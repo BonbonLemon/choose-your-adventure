@@ -22,11 +22,13 @@ const App = () => (
       <NavbarContainer />
     </header>
 
-    <Route exact path="/" component={AdventureIndexContainer} />
-    <AuthRoute path="/login" component={SessionFormContainer} />
-    <AuthRoute path="/signup" component={SessionFormContainer} />
-    <ProtectedRoute path="/adventures/new" component={AdventureFormContainer} />
-    <Route path="/adventures/:adventureId" component={AdventureShowContainer} />
+    <Switch>
+      <Route exact path="/" component={AdventureIndexContainer} />
+      <AuthRoute path="/login" component={SessionFormContainer} />
+      <AuthRoute path="/signup" component={SessionFormContainer} />
+      <ProtectedRoute path="/adventures/new" component={AdventureFormContainer} />
+      <Route path="/adventures/:adventureId" component={AdventureShowContainer} />
+    </Switch>
   </div>
 );
 

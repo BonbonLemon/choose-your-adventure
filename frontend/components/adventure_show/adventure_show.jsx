@@ -9,11 +9,15 @@ class AdventureShow extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.fetchAdventure(this.props.adventureId);
+  }
+
   render() {
-    // {this.props.adventure.title}
     return (
       <div>
         This is the adventure page.
+        {this.props.adventure.title}
       </div>
     )
   }
