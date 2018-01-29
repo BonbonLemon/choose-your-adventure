@@ -10,6 +10,7 @@ class AdventureForm extends React.Component{
     };
     this.handleCloudinary = this.handleCloudinary.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.navigateToAdventure = this.navigateToAdventure.bind(this);
   }
 
   update(property) {
@@ -31,9 +32,12 @@ class AdventureForm extends React.Component{
 
   handleSubmit(e) {
     e.preventDefault();
-    const adventure = Object.assign({}, this.state)
-    this.props.createAdventure({adventure});
-    this.props.history.push('/');
+    const adventure = Object.assign({}, this.state);
+    this.props.createAdventure({adventure}, this.navigateToAdventure);
+  }
+
+  navigateToAdventure(adventure) {
+    this.props.history.push(`/adventures/${adventure.id}`);
   }
 
   render() {

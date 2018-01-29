@@ -25,8 +25,9 @@ export const fetchAdventure = id => dispatch => (
   ))
 );
 
-export const createAdventure = adventure => dispatch => (
-  APIUtil.createAdventure(adventure).then(adventure => (
-    dispatch(receiveAdventure(adventure))
-  ))
+export const createAdventure = (adventure, callback) => dispatch => (
+  APIUtil.createAdventure(adventure).then(adventure => {
+    callback(adventure);
+    dispatch(receiveAdventure(adventure));
+  })
 );

@@ -13,7 +13,6 @@ const adventuresReducer = (state = {}, action) => {
     case RECEIVE_ADVENTURES:
       return action.adventures;
     case RECEIVE_ADVENTURE:
-    // debugger;
       const newAdventure = {[action.adventure.id]: action.adventure};
       return merge({}, state, newAdventure);
     default:
