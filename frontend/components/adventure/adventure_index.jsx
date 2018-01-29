@@ -29,6 +29,6 @@ class AdventureIndex extends React.Component {
       </div>
     );
   }
-}
+};
 
 export default withRouter(AdventureIndex);

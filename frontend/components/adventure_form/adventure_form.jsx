@@ -39,6 +39,8 @@ class AdventureForm extends React.Component{
   render() {
     const { title } = this.state;
     const { cover_url } = this.state;
+    let cover;
+    if(cover_url) { cover = <img src={cover_url}/>; }
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -53,7 +55,7 @@ class AdventureForm extends React.Component{
           >
             Add Cover Image
           </button>
-          <img src={cover_url}/>
+          { cover }
           <input
             type='submit'
             value='Create Adventure'

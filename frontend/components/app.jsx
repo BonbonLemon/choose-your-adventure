@@ -10,8 +10,9 @@ import {
 
 import NavbarContainer from './navbar/navbar_container';
 import SessionFormContainer from './session_form/session_form_container';
-import AdventureIndex from './adventure/adventure_index_container';
-import AdventureForm from './adventure_form/adventure_form_container';
+import AdventureIndexContainer from './adventure/adventure_index_container';
+import AdventureFormContainer from './adventure_form/adventure_form_container';
+import AdventureShowContainer from './adventure_show/adventure_show_container';
 
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
@@ -21,10 +22,11 @@ const App = () => (
       <NavbarContainer />
     </header>
 
-    <Route exact path="/" component={AdventureIndex} />
+    <Route exact path="/" component={AdventureIndexContainer} />
     <AuthRoute path="/login" component={SessionFormContainer} />
     <AuthRoute path="/signup" component={SessionFormContainer} />
-    <ProtectedRoute path="/adventures/new" component={AdventureForm} />
+    <ProtectedRoute path="/adventures/new" component={AdventureFormContainer} />
+    <Route path="/adventures/:adventureId" component={AdventureShowContainer} />
   </div>
 );
 

@@ -3,19 +3,19 @@ import { Link } from 'react-router-dom';
 
 const sessionLinks = () => (
   <ul className="navbar-nav">
-    <li className="nav-item">
-      <Link to="/login" className="nav-link active">Login</Link>
-    </li>
-    <li className="nav-item">
-      <Link to="/signup" className="nav-link active">Sign up</Link>
-    </li>
+    <Link to="/login" className="session-links">
+      <button className="btn btn-outline-info my-2 my-sm-0">Login</button>
+    </Link>
+    <Link to="/signup" className="session-links">
+      <button className="btn btn-outline-info my-2 my-sm-0">Sign up</button>
+    </Link>
   </ul>
 );
 
 const logoutLink = (currentUser, logout) => (
   <ul className="navbar-nav">
   	<li className="nav-item">
-      <a className="nav-link active" onClick={logout}>Log Out</a>
+      <button className="btn btn-outline-info my-2 my-sm-0" type="submit" onClick={logout}>Log Out</button>
   	</li>
   </ul>
 );
@@ -47,10 +47,6 @@ const Navbar = ({ currentUser, logout }) => (
           <a className="nav-link disabled">Disabled</a>
         </li>
       </ul>
-      <form className="form-inline my-2 my-lg-0 nav-item">
-        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
       { currentUser ? logoutLink(currentUser, logout) : sessionLinks() }
     </div>
   </nav>

@@ -4,6 +4,12 @@ import { withRouter } from 'react-router-dom';
 class AdventureIndexItem extends React.Component {
   constructor(props) {
     super(props)
+    this.handleAdventureClick = this.handleAdventureClick.bind(this);
+  }
+
+  handleAdventureClick(e) {
+    e.preventDefault();
+    this.props.history.push(`/adventures/${this.props.adventure.id}`);
   }
 
   defaultImage() {
@@ -23,7 +29,7 @@ class AdventureIndexItem extends React.Component {
 
     return (
       <div className="col-lg-4 col-sm-6 col-xs-12">
-        <div className="adventure">
+        <div className="adventure" onClick={this.handleAdventureClick}>
           <div className="adventure-image">
             { cover_url ? this.coverImage(cover_url) : this.defaultImage() }
           </div>

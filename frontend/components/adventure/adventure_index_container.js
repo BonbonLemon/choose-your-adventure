@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
+import AdventureIndex from './adventure_index';
 import { fetchAdventures } from '../../actions/adventure_actions';
-import AdventureIndex from './adventure_index.jsx';
 import { asArray } from '../../reducers/selectors';
 
 const mapStateToProps = state => ({

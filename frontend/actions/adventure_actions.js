@@ -19,6 +19,12 @@ export const fetchAdventures = filters => dispatch => (
   ))
 );
 
+export const fetchAdventure = id => dispatch => (
+  APIUtil.fetchAdventure(id).then(adventure => (
+    dispatch(receiveAdventure(adventure))
+  ))
+);
+
 export const createAdventure = adventure => dispatch => (
   APIUtil.createAdventure(adventure).then(adventure => (
     dispatch(receiveAdventure(adventure))
