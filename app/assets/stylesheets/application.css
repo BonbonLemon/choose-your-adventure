@@ -85,3 +85,51 @@
 .session-links {
   margin-left: 10px;
 }
+
+/*show page*/
+
+.back-button {
+  margin: 20px 0;
+}
+
+.adventure-box {
+  margin-top: 50px;
+  background-color: white;
+  height: 500px;
+}
+
+.adventure-box-left {
+  outline: thin solid black;
+}
+
+.adventure-details {
+  text-align: center;
+}
+
+.adventure-title {
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.author-name {
+  margin: 0 auto;
+}
+
+.start-button {
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.adventure-image {
+  outline: thin solid black;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.adventure-image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}

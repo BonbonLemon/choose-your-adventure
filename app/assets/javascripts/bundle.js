@@ -1495,10 +1495,11 @@ var fetchAdventures = exports.fetchAdventures = function fetchAdventures(filters
   };
 };
 
-var fetchAdventure = exports.fetchAdventure = function fetchAdventure(id) {
+var fetchAdventure = exports.fetchAdventure = function fetchAdventure(id, callback) {
   return function (dispatch) {
     return APIUtil.fetchAdventure(id).then(function (adventure) {
-      return dispatch(receiveAdventure(adventure));
+      callback(adventure);
+      dispatch(receiveAdventure(adventure));
     });
   };
 };
@@ -1508,7 +1509,9 @@ var createAdventure = exports.createAdventure = function createAdventure(adventu
     return APIUtil.createAdventure(adventure).then(function (adventure) {
       callback(adventure);
       dispatch(receiveAdventure(adventure));
-    });
+    })
+    // TODO: Create error condition (see session actions...)
+    ;
   };
 };
 
@@ -27461,16 +27464,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var adventureId = parseInt(ownProps.match.params.adventureId);
   var adventure = (0, _selectors.selectAdventure)(state.adventures, adventureId);
+  var currentUser = state.session.currentUser;
   return {
     adventure: adventure,
-    adventureId: adventureId
+    adventureId: adventureId,
+    currentUser: currentUser
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchAdventure: function fetchAdventure(id) {
-      return dispatch((0, _adventure_actions.fetchAdventure)(id));
+    fetchAdventure: function fetchAdventure(id, callback) {
+      return dispatch((0, _adventure_actions.fetchAdventure)(id, callback));
     }
   };
 };
@@ -27512,23 +27517,92 @@ var AdventureShow = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (AdventureShow.__proto__ || Object.getPrototypeOf(AdventureShow)).call(this, props));
 
-    _this.state = {};
+    _this.state = {
+      currentUserIsAuthor: false
+    };
+    _this.checkCurrentUser = _this.checkCurrentUser.bind(_this);
     return _this;
   }
 
   _createClass(AdventureShow, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.props.fetchAdventure(this.props.adventureId);
+      this.props.fetchAdventure(this.props.adventureId, this.checkCurrentUser);
+    }
+  }, {
+    key: 'checkCurrentUser',
+    value: function checkCurrentUser(adventure) {
+      if (this.props.currentUser.id == adventure.author.id) {
+        this.setState({
+          currentUserIsAuthor: true
+        });
+      }
     }
   }, {
     key: 'render',
     value: function render() {
+      // let edit;
+      // if (this.state.currentUserIsAuthor) { edit = <button>Edit</button>; }
+      // return (
+      //   <div>
+      //     <div>
+      //       { edit }
+      //     </div>
+      //     <div>
+      //       {this.props.adventure.title}
+      //     </div>
+      //   </div>
+      // )
+      var adventure = this.props.adventure;
+      var author = adventure.author || {};
       return _react2.default.createElement(
         'div',
-        null,
-        'This is the adventure page.',
-        this.props.adventure.title
+        { className: 'container-fluid' },
+        _react2.default.createElement(
+          'div',
+          { className: 'adventure-box row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'adventure-box-left col-sm-5 offset-sm-1 col-xs-10 offset-xs-1' },
+            _react2.default.createElement(
+              'div',
+              { className: 'adventure-details container-fluid' },
+              _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(
+                  'h2',
+                  { className: 'adventure-title' },
+                  adventure.title
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'author-name' },
+                  'By ',
+                  author.username
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(
+                  'button',
+                  { className: 'start-button', type: 'button' },
+                  'Start'
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'adventure-image col-sm-5 col-xs-0', style: { padding: 0 } },
+            _react2.default.createElement('img', { src: adventure.cover_url })
+          )
+        )
       );
     }
   }]);

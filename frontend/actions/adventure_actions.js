@@ -19,10 +19,11 @@ export const fetchAdventures = filters => dispatch => (
   ))
 );
 
-export const fetchAdventure = id => dispatch => (
-  APIUtil.fetchAdventure(id).then(adventure => (
-    dispatch(receiveAdventure(adventure))
-  ))
+export const fetchAdventure = (id, callback) => dispatch => (
+  APIUtil.fetchAdventure(id).then(adventure => {
+    callback(adventure);
+    dispatch(receiveAdventure(adventure));
+  })
 );
 
 export const createAdventure = (adventure, callback) => dispatch => (
@@ -30,4 +31,5 @@ export const createAdventure = (adventure, callback) => dispatch => (
     callback(adventure);
     dispatch(receiveAdventure(adventure));
   })
+  // TODO: Create error condition (see session actions...)
 );
