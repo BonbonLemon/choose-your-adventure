@@ -79,7 +79,8 @@
 }
 
 .adventure-title {
-  font-size: 20px;
+  text-align: left;
+  margin-top: 50px;
 }
 
 .session-links {
@@ -106,11 +107,6 @@
   text-align: center;
 }
 
-.adventure-title {
-  margin: 0 auto;
-  margin-top: 100px;
-}
-
 .author-name {
   margin: 0 auto;
 }
@@ -120,14 +116,15 @@
   margin-top: 100px;
 }
 
-.adventure-image {
+.adventure-image-show {
   outline: thin solid black;
+  margin-top: 50px;
   padding: 0;
   height: 100%;
   overflow: hidden;
 }
 
-.adventure-image img {
+.adventure-image-show img {
   height: 100%;
   width: 100%;
   object-fit: cover;

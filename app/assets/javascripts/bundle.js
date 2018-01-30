@@ -27532,7 +27532,8 @@ var AdventureShow = function (_React$Component) {
   }, {
     key: 'checkCurrentUser',
     value: function checkCurrentUser(adventure) {
-      if (this.props.currentUser.id == adventure.author.id) {
+      var currentUser = this.props.currentUser;
+      if (currentUser && currentUser.id == adventure.author.id) {
         this.setState({
           currentUserIsAuthor: true
         });
@@ -27541,66 +27542,83 @@ var AdventureShow = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      // let edit;
-      // if (this.state.currentUserIsAuthor) { edit = <button>Edit</button>; }
-      // return (
-      //   <div>
-      //     <div>
-      //       { edit }
-      //     </div>
-      //     <div>
-      //       {this.props.adventure.title}
-      //     </div>
-      //   </div>
-      // )
       var adventure = this.props.adventure;
       var author = adventure.author || {};
+      // <div className="adventure-box-left col-sm-5 offset-sm-1 col-xs-10 offset-xs-1">
+      //   <div className="adventure-details container-fluid">
+      //     <div className="row">
+      //       <h2 className="adventure-title">{adventure.title}</h2>
+      //     </div>
+      //     <div className="row">
+      //       <span className="author-name">By {author.username}</span>
+      //     </div>
+      //     <div className="row">
+      //       <button className="start-button" type="button">Start</button>
+      //     </div>
+      //   </div>
+      // </div>
       return _react2.default.createElement(
         'div',
-        { className: 'container-fluid' },
+        { className: 'container' },
         _react2.default.createElement(
           'div',
-          { className: 'adventure-box row' },
+          { className: 'row' },
           _react2.default.createElement(
             'div',
-            { className: 'adventure-box-left col-sm-5 offset-sm-1 col-xs-10 offset-xs-1' },
+            { className: 'col-12' },
+            _react2.default.createElement(
+              'h2',
+              { className: 'adventure-title' },
+              adventure.title
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col-12' },
+            _react2.default.createElement(
+              'h3',
+              { className: 'adventure-author' },
+              'By ',
+              author.username
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'adventure-image-show col-12', style: { padding: 0 } },
+            _react2.default.createElement('img', { src: adventure.cover_url })
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col-xs-10 offset-xs-1' },
             _react2.default.createElement(
               'div',
-              { className: 'adventure-details container-fluid' },
+              { className: 'container-fluid' },
               _react2.default.createElement(
                 'div',
                 { className: 'row' },
                 _react2.default.createElement(
-                  'h2',
-                  { className: 'adventure-title' },
-                  adventure.title
-                )
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'row' },
-                _react2.default.createElement(
-                  'span',
-                  { className: 'author-name' },
-                  'By ',
-                  author.username
-                )
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'row' },
-                _react2.default.createElement(
-                  'button',
-                  { className: 'start-button', type: 'button' },
-                  'Start'
+                  'div',
+                  { className: 'col-xs-12' },
+                  _react2.default.createElement(
+                    'h2',
+                    { className: 'adventure-title' },
+                    adventure.title
+                  )
                 )
               )
             )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'adventure-image col-sm-5 col-xs-0', style: { padding: 0 } },
-            _react2.default.createElement('img', { src: adventure.cover_url })
           )
         )
       );
