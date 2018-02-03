@@ -43,29 +43,22 @@ class AdventureShow extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <h2 className="adventure-title">{adventure.title}</h2>
+            <h2 className="adventure-show-title">{adventure.title}</h2>
           </div>
         </div>
         <div className="row">
           <div className="col-12">
-            <h3 className="adventure-author">By {author.username}</h3>
+            <h4 className="adventure-show-author">By {author.username}</h4>
           </div>
         </div>
         <div className="row">
-          <div className="adventure-image-show col-12" style={{padding: 0}}>
-            <img src={adventure.cover_url}/>
+          <div className="col-12" style={{padding: 0}}>
+            <img className="adventure-show-image" src={adventure.cover_url}/>
           </div>
         </div>
-
         <div className="row">
-          <div className="col-xs-10 offset-xs-1">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-xs-12">
-                  <h2 className="adventure-title">{adventure.title}</h2>
-                </div>
-              </div>
-            </div>
+          <div className="col-12">
+            // TODO: Page stuff
           </div>
         </div>
       </div>

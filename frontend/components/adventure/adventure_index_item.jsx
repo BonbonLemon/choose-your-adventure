@@ -14,7 +14,7 @@ class AdventureIndexItem extends React.Component {
 
   defaultImage() {
     return (
-      <div className="default-image">?</div>
+      <div className="default-cover">?</div>
     )
   }
 
@@ -29,16 +29,16 @@ class AdventureIndexItem extends React.Component {
 
     return (
       <div className="col-lg-4 col-sm-6 col-xs-12">
-        <div className="adventure" onClick={this.handleAdventureClick}>
-          <div className="adventure-image">
+        <div className="adventure-index-item" onClick={this.handleAdventureClick}>
+          <div className="adventure-index-item-cover">
             { cover_url ? this.coverImage(cover_url) : this.defaultImage() }
           </div>
-          <div className="adventure-description">
-            <div className="adventure-author">
-              {author.username}
-            </div>
-            <div className="adventure-title">
+          <div className="adventure-index-item-description">
+            <div className="adventure-index-item-title">
               {title}
+            </div>
+            <div className="adventure-index-item-author">
+              {author.username}
             </div>
           </div>
         </div>

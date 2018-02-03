@@ -27173,7 +27173,7 @@ var AdventureIndexItem = function (_React$Component) {
     value: function defaultImage() {
       return _react2.default.createElement(
         'div',
-        { className: 'default-image' },
+        { className: 'default-cover' },
         '?'
       );
     }
@@ -27196,24 +27196,24 @@ var AdventureIndexItem = function (_React$Component) {
         { className: 'col-lg-4 col-sm-6 col-xs-12' },
         _react2.default.createElement(
           'div',
-          { className: 'adventure', onClick: this.handleAdventureClick },
+          { className: 'adventure-index-item', onClick: this.handleAdventureClick },
           _react2.default.createElement(
             'div',
-            { className: 'adventure-image' },
+            { className: 'adventure-index-item-cover' },
             cover_url ? this.coverImage(cover_url) : this.defaultImage()
           ),
           _react2.default.createElement(
             'div',
-            { className: 'adventure-description' },
+            { className: 'adventure-index-item-description' },
             _react2.default.createElement(
               'div',
-              { className: 'adventure-author' },
-              author.username
+              { className: 'adventure-index-item-title' },
+              title
             ),
             _react2.default.createElement(
               'div',
-              { className: 'adventure-title' },
-              title
+              { className: 'adventure-index-item-author' },
+              author.username
             )
           )
         )
@@ -27568,7 +27568,7 @@ var AdventureShow = function (_React$Component) {
             { className: 'col-12' },
             _react2.default.createElement(
               'h2',
-              { className: 'adventure-title' },
+              { className: 'adventure-show-title' },
               adventure.title
             )
           )
@@ -27580,8 +27580,8 @@ var AdventureShow = function (_React$Component) {
             'div',
             { className: 'col-12' },
             _react2.default.createElement(
-              'h3',
-              { className: 'adventure-author' },
+              'h4',
+              { className: 'adventure-show-author' },
               'By ',
               author.username
             )
@@ -27592,8 +27592,8 @@ var AdventureShow = function (_React$Component) {
           { className: 'row' },
           _react2.default.createElement(
             'div',
-            { className: 'adventure-image-show col-12', style: { padding: 0 } },
-            _react2.default.createElement('img', { src: adventure.cover_url })
+            { className: 'col-12', style: { padding: 0 } },
+            _react2.default.createElement('img', { className: 'adventure-show-image', src: adventure.cover_url })
           )
         ),
         _react2.default.createElement(
@@ -27601,24 +27601,8 @@ var AdventureShow = function (_React$Component) {
           { className: 'row' },
           _react2.default.createElement(
             'div',
-            { className: 'col-xs-10 offset-xs-1' },
-            _react2.default.createElement(
-              'div',
-              { className: 'container-fluid' },
-              _react2.default.createElement(
-                'div',
-                { className: 'row' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'col-xs-12' },
-                  _react2.default.createElement(
-                    'h2',
-                    { className: 'adventure-title' },
-                    adventure.title
-                  )
-                )
-              )
-            )
+            { className: 'col-12' },
+            '// TODO: Page stuff'
           )
         )
       );
