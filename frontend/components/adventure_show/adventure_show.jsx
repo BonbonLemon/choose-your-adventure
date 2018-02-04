@@ -8,6 +8,7 @@ class AdventureShow extends React.Component {
       currentUserIsAuthor: false
     }
     this.checkCurrentUser = this.checkCurrentUser.bind(this);
+    this.handleEditClick = this.handleEditClick.bind(this);
   }
 
   componentDidMount() {
@@ -37,8 +38,12 @@ class AdventureShow extends React.Component {
 
   editButton() {
     return (
-      <button type="button" className="edit-button btn btn-danger btn-sm">Edit</button>
+      <button onClick={this.handleEditClick} type="button" className="edit-button btn btn-danger btn-sm">Edit</button>
     );
+  }
+
+  handleEditClick() {
+    this.props.history.push(this.props.history.location.pathname + "/edit");
   }
 
   render() {
