@@ -27540,23 +27540,35 @@ var AdventureShow = function (_React$Component) {
       }
     }
   }, {
+    key: 'defaultImage',
+    value: function defaultImage() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'adventure-show-default-cover' },
+        '?'
+      );
+    }
+  }, {
+    key: 'coverImage',
+    value: function coverImage(cover_url) {
+      return _react2.default.createElement('img', { className: 'adventure-show-cover', src: cover_url });
+    }
+  }, {
+    key: 'editButton',
+    value: function editButton() {
+      return _react2.default.createElement(
+        'button',
+        { type: 'button', className: 'edit-button btn btn-danger btn-sm' },
+        'Edit'
+      );
+    }
+  }, {
     key: 'render',
     value: function render() {
       var adventure = this.props.adventure;
+      var currentUserIsAuthor = this.state.currentUserIsAuthor;
+
       var author = adventure.author || {};
-      // <div className="adventure-box-left col-sm-5 offset-sm-1 col-xs-10 offset-xs-1">
-      //   <div className="adventure-details container-fluid">
-      //     <div className="row">
-      //       <h2 className="adventure-title">{adventure.title}</h2>
-      //     </div>
-      //     <div className="row">
-      //       <span className="author-name">By {author.username}</span>
-      //     </div>
-      //     <div className="row">
-      //       <button className="start-button" type="button">Start</button>
-      //     </div>
-      //   </div>
-      // </div>
       return _react2.default.createElement(
         'div',
         { className: 'container' },
@@ -27579,6 +27591,7 @@ var AdventureShow = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'col-12' },
+            currentUserIsAuthor ? this.editButton() : null,
             _react2.default.createElement(
               'h4',
               { className: 'adventure-show-author' },
@@ -27592,8 +27605,8 @@ var AdventureShow = function (_React$Component) {
           { className: 'row' },
           _react2.default.createElement(
             'div',
-            { className: 'col-12', style: { padding: 0 } },
-            _react2.default.createElement('img', { className: 'adventure-show-image', src: adventure.cover_url })
+            { className: 'adventure-show-cover-box col-12', style: { padding: 0 } },
+            adventure.cover_url ? this.coverImage(adventure.cover_url) : this.defaultImage()
           )
         ),
         _react2.default.createElement(

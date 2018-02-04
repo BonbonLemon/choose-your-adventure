@@ -23,22 +23,28 @@ class AdventureShow extends React.Component {
     }
   }
 
+  defaultImage() {
+    return (
+      <div className="adventure-show-default-cover">?</div>
+    );
+  }
+
+  coverImage(cover_url) {
+    return (
+      <img className="adventure-show-cover" src={cover_url}/>
+    );
+  }
+
+  editButton() {
+    return (
+      <button type="button" className="edit-button btn btn-danger btn-sm">Edit</button>
+    );
+  }
+
   render() {
-    const adventure = this.props.adventure;
+    const {adventure} = this.props;
+    const {currentUserIsAuthor} = this.state;
     const author = adventure.author || {};
-    // <div className="adventure-box-left col-sm-5 offset-sm-1 col-xs-10 offset-xs-1">
-    //   <div className="adventure-details container-fluid">
-    //     <div className="row">
-    //       <h2 className="adventure-title">{adventure.title}</h2>
-    //     </div>
-    //     <div className="row">
-    //       <span className="author-name">By {author.username}</span>
-    //     </div>
-    //     <div className="row">
-    //       <button className="start-button" type="button">Start</button>
-    //     </div>
-    //   </div>
-    // </div>
     return (
       <div className="container">
         <div className="row">
@@ -48,12 +54,13 @@ class AdventureShow extends React.Component {
         </div>
         <div className="row">
           <div className="col-12">
+            {currentUserIsAuthor ? this.editButton() : null }
             <h4 className="adventure-show-author">By {author.username}</h4>
           </div>
         </div>
         <div className="row">
-          <div className="col-12" style={{padding: 0}}>
-            <img className="adventure-show-image" src={adventure.cover_url}/>
+          <div className="adventure-show-cover-box col-12" style={{padding: 0}}>
+            { adventure.cover_url ? this.coverImage(adventure.cover_url) : this.defaultImage() }
           </div>
         </div>
         <div className="row">
