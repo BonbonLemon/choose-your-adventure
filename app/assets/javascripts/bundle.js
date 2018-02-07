@@ -27305,6 +27305,7 @@ var AdventureForm = function (_React$Component) {
 
     _this.state = {
       title: '',
+      genres: '',
       description: '',
       cover_url: ''
     };
@@ -27354,6 +27355,7 @@ var AdventureForm = function (_React$Component) {
     value: function render() {
       var _state = this.state,
           title = _state.title,
+          genres = _state.genres,
           description = _state.description,
           cover_url = _state.cover_url;
 
@@ -27400,6 +27402,17 @@ var AdventureForm = function (_React$Component) {
                   placeholder: 'Title',
                   onChange: this.update("title"),
                   required: true
+                })
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group' },
+                _react2.default.createElement('textarea', {
+                  className: 'form-control',
+                  value: genres,
+                  placeholder: 'Genres',
+                  rows: '2',
+                  onChange: this.update("genres")
                 })
               ),
               _react2.default.createElement(

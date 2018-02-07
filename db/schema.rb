@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020030423) do
+ActiveRecord::Schema.define(version: 20180207092354) do
 
   create_table "adventures", force: :cascade do |t|
     t.string "title", null: false
@@ -18,8 +18,23 @@ ActiveRecord::Schema.define(version: 20171020030423) do
     t.string "cover_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
     t.index ["author_id"], name: "index_adventures_on_author_id"
     t.index ["title"], name: "index_adventures_on_title"
+  end
+
+  create_table "adventures_genres", id: false, force: :cascade do |t|
+    t.integer "adventure_id"
+    t.integer "genre_id"
+    t.index ["adventure_id"], name: "index_adventures_genres_on_adventure_id"
+    t.index ["genre_id"], name: "index_adventures_genres_on_genre_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_genres_on_name"
   end
 
   create_table "pages", force: :cascade do |t|

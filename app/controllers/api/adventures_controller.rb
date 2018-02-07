@@ -15,6 +15,16 @@ class Api::AdventuresController < ApplicationController
     @adventure = Adventure.new(adventure_params)
     @adventure.author_id = current_user.id
 
+    genre_names = params['adventure']['genres'].split(" ")
+    genre_names.each do |name|
+      name.capitalize!
+      genre = Genre.find_by(name: name)
+      unless genre
+        genre = Genre.create({name: name})
+      end
+      @adventure.genres << genre
+    end
+
     if @adventure.save
       render :show
     else
@@ -33,6 +43,6 @@ class Api::AdventuresController < ApplicationController
 
   private
   def adventure_params
-    params.require(:adventure).permit(:title, :cover_url)
+    params.require(:adventure).permit(:title, :description, :cover_url)
   end
 end

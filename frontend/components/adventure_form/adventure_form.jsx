@@ -6,6 +6,7 @@ class AdventureForm extends React.Component{
     super(props);
     this.state = {
       title: '',
+      genres: '',
       description: '',
       cover_url: ''
     };
@@ -42,7 +43,7 @@ class AdventureForm extends React.Component{
   }
 
   render() {
-    const { title, description, cover_url } = this.state;
+    const { title, genres, description, cover_url } = this.state;
     let cover;
     if(cover_url) {
       cover =
@@ -68,6 +69,15 @@ class AdventureForm extends React.Component{
                   placeholder="Title"
                   onChange={this.update("title")}
                   required
+                />
+              </div>
+              <div className="form-group">
+                <textarea
+                  className="form-control"
+                  value={genres}
+                  placeholder="Genres"
+                  rows="2"
+                  onChange={this.update("genres")}
                 />
               </div>
               <div className="form-group">
