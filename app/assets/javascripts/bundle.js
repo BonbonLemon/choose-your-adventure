@@ -943,7 +943,9 @@ var fetchAdventures = exports.fetchAdventures = function fetchAdventures(filters
 var fetchAdventure = exports.fetchAdventure = function fetchAdventure(id, callback) {
   return function (dispatch) {
     return APIUtil.fetchAdventure(id).then(function (adventure) {
-      callback(adventure);
+      if (callback) {
+        callback(adventure);
+      }
       dispatch(receiveAdventure(adventure));
     });
   };
@@ -952,7 +954,9 @@ var fetchAdventure = exports.fetchAdventure = function fetchAdventure(id, callba
 var createAdventure = exports.createAdventure = function createAdventure(adventure, callback) {
   return function (dispatch) {
     return APIUtil.createAdventure(adventure).then(function (adventure) {
-      callback(adventure);
+      if (callback) {
+        callback(adventure);
+      }
       dispatch(receiveAdventure(adventure));
     })
     // TODO: Create error condition (see session actions...)

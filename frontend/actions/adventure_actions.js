@@ -21,14 +21,14 @@ export const fetchAdventures = filters => dispatch => (
 
 export const fetchAdventure = (id, callback) => dispatch => (
   APIUtil.fetchAdventure(id).then(adventure => {
-    callback(adventure);
+    if (callback) { callback(adventure); }
     dispatch(receiveAdventure(adventure));
   })
 );
 
 export const createAdventure = (adventure, callback) => dispatch => (
   APIUtil.createAdventure(adventure).then(adventure => {
-    callback(adventure);
+    if (callback) { callback(adventure); }
     dispatch(receiveAdventure(adventure));
   })
   // TODO: Create error condition (see session actions...)
