@@ -27097,7 +27097,7 @@ var AdventureIndex = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'container-fluid' },
         _react2.default.createElement(
           _reactRouterDom.Link,
           { to: 'adventures/new' },
@@ -27105,17 +27105,13 @@ var AdventureIndex = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'container-fluid' },
-          _react2.default.createElement(
-            'div',
-            { className: 'row' },
-            this.props.adventures.map(function (adventure) {
-              return _react2.default.createElement(_adventure_index_item2.default, {
-                adventure: adventure,
-                key: adventure.id
-              });
-            })
-          )
+          { className: 'row' },
+          this.props.adventures.map(function (adventure) {
+            return _react2.default.createElement(_adventure_index_item2.default, {
+              adventure: adventure,
+              key: adventure.id
+            });
+          })
         )
       );
     }
@@ -27198,7 +27194,7 @@ var AdventureIndexItem = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'col-lg-4 col-sm-6 col-xs-12' },
+        { className: 'col-lg-4 col-sm-6 col-12' },
         _react2.default.createElement(
           'div',
           { className: 'adventure-index-item', onClick: this.handleAdventureClick },
@@ -27309,6 +27305,7 @@ var AdventureForm = function (_React$Component) {
 
     _this.state = {
       title: '',
+      description: '',
       cover_url: ''
     };
     _this.handleCloudinary = _this.handleCloudinary.bind(_this);
@@ -27343,6 +27340,7 @@ var AdventureForm = function (_React$Component) {
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
+      debugger;
       e.preventDefault();
       var adventure = Object.assign({}, this.state);
       this.props.createAdventure({ adventure: adventure }, this.navigateToAdventure);
@@ -27355,41 +27353,102 @@ var AdventureForm = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var title = this.state.title;
-      var cover_url = this.state.cover_url;
+      var _state = this.state,
+          title = _state.title,
+          description = _state.description,
+          cover_url = _state.cover_url;
 
       var cover = void 0;
       if (cover_url) {
-        cover = _react2.default.createElement('img', { src: cover_url });
+        cover = _react2.default.createElement(
+          'div',
+          { className: 'upload-cover-image-wrapper form-group' },
+          _react2.default.createElement('img', { src: cover_url })
+        );
       }
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'container-fluid' },
         _react2.default.createElement(
-          'form',
-          { onSubmit: this.handleSubmit },
+          'div',
+          { className: 'row' },
           _react2.default.createElement(
-            'label',
-            null,
-            'Title'
-          ),
-          _react2.default.createElement('input', {
-            type: 'text',
-            value: title,
-            onChange: this.update('title')
-          }),
+            'div',
+            { className: 'col-12' },
+            _react2.default.createElement(
+              'h1',
+              null,
+              'Create An Adventure'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
           _react2.default.createElement(
-            'button',
-            {
-              onClick: this.handleCloudinary
-            },
-            'Add Cover Image'
-          ),
-          cover,
-          _react2.default.createElement('input', {
-            type: 'submit',
-            value: 'Create Adventure'
-          })
+            'div',
+            { className: 'col-12' },
+            _react2.default.createElement(
+              'form',
+              { onSubmit: this.handleSubmit },
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group' },
+                _react2.default.createElement('input', {
+                  type: 'text',
+                  className: 'form-control',
+                  value: title,
+                  placeholder: 'Title',
+                  onChange: this.update("title"),
+                  required: true
+                })
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group' },
+                _react2.default.createElement('textarea', {
+                  className: 'form-control',
+                  value: description,
+                  placeholder: 'Description',
+                  rows: '3',
+                  onChange: this.update("description")
+                })
+              ),
+              cover,
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'input-group' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'input-group-prepend' },
+                    _react2.default.createElement(
+                      'button',
+                      {
+                        onClick: this.handleCloudinary,
+                        className: 'btn btn-secondary',
+                        type: 'button'
+                      },
+                      'Upload Image'
+                    )
+                  ),
+                  _react2.default.createElement('input', {
+                    type: 'text',
+                    className: 'form-control',
+                    placeholder: 'Cover Photo',
+                    disabled: true
+                  })
+                )
+              ),
+              _react2.default.createElement(
+                'button',
+                { type: 'submit', className: 'btn btn-primary' },
+                'Create'
+              )
+            )
+          )
         )
       );
     }

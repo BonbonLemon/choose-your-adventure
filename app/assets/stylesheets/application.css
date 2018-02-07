@@ -114,6 +114,18 @@
   font-size: 60px;
 }
 
+.upload-cover-image-wrapper {
+  height: 300px;
+  width: 375px;
+}
+
+.upload-cover-image-wrapper img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .edit-button {
   position: absolute;
   float: left;

@@ -14,17 +14,15 @@ class AdventureIndex extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container-fluid">
         <Link to="adventures/new">Create New Adventure</Link>
-        <div className="container-fluid">
-          <div className="row">
-            {this.props.adventures.map((adventure) => (
-              <AdventureIndexItem
-                adventure={adventure}
-                key={adventure.id}
-              />
-            ))}
-          </div>
+        <div className="row">
+          {this.props.adventures.map((adventure) => (
+            <AdventureIndexItem
+              adventure={adventure}
+              key={adventure.id}
+            />
+          ))}
         </div>
       </div>
     );
