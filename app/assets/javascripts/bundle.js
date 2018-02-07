@@ -27340,7 +27340,6 @@ var AdventureForm = function (_React$Component) {
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
-      debugger;
       e.preventDefault();
       var adventure = Object.assign({}, this.state);
       this.props.createAdventure({ adventure: adventure }, this.navigateToAdventure);

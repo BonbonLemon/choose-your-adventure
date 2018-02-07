@@ -39,18 +39,18 @@
 .adventure-index-item {
   margin-bottom: 30px;
   background-color: white;
-  box-shadow: 10px 10px 5px #888888;
+  box-shadow: 5px 5px 5px #888888;
 }
 
 .adventure-index-item:hover {
   cursor: pointer;
-  box-shadow: 5px 5px 5px #888888;
-  transform: translateY(5px);
+  box-shadow: 3px 3px 3px #888888;
+  transform: translateY(2px);
 }
 
 .adventure-index-item:active {
-  box-shadow: none;
-  transform: translateY(10px);
+  box-shadow: 1px 1px 1px #888888;
+  transform: translateY(4px);
 }
 
 .adventure-index-item-cover {

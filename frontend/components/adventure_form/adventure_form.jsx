@@ -32,7 +32,6 @@ class AdventureForm extends React.Component{
   }
 
   handleSubmit(e) {
-    debugger;
     e.preventDefault();
     const adventure = Object.assign({}, this.state);
     this.props.createAdventure({adventure}, this.navigateToAdventure);
