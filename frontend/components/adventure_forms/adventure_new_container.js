@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { createAdventure } from '../../actions/adventure_actions';
-import AdventureForm from './adventure_form';
+import AdventureNew from './adventure_new';
 
 const mapStateToProps = (state) => ({
   adventure: state.adventure
@@ -14,4 +14,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AdventureForm);
+)(AdventureNew);
