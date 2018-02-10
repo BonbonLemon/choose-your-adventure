@@ -44,12 +44,20 @@ class AdventureForm extends React.Component{
 
   render() {
     const { title, genres, description, cover_url } = this.state;
-    let cover;
-    if(cover_url) {
+    let cover, submitText;
+    if (cover_url) {
       cover =
         <div className="upload-cover-image-wrapper form-group">
           <img src={cover_url}/>
         </div>;
+    }
+    switch (this.props.formAction) {
+      case "CREATE":
+        submitText = "Create";
+        break;
+      case "EDIT":
+        submitText = "Save";
+        break;
     }
     return (
       <form onSubmit={this.handleSubmit}>
@@ -101,7 +109,7 @@ class AdventureForm extends React.Component{
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-primary">{this.props.submitButton}</button>
+        <button type="submit" className="btn btn-primary">{submitText}</button>
       </form>
     );
   }

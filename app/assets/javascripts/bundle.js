@@ -26628,7 +26628,7 @@ var _adventure_index_container = __webpack_require__(153);
 
 var _adventure_index_container2 = _interopRequireDefault(_adventure_index_container);
 
-var _adventure_new_container = __webpack_require__(156);
+var _adventure_new_container = __webpack_require__(240);
 
 var _adventure_new_container2 = _interopRequireDefault(_adventure_new_container);
 
@@ -26636,7 +26636,7 @@ var _adventure_show_container = __webpack_require__(159);
 
 var _adventure_show_container2 = _interopRequireDefault(_adventure_show_container);
 
-var _adventure_edit_container = __webpack_require__(238);
+var _adventure_edit_container = __webpack_require__(161);
 
 var _adventure_edit_container2 = _interopRequireDefault(_adventure_edit_container);
 
@@ -27295,281 +27295,9 @@ var AdventureIndexItem = function (_React$Component) {
 exports.default = (0, _reactRouterDom.withRouter)(AdventureIndexItem);
 
 /***/ }),
-/* 156 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _reactRedux = __webpack_require__(5);
-
-var _adventure_actions = __webpack_require__(14);
-
-var _adventure_new = __webpack_require__(157);
-
-var _adventure_new2 = _interopRequireDefault(_adventure_new);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    adventure: state.adventure
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    createAdventure: function createAdventure(adventure, callback) {
-      return dispatch((0, _adventure_actions.createAdventure)(adventure, callback));
-    }
-  };
-};
-
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_adventure_new2.default);
-
-/***/ }),
-/* 157 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = __webpack_require__(73);
-
-var _adventure_form = __webpack_require__(158);
-
-var _adventure_form2 = _interopRequireDefault(_adventure_form);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var AdventureNew = function AdventureNew(_ref) {
-  var createAdventure = _ref.createAdventure;
-  return _react2.default.createElement(
-    'div',
-    { className: 'container-fluid' },
-    _react2.default.createElement(
-      'div',
-      { className: 'row' },
-      _react2.default.createElement(
-        'div',
-        { className: 'col-12' },
-        _react2.default.createElement(
-          'h1',
-          null,
-          'Create An Adventure'
-        )
-      )
-    ),
-    _react2.default.createElement(
-      'div',
-      { className: 'row' },
-      _react2.default.createElement(
-        'div',
-        { className: 'col-12' },
-        _react2.default.createElement(_adventure_form2.default, {
-          submitButton: 'Create',
-          submitAction: createAdventure
-        })
-      )
-    )
-  );
-};
-
-exports.default = (0, _reactRouter.withRouter)(AdventureNew);
-
-/***/ }),
-/* 158 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = __webpack_require__(73);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var AdventureForm = function (_React$Component) {
-  _inherits(AdventureForm, _React$Component);
-
-  function AdventureForm(props) {
-    _classCallCheck(this, AdventureForm);
-
-    var _this = _possibleConstructorReturn(this, (AdventureForm.__proto__ || Object.getPrototypeOf(AdventureForm)).call(this, props));
-
-    _this.state = {
-      title: '',
-      genres: '',
-      description: '',
-      cover_url: ''
-    };
-    _this.handleCloudinary = _this.handleCloudinary.bind(_this);
-    _this.handleSubmit = _this.handleSubmit.bind(_this);
-    _this.navigateToAdventure = _this.navigateToAdventure.bind(_this);
-    return _this;
-  }
-
-  _createClass(AdventureForm, [{
-    key: 'update',
-    value: function update(property) {
-      var _this2 = this;
-
-      return function (e) {
-        return _this2.setState(_defineProperty({}, property, e.target.value));
-      };
-    }
-  }, {
-    key: 'handleCloudinary',
-    value: function handleCloudinary(e) {
-      var _this3 = this;
-
-      e.preventDefault();
-      cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function (error, results) {
-        if (error) {
-          console.log(error);
-        } else {
-          _this3.setState({ cover_url: results[0].secure_url });
-        }
-      });
-    }
-  }, {
-    key: 'handleSubmit',
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      var adventure = Object.assign({}, this.state);
-      this.props.submitAction({ adventure: adventure }, this.navigateToAdventure);
-    }
-  }, {
-    key: 'navigateToAdventure',
-    value: function navigateToAdventure(adventure) {
-      this.props.history.push('/adventures/' + adventure.id);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _state = this.state,
-          title = _state.title,
-          genres = _state.genres,
-          description = _state.description,
-          cover_url = _state.cover_url;
-
-      var cover = void 0;
-      if (cover_url) {
-        cover = _react2.default.createElement(
-          'div',
-          { className: 'upload-cover-image-wrapper form-group' },
-          _react2.default.createElement('img', { src: cover_url })
-        );
-      }
-      return _react2.default.createElement(
-        'form',
-        { onSubmit: this.handleSubmit },
-        _react2.default.createElement(
-          'div',
-          { className: 'form-group' },
-          _react2.default.createElement('input', {
-            type: 'text',
-            className: 'form-control',
-            value: title,
-            placeholder: 'Title',
-            onChange: this.update("title"),
-            required: true
-          })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'form-group' },
-          _react2.default.createElement('textarea', {
-            className: 'form-control',
-            value: genres,
-            placeholder: 'Genres',
-            rows: '2',
-            onChange: this.update("genres")
-          })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'form-group' },
-          _react2.default.createElement('textarea', {
-            className: 'form-control',
-            value: description,
-            placeholder: 'Description',
-            rows: '3',
-            onChange: this.update("description")
-          })
-        ),
-        cover,
-        _react2.default.createElement(
-          'div',
-          { className: 'form-group' },
-          _react2.default.createElement(
-            'div',
-            { className: 'input-group' },
-            _react2.default.createElement(
-              'div',
-              { className: 'input-group-prepend' },
-              _react2.default.createElement(
-                'button',
-                {
-                  onClick: this.handleCloudinary,
-                  className: 'btn btn-secondary',
-                  type: 'button'
-                },
-                'Upload Image'
-              )
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              className: 'form-control',
-              placeholder: 'Cover Photo',
-              disabled: true
-            })
-          )
-        ),
-        _react2.default.createElement(
-          'button',
-          { type: 'submit', className: 'btn btn-primary' },
-          this.props.submitButton
-        )
-      );
-    }
-  }]);
-
-  return AdventureForm;
-}(_react2.default.Component);
-
-exports.default = (0, _reactRouter.withRouter)(AdventureForm);
-
-/***/ }),
+/* 156 */,
+/* 157 */,
+/* 158 */,
 /* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -27767,8 +27495,257 @@ var AdventureShow = function (_React$Component) {
 exports.default = (0, _reactRouterDom.withRouter)(AdventureShow);
 
 /***/ }),
-/* 161 */,
-/* 162 */,
+/* 161 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(5);
+
+var _adventure_edit = __webpack_require__(162);
+
+var _adventure_edit2 = _interopRequireDefault(_adventure_edit);
+
+var _adventure_actions = __webpack_require__(14);
+
+var _selectors = __webpack_require__(40);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var adventureId = parseInt(ownProps.match.params.adventureId);
+  var adventure = (0, _selectors.selectAdventure)(state.adventures, adventureId);
+  return {
+    adventure: adventure,
+    adventureId: adventureId
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchAdventure: function fetchAdventure(id) {
+      return dispatch((0, _adventure_actions.fetchAdventure)(id));
+    },
+    editAdventure: function editAdventure(id) {
+      return dispatch((0, _adventure_actions.editAdventure)(id));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_adventure_edit2.default);
+
+/***/ }),
+/* 162 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(6);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AdventureEdit = function (_React$Component) {
+  _inherits(AdventureEdit, _React$Component);
+
+  function AdventureEdit(props) {
+    _classCallCheck(this, AdventureEdit);
+
+    var _this = _possibleConstructorReturn(this, (AdventureEdit.__proto__ || Object.getPrototypeOf(AdventureEdit)).call(this, props));
+
+    _this.state = {
+      title: '',
+      genres: '',
+      description: '',
+      cover_url: ''
+    };
+    _this.handleCloudinary = _this.handleCloudinary.bind(_this);
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.navigateToAdventure = _this.navigateToAdventure.bind(_this);
+    return _this;
+  }
+
+  _createClass(AdventureEdit, [{
+    key: 'update',
+    value: function update(property) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, property, e.target.value));
+      };
+    }
+  }, {
+    key: 'handleCloudinary',
+    value: function handleCloudinary(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function (error, results) {
+        if (error) {
+          console.log(error);
+        } else {
+          _this3.setState({ cover_url: results[0].secure_url });
+        }
+      });
+    }
+  }, {
+    key: 'handleSubmit',
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var adventure = Object.assign({}, this.state);
+      // TODO:
+      this.props.submitAction({ adventure: adventure }, this.navigateToAdventure);
+    }
+  }, {
+    key: 'navigateToAdventure',
+    value: function navigateToAdventure(adventure) {
+      this.props.history.push('/adventures/' + adventure.id);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _state = this.state,
+          title = _state.title,
+          genres = _state.genres,
+          description = _state.description,
+          cover_url = _state.cover_url;
+
+      var cover = void 0;
+      if (cover_url) {
+        cover = _react2.default.createElement(
+          'div',
+          { className: 'upload-cover-image-wrapper form-group' },
+          _react2.default.createElement('img', { src: cover_url })
+        );
+      }
+      return _react2.default.createElement(
+        'div',
+        { className: 'container-fluid' },
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col-12' },
+            _react2.default.createElement(
+              'h1',
+              null,
+              'Edit An Adventure'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col-12' },
+            _react2.default.createElement(
+              'form',
+              { onSubmit: this.handleSubmit },
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group' },
+                _react2.default.createElement('input', {
+                  type: 'text',
+                  className: 'form-control',
+                  value: title,
+                  placeholder: 'Title',
+                  onChange: this.update("title"),
+                  required: true
+                })
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group' },
+                _react2.default.createElement('textarea', {
+                  className: 'form-control',
+                  value: genres,
+                  placeholder: 'Genres',
+                  rows: '2',
+                  onChange: this.update("genres")
+                })
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group' },
+                _react2.default.createElement('textarea', {
+                  className: 'form-control',
+                  value: description,
+                  placeholder: 'Description',
+                  rows: '3',
+                  onChange: this.update("description")
+                })
+              ),
+              cover,
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'input-group' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'input-group-prepend' },
+                    _react2.default.createElement(
+                      'button',
+                      {
+                        onClick: this.handleCloudinary,
+                        className: 'btn btn-secondary',
+                        type: 'button'
+                      },
+                      'Upload Image'
+                    )
+                  ),
+                  _react2.default.createElement('input', {
+                    type: 'text',
+                    className: 'form-control',
+                    placeholder: 'Cover Photo',
+                    disabled: true
+                  })
+                )
+              ),
+              _react2.default.createElement(
+                'button',
+                { type: 'submit', className: 'btn btn-primary' },
+                'Save'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return AdventureEdit;
+}(_react2.default.Component);
+
+exports.default = (0, _reactRouterDom.withRouter)(AdventureEdit);
+
+/***/ }),
 /* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -30163,7 +30140,9 @@ var adventuresReducer = function adventuresReducer() {
 exports.default = adventuresReducer;
 
 /***/ }),
-/* 238 */
+/* 238 */,
+/* 239 */,
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30175,37 +30154,32 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(5);
 
-var _adventure_edit = __webpack_require__(239);
-
-var _adventure_edit2 = _interopRequireDefault(_adventure_edit);
-
 var _adventure_actions = __webpack_require__(14);
 
-var _selectors = __webpack_require__(40);
+var _adventure_new = __webpack_require__(241);
+
+var _adventure_new2 = _interopRequireDefault(_adventure_new);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var adventureId = parseInt(ownProps.match.params.adventureId);
-  var adventure = (0, _selectors.selectAdventure)(state.adventures, adventureId);
+var mapStateToProps = function mapStateToProps(state) {
   return {
-    adventure: adventure,
-    adventureId: adventureId
+    adventure: state.adventure
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchAdventure: function fetchAdventure(id) {
-      return dispatch((0, _adventure_actions.fetchAdventure)(id));
+    createAdventure: function createAdventure(adventure, callback) {
+      return dispatch((0, _adventure_actions.createAdventure)(adventure, callback));
     }
   };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_adventure_edit2.default);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_adventure_new2.default);
 
 /***/ }),
-/* 239 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30221,9 +30195,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(6);
+var _reactRouter = __webpack_require__(73);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -30231,37 +30207,181 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var AdventureEdit = function (_React$Component) {
-  _inherits(AdventureEdit, _React$Component);
+var AdventureNew = function (_React$Component) {
+  _inherits(AdventureNew, _React$Component);
 
-  function AdventureEdit(props) {
-    _classCallCheck(this, AdventureEdit);
+  function AdventureNew(props) {
+    _classCallCheck(this, AdventureNew);
 
-    return _possibleConstructorReturn(this, (AdventureEdit.__proto__ || Object.getPrototypeOf(AdventureEdit)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (AdventureNew.__proto__ || Object.getPrototypeOf(AdventureNew)).call(this, props));
+
+    _this.state = {
+      title: '',
+      genres: '',
+      description: '',
+      cover_url: ''
+    };
+    _this.handleCloudinary = _this.handleCloudinary.bind(_this);
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.navigateToAdventure = _this.navigateToAdventure.bind(_this);
+    return _this;
   }
 
-  _createClass(AdventureEdit, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.props.fetchAdventure(this.props.adventureId);
+  _createClass(AdventureNew, [{
+    key: 'update',
+    value: function update(property) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, property, e.target.value));
+      };
+    }
+  }, {
+    key: 'handleCloudinary',
+    value: function handleCloudinary(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function (error, results) {
+        if (error) {
+          console.log(error);
+        } else {
+          _this3.setState({ cover_url: results[0].secure_url });
+        }
+      });
+    }
+  }, {
+    key: 'handleSubmit',
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var adventure = Object.assign({}, this.state);
+      this.props.createAdventure({ adventure: adventure }, this.navigateToAdventure);
+    }
+  }, {
+    key: 'navigateToAdventure',
+    value: function navigateToAdventure(adventure) {
+      this.props.history.push('/adventures/' + adventure.id);
     }
   }, {
     key: 'render',
     value: function render() {
+      var _state = this.state,
+          title = _state.title,
+          genres = _state.genres,
+          description = _state.description,
+          cover_url = _state.cover_url;
+
+      var cover = void 0;
+      if (cover_url) {
+        cover = _react2.default.createElement(
+          'div',
+          { className: 'upload-cover-image-wrapper form-group' },
+          _react2.default.createElement('img', { src: cover_url })
+        );
+      }
       return _react2.default.createElement(
         'div',
-        null,
-        'i am the edit page'
+        { className: 'container-fluid' },
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col-12' },
+            _react2.default.createElement(
+              'h1',
+              null,
+              'Create An Adventure'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col-12' },
+            _react2.default.createElement(
+              'form',
+              { onSubmit: this.handleSubmit },
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group' },
+                _react2.default.createElement('input', {
+                  type: 'text',
+                  className: 'form-control',
+                  value: title,
+                  placeholder: 'Title',
+                  onChange: this.update("title"),
+                  required: true
+                })
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group' },
+                _react2.default.createElement('textarea', {
+                  className: 'form-control',
+                  value: genres,
+                  placeholder: 'Genres',
+                  rows: '2',
+                  onChange: this.update("genres")
+                })
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group' },
+                _react2.default.createElement('textarea', {
+                  className: 'form-control',
+                  value: description,
+                  placeholder: 'Description',
+                  rows: '3',
+                  onChange: this.update("description")
+                })
+              ),
+              cover,
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'input-group' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'input-group-prepend' },
+                    _react2.default.createElement(
+                      'button',
+                      {
+                        onClick: this.handleCloudinary,
+                        className: 'btn btn-secondary',
+                        type: 'button'
+                      },
+                      'Upload Image'
+                    )
+                  ),
+                  _react2.default.createElement('input', {
+                    type: 'text',
+                    className: 'form-control',
+                    placeholder: 'Cover Photo',
+                    disabled: true
+                  })
+                )
+              ),
+              _react2.default.createElement(
+                'button',
+                { type: 'submit', className: 'btn btn-primary' },
+                'Create'
+              )
+            )
+          )
+        )
       );
     }
   }]);
 
-  return AdventureEdit;
+  return AdventureNew;
 }(_react2.default.Component);
 
-;
-
-exports.default = (0, _reactRouterDom.withRouter)(AdventureEdit);
+exports.default = (0, _reactRouter.withRouter)(AdventureNew);
 
 /***/ })
 /******/ ]);

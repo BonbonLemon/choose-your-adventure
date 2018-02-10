@@ -13,7 +13,7 @@ const AdventureNew = ({ createAdventure }) => (
     <div className="row">
       <div className="col-12">
         <AdventureForm
-          submitButton="Create"
+          formAction="CREATE"
           submitAction={createAdventure}
         />
       </div>

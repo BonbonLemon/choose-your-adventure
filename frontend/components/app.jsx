@@ -11,9 +11,9 @@ import {
 import NavbarContainer from './navbar/navbar_container';
 import SessionFormContainer from './session_form/session_form_container';
 import AdventureIndexContainer from './adventure/adventure_index_container';
-import AdventureNewContainer from './adventure_forms/adventure_new_container';
+import AdventureNewContainer from './adventure_new/adventure_new_container';
 import AdventureShowContainer from './adventure_show/adventure_show_container';
-import AdventureEditContainer from './adventure_forms/adventure_edit_container';
+import AdventureEditContainer from './adventure_edit/adventure_edit_container';
 
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
