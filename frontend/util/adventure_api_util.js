@@ -19,4 +19,11 @@ export const createAdventure = data => (
     url: 'api/adventures',
     data
   })
-)
+);
+
+export const editAdventure = id => (
+  $.ajax({
+    method: 'PATCH',
+    url: `api/adventures/${id}`
+  })
+);

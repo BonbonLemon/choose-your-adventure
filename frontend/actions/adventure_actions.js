@@ -33,3 +33,10 @@ export const createAdventure = (adventure, callback) => dispatch => (
   })
   // TODO: Create error condition (see session actions...)
 );
+
+export const editAdventure = (adventure, callback) => dispatch => (
+  APIUtil.editAdventure(adventure).then(adventure => {
+    if (callback) { callback(adventure); }
+    dispatch(receiveAdventure(adventure));
+  })
+);
