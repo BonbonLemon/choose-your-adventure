@@ -1,5 +1,8 @@
-json.extract! adventure, :id, :title, :cover_url
+json.extract! adventure, :id, :title, :description, :cover_url
 
+json.genres do
+  json.partial! 'api/genres/genre', collection: adventure.genres, as: :genre
+end
 # json.partial! 'api/users/user', user: adventure.author
 json.author do
   json.partial! 'api/users/user', user: adventure.author

@@ -13,6 +13,16 @@ class AdventureEdit extends React.Component{
     this.handleCloudinary = this.handleCloudinary.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.navigateToAdventure = this.navigateToAdventure.bind(this);
+    this.setAdventureProperties = this.setAdventureProperties.bind(this);
+  }
+
+  componentDidMount() {
+    // TODO: Check with jeff is this needs an if statement
+    this.props.fetchAdventure(this.props.adventureId, this.setAdventureProperties);
+  }
+
+  setAdventureProperties(adventure) {
+    this.setState(adventure);
   }
 
   update(property) {

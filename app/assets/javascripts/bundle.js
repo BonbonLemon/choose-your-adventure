@@ -27387,6 +27387,7 @@ var AdventureShow = function (_React$Component) {
   _createClass(AdventureShow, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+      // TODO: Check with jeff is this needs an if statement
       this.props.fetchAdventure(this.props.adventureId, this.checkCurrentUser);
     }
   }, {
@@ -27528,8 +27529,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchAdventure: function fetchAdventure(id) {
-      return dispatch((0, _adventure_actions.fetchAdventure)(id));
+    fetchAdventure: function fetchAdventure(id, callback) {
+      return dispatch((0, _adventure_actions.fetchAdventure)(id, callback));
     },
     editAdventure: function editAdventure(id) {
       return dispatch((0, _adventure_actions.editAdventure)(id));
@@ -27585,10 +27586,22 @@ var AdventureEdit = function (_React$Component) {
     _this.handleCloudinary = _this.handleCloudinary.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     _this.navigateToAdventure = _this.navigateToAdventure.bind(_this);
+    _this.setAdventureProperties = _this.setAdventureProperties.bind(_this);
     return _this;
   }
 
   _createClass(AdventureEdit, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // TODO: Check with jeff is this needs an if statement
+      this.props.fetchAdventure(this.props.adventureId, this.setAdventureProperties);
+    }
+  }, {
+    key: 'setAdventureProperties',
+    value: function setAdventureProperties(adventure) {
+      this.setState(adventure);
+    }
+  }, {
     key: 'update',
     value: function update(property) {
       var _this2 = this;

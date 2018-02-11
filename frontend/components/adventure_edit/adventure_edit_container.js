@@ -14,7 +14,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchAdventure: (id) => dispatch(fetchAdventure(id)),
+  fetchAdventure: (id, callback) => dispatch(fetchAdventure(id, callback)),
   editAdventure: (id) => dispatch(editAdventure(id))
 });
 
