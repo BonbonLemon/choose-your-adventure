@@ -27532,8 +27532,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchAdventure: function fetchAdventure(id, callback) {
       return dispatch((0, _adventure_actions.fetchAdventure)(id, callback));
     },
-    editAdventure: function editAdventure(id) {
-      return dispatch((0, _adventure_actions.editAdventure)(id));
+    editAdventure: function editAdventure(id, callback) {
+      return dispatch((0, _adventure_actions.editAdventure)(id, callback));
     }
   };
 };
@@ -27600,6 +27600,10 @@ var AdventureEdit = function (_React$Component) {
     key: 'setAdventureProperties',
     value: function setAdventureProperties(adventure) {
       this.setState(adventure);
+      var genres = adventure.genres.map(function (genre) {
+        return genre.name;
+      }).join(" ");
+      this.setState({ genres: genres });
     }
   }, {
     key: 'update',
@@ -27630,7 +27634,7 @@ var AdventureEdit = function (_React$Component) {
       e.preventDefault();
       var adventure = Object.assign({}, this.state);
       // TODO:
-      this.props.submitAction({ adventure: adventure }, this.navigateToAdventure);
+      this.props.editAdventure({ adventure: adventure }, this.navigateToAdventure);
     }
   }, {
     key: 'navigateToAdventure',

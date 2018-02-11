@@ -23,6 +23,10 @@ class AdventureEdit extends React.Component{
 
   setAdventureProperties(adventure) {
     this.setState(adventure);
+    const genres = adventure.genres.map(function (genre) {
+      return genre.name;
+    }).join(" ");
+    this.setState({genres: genres});
   }
 
   update(property) {
@@ -46,7 +50,7 @@ class AdventureEdit extends React.Component{
     e.preventDefault();
     const adventure = Object.assign({}, this.state);
     // TODO:
-    this.props.submitAction({adventure}, this.navigateToAdventure);
+    this.props.editAdventure({adventure}, this.navigateToAdventure);
   }
 
   navigateToAdventure(adventure) {

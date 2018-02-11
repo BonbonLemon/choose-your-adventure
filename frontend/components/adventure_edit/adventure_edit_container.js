@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   fetchAdventure: (id, callback) => dispatch(fetchAdventure(id, callback)),
-  editAdventure: (id) => dispatch(editAdventure(id))
+  editAdventure: (id, callback) => dispatch(editAdventure(id, callback))
 });
 
 export default connect(
