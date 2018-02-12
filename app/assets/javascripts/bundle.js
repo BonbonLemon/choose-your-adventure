@@ -4604,10 +4604,11 @@ var createAdventure = exports.createAdventure = function createAdventure(data) {
   });
 };
 
-var editAdventure = exports.editAdventure = function editAdventure(id) {
+var editAdventure = exports.editAdventure = function editAdventure(data) {
   return $.ajax({
     method: 'PATCH',
-    url: 'api/adventures/' + id
+    url: 'api/adventures/' + data.adventure.id,
+    data: data
   });
 };
 

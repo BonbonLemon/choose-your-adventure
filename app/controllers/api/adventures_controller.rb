@@ -12,6 +12,7 @@ class Api::AdventuresController < ApplicationController
   end
 
   def create
+    debugger
     @adventure = Adventure.new(adventure_params)
     @adventure.author_id = current_user.id
 
@@ -34,6 +35,15 @@ class Api::AdventuresController < ApplicationController
 
   def update
     @adventure = current_user.adventures.find(params[:id])
+
+    @adventure.genres.delete_all()
+    genre_names = params['adventure']['genres'].split(" ")
+    genre_names.each do |name|
+      name.capitalize!
+      genre = Genre.find_by(name: name)
+      genre = Genre.create({name: name}) unless genre
+      @adventure.genres << genre unless @adventure.genres.include?(genre)
+    end
     if @adventure.update_attributes(adventure_params)
       render json: @adventure, include: [:author, :pages]
     else
