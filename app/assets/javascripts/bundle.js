@@ -27847,7 +27847,8 @@ var AdventureEdit = function (_React$Component) {
       var genres = adventure.genres.map(function (genre) {
         return genre.name;
       });
-      this.setState({ adventure: adventure, genres: genres });
+      var properties = Object.assign({}, adventure, { genres: genres });
+      this.setState(properties);
     }
   }, {
     key: 'update',
