@@ -15,7 +15,7 @@ class Api::AdventuresController < ApplicationController
     @adventure = Adventure.new(adventure_params)
     @adventure.author_id = current_user.id
 
-    genre_names = params['adventure']['genres'].split(" ")
+    genre_names = params['adventure']['genres']
     genre_names.each do |name|
       name.capitalize!
       genre = Genre.find_by(name: name)

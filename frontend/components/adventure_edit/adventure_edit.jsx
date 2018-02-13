@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-import GenreInput from './genre_input';
-import GenreInputs from './genre_inputs';
+import GenreInput from '../genre/genre_input';
+import GenreInputs from '../genre/genre_inputs';
 
 class AdventureEdit extends React.Component {
   constructor(props) {
@@ -13,12 +13,12 @@ class AdventureEdit extends React.Component {
       description: '',
       cover_url: ''
     };
+    this.setAdventureProperties = this.setAdventureProperties.bind(this);
     this.handleCloudinary = this.handleCloudinary.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addGenre = this.addGenre.bind(this);
     this.removeGenre = this.removeGenre.bind(this);
     this.navigateToAdventure = this.navigateToAdventure.bind(this);
-    this.setAdventureProperties = this.setAdventureProperties.bind(this);
   }
 
   componentDidMount() {
@@ -85,13 +85,6 @@ class AdventureEdit extends React.Component {
           <img src={cover_url}/>
         </div>;
     }
-    // <textarea
-    //   className="form-control"
-    //   value={genres}
-    //   placeholder="Genres"
-    //   rows="2"
-    //   onChange={this.update("genres")}
-    // />
     return (
       <div className="container-fluid">
         <div className="row">
@@ -127,6 +120,7 @@ class AdventureEdit extends React.Component {
                   onChange={this.update("description")}
                 />
               </div>
+
               { cover }
               <div className="form-group">
                 <div className="input-group">
@@ -147,6 +141,7 @@ class AdventureEdit extends React.Component {
                   />
                 </div>
               </div>
+
               <button type="submit" className="btn btn-primary">Save</button>
             </form>
           </div>

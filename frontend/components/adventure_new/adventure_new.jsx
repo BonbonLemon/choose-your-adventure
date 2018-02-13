@@ -1,17 +1,22 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 
+import GenreInput from '../genre/genre_input';
+import GenreInputs from '../genre/genre_inputs';
+
 class AdventureNew extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       title: '',
-      genres: '',
+      genres: [],
       description: '',
       cover_url: ''
     };
     this.handleCloudinary = this.handleCloudinary.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.addGenre = this.addGenre.bind(this);
+    this.removeGenre = this.removeGenre.bind(this);
     this.navigateToAdventure = this.navigateToAdventure.bind(this);
   }
 
@@ -29,6 +34,20 @@ class AdventureNew extends React.Component {
       } else {
         this.setState({ cover_url: results[0].secure_url });
       }
+    });
+  }
+
+  addGenre(genre) {
+    const capitalizedGenre = genre.charAt(0).toUpperCase() + genre.slice(1).toLowerCase();
+    if (!this.state.genres.includes(capitalizedGenre)) {
+      this.setState({genres: this.state.genres.concat(capitalizedGenre)});
+    }
+  }
+
+  removeGenre(e, deletedGenre) {
+    e.preventDefault();
+    this.setState({
+      genres: this.state.genres.filter(genre => genre !== deletedGenre)
     });
   }
 
@@ -71,15 +90,12 @@ class AdventureNew extends React.Component {
                   required
                 />
               </div>
+
               <div className="form-group">
-                <textarea
-                  className="form-control"
-                  value={genres}
-                  placeholder="Genres"
-                  rows="2"
-                  onChange={this.update("genres")}
-                />
+                <GenreInput addGenre={this.addGenre} />
+                <GenreInputs genres={this.state.genres} removeGenre={this.removeGenre} />
               </div>
+
               <div className="form-group">
                 <textarea
                   className="form-control"
@@ -89,6 +105,7 @@ class AdventureNew extends React.Component {
                   onChange={this.update("description")}
                 />
               </div>
+
               { cover }
               <div className="form-group">
                 <div className="input-group">
@@ -109,6 +126,7 @@ class AdventureNew extends React.Component {
                   />
                 </div>
               </div>
+
               <button type="submit" className="btn btn-primary">Create</button>
             </form>
           </div>
