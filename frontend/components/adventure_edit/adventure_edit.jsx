@@ -104,6 +104,16 @@ class AdventureEdit extends React.Component {
               </div>
 
               <div className="form-group">
+                <div className="input-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Add genres"
+                  />
+                  <div className="input-group-append">
+                    <button className="btn btn-success" type="button">Add</button>
+                  </div>
+                </div>
                 <GenreInputs genres={this.state.genres} removeGenre={this.removeGenre} />
               </div>
 

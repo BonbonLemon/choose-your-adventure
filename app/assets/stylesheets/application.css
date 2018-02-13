@@ -131,6 +131,10 @@
   float: left;
 }
 
+.genres-container {
+  margin: 7px 0;
+}
+
 .genre-box {
   display: inline-block;
   border-radius: 3px;

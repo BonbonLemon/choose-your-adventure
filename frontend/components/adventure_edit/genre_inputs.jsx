@@ -1,7 +1,7 @@
 import React from 'react';
 
 const GenreInputs = ({ genres, removeGenre }) => (
-  <div>
+  <div className="genres-container">
     {genres.map((genre, idx) => (
       <div className="genre-box" key={idx}>
         <span className="genre-box-name">{genre}</span>
