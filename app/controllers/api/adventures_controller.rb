@@ -12,7 +12,6 @@ class Api::AdventuresController < ApplicationController
   end
 
   def create
-    debugger
     @adventure = Adventure.new(adventure_params)
     @adventure.author_id = current_user.id
 

@@ -1,17 +1,20 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-class AdventureEdit extends React.Component{
+import GenreInputs from './genre_inputs';
+
+class AdventureEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       title: '',
-      genres: '',
+      genres: [],
       description: '',
       cover_url: ''
     };
     this.handleCloudinary = this.handleCloudinary.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.removeGenre = this.removeGenre.bind(this);
     this.navigateToAdventure = this.navigateToAdventure.bind(this);
     this.setAdventureProperties = this.setAdventureProperties.bind(this);
   }
@@ -23,10 +26,6 @@ class AdventureEdit extends React.Component{
 
   setAdventureProperties(adventure) {
     this.setState(adventure);
-    const genres = adventure.genres.map(function (genre) {
-      return genre.name;
-    }).join(" ");
-    this.setState({genres: genres});
   }
 
   update(property) {
@@ -43,6 +42,13 @@ class AdventureEdit extends React.Component{
       } else {
         this.setState({ cover_url: results[0].secure_url });
       }
+    });
+  }
+
+  removeGenre(e, deletedGenre) {
+    e.preventDefault();
+    this.setState({
+      genres: this.state.genres.filter(genre => genre.name !== deletedGenre.name)
     });
   }
 
@@ -66,6 +72,13 @@ class AdventureEdit extends React.Component{
           <img src={cover_url}/>
         </div>;
     }
+    // <textarea
+    //   className="form-control"
+    //   value={genres}
+    //   placeholder="Genres"
+    //   rows="2"
+    //   onChange={this.update("genres")}
+    // />
     return (
       <div className="container-fluid">
         <div className="row">
@@ -86,15 +99,11 @@ class AdventureEdit extends React.Component{
                   required
                 />
               </div>
+
               <div className="form-group">
-                <textarea
-                  className="form-control"
-                  value={genres}
-                  placeholder="Genres"
-                  rows="2"
-                  onChange={this.update("genres")}
-                />
+                <GenreInputs genres={this.state.genres} removeGenre={this.removeGenre} />
               </div>
+
               <div className="form-group">
                 <textarea
                   className="form-control"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 
-class AdventureNew extends React.Component{
+class AdventureNew extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
