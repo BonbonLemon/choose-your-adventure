@@ -25,7 +25,10 @@ class AdventureEdit extends React.Component {
   }
 
   setAdventureProperties(adventure) {
-    this.setState(adventure);
+    const genres = adventure.genres.map(genre => (
+      genre.name
+    ));
+    this.setState({adventure, genres});
   }
 
   update(property) {
@@ -48,7 +51,7 @@ class AdventureEdit extends React.Component {
   removeGenre(e, deletedGenre) {
     e.preventDefault();
     this.setState({
-      genres: this.state.genres.filter(genre => genre.name !== deletedGenre.name)
+      genres: this.state.genres.filter(genre => genre !== deletedGenre)
     });
   }
 

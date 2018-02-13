@@ -2,9 +2,9 @@ import React from 'react';
 
 const GenreInputs = ({ genres, removeGenre }) => (
   <div>
-    {genres.map(genre => (
-      <div className="genre-box" key={genre.id}>
-        <span className="genre-box-name">{genre.name}</span>
+    {genres.map((genre, idx) => (
+      <div className="genre-box" key={idx}>
+        <span className="genre-box-name">{genre}</span>
         <button className="genre-remove-button" onClick={e => removeGenre(e, genre)}>x</button>
       </div>
     ))}

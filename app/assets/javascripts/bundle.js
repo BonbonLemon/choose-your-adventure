@@ -27844,7 +27844,10 @@ var AdventureEdit = function (_React$Component) {
   }, {
     key: 'setAdventureProperties',
     value: function setAdventureProperties(adventure) {
-      this.setState(adventure);
+      var genres = adventure.genres.map(function (genre) {
+        return genre.name;
+      });
+      this.setState({ adventure: adventure, genres: genres });
     }
   }, {
     key: 'update',
@@ -27875,7 +27878,7 @@ var AdventureEdit = function (_React$Component) {
       e.preventDefault();
       this.setState({
         genres: this.state.genres.filter(function (genre) {
-          return genre.name !== deletedGenre.name;
+          return genre !== deletedGenre;
         })
       });
     }
@@ -28038,14 +28041,14 @@ var GenreInputs = function GenreInputs(_ref) {
   return _react2.default.createElement(
     "div",
     null,
-    genres.map(function (genre) {
+    genres.map(function (genre, idx) {
       return _react2.default.createElement(
         "div",
-        { className: "genre-box", key: genre.id },
+        { className: "genre-box", key: idx },
         _react2.default.createElement(
           "span",
           { className: "genre-box-name" },
-          genre.name
+          genre
         ),
         _react2.default.createElement(
           "button",
