@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
+import GenreInput from './genre_input';
 import GenreInputs from './genre_inputs';
 
 class AdventureEdit extends React.Component {
@@ -14,6 +15,7 @@ class AdventureEdit extends React.Component {
     };
     this.handleCloudinary = this.handleCloudinary.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.addGenre = this.addGenre.bind(this);
     this.removeGenre = this.removeGenre.bind(this);
     this.navigateToAdventure = this.navigateToAdventure.bind(this);
     this.setAdventureProperties = this.setAdventureProperties.bind(this);
@@ -47,6 +49,13 @@ class AdventureEdit extends React.Component {
         this.setState({ cover_url: results[0].secure_url });
       }
     });
+  }
+
+  addGenre(genre) {
+    const capitalizedGenre = genre.charAt(0).toUpperCase() + genre.slice(1).toLowerCase();
+    if (!this.state.genres.includes(capitalizedGenre)) {
+      this.setState({genres: this.state.genres.concat(capitalizedGenre)});
+    }
   }
 
   removeGenre(e, deletedGenre) {
@@ -105,16 +114,7 @@ class AdventureEdit extends React.Component {
               </div>
 
               <div className="form-group">
-                <div className="input-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Add genres"
-                  />
-                  <div className="input-group-append">
-                    <button className="btn btn-success" type="button">Add</button>
-                  </div>
-                </div>
+                <GenreInput addGenre={this.addGenre} />
                 <GenreInputs genres={this.state.genres} removeGenre={this.removeGenre} />
               </div>
 

@@ -132,7 +132,7 @@
 }
 
 .genres-container {
-  margin: 7px 0;
+  margin-top: 10px;
 }
 
 .genre-box {
@@ -161,4 +161,8 @@
   padding: 0 0 0 4px;
   transition: background-color .2s;
   outline: 0;
+}
+
+.genre-remove-button:hover {
+  cursor: pointer;
 }

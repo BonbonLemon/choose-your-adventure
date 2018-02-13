@@ -27799,6 +27799,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(6);
 
+var _genre_input = __webpack_require__(238);
+
+var _genre_input2 = _interopRequireDefault(_genre_input);
+
 var _genre_inputs = __webpack_require__(162);
 
 var _genre_inputs2 = _interopRequireDefault(_genre_inputs);
@@ -27829,6 +27833,7 @@ var AdventureEdit = function (_React$Component) {
     };
     _this.handleCloudinary = _this.handleCloudinary.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.addGenre = _this.addGenre.bind(_this);
     _this.removeGenre = _this.removeGenre.bind(_this);
     _this.navigateToAdventure = _this.navigateToAdventure.bind(_this);
     _this.setAdventureProperties = _this.setAdventureProperties.bind(_this);
@@ -27872,6 +27877,14 @@ var AdventureEdit = function (_React$Component) {
           _this3.setState({ cover_url: results[0].secure_url });
         }
       });
+    }
+  }, {
+    key: 'addGenre',
+    value: function addGenre(genre) {
+      var capitalizedGenre = genre.charAt(0).toUpperCase() + genre.slice(1).toLowerCase();
+      if (!this.state.genres.includes(capitalizedGenre)) {
+        this.setState({ genres: this.state.genres.concat(capitalizedGenre) });
+      }
     }
   }, {
     key: 'removeGenre',
@@ -27960,24 +27973,7 @@ var AdventureEdit = function (_React$Component) {
               _react2.default.createElement(
                 'div',
                 { className: 'form-group' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'input-group' },
-                  _react2.default.createElement('input', {
-                    type: 'text',
-                    className: 'form-control',
-                    placeholder: 'Add genres'
-                  }),
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'input-group-append' },
-                    _react2.default.createElement(
-                      'button',
-                      { className: 'btn btn-success', type: 'button' },
-                      'Add'
-                    )
-                  )
-                ),
+                _react2.default.createElement(_genre_input2.default, { addGenre: this.addGenre }),
                 _react2.default.createElement(_genre_inputs2.default, { genres: this.state.genres, removeGenre: this.removeGenre })
               ),
               _react2.default.createElement(
@@ -30475,6 +30471,102 @@ var adventuresReducer = function adventuresReducer() {
 };
 
 exports.default = adventuresReducer;
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var GenreInput = function (_React$Component) {
+  _inherits(GenreInput, _React$Component);
+
+  function GenreInput(props) {
+    _classCallCheck(this, GenreInput);
+
+    var _this = _possibleConstructorReturn(this, (GenreInput.__proto__ || Object.getPrototypeOf(GenreInput)).call(this, props));
+
+    _this.state = {
+      genre: ''
+    };
+    _this.updateGenre = _this.updateGenre.bind(_this);
+    _this.checkForEnter = _this.checkForEnter.bind(_this);
+    _this.submitGenre = _this.submitGenre.bind(_this);
+    return _this;
+  }
+
+  _createClass(GenreInput, [{
+    key: 'updateGenre',
+    value: function updateGenre(e) {
+      this.setState({ genre: e.target.value });
+    }
+  }, {
+    key: 'checkForEnter',
+    value: function checkForEnter(e) {
+      if (e.keyCode === 13) {
+        e.preventDefault();
+        this.submitGenre();
+      }
+    }
+  }, {
+    key: 'submitGenre',
+    value: function submitGenre() {
+      this.props.addGenre(this.state.genre);
+      this.setState({ genre: '' });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var genre = this.state.genre;
+
+      // onKeyDown={this.updateGenre}
+      return _react2.default.createElement(
+        'div',
+        { className: 'input-group' },
+        _react2.default.createElement('input', {
+          type: 'text',
+          className: 'form-control',
+          value: genre,
+          placeholder: 'Add genres',
+          onChange: this.updateGenre,
+          onKeyDown: this.checkForEnter
+        }),
+        _react2.default.createElement(
+          'div',
+          { className: 'input-group-append' },
+          _react2.default.createElement(
+            'button',
+            { className: 'btn btn-success', type: 'button', onClick: this.submitGenre },
+            'Add'
+          )
+        )
+      );
+    }
+  }]);
+
+  return GenreInput;
+}(_react2.default.Component);
+
+exports.default = GenreInput;
 
 /***/ })
 /******/ ]);
