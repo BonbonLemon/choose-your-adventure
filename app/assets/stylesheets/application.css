@@ -166,3 +166,14 @@
 .genre-remove-button:hover {
   cursor: pointer;
 }
+
+.add-page-box {
+  height: 40px;
+  border: thin solid black;
+  padding: 5px;
+}
+
+.new-page-form {
+  border: thin solid black;
+  padding: 10px;
+}

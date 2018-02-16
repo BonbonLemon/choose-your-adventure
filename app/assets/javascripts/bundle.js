@@ -30655,12 +30655,113 @@ var PageEdit = function (_React$Component) {
   }
 
   _createClass(PageEdit, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
-        'hello i am page edit'
+        _react2.default.createElement(
+          "div",
+          { className: "row" },
+          _react2.default.createElement(
+            "div",
+            { className: "col-12" },
+            _react2.default.createElement(
+              "h2",
+              { className: "text-left" },
+              "Pages"
+            )
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "row" },
+          "current page stuff..."
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "row" },
+          _react2.default.createElement(
+            "div",
+            { className: "col-12" },
+            _react2.default.createElement(
+              "div",
+              { className: "add-page-box" },
+              _react2.default.createElement(
+                "span",
+                null,
+                "[+]"
+              ),
+              _react2.default.createElement(
+                "span",
+                null,
+                " Add New Page"
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "row" },
+          _react2.default.createElement(
+            "div",
+            { className: "col-12" },
+            _react2.default.createElement(
+              "form",
+              { className: "new-page-form" },
+              _react2.default.createElement(
+                "div",
+                { className: "form-row" },
+                _react2.default.createElement(
+                  "div",
+                  { className: "form-group col-6" },
+                  _react2.default.createElement(
+                    "label",
+                    { "for": "name" },
+                    "Name"
+                  ),
+                  _react2.default.createElement("input", {
+                    type: "text",
+                    className: "form-control",
+                    placeholder: "Page Name",
+                    required: true
+                  })
+                )
+              ),
+              _react2.default.createElement(
+                "div",
+                { className: "form-row" },
+                _react2.default.createElement(
+                  "div",
+                  { className: "form-group col-12" },
+                  _react2.default.createElement(
+                    "label",
+                    { "for": "text" },
+                    "Text"
+                  ),
+                  _react2.default.createElement("textarea", {
+                    className: "form-control",
+                    placeholder: "Page Text",
+                    row: "3"
+                  })
+                )
+              ),
+              _react2.default.createElement(
+                "div",
+                { className: "form-row" },
+                _react2.default.createElement(
+                  "div",
+                  { className: "form-group col-12" },
+                  _react2.default.createElement(
+                    "h4",
+                    null,
+                    "Options"
+                  )
+                )
+              )
+            )
+          )
+        )
       );
     }
   }]);
