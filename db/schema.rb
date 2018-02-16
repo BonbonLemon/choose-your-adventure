@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180207092354) do
+ActiveRecord::Schema.define(version: 20180216092854) do
 
   create_table "adventures", force: :cascade do |t|
     t.string "title", null: false
@@ -37,14 +37,22 @@ ActiveRecord::Schema.define(version: 20180207092354) do
     t.index ["name"], name: "index_genres_on_name"
   end
 
+  create_table "options", force: :cascade do |t|
+    t.string "text"
+    t.integer "page_id", null: false
+    t.integer "page_target"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["page_id"], name: "index_options_on_page_id"
+  end
+
   create_table "pages", force: :cascade do |t|
     t.string "text", null: false
     t.integer "adventure_id", null: false
-    t.integer "page_number", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["adventure_id"], name: "index_pages_on_adventure_id"
-    t.index ["page_number"], name: "index_pages_on_page_number"
   end
 
   create_table "users", force: :cascade do |t|

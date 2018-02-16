@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 import GenreInput from '../genre/genre_input';
 import GenreInputs from '../genre/genre_inputs';
+import PageEditContainer from './page_edit/page_edit_container';
 
 class AdventureEdit extends React.Component {
   constructor(props) {
@@ -146,6 +147,7 @@ class AdventureEdit extends React.Component {
             </form>
           </div>
         </div>
+        <PageEditContainer />
       </div>
     );
   }
