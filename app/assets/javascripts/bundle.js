@@ -27851,7 +27851,7 @@ var AdventureShow = function (_React$Component) {
             { className: 'col-12' },
             _react2.default.createElement(
               'h2',
-              { className: 'adventure-show-title' },
+              { className: 'adventure-show-title text-center' },
               adventure.title
             )
           )
@@ -28123,6 +28123,11 @@ var AdventureEdit = function (_React$Component) {
               _react2.default.createElement(
                 'div',
                 { className: 'form-group' },
+                _react2.default.createElement(
+                  'label',
+                  null,
+                  'Title'
+                ),
                 _react2.default.createElement('input', {
                   type: 'text',
                   className: 'form-control',
@@ -28135,12 +28140,22 @@ var AdventureEdit = function (_React$Component) {
               _react2.default.createElement(
                 'div',
                 { className: 'form-group' },
+                _react2.default.createElement(
+                  'label',
+                  null,
+                  'Genres'
+                ),
                 _react2.default.createElement(_genre_input2.default, { addGenre: this.addGenre }),
                 _react2.default.createElement(_genre_inputs2.default, { genres: this.state.genres, removeGenre: this.removeGenre })
               ),
               _react2.default.createElement(
                 'div',
                 { className: 'form-group' },
+                _react2.default.createElement(
+                  'label',
+                  null,
+                  'Description'
+                ),
                 _react2.default.createElement('textarea', {
                   className: 'form-control',
                   value: description,
@@ -30717,7 +30732,7 @@ var PageEdit = function (_React$Component) {
                   { className: "form-group col-6" },
                   _react2.default.createElement(
                     "label",
-                    { "for": "name" },
+                    null,
                     "Name"
                   ),
                   _react2.default.createElement("input", {
@@ -30736,13 +30751,13 @@ var PageEdit = function (_React$Component) {
                   { className: "form-group col-12" },
                   _react2.default.createElement(
                     "label",
-                    { "for": "text" },
+                    null,
                     "Text"
                   ),
                   _react2.default.createElement("textarea", {
                     className: "form-control",
                     placeholder: "Page Text",
-                    row: "3"
+                    rows: "3"
                   })
                 )
               ),

@@ -30,7 +30,7 @@ class PageEdit extends React.Component {
             <form className="new-page-form">
               <div className="form-row">
                 <div className="form-group col-6">
-                  <label for="name">Name</label>
+                  <label>Name</label>
                   <input
                     type="text"
                     className="form-control"
@@ -41,11 +41,11 @@ class PageEdit extends React.Component {
               </div>
               <div className="form-row">
                 <div className="form-group col-12">
-                  <label for="text">Text</label>
+                  <label>Text</label>
                   <textarea
                     className="form-control"
                     placeholder="Page Text"
-                    row="3"
+                    rows="3"
                   />
                 </div>
               </div>

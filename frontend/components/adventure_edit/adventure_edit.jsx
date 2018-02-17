@@ -97,6 +97,7 @@ class AdventureEdit extends React.Component {
           <div className="col-12">
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
+                <label>Title</label>
                 <input
                   type="text"
                   className="form-control"
@@ -108,11 +109,13 @@ class AdventureEdit extends React.Component {
               </div>
 
               <div className="form-group">
+                <label>Genres</label>
                 <GenreInput addGenre={this.addGenre} />
                 <GenreInputs genres={this.state.genres} removeGenre={this.removeGenre} />
               </div>
 
               <div className="form-group">
+                <label>Description</label>
                 <textarea
                   className="form-control"
                   value={description}

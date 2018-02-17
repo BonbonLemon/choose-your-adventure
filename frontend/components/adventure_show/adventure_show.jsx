@@ -55,7 +55,7 @@ class AdventureShow extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <h2 className="adventure-show-title">{adventure.title}</h2>
+            <h2 className="adventure-show-title text-center">{adventure.title}</h2>
           </div>
         </div>
         <div className="row">
