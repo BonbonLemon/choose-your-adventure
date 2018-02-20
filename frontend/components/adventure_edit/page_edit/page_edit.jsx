@@ -5,9 +5,11 @@ class PageEdit extends React.Component {
     super(props);
 
     this.state = {
-      hasNewPage: false
+      hasNewPage: false,
+      hasNewOption: false
     }
     this.toggleHasNewPage = this.toggleHasNewPage.bind(this);
+    this.toggleHasNewOption = this.toggleHasNewOption.bind(this);
   }
 
   toggleHasNewPage() {
@@ -16,7 +18,15 @@ class PageEdit extends React.Component {
     });
   }
 
-  newPageButton() {
+  toggleHasNewOption() {
+    this.setState({
+      hasNewOption: !this.state.hasNewOption
+    });
+  }
+
+  newPage() {
+    const { hasNewOption } = this.state;
+
     return (
       <div className="row">
         <div className="col-12">
@@ -47,27 +57,11 @@ class PageEdit extends React.Component {
                 <h4>Options</h4>
                 <div className="form-row">
                   <div className="form-group col-12">
-                    <div className="add-option-container">
-                      <span>[+]</span>
+                    <div className="add-option-button toggle-button" onClick={this.toggleHasNewOption}>
+                      <span>[{hasNewOption ? "-" : "+" }]</span>
                       <span> Add New Option</span>
                     </div>
-                    <div className="add-option-container">
-                      <div className="form-row">
-                        <div className="col-8">
-                          <label>Option Text</label>
-                          <input type="text" placeholder="Add Option Text" className="form-control" />
-                        </div>
-                        <div className="col-4">
-                          <label>Destination</label>
-                            <select className="custom-select">
-                              <option value="">Open this select menu</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
-                            </select>
-                        </div>
-                      </div>
-                    </div>
+                    { hasNewOption ? this.newOption() : "" }
                   </div>
                 </div>
               </div>
@@ -78,7 +72,31 @@ class PageEdit extends React.Component {
     );
   }
 
+  newOption() {
+    return (
+      <div className="new-option-form">
+        <div className="form-row">
+          <div className="col-8">
+            <label>Option Text</label>
+            <input type="text" placeholder="Add Option Text" className="form-control" />
+          </div>
+          <div className="col-4">
+            <label>Destination</label>
+              <select className="custom-select">
+                <option value="">Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   render() {
+    const { hasNewPage } = this.state;
+
     return (
       <div>
         <div className="row">
@@ -91,13 +109,13 @@ class PageEdit extends React.Component {
         </div>
         <div className="row">
           <div className="col-12">
-            <div className="add-page-box" onClick={this.toggleHasNewPage}>
-              <span>[{ this.state.hasNewPage ? "-" : "+" }]</span>
+            <div className="add-page-button toggle-button" onClick={this.toggleHasNewPage}>
+              <span>[{ hasNewPage ? "-" : "+" }]</span>
               <span> Add New Page</span>
             </div>
           </div>
         </div>
-        { this.state.hasNewPage ? this.newPageButton() : "" }
+        { hasNewPage ? this.newPage() : "" }
       </div>
     );
   }

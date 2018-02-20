@@ -28277,9 +28277,11 @@ var PageEdit = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (PageEdit.__proto__ || Object.getPrototypeOf(PageEdit)).call(this, props));
 
     _this.state = {
-      hasNewPage: false
+      hasNewPage: false,
+      hasNewOption: false
     };
     _this.toggleHasNewPage = _this.toggleHasNewPage.bind(_this);
+    _this.toggleHasNewOption = _this.toggleHasNewOption.bind(_this);
     return _this;
   }
 
@@ -28291,8 +28293,18 @@ var PageEdit = function (_React$Component) {
       });
     }
   }, {
-    key: "newPageButton",
-    value: function newPageButton() {
+    key: "toggleHasNewOption",
+    value: function toggleHasNewOption() {
+      this.setState({
+        hasNewOption: !this.state.hasNewOption
+      });
+    }
+  }, {
+    key: "newPage",
+    value: function newPage() {
+      var hasNewOption = this.state.hasNewOption;
+
+
       return _react2.default.createElement(
         "div",
         { className: "row" },
@@ -28358,11 +28370,13 @@ var PageEdit = function (_React$Component) {
                     { className: "form-group col-12" },
                     _react2.default.createElement(
                       "div",
-                      { className: "add-option-container" },
+                      { className: "add-option-button toggle-button", onClick: this.toggleHasNewOption },
                       _react2.default.createElement(
                         "span",
                         null,
-                        "[+]"
+                        "[",
+                        hasNewOption ? "-" : "+",
+                        "]"
                       ),
                       _react2.default.createElement(
                         "span",
@@ -28370,57 +28384,7 @@ var PageEdit = function (_React$Component) {
                         " Add New Option"
                       )
                     ),
-                    _react2.default.createElement(
-                      "div",
-                      { className: "add-option-container" },
-                      _react2.default.createElement(
-                        "div",
-                        { className: "form-row" },
-                        _react2.default.createElement(
-                          "div",
-                          { className: "col-8" },
-                          _react2.default.createElement(
-                            "label",
-                            null,
-                            "Option Text"
-                          ),
-                          _react2.default.createElement("input", { type: "text", placeholder: "Add Option Text", className: "form-control" })
-                        ),
-                        _react2.default.createElement(
-                          "div",
-                          { className: "col-4" },
-                          _react2.default.createElement(
-                            "label",
-                            null,
-                            "Destination"
-                          ),
-                          _react2.default.createElement(
-                            "select",
-                            { className: "custom-select" },
-                            _react2.default.createElement(
-                              "option",
-                              { value: "" },
-                              "Open this select menu"
-                            ),
-                            _react2.default.createElement(
-                              "option",
-                              { value: "1" },
-                              "One"
-                            ),
-                            _react2.default.createElement(
-                              "option",
-                              { value: "2" },
-                              "Two"
-                            ),
-                            _react2.default.createElement(
-                              "option",
-                              { value: "3" },
-                              "Three"
-                            )
-                          )
-                        )
-                      )
-                    )
+                    hasNewOption ? this.newOption() : ""
                   )
                 )
               )
@@ -28430,8 +28394,66 @@ var PageEdit = function (_React$Component) {
       );
     }
   }, {
+    key: "newOption",
+    value: function newOption() {
+      return _react2.default.createElement(
+        "div",
+        { className: "new-option-form" },
+        _react2.default.createElement(
+          "div",
+          { className: "form-row" },
+          _react2.default.createElement(
+            "div",
+            { className: "col-8" },
+            _react2.default.createElement(
+              "label",
+              null,
+              "Option Text"
+            ),
+            _react2.default.createElement("input", { type: "text", placeholder: "Add Option Text", className: "form-control" })
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "col-4" },
+            _react2.default.createElement(
+              "label",
+              null,
+              "Destination"
+            ),
+            _react2.default.createElement(
+              "select",
+              { className: "custom-select" },
+              _react2.default.createElement(
+                "option",
+                { value: "" },
+                "Open this select menu"
+              ),
+              _react2.default.createElement(
+                "option",
+                { value: "1" },
+                "One"
+              ),
+              _react2.default.createElement(
+                "option",
+                { value: "2" },
+                "Two"
+              ),
+              _react2.default.createElement(
+                "option",
+                { value: "3" },
+                "Three"
+              )
+            )
+          )
+        )
+      );
+    }
+  }, {
     key: "render",
     value: function render() {
+      var hasNewPage = this.state.hasNewPage;
+
+
       return _react2.default.createElement(
         "div",
         null,
@@ -28461,12 +28483,12 @@ var PageEdit = function (_React$Component) {
             { className: "col-12" },
             _react2.default.createElement(
               "div",
-              { className: "add-page-box", onClick: this.toggleHasNewPage },
+              { className: "add-page-button toggle-button", onClick: this.toggleHasNewPage },
               _react2.default.createElement(
                 "span",
                 null,
                 "[",
-                this.state.hasNewPage ? "-" : "+",
+                hasNewPage ? "-" : "+",
                 "]"
               ),
               _react2.default.createElement(
@@ -28477,7 +28499,7 @@ var PageEdit = function (_React$Component) {
             )
           )
         ),
-        this.state.hasNewPage ? this.newPageButton() : ""
+        hasNewPage ? this.newPage() : ""
       );
     }
   }]);
