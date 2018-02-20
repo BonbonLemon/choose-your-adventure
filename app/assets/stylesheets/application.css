@@ -168,14 +168,25 @@
 }
 
 .add-page-box {
-  background-color: #c2d8f9;
+  background-color: #cee1ea;
   height: 40px;
-  border: thin solid #0100a0;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.16);
   padding: 5px;
 }
 
+.add-page-box:hover {
+  color: #ffa500;
+  cursor: pointer;
+}
+
 .new-page-form {
-  background-color: #c2d8f9;
-  border: thin solid #0100a0;
+  background-color: #cee1ea;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.16);
+  padding: 10px;
+}
+
+.add-option-container {
+  background-color: #a1c5d6;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.16);
   padding: 10px;
 }

@@ -96,37 +96,37 @@ class AdventureEdit extends React.Component {
         <div className="row">
           <div className="col-12">
             <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
+              <div className="form-group col-6">
                 <label>Title</label>
                 <input
                   type="text"
                   className="form-control"
                   value={title}
-                  placeholder="Title"
+                  placeholder="Add a Title"
                   onChange={this.update("title")}
                   required
                 />
               </div>
 
-              <div className="form-group">
+              <div className="form-group col-6">
                 <label>Genres</label>
                 <GenreInput addGenre={this.addGenre} />
                 <GenreInputs genres={this.state.genres} removeGenre={this.removeGenre} />
               </div>
 
-              <div className="form-group">
+              <div className="form-group col-12">
                 <label>Description</label>
                 <textarea
                   className="form-control"
                   value={description}
-                  placeholder="Description"
+                  placeholder="Add a Description"
                   rows="3"
                   onChange={this.update("description")}
                 />
               </div>
 
-              { cover }
-              <div className="form-group">
+              <div className="form-group col-6">
+                { cover }
                 <div className="input-group">
                   <div className="input-group-prepend">
                     <button
@@ -146,7 +146,9 @@ class AdventureEdit extends React.Component {
                 </div>
               </div>
 
-              <button type="submit" className="btn btn-primary">Save</button>
+              <div className="form-group col-12">
+                <button type="submit" className="btn btn-primary">Save</button>
+              </div>
             </form>
           </div>
         </div>
