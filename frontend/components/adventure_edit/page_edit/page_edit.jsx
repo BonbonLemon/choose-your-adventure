@@ -66,6 +66,11 @@ class PageEdit extends React.Component {
                 </div>
               </div>
             </div>
+            <div className="form-row">
+              <div className="form-group col-12">
+                <button type="submit" className="btn btn-info">Save Page</button>
+              </div>
+            </div>
           </form>
         </div>
       </div>
@@ -88,6 +93,11 @@ class PageEdit extends React.Component {
                 <option value="2">Two</option>
                 <option value="3">Three</option>
               </select>
+          </div>
+        </div>
+        <div className="form-row">
+          <div className="col-12 mt-3">
+            <button type="submit" className="btn btn-success">Save Option</button>
           </div>
         </div>
       </div>

@@ -28388,6 +28388,19 @@ var PageEdit = function (_React$Component) {
                   )
                 )
               )
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "form-row" },
+              _react2.default.createElement(
+                "div",
+                { className: "form-group col-12" },
+                _react2.default.createElement(
+                  "button",
+                  { type: "submit", className: "btn btn-info" },
+                  "Save Page"
+                )
+              )
             )
           )
         )
@@ -28443,6 +28456,19 @@ var PageEdit = function (_React$Component) {
                 { value: "3" },
                 "Three"
               )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "form-row" },
+          _react2.default.createElement(
+            "div",
+            { className: "col-12 mt-3" },
+            _react2.default.createElement(
+              "button",
+              { type: "submit", className: "btn btn-success" },
+              "Save Option"
             )
           )
         )
