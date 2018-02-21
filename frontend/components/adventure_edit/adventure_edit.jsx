@@ -152,7 +152,7 @@ class AdventureEdit extends React.Component {
             </form>
           </div>
         </div>
-        <PageEditContainer />
+        <PageEditContainer adventureId={this.props.adventureId}/>
       </div>
     );
   }

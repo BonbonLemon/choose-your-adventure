@@ -1,1 +1,1 @@
-json.extract! page, :id, :text, :page_number
+json.extract! page, :id, :adventure_id, :text

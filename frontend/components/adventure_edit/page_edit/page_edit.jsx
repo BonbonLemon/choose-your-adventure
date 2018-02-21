@@ -6,10 +6,25 @@ class PageEdit extends React.Component {
 
     this.state = {
       hasNewPage: false,
-      hasNewOption: false
+      hasNewOption: false,
+      name: '',
+      text: ''
     }
     this.toggleHasNewPage = this.toggleHasNewPage.bind(this);
     this.toggleHasNewOption = this.toggleHasNewOption.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  update(property) {
+    return e => this.setState({
+      [property]: e.target.value
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const page = Object.assign({adventure_id: this.props.adventureId}, this.state);
+    this.props.createPage({page});
   }
 
   toggleHasNewPage() {
@@ -25,19 +40,21 @@ class PageEdit extends React.Component {
   }
 
   newPage() {
-    const { hasNewOption } = this.state;
+    const { hasNewOption, name, text } = this.state;
 
     return (
       <div className="row">
         <div className="col-12">
-          <form className="new-page-form">
+          <form className="new-page-form" onSubmit={this.handleSubmit}>
             <div className="form-row">
               <div className="form-group col-6">
                 <label>Name</label>
                 <input
                   type="text"
                   className="form-control"
+                  value={name}
                   placeholder="Page Name"
+                  onChange={this.update("name")}
                   required
                 />
               </div>
@@ -47,8 +64,10 @@ class PageEdit extends React.Component {
                 <label>Text</label>
                 <textarea
                   className="form-control"
+                  value={text}
                   placeholder="Page Text"
                   rows="3"
+                  onChange={this.update("text")}
                 />
               </div>
             </div>
