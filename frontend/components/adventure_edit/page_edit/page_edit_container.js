@@ -5,9 +5,9 @@ import PageEdit from './page_edit';
 
 const mapStateToProps = (state, ownProps) => {
   // TODO: how does deep component get its state?
-  const adventureId = ownProps.adventureId;
+  const adventure = ownProps.adventure;
   return {
-    adventureId: adventureId
+    adventure: adventure
   };
 };
 

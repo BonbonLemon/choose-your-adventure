@@ -28204,7 +28204,7 @@ var AdventureEdit = function (_React$Component) {
             )
           )
         ),
-        _react2.default.createElement(_page_edit_container2.default, { adventureId: this.props.adventureId })
+        _react2.default.createElement(_page_edit_container2.default, { adventure: this.props.adventure })
       );
     }
   }]);
@@ -28237,9 +28237,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   // TODO: how does deep component get its state?
-  var adventureId = ownProps.adventureId;
+  var adventure = ownProps.adventure;
   return {
-    adventureId: adventureId
+    adventure: adventure
   };
 };
 
@@ -28269,6 +28269,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
+
+var _page_edit_index_item = __webpack_require__(243);
+
+var _page_edit_index_item2 = _interopRequireDefault(_page_edit_index_item);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28313,7 +28317,7 @@ var PageEdit = function (_React$Component) {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
       e.preventDefault();
-      var page = Object.assign({ adventure_id: this.props.adventureId }, this.state);
+      var page = Object.assign({ adventure_id: this.props.addventure.id }, this.state);
       this.props.createPage({ page: page });
     }
   }, {
@@ -28347,7 +28351,7 @@ var PageEdit = function (_React$Component) {
           { className: 'col-12' },
           _react2.default.createElement(
             'form',
-            { className: 'new-page-form', onSubmit: this.handleSubmit },
+            { className: 'page-box new-page-form', onSubmit: this.handleSubmit },
             _react2.default.createElement(
               'div',
               { className: 'form-row' },
@@ -28517,6 +28521,7 @@ var PageEdit = function (_React$Component) {
     value: function render() {
       var hasNewPage = this.state.hasNewPage;
 
+      var pages = this.props.adventure.pages || [];
 
       return _react2.default.createElement(
         'div',
@@ -28537,7 +28542,13 @@ var PageEdit = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'row' },
-          'current page stuff...'
+          _react2.default.createElement(
+            'div',
+            { className: 'col-12' },
+            pages.map(function (page) {
+              return _react2.default.createElement(_page_edit_index_item2.default, { key: page.id, page: page });
+            })
+          )
         ),
         _react2.default.createElement(
           'div',
@@ -28547,7 +28558,7 @@ var PageEdit = function (_React$Component) {
             { className: 'col-12' },
             _react2.default.createElement(
               'div',
-              { className: 'add-page-button toggle-button', onClick: this.toggleHasNewPage },
+              { className: 'page-box add-page-button toggle-button', onClick: this.toggleHasNewPage },
               _react2.default.createElement(
                 'span',
                 null,
@@ -31021,6 +31032,77 @@ var createPage = exports.createPage = function createPage(data) {
     data: data
   });
 };
+
+/***/ }),
+/* 243 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var PageEditIndexItem = function PageEditIndexItem(_ref) {
+  var page = _ref.page;
+  return _react2.default.createElement(
+    "div",
+    { className: "page-box input-group" },
+    _react2.default.createElement(
+      "div",
+      { className: "page-index-item-buttons input-group-prepend mr-3" },
+      _react2.default.createElement(
+        "span",
+        { className: "mr-3" },
+        _react2.default.createElement("img", { className: "page-index-item-button", src: "http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423463/edit_qif1lz.png" })
+      ),
+      _react2.default.createElement(
+        "span",
+        null,
+        _react2.default.createElement("img", { className: "page-index-item-button", src: "http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423844/x_bkgfwz.png" })
+      )
+    ),
+    _react2.default.createElement(
+      "div",
+      { className: "page-index-item-details" },
+      _react2.default.createElement(
+        "div",
+        { className: "row" },
+        _react2.default.createElement(
+          "div",
+          { className: "col-12" },
+          _react2.default.createElement(
+            "span",
+            { className: "page-index-item-name" },
+            page.name
+          )
+        )
+      ),
+      _react2.default.createElement(
+        "div",
+        { className: "row" },
+        _react2.default.createElement(
+          "div",
+          { className: "col-12" },
+          _react2.default.createElement(
+            "span",
+            null,
+            page.text
+          )
+        )
+      )
+    )
+  );
+};
+
+exports.default = PageEditIndexItem;
 
 /***/ })
 /******/ ]);

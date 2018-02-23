@@ -167,22 +167,31 @@
   cursor: pointer;
 }
 
-.add-page-button {
-  background-color: #cee1ea;
-  height: 40px;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.16);
-  padding: 5px;
-}
-
 .toggle-button:hover {
   color: #ffa500;
   cursor: pointer;
 }
 
-.new-page-form {
+.page-box {
   background-color: #cee1ea;
   box-shadow: 0 1px 5px rgba(0,0,0,0.16);
   padding: 10px;
+}
+
+.page-index-item-button {
+  height: 28px;
+}
+
+.page-index-item-name {
+  font-weight: bolder;
+}
+
+.add-page-button {
+  height: 40px;
+}
+
+.new-page-form {
+
 }
 
 .add-option-button {

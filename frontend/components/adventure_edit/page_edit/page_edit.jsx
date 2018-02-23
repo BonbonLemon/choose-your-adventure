@@ -1,4 +1,5 @@
 import React from 'react';
+import PageEditIndexItem from './page_edit_index_item.jsx';
 
 class PageEdit extends React.Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class PageEdit extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const page = Object.assign({adventure_id: this.props.adventureId}, this.state);
+    const page = Object.assign({adventure_id: this.props.addventure.id}, this.state);
     this.props.createPage({page});
   }
 
@@ -45,7 +46,7 @@ class PageEdit extends React.Component {
     return (
       <div className="row">
         <div className="col-12">
-          <form className="new-page-form" onSubmit={this.handleSubmit}>
+          <form className="page-box new-page-form" onSubmit={this.handleSubmit}>
             <div className="form-row">
               <div className="form-group col-6">
                 <label>Name</label>
@@ -125,6 +126,7 @@ class PageEdit extends React.Component {
 
   render() {
     const { hasNewPage } = this.state;
+    const pages = this.props.adventure.pages || [];
 
     return (
       <div>
@@ -134,11 +136,15 @@ class PageEdit extends React.Component {
           </div>
         </div>
         <div className="row">
-          current page stuff...
+          <div className="col-12">
+            {pages.map(page => (
+              <PageEditIndexItem key={page.id} page={page} />
+            ))}
+          </div>
         </div>
         <div className="row">
           <div className="col-12">
-            <div className="add-page-button toggle-button" onClick={this.toggleHasNewPage}>
+            <div className="page-box add-page-button toggle-button" onClick={this.toggleHasNewPage}>
               <span>[{ hasNewPage ? "-" : "+" }]</span>
               <span> Add New Page</span>
             </div>
