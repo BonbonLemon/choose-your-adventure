@@ -174,12 +174,16 @@
 
 .page-box {
   background-color: #cee1ea;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.16);
+  box-shadow: 0 1px 5px rgba(0,0,0,0.32);
   padding: 10px;
 }
 
 .page-index-item-button {
   height: 28px;
+}
+
+.page-index-item-button:hover {
+  cursor: pointer;
 }
 
 .page-index-item-name {

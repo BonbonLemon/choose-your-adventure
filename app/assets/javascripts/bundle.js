@@ -31044,65 +31044,376 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _page_form = __webpack_require__(244);
+
+var _page_form2 = _interopRequireDefault(_page_form);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PageEditIndexItem = function (_React$Component) {
+  _inherits(PageEditIndexItem, _React$Component);
+
+  function PageEditIndexItem(props) {
+    _classCallCheck(this, PageEditIndexItem);
+
+    var _this = _possibleConstructorReturn(this, (PageEditIndexItem.__proto__ || Object.getPrototypeOf(PageEditIndexItem)).call(this, props));
+
+    _this.state = {
+      editPageClicked: false
+    };
+    _this.toggleEditPage = _this.toggleEditPage.bind(_this);
+    return _this;
+  }
+
+  _createClass(PageEditIndexItem, [{
+    key: 'toggleEditPage',
+    value: function toggleEditPage() {
+      this.setState({
+        editPageClicked: !this.state.editPageClicked
+      });
+    }
+  }, {
+    key: 'pageSummaryBox',
+    value: function pageSummaryBox(page) {
+      return _react2.default.createElement(
+        'div',
+        { className: 'page-box input-group' },
+        _react2.default.createElement(
+          'div',
+          { className: 'page-index-item-buttons input-group-prepend mr-3' },
+          _react2.default.createElement(
+            'span',
+            { className: 'mr-3' },
+            _react2.default.createElement('img', { className: 'page-index-item-button', onClick: this.toggleEditPage, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423463/edit_qif1lz.png' })
+          ),
+          _react2.default.createElement(
+            'span',
+            null,
+            _react2.default.createElement('img', { className: 'page-index-item-button', src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423844/x_bkgfwz.png' })
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'page-index-item-details' },
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-12' },
+              _react2.default.createElement(
+                'span',
+                { className: 'page-index-item-name' },
+                page.name
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-12' },
+              _react2.default.createElement(
+                'span',
+                null,
+                page.text
+              )
+            )
+          )
+        )
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var page = this.props.page;
+
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        this.state.editPageClicked ? _react2.default.createElement(_page_form2.default, { page: page, toggleEditPage: this.toggleEditPage }) : this.pageSummaryBox(page)
+      );
+    }
+  }]);
+
+  return PageEditIndexItem;
+}(_react2.default.Component);
+
+;
+
+exports.default = PageEditIndexItem;
+
+/***/ }),
+/* 244 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var PageEditIndexItem = function PageEditIndexItem(_ref) {
-  var page = _ref.page;
-  return _react2.default.createElement(
-    "div",
-    { className: "page-box input-group" },
-    _react2.default.createElement(
-      "div",
-      { className: "page-index-item-buttons input-group-prepend mr-3" },
-      _react2.default.createElement(
-        "span",
-        { className: "mr-3" },
-        _react2.default.createElement("img", { className: "page-index-item-button", src: "http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423463/edit_qif1lz.png" })
-      ),
-      _react2.default.createElement(
-        "span",
-        null,
-        _react2.default.createElement("img", { className: "page-index-item-button", src: "http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423844/x_bkgfwz.png" })
-      )
-    ),
-    _react2.default.createElement(
-      "div",
-      { className: "page-index-item-details" },
-      _react2.default.createElement(
-        "div",
-        { className: "row" },
-        _react2.default.createElement(
-          "div",
-          { className: "col-12" },
-          _react2.default.createElement(
-            "span",
-            { className: "page-index-item-name" },
-            page.name
-          )
-        )
-      ),
-      _react2.default.createElement(
-        "div",
-        { className: "row" },
-        _react2.default.createElement(
-          "div",
-          { className: "col-12" },
-          _react2.default.createElement(
-            "span",
-            null,
-            page.text
-          )
-        )
-      )
-    )
-  );
-};
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-exports.default = PageEditIndexItem;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PageForm = function (_React$Component) {
+  _inherits(PageForm, _React$Component);
+
+  function PageForm(props) {
+    _classCallCheck(this, PageForm);
+
+    var _this = _possibleConstructorReturn(this, (PageForm.__proto__ || Object.getPrototypeOf(PageForm)).call(this, props));
+
+    var _props$page = props.page,
+        name = _props$page.name,
+        text = _props$page.text;
+
+
+    _this.state = {
+      hasNewOption: false,
+      name: name,
+      text: text
+    };
+    _this.toggleHasNewOption = _this.toggleHasNewOption.bind(_this);
+    return _this;
+  }
+
+  _createClass(PageForm, [{
+    key: "update",
+    value: function update(property) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, property, e.target.value));
+      };
+    }
+  }, {
+    key: "toggleHasNewOption",
+    value: function toggleHasNewOption() {
+      this.setState({
+        hasNewOption: !this.state.hasNewOption
+      });
+    }
+  }, {
+    key: "newOption",
+    value: function newOption() {
+      return _react2.default.createElement(
+        "div",
+        { className: "new-option-form" },
+        _react2.default.createElement(
+          "div",
+          { className: "form-row" },
+          _react2.default.createElement(
+            "div",
+            { className: "col-8" },
+            _react2.default.createElement(
+              "label",
+              null,
+              "Option Text"
+            ),
+            _react2.default.createElement("input", { type: "text", placeholder: "Add Option Text", className: "form-control" })
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "col-4" },
+            _react2.default.createElement(
+              "label",
+              null,
+              "Destination"
+            ),
+            _react2.default.createElement(
+              "select",
+              { className: "custom-select" },
+              _react2.default.createElement(
+                "option",
+                { value: "" },
+                "Open this select menu"
+              ),
+              _react2.default.createElement(
+                "option",
+                { value: "1" },
+                "One"
+              ),
+              _react2.default.createElement(
+                "option",
+                { value: "2" },
+                "Two"
+              ),
+              _react2.default.createElement(
+                "option",
+                { value: "3" },
+                "Three"
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "form-row" },
+          _react2.default.createElement(
+            "div",
+            { className: "col-12 mt-3" },
+            _react2.default.createElement(
+              "button",
+              { type: "submit", className: "btn btn-success" },
+              "Save Option"
+            )
+          )
+        )
+      );
+    }
+  }, {
+    key: "cancelButton",
+    value: function cancelButton() {
+      return _react2.default.createElement(
+        "button",
+        { type: "button", className: "btn btn-danger", onClick: this.props.toggleEditPage },
+        "Cancel"
+      );
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _state = this.state,
+          hasNewOption = _state.hasNewOption,
+          name = _state.name,
+          text = _state.text;
+
+
+      return _react2.default.createElement(
+        "form",
+        { className: "page-box new-page-form", onSubmit: this.handleSubmit },
+        _react2.default.createElement(
+          "div",
+          { className: "form-row" },
+          _react2.default.createElement(
+            "div",
+            { className: "form-group col-6" },
+            _react2.default.createElement(
+              "label",
+              null,
+              "Name"
+            ),
+            _react2.default.createElement("input", {
+              type: "text",
+              className: "form-control",
+              value: name,
+              placeholder: "Page Name",
+              onChange: this.update("name"),
+              required: true
+            })
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "form-row" },
+          _react2.default.createElement(
+            "div",
+            { className: "form-group col-12" },
+            _react2.default.createElement(
+              "label",
+              null,
+              "Text"
+            ),
+            _react2.default.createElement("textarea", {
+              className: "form-control",
+              value: text,
+              placeholder: "Page Text",
+              rows: "3",
+              onChange: this.update("text")
+            })
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "form-row" },
+          _react2.default.createElement(
+            "div",
+            { className: "form-group col-12" },
+            _react2.default.createElement(
+              "h4",
+              null,
+              "Options"
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "form-row" },
+              _react2.default.createElement(
+                "div",
+                { className: "form-group col-12" },
+                _react2.default.createElement(
+                  "div",
+                  { className: "add-option-button toggle-button", onClick: this.toggleHasNewOption },
+                  _react2.default.createElement(
+                    "span",
+                    null,
+                    "[",
+                    hasNewOption ? "-" : "+",
+                    "]"
+                  ),
+                  _react2.default.createElement(
+                    "span",
+                    null,
+                    " Add New Option"
+                  )
+                ),
+                hasNewOption ? this.newOption() : ""
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "form-row" },
+          _react2.default.createElement(
+            "div",
+            { className: "form-group col-12" },
+            _react2.default.createElement(
+              "button",
+              { type: "submit", className: "btn btn-info mr-3" },
+              "Save Page"
+            ),
+            this.props.toggleEditPage ? this.cancelButton() : ""
+          )
+        )
+      );
+    }
+  }]);
+
+  return PageForm;
+}(_react2.default.Component);
+
+;
+
+exports.default = PageForm;
 
 /***/ })
 /******/ ]);
