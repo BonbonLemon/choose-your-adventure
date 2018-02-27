@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 import GenreInput from '../genre/genre_input';
 import GenreInputs from '../genre/genre_inputs';
-import PageEditContainer from './page_edit/page_edit_container';
+import PageContainer from './pages/pages_container';
 
 class AdventureEdit extends React.Component {
   constructor(props) {
@@ -14,6 +14,7 @@ class AdventureEdit extends React.Component {
       description: '',
       cover_url: ''
     };
+    this.updateAdventure = this.updateAdventure.bind(this);
     this.setAdventureProperties = this.setAdventureProperties.bind(this);
     this.handleCloudinary = this.handleCloudinary.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,6 +24,10 @@ class AdventureEdit extends React.Component {
   }
 
   componentDidMount() {
+    this.updateAdventure();
+  }
+
+  updateAdventure() {
     // TODO: Check with jeff is this needs an if statement
     this.props.fetchAdventure(this.props.adventureId, this.setAdventureProperties);
   }
@@ -152,7 +157,7 @@ class AdventureEdit extends React.Component {
             </form>
           </div>
         </div>
-        <PageEditContainer adventure={this.props.adventure}/>
+        <PageContainer adventure={this.props.adventure} updateAdventure={this.updateAdventure} />
       </div>
     );
   }

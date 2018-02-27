@@ -1,7 +1,7 @@
 import React from 'react';
 import PageForm from './page_form.jsx';
 
-class PageEditIndexItem extends React.Component {
+class PagesIndexItem extends React.Component {
   constructor(props) {
     super(props);
 
@@ -59,4 +59,4 @@ class PageEditIndexItem extends React.Component {
   }
 };
 
-export default PageEditIndexItem;
+export default PagesIndexItem;
