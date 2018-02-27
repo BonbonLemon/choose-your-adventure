@@ -20,7 +20,7 @@ class AdventureEdit extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.adventure.title) {
+    if (this.props.adventure && this.props.adventure.title) {
       this.setAdventureProperties(this.props.adventure);
     }
   }

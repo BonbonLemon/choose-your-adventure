@@ -11,7 +11,8 @@ class AdventureEdit extends React.Component {
     super(props);
 
     this.updateAdventure = this.updateAdventure.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.editAdventure = this.editAdventure.bind(this);
+    this.navigateToAdventure = this.navigateToAdventure.bind(this);
   }
 
   componentDidMount() {
@@ -23,7 +24,7 @@ class AdventureEdit extends React.Component {
     this.props.fetchAdventure(this.props.adventureId);
   }
 
-  handleSubmit(attributes, e) {
+  editAdventure(attributes, e) {
     e.preventDefault();
     const adventure = Object.assign({}, attributes);
     // TODO:
@@ -44,7 +45,7 @@ class AdventureEdit extends React.Component {
         </div>
         <div className="row">
           <div className="col-12">
-            <AdventureForm adventure={this.props.adventure} />
+            <AdventureForm adventure={this.props.adventure} handleSubmit={this.editAdventure} />
           </div>
         </div>
         <PageContainer adventure={this.props.adventure} updateAdventure={this.updateAdventure} />

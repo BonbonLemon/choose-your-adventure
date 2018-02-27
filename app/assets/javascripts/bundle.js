@@ -27717,6 +27717,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(160);
 
+var _adventure_form = __webpack_require__(245);
+
+var _adventure_form2 = _interopRequireDefault(_adventure_form);
+
 var _genre_input = __webpack_require__(73);
 
 var _genre_input2 = _interopRequireDefault(_genre_input);
@@ -27726,8 +27730,6 @@ var _genre_inputs = __webpack_require__(74);
 var _genre_inputs2 = _interopRequireDefault(_genre_inputs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -27749,60 +27751,16 @@ var AdventureNew = function (_React$Component) {
       description: '',
       cover_url: ''
     };
-    _this.handleCloudinary = _this.handleCloudinary.bind(_this);
-    _this.handleSubmit = _this.handleSubmit.bind(_this);
-    _this.addGenre = _this.addGenre.bind(_this);
-    _this.removeGenre = _this.removeGenre.bind(_this);
+    _this.createAdventure = _this.createAdventure.bind(_this);
     _this.navigateToAdventure = _this.navigateToAdventure.bind(_this);
     return _this;
   }
 
   _createClass(AdventureNew, [{
-    key: 'update',
-    value: function update(property) {
-      var _this2 = this;
-
-      return function (e) {
-        return _this2.setState(_defineProperty({}, property, e.target.value));
-      };
-    }
-  }, {
-    key: 'handleCloudinary',
-    value: function handleCloudinary(e) {
-      var _this3 = this;
-
+    key: 'createAdventure',
+    value: function createAdventure(attributes, e) {
       e.preventDefault();
-      cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function (error, results) {
-        if (error) {
-          console.log(error);
-        } else {
-          _this3.setState({ cover_url: results[0].secure_url });
-        }
-      });
-    }
-  }, {
-    key: 'addGenre',
-    value: function addGenre(genre) {
-      var capitalizedGenre = genre.charAt(0).toUpperCase() + genre.slice(1).toLowerCase();
-      if (!this.state.genres.includes(capitalizedGenre)) {
-        this.setState({ genres: this.state.genres.concat(capitalizedGenre) });
-      }
-    }
-  }, {
-    key: 'removeGenre',
-    value: function removeGenre(e, deletedGenre) {
-      e.preventDefault();
-      this.setState({
-        genres: this.state.genres.filter(function (genre) {
-          return genre !== deletedGenre;
-        })
-      });
-    }
-  }, {
-    key: 'handleSubmit',
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      var adventure = Object.assign({}, this.state);
+      var adventure = Object.assign({}, attributes);
       this.props.createAdventure({ adventure: adventure }, this.navigateToAdventure);
     }
   }, {
@@ -27813,20 +27771,6 @@ var AdventureNew = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _state = this.state,
-          title = _state.title,
-          genres = _state.genres,
-          description = _state.description,
-          cover_url = _state.cover_url;
-
-      var cover = void 0;
-      if (cover_url) {
-        cover = _react2.default.createElement(
-          'div',
-          { className: 'upload-cover-image-wrapper form-group' },
-          _react2.default.createElement('img', { src: cover_url })
-        );
-      }
       return _react2.default.createElement(
         'div',
         { className: 'container-fluid' },
@@ -27849,72 +27793,7 @@ var AdventureNew = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'col-12' },
-            _react2.default.createElement(
-              'form',
-              { onSubmit: this.handleSubmit },
-              _react2.default.createElement(
-                'div',
-                { className: 'form-group' },
-                _react2.default.createElement('input', {
-                  type: 'text',
-                  className: 'form-control',
-                  value: title,
-                  placeholder: 'Title',
-                  onChange: this.update("title"),
-                  required: true
-                })
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'form-group' },
-                _react2.default.createElement(_genre_input2.default, { addGenre: this.addGenre }),
-                _react2.default.createElement(_genre_inputs2.default, { genres: this.state.genres, removeGenre: this.removeGenre })
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'form-group' },
-                _react2.default.createElement('textarea', {
-                  className: 'form-control',
-                  value: description,
-                  placeholder: 'Description',
-                  rows: '3',
-                  onChange: this.update("description")
-                })
-              ),
-              cover,
-              _react2.default.createElement(
-                'div',
-                { className: 'form-group' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'input-group' },
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'input-group-prepend' },
-                    _react2.default.createElement(
-                      'button',
-                      {
-                        onClick: this.handleCloudinary,
-                        className: 'btn btn-secondary',
-                        type: 'button'
-                      },
-                      'Upload Image'
-                    )
-                  ),
-                  _react2.default.createElement('input', {
-                    type: 'text',
-                    className: 'form-control',
-                    placeholder: 'Cover Photo',
-                    disabled: true
-                  })
-                )
-              ),
-              _react2.default.createElement(
-                'button',
-                { type: 'submit', className: 'btn btn-primary' },
-                'Create'
-              )
-            )
+            _react2.default.createElement(_adventure_form2.default, { handleSubmit: this.createAdventure })
           )
         )
       );
@@ -28264,7 +28143,8 @@ var AdventureEdit = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (AdventureEdit.__proto__ || Object.getPrototypeOf(AdventureEdit)).call(this, props));
 
     _this.updateAdventure = _this.updateAdventure.bind(_this);
-    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.editAdventure = _this.editAdventure.bind(_this);
+    _this.navigateToAdventure = _this.navigateToAdventure.bind(_this);
     return _this;
   }
 
@@ -28280,8 +28160,8 @@ var AdventureEdit = function (_React$Component) {
       this.props.fetchAdventure(this.props.adventureId);
     }
   }, {
-    key: 'handleSubmit',
-    value: function handleSubmit(attributes, e) {
+    key: 'editAdventure',
+    value: function editAdventure(attributes, e) {
       e.preventDefault();
       var adventure = Object.assign({}, attributes);
       // TODO:
@@ -28317,7 +28197,7 @@ var AdventureEdit = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'col-12' },
-            _react2.default.createElement(_adventure_form2.default, { adventure: this.props.adventure })
+            _react2.default.createElement(_adventure_form2.default, { adventure: this.props.adventure, handleSubmit: this.editAdventure })
           )
         ),
         _react2.default.createElement(_pages_container2.default, { adventure: this.props.adventure, updateAdventure: this.updateAdventure })
@@ -31203,7 +31083,7 @@ var AdventureEdit = function (_React$Component) {
   _createClass(AdventureEdit, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      if (this.props.adventure.title) {
+      if (this.props.adventure && this.props.adventure.title) {
         this.setAdventureProperties(this.props.adventure);
       }
     }
