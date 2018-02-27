@@ -5,3 +5,11 @@ export const createPage = data => (
     data
   })
 );
+
+export const editPage = data => (
+  $.ajax({
+    method: 'PATCH',
+    url: `api/pages/${data.page.id}`,
+    data
+  })
+);

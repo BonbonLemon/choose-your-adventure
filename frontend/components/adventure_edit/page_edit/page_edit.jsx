@@ -8,12 +8,26 @@ class PageEdit extends React.Component {
     this.state = {
       hasNewPage: false,
       hasNewOption: false,
+      pages: [],
       name: '',
       text: ''
     }
+    this.updatePages = this.updatePages.bind(this);
     this.toggleHasNewPage = this.toggleHasNewPage.bind(this);
     this.toggleHasNewOption = this.toggleHasNewOption.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.pages !== nextProps.adventure.pages) {
+      this.updatePages(nextProps);
+    }
+  }
+
+  updatePages(nextProps) {
+    this.setState({
+      pages: nextProps.adventure.pages
+    });
   }
 
   update(property) {
@@ -24,7 +38,7 @@ class PageEdit extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const page = Object.assign({adventure_id: this.props.addventure.id}, this.state);
+    const page = Object.assign({adventure_id: this.props.adventure.id}, this.state);
     this.props.createPage({page});
   }
 
@@ -125,8 +139,7 @@ class PageEdit extends React.Component {
   }
 
   render() {
-    const { hasNewPage } = this.state;
-    const pages = this.props.adventure.pages || [];
+    const { hasNewPage, pages } = this.state;
 
     return (
       <div>
@@ -138,7 +151,7 @@ class PageEdit extends React.Component {
         <div className="row">
           <div className="col-12">
             {pages.map(page => (
-              <PageEditIndexItem key={page.id} page={page} />
+              <PageEditIndexItem key={page.id} page={page} editPage={this.props.editPage}/>
             ))}
           </div>
         </div>

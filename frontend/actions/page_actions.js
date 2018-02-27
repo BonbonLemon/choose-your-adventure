@@ -12,3 +12,9 @@ export const createPage = (page) => dispatch => (
     dispatch(receivePage(page));
   })
 );
+
+export const editPage = (page) => dispatch => (
+  APIUtil.editPage(page).then(page => {
+    dispatch(receivePage(page));
+  })
+)

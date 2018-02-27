@@ -13,6 +13,10 @@ class PageForm extends React.Component {
     this.toggleHasNewOption = this.toggleHasNewOption.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    debugger;
+  }
+
   update(property) {
     return e => this.setState({
       [property]: e.target.value
@@ -62,7 +66,7 @@ class PageForm extends React.Component {
     const { hasNewOption, name, text } = this.state;
 
     return (
-      <form className="page-box new-page-form" onSubmit={this.handleSubmit}>
+      <form className="page-box new-page-form" onSubmit={(e) => this.props.handleSubmit(this.state, e)}>
         <div className="form-row">
           <div className="form-group col-6">
             <label>Name</label>
