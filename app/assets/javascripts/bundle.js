@@ -28489,11 +28489,11 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchAdventure: function fetchAdventure(id, callback) {
       return dispatch((0, _adventure_actions.fetchAdventure)(id, callback));
     },
-    createPage: function createPage(page) {
-      return dispatch((0, _page_actions.createPage)(page));
+    createPage: function createPage(page, callback) {
+      return dispatch((0, _page_actions.createPage)(page, callback));
     },
-    editPage: function editPage(page) {
-      return dispatch((0, _page_actions.editPage)(page));
+    editPage: function editPage(page, callback) {
+      return dispatch((0, _page_actions.editPage)(page, callback));
     }
   };
 };
@@ -28527,17 +28527,23 @@ var receivePage = exports.receivePage = function receivePage(page) {
   };
 };
 
-var createPage = exports.createPage = function createPage(page) {
+var createPage = exports.createPage = function createPage(page, callback) {
   return function (dispatch) {
     return APIUtil.createPage(page).then(function (page) {
+      if (callback) {
+        callback(page);
+      }
       dispatch(receivePage(page));
     });
   };
 };
 
-var editPage = exports.editPage = function editPage(page) {
+var editPage = exports.editPage = function editPage(page, callback) {
   return function (dispatch) {
     return APIUtil.editPage(page).then(function (page) {
+      if (callback) {
+        callback(page);
+      }
       dispatch(receivePage(page));
     });
   };
@@ -28682,7 +28688,7 @@ var Pages = function (_React$Component) {
             'div',
             { className: 'col-12' },
             pages.map(function (page) {
-              return _react2.default.createElement(_pages_index_item2.default, { key: page.id, page: page, editPage: _this3.props.editPage });
+              return _react2.default.createElement(_pages_index_item2.default, { key: page.id, page: page, editPage: _this3.props.editPage, updateAdventure: _this3.props.updateAdventure });
             })
           )
         ),
@@ -28776,6 +28782,7 @@ var PagesIndexItem = function (_React$Component) {
       editPageClicked: false
     };
     _this.editPage = _this.editPage.bind(_this);
+    _this.editPageCallback = _this.editPageCallback.bind(_this);
     _this.toggleEditPage = _this.toggleEditPage.bind(_this);
     return _this;
   }
@@ -28785,7 +28792,13 @@ var PagesIndexItem = function (_React$Component) {
     value: function editPage(attributes, e) {
       e.preventDefault();
       var page = Object.assign({ id: this.props.page.id }, attributes);
-      this.props.editPage({ page: page });
+      this.props.editPage({ page: page }, this.editPageCallback);
+    }
+  }, {
+    key: 'editPageCallback',
+    value: function editPageCallback() {
+      this.toggleEditPage();
+      this.props.updateAdventure();
     }
   }, {
     key: 'toggleEditPage',

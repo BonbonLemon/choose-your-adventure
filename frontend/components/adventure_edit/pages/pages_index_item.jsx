@@ -9,13 +9,19 @@ class PagesIndexItem extends React.Component {
       editPageClicked: false
     };
     this.editPage = this.editPage.bind(this);
+    this.editPageCallback = this.editPageCallback.bind(this);
     this.toggleEditPage = this.toggleEditPage.bind(this);
   }
 
   editPage(attributes, e) {
     e.preventDefault();
     const page = Object.assign({id: this.props.page.id}, attributes);
-    this.props.editPage({page});
+    this.props.editPage({page}, this.editPageCallback);
+  }
+
+  editPageCallback() {
+    this.toggleEditPage();
+    this.props.updateAdventure();
   }
 
   toggleEditPage() {

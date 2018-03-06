@@ -7,14 +7,16 @@ export const receivePage = page => ({
   page
 });
 
-export const createPage = (page) => dispatch => (
+export const createPage = (page, callback) => dispatch => (
   APIUtil.createPage(page).then(page => {
+    if (callback) { callback(page); }
     dispatch(receivePage(page));
   })
 );
 
-export const editPage = (page) => dispatch => (
+export const editPage = (page, callback) => dispatch => (
   APIUtil.editPage(page).then(page => {
+    if (callback) { callback(page); }
     dispatch(receivePage(page));
   })
 )
