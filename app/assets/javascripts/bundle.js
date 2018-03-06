@@ -5046,12 +5046,6 @@ var PageForm = function (_React$Component) {
   }
 
   _createClass(PageForm, [{
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      // TODO: 
-      debugger;
-    }
-  }, {
     key: 'update',
     value: function update(property) {
       var _this2 = this;
@@ -5066,83 +5060,6 @@ var PageForm = function (_React$Component) {
       this.setState({
         hasNewOption: !this.state.hasNewOption
       });
-    }
-  }, {
-    key: 'newOption',
-    value: function newOption() {
-      return _react2.default.createElement(
-        'div',
-        { className: 'new-option-form' },
-        _react2.default.createElement(
-          'div',
-          { className: 'form-row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-8' },
-            _react2.default.createElement(
-              'label',
-              null,
-              'Option Text'
-            ),
-            _react2.default.createElement('input', { type: 'text', placeholder: 'Add Option Text', className: 'form-control' })
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'col-4' },
-            _react2.default.createElement(
-              'label',
-              null,
-              'Destination'
-            ),
-            _react2.default.createElement(
-              'select',
-              { className: 'custom-select' },
-              _react2.default.createElement(
-                'option',
-                { value: '' },
-                'Open this select menu'
-              ),
-              _react2.default.createElement(
-                'option',
-                { value: '1' },
-                'One'
-              ),
-              _react2.default.createElement(
-                'option',
-                { value: '2' },
-                'Two'
-              ),
-              _react2.default.createElement(
-                'option',
-                { value: '3' },
-                'Three'
-              )
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'form-row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-12 mt-3' },
-            _react2.default.createElement(
-              'button',
-              { type: 'submit', className: 'btn btn-success' },
-              'Save Option'
-            )
-          )
-        )
-      );
-    }
-  }, {
-    key: 'cancelButton',
-    value: function cancelButton() {
-      return _react2.default.createElement(
-        'button',
-        { type: 'button', className: 'btn btn-danger', onClick: this.props.toggleEditPage },
-        'Cancel'
-      );
     }
   }, {
     key: 'render',
@@ -5234,7 +5151,7 @@ var PageForm = function (_React$Component) {
                     ' Add New Option'
                   )
                 ),
-                hasNewOption ? _react2.default.createElement(_option_form2.default, null) : ""
+                hasNewOption ? _react2.default.createElement(_option_form2.default, { page: this.props.page }) : ""
               )
             )
           )
@@ -5250,7 +5167,11 @@ var PageForm = function (_React$Component) {
               { type: 'submit', className: 'btn btn-info mr-3' },
               'Save Page'
             ),
-            this.props.toggleEditPage ? this.cancelButton() : ""
+            _react2.default.createElement(
+              'button',
+              { type: 'button', className: 'btn btn-danger', onClick: this.props.toggleEditPage },
+              'Cancel'
+            )
           )
         )
       );
@@ -28478,9 +28399,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   // TODO: how does deep component get its state?
-  // const adventure = ownProps.adventure;
+  var adventure = ownProps.adventure;
   return {
-    // adventure: adventure
+    adventure: adventure
   };
 };
 
@@ -28927,31 +28848,10 @@ var OptionForm = function (_React$Component) {
   _createClass(OptionForm, [{
     key: 'render',
     value: function render() {
-      // <div className="new-option-form">
-      //   <div className="form-row">
-      //     <div className="col-8">
-      //       <label>Option Text</label>
-      //       <input type="text" placeholder="Add Option Text" className="form-control" />
-      //     </div>
-      //     <div className="col-4">
-      //       <label>Destination</label>
-      //         <select className="custom-select">
-      //           <option value="">Open this select menu</option>
-      //           <option value="1">One</option>
-      //           <option value="2">Two</option>
-      //           <option value="3">Three</option>
-      //         </select>
-      //     </div>
-      //   </div>
-      //   <div className="form-row">
-      //     <div className="col-12 mt-3">
-      //       <button type="submit" className="btn btn-success">Save Option</button>
-      //     </div>
-      //   </div>
-      // </div>
+      var thisPage = this.props.page;
 
       return _react2.default.createElement(
-        'form',
+        'div',
         { className: 'new-option-form' },
         _react2.default.createElement(
           'div',
@@ -28980,23 +28880,17 @@ var OptionForm = function (_React$Component) {
               _react2.default.createElement(
                 'option',
                 { value: '' },
-                'Open this select menu'
+                'No Destination Selected'
               ),
-              _react2.default.createElement(
-                'option',
-                { value: '1' },
-                'One'
-              ),
-              _react2.default.createElement(
-                'option',
-                { value: '2' },
-                'Two'
-              ),
-              _react2.default.createElement(
-                'option',
-                { value: '3' },
-                'Three'
-              )
+              thisPage.adventure.pages.map(function (page) {
+                if (page.id !== thisPage.id) {
+                  return _react2.default.createElement(
+                    'option',
+                    { key: page.id, value: page.id },
+                    page.name
+                  );
+                }
+              })
             )
           )
         ),
@@ -29008,7 +28902,9 @@ var OptionForm = function (_React$Component) {
             { className: 'col-12 mt-3' },
             _react2.default.createElement(
               'button',
-              { type: 'submit', className: 'btn btn-success' },
+              { type: 'button', className: 'btn btn-success', onClick: function onClick(e) {
+                  return e.preventDefault;
+                } },
               'Save Option'
             )
           )

@@ -11,3 +11,7 @@ end
 json.pages do
   json.partial! 'api/pages/page', collection: adventure.pages, as: :page
 end
+
+# json.pages adventure.pages do |page|
+#   json.extract! page, :id, :name, :text
+# end
