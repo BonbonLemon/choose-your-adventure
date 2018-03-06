@@ -1,16 +1,19 @@
+// TODO: delete?
 import React from 'react';
 import PagesIndexItem from './pages_index_item';
+import PageForm from './page_form';
 
 class Pages extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      pages: [],
-      name: ""
+      hasNewPage: false,
+      pages: []
     }
     this.updatePages = this.updatePages.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleHasNewPage = this.toggleHasNewPage.bind(this);
+    this.createPage = this.createPage.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -31,16 +34,23 @@ class Pages extends React.Component {
     });
   }
 
-  handleSubmit(e) {
+  createPage(attributes, e) {
     e.preventDefault();
-    const page = Object.assign({adventure_id: this.props.adventure.id, name: this.state.name});
+    const page = Object.assign({adventure_id: this.props.adventure.id}, attributes);
     this.props.createPage({page});
     this.props.updateAdventure();
-    this.setState({name: ""});
+    this.toggleHasNewPage();
+  }
+
+  toggleHasNewPage() {
+    this.setState({
+      hasNewPage: !this.state.hasNewPage
+    });
   }
 
   render() {
-    const { name, pages } = this.state;
+    const { hasNewPage, pages } = this.state;
+    const newPage = {name: '', text: ''};
 
     return (
       <div>
@@ -58,24 +68,13 @@ class Pages extends React.Component {
         </div>
         <div className="row">
           <div className="col-12">
-            <form onSubmit={this.handleSubmit}>
-              <label>Create A New Page</label>
-              <div className="input-group">
-                <input
-                  type="text"
-                  value={name}
-                  className="form-control"
-                  placeholder="Page Name"
-                  onChange={this.update("name")}
-                  required
-                />
-                <div className="input-group-append">
-                  <button className="btn btn-primary" type="submit">Create Page</button>
-                </div>
-              </div>
-            </form>
+            <div className="page-box add-page-button toggle-button" onClick={this.toggleHasNewPage}>
+              <span>[{ hasNewPage ? "-" : "+" }]</span>
+              <span> Add New Page</span>
+            </div>
           </div>
         </div>
+        { hasNewPage ? <PageForm page={newPage} handleSubmit={this.createPage} /> : "" }
       </div>
     );
   }

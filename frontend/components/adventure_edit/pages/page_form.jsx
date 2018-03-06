@@ -1,5 +1,7 @@
 import React from 'react';
 
+import OptionForm from './options/option_form';
+
 class PageForm extends React.Component {
   constructor(props) {
     super(props);
@@ -14,6 +16,7 @@ class PageForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // TODO: 
     debugger;
   }
 
@@ -92,6 +95,7 @@ class PageForm extends React.Component {
               />
           </div>
         </div>
+
         <div className="form-row">
           <div className="form-group col-12">
             <h4>Options</h4>
@@ -101,11 +105,12 @@ class PageForm extends React.Component {
                   <span>[{hasNewOption ? "-" : "+" }]</span>
                   <span> Add New Option</span>
                 </div>
-                { hasNewOption ? this.newOption() : "" }
+                { hasNewOption ? <OptionForm /> : "" }
               </div>
             </div>
           </div>
         </div>
+
         <div className="form-row">
           <div className="form-group col-12">
             <button type="submit" className="btn btn-info mr-3">Save Page</button>
