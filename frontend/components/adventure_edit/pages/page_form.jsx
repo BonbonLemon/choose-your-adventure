@@ -1,6 +1,6 @@
 import React from 'react';
 
-import OptionForm from './options/option_form';
+import OptionsContainer from './options/options_container';
 
 class PageForm extends React.Component {
   constructor(props) {
@@ -31,55 +31,44 @@ class PageForm extends React.Component {
     const { hasNewOption, name, text } = this.state;
 
     return (
-      <form className="page-box new-page-form" onSubmit={(e) => this.props.handleSubmit(this.state, e)}>
-        <div className="form-row">
-          <div className="form-group col-6">
-            <label>Name</label>
-            <input
-              type="text"
-              className="form-control"
-              value={name}
-              placeholder="Page Name"
-              onChange={this.update("name")}
-              required
-              />
-          </div>
-        </div>
-        <div className="form-row">
-          <div className="form-group col-12">
-            <label>Text</label>
-            <textarea
-              className="form-control"
-              value={text}
-              placeholder="Page Text"
-              rows="3"
-              onChange={this.update("text")}
-              />
-          </div>
-        </div>
-
-        <div className="form-row">
-          <div className="form-group col-12">
-            <h4>Options</h4>
-            <div className="form-row">
-              <div className="form-group col-12">
-                <div className="add-option-button toggle-button" onClick={this.toggleHasNewOption}>
-                  <span>[{hasNewOption ? "-" : "+" }]</span>
-                  <span> Add New Option</span>
-                </div>
-                { hasNewOption ? <OptionForm page={this.props.page} /> : "" }
-              </div>
+      <div className="page-box new-page-form">
+        <form onSubmit={(e) => this.props.handleSubmit(this.state, e)}>
+          <div className="form-row">
+            <div className="form-group col-6">
+              <label>Name</label>
+              <input
+                type="text"
+                className="form-control"
+                value={name}
+                placeholder="Page Name"
+                onChange={this.update("name")}
+                required
+                />
             </div>
           </div>
-        </div>
-
-        <div className="form-row">
-          <div className="form-group col-12">
-            <button type="submit" className="btn btn-info mr-3">Save Page</button>
-            <button type="button" className="btn btn-danger" onClick={this.props.toggleEditPage}>Cancel</button>
+          <div className="form-row">
+            <div className="form-group col-12">
+              <label>Text</label>
+              <textarea
+                className="form-control"
+                value={text}
+                placeholder="Page Text"
+                rows="3"
+                onChange={this.update("text")}
+                />
+            </div>
           </div>
-        </div>
-      </form>
+
+          <div className="form-row">
+            <div className="form-group col-12">
+              <button type="submit" className="btn btn-info mr-3">Save Page</button>
+              <button type="button" className="btn btn-danger" onClick={this.props.toggleEditPage}>Cancel</button>
+            </div>
+          </div>
+        </form>
+
+        <OptionsContainer page={this.props.page} />
+      </div>
     );
   }
 };

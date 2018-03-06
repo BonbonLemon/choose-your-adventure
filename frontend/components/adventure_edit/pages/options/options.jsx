@@ -1,4 +1,5 @@
 import React from 'react';
+
 import OptionForm from './option_form';
 
 class Options extends React.Component {
@@ -10,6 +11,7 @@ class Options extends React.Component {
       options: []
     }
     this.toggleHasNewOption = this.toggleHasNewOption.bind(this);
+    this.createOption = this.createOption.bind(this);
   }
 
   toggleHasNewOption() {
@@ -18,19 +20,30 @@ class Options extends React.Component {
     });
   }
 
+  createOption(attributes, e) {
+    e.preventDefault();
+    const option = Object.assign({page_id: this.props.page.id}, attributes);
+    debugger;
+    this.props.createOption({option});
+  }
+
   render() {
+    const { hasNewOption } = this.state;
+
     return (
-      <div className="form-row">
-        <div className="form-group col-12">
-          <h4>Options</h4>
-          <div className="form-row">
-            <div className="form-group col-12">
-              <div className="add-option-button toggle-button" onClick={this.toggleHasNewOption}>
-                <span>[{hasNewOption ? "-" : "+" }]</span>
-                <span> Add New Option</span>
-              </div>
-              { hasNewOption ? <OptionForm /> : "" }
+      <div>
+        <div className="row">
+          <div className="col-12">
+            <h4>Options</h4>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <div className="add-option-button toggle-button" onClick={this.toggleHasNewOption}>
+              <span>[{hasNewOption ? "-" : "+" }]</span>
+              <span> Add New Option</span>
             </div>
+            { hasNewOption ? <OptionForm page={this.props.page} handleSubmit={this.createOption}/> : "" }
           </div>
         </div>
       </div>

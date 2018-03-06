@@ -5009,9 +5009,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _option_form = __webpack_require__(171);
+var _options_container = __webpack_require__(248);
 
-var _option_form2 = _interopRequireDefault(_option_form);
+var _options_container2 = _interopRequireDefault(_options_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5073,107 +5073,74 @@ var PageForm = function (_React$Component) {
 
 
       return _react2.default.createElement(
-        'form',
-        { className: 'page-box new-page-form', onSubmit: function onSubmit(e) {
-            return _this3.props.handleSubmit(_this3.state, e);
-          } },
+        'div',
+        { className: 'page-box new-page-form' },
         _react2.default.createElement(
-          'div',
-          { className: 'form-row' },
+          'form',
+          { onSubmit: function onSubmit(e) {
+              return _this3.props.handleSubmit(_this3.state, e);
+            } },
           _react2.default.createElement(
             'div',
-            { className: 'form-group col-6' },
-            _react2.default.createElement(
-              'label',
-              null,
-              'Name'
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              className: 'form-control',
-              value: name,
-              placeholder: 'Page Name',
-              onChange: this.update("name"),
-              required: true
-            })
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'form-row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'form-group col-12' },
-            _react2.default.createElement(
-              'label',
-              null,
-              'Text'
-            ),
-            _react2.default.createElement('textarea', {
-              className: 'form-control',
-              value: text,
-              placeholder: 'Page Text',
-              rows: '3',
-              onChange: this.update("text")
-            })
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'form-row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'form-group col-12' },
-            _react2.default.createElement(
-              'h4',
-              null,
-              'Options'
-            ),
+            { className: 'form-row' },
             _react2.default.createElement(
               'div',
-              { className: 'form-row' },
+              { className: 'form-group col-6' },
               _react2.default.createElement(
-                'div',
-                { className: 'form-group col-12' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'add-option-button toggle-button', onClick: this.toggleHasNewOption },
-                  _react2.default.createElement(
-                    'span',
-                    null,
-                    '[',
-                    hasNewOption ? "-" : "+",
-                    ']'
-                  ),
-                  _react2.default.createElement(
-                    'span',
-                    null,
-                    ' Add New Option'
-                  )
-                ),
-                hasNewOption ? _react2.default.createElement(_option_form2.default, { page: this.props.page }) : ""
+                'label',
+                null,
+                'Name'
+              ),
+              _react2.default.createElement('input', {
+                type: 'text',
+                className: 'form-control',
+                value: name,
+                placeholder: 'Page Name',
+                onChange: this.update("name"),
+                required: true
+              })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'form-row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'form-group col-12' },
+              _react2.default.createElement(
+                'label',
+                null,
+                'Text'
+              ),
+              _react2.default.createElement('textarea', {
+                className: 'form-control',
+                value: text,
+                placeholder: 'Page Text',
+                rows: '3',
+                onChange: this.update("text")
+              })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'form-row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'form-group col-12' },
+              _react2.default.createElement(
+                'button',
+                { type: 'submit', className: 'btn btn-info mr-3' },
+                'Save Page'
+              ),
+              _react2.default.createElement(
+                'button',
+                { type: 'button', className: 'btn btn-danger', onClick: this.props.toggleEditPage },
+                'Cancel'
               )
             )
           )
         ),
-        _react2.default.createElement(
-          'div',
-          { className: 'form-row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'form-group col-12' },
-            _react2.default.createElement(
-              'button',
-              { type: 'submit', className: 'btn btn-info mr-3' },
-              'Save Page'
-            ),
-            _react2.default.createElement(
-              'button',
-              { type: 'button', className: 'btn btn-danger', onClick: this.props.toggleEditPage },
-              'Cancel'
-            )
-          )
-        )
+        _react2.default.createElement(_options_container2.default, { page: this.props.page })
       );
     }
   }]);
@@ -28824,6 +28791,8 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -28839,20 +28808,37 @@ var OptionForm = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (OptionForm.__proto__ || Object.getPrototypeOf(OptionForm)).call(this, props));
 
     _this.state = {
-      text: 'text',
-      destination_name: 'destination'
+      text: '',
+      destination_id: false
     };
     return _this;
   }
 
   _createClass(OptionForm, [{
+    key: 'update',
+    value: function update(property) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, property, e.target.value));
+      };
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
       var thisPage = this.props.page;
+      var _state = this.state,
+          text = _state.text,
+          destination_id = _state.destination_id;
+
 
       return _react2.default.createElement(
-        'div',
-        { className: 'new-option-form' },
+        'form',
+        { className: 'new-option-form', onSubmit: function onSubmit(e) {
+            return _this3.props.handleSubmit(_this3.state, e);
+          } },
         _react2.default.createElement(
           'div',
           { className: 'form-row' },
@@ -28864,7 +28850,14 @@ var OptionForm = function (_React$Component) {
               null,
               'Option Text'
             ),
-            _react2.default.createElement('input', { type: 'text', placeholder: 'Add Option Text', className: 'form-control' })
+            _react2.default.createElement('input', {
+              type: 'text',
+              className: 'form-control',
+              value: text,
+              placeholder: 'Add Option Text',
+              onChange: this.update("text"),
+              required: true
+            })
           ),
           _react2.default.createElement(
             'div',
@@ -28876,10 +28869,10 @@ var OptionForm = function (_React$Component) {
             ),
             _react2.default.createElement(
               'select',
-              { className: 'custom-select' },
+              { className: 'custom-select', value: destination_id, onChange: this.update("destination_id") },
               _react2.default.createElement(
                 'option',
-                { value: '' },
+                { value: false },
                 'No Destination Selected'
               ),
               thisPage.adventure.pages.map(function (page) {
@@ -28902,9 +28895,7 @@ var OptionForm = function (_React$Component) {
             { className: 'col-12 mt-3' },
             _react2.default.createElement(
               'button',
-              { type: 'button', className: 'btn btn-success', onClick: function onClick(e) {
-                  return e.preventDefault;
-                } },
+              { type: 'submit', className: 'btn btn-success' },
               'Save Option'
             )
           )
@@ -31313,6 +31304,220 @@ var adventuresReducer = function adventuresReducer() {
 };
 
 exports.default = adventuresReducer;
+
+/***/ }),
+/* 247 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _option_form = __webpack_require__(171);
+
+var _option_form2 = _interopRequireDefault(_option_form);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Options = function (_React$Component) {
+  _inherits(Options, _React$Component);
+
+  function Options(props) {
+    _classCallCheck(this, Options);
+
+    var _this = _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).call(this, props));
+
+    _this.state = {
+      hasNewOption: false,
+      options: []
+    };
+    _this.toggleHasNewOption = _this.toggleHasNewOption.bind(_this);
+    _this.createOption = _this.createOption.bind(_this);
+    return _this;
+  }
+
+  _createClass(Options, [{
+    key: 'toggleHasNewOption',
+    value: function toggleHasNewOption() {
+      this.setState({
+        hasNewOption: !this.state.hasNewOption
+      });
+    }
+  }, {
+    key: 'createOption',
+    value: function createOption(attributes, e) {
+      e.preventDefault();
+      var option = Object.assign({ page_id: this.props.page.id }, attributes);
+      debugger;
+      this.props.createOption({ option: option });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var hasNewOption = this.state.hasNewOption;
+
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col-12' },
+            _react2.default.createElement(
+              'h4',
+              null,
+              'Options'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col-12' },
+            _react2.default.createElement(
+              'div',
+              { className: 'add-option-button toggle-button', onClick: this.toggleHasNewOption },
+              _react2.default.createElement(
+                'span',
+                null,
+                '[',
+                hasNewOption ? "-" : "+",
+                ']'
+              ),
+              _react2.default.createElement(
+                'span',
+                null,
+                ' Add New Option'
+              )
+            ),
+            hasNewOption ? _react2.default.createElement(_option_form2.default, { page: this.props.page, handleSubmit: this.createOption }) : ""
+          )
+        )
+      );
+    }
+  }]);
+
+  return Options;
+}(_react2.default.Component);
+
+;
+
+exports.default = Options;
+
+/***/ }),
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(5);
+
+var _option_actions = __webpack_require__(249);
+
+var _options = __webpack_require__(247);
+
+var _options2 = _interopRequireDefault(_options);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  // TODO: how does deep component get its state?
+  // const adventure = ownProps.adventure;
+  return {
+    // adventure: adventure
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createOption: function createOption(option, callback) {
+      return dispatch((0, _option_actions.createOption)(option, callback));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_options2.default);
+
+/***/ }),
+/* 249 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createOption = exports.receiveOption = exports.RECEIVE_OPTION = undefined;
+
+var _option_api_util = __webpack_require__(250);
+
+var APIUtil = _interopRequireWildcard(_option_api_util);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var RECEIVE_OPTION = exports.RECEIVE_OPTION = 'RECEIVE_OPTION';
+
+var receiveOption = exports.receiveOption = function receiveOption(option) {
+  return {
+    type: RECEIVE_OPTION,
+    option: option
+  };
+};
+
+var createOption = exports.createOption = function createOption(option, callback) {
+  return function (dispatch) {
+    return APIUtil.createOption(option).then(function (option) {
+      if (callback) {
+        callback(option);
+      }
+      dispatch(receiveOption(option));
+    });
+  };
+};
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var createOption = exports.createOption = function createOption(data) {
+  return $.ajax({
+    method: 'POST',
+    url: 'api/options',
+    data: data
+  });
+};
 
 /***/ })
 /******/ ]);

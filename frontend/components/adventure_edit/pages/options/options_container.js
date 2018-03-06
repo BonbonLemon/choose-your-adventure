@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
-import { fetchAdventure } from '../../../actions/adventure_actions';
-import { createPage, editPage } from '../../../actions/page_actions';
+import { createOption } from '../../../../actions/option_actions';
 import Options from './options';
 
 const mapStateToProps = (state, ownProps) => {
@@ -13,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-
+  createOption: (option, callback) => dispatch(createOption(option, callback))
 });
 
 export default connect(

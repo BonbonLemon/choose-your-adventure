@@ -21,6 +21,6 @@ class Api::OptionsController < ApplicationController
 
   private
   def option_params
-    params.require(:option).permit(:page_id, :text, :page_target)
+    params.require(:option).permit(:page_id, :text, :destination_id)
   end
 end
