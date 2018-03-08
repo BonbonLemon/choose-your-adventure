@@ -1,6 +1,7 @@
 import React from 'react';
 
 import OptionForm from './option_form';
+import OptionsIndexItem from './option_index_item';
 
 class Options extends React.Component {
   constructor(props) {
@@ -23,11 +24,12 @@ class Options extends React.Component {
   createOption(attributes, e) {
     e.preventDefault();
     const option = Object.assign({page_id: this.props.page.id}, attributes);
-    debugger;
     this.props.createOption({option});
+    // TODO: clear state
   }
 
   render() {
+    const { page } = this.props
     const { hasNewOption } = this.state;
 
     return (
@@ -39,11 +41,18 @@ class Options extends React.Component {
         </div>
         <div className="row">
           <div className="col-12">
+            {page.options.map(option => (
+              <OptionsIndexItem key={option.id} option={option} page={page} />
+            ))}
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
             <div className="add-option-button toggle-button" onClick={this.toggleHasNewOption}>
               <span>[{hasNewOption ? "-" : "+" }]</span>
               <span> Add New Option</span>
             </div>
-            { hasNewOption ? <OptionForm page={this.props.page} handleSubmit={this.createOption}/> : "" }
+            { hasNewOption ? <OptionForm page={page} handleSubmit={this.createOption}/> : "" }
           </div>
         </div>
       </div>

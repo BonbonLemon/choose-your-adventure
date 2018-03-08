@@ -28480,9 +28480,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _pages_index_item = __webpack_require__(170);
+var _page_index_item = __webpack_require__(251);
 
-var _pages_index_item2 = _interopRequireDefault(_pages_index_item);
+var _page_index_item2 = _interopRequireDefault(_page_index_item);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28576,7 +28576,7 @@ var Pages = function (_React$Component) {
             'div',
             { className: 'col-12' },
             pages.map(function (page) {
-              return _react2.default.createElement(_pages_index_item2.default, { key: page.id, page: page, editPage: _this3.props.editPage, updateAdventure: _this3.props.updateAdventure });
+              return _react2.default.createElement(_page_index_item2.default, { key: page.id, page: page, editPage: _this3.props.editPage, updateAdventure: _this3.props.updateAdventure });
             })
           )
         ),
@@ -28630,149 +28630,7 @@ var Pages = function (_React$Component) {
 exports.default = Pages;
 
 /***/ }),
-/* 170 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _page_form = __webpack_require__(76);
-
-var _page_form2 = _interopRequireDefault(_page_form);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var PagesIndexItem = function (_React$Component) {
-  _inherits(PagesIndexItem, _React$Component);
-
-  function PagesIndexItem(props) {
-    _classCallCheck(this, PagesIndexItem);
-
-    var _this = _possibleConstructorReturn(this, (PagesIndexItem.__proto__ || Object.getPrototypeOf(PagesIndexItem)).call(this, props));
-
-    _this.state = {
-      editPageClicked: false
-    };
-    _this.editPage = _this.editPage.bind(_this);
-    _this.editPageCallback = _this.editPageCallback.bind(_this);
-    _this.toggleEditPage = _this.toggleEditPage.bind(_this);
-    return _this;
-  }
-
-  _createClass(PagesIndexItem, [{
-    key: 'editPage',
-    value: function editPage(attributes, e) {
-      e.preventDefault();
-      var page = Object.assign({ id: this.props.page.id }, attributes);
-      this.props.editPage({ page: page }, this.editPageCallback);
-    }
-  }, {
-    key: 'editPageCallback',
-    value: function editPageCallback() {
-      this.toggleEditPage();
-      this.props.updateAdventure();
-    }
-  }, {
-    key: 'toggleEditPage',
-    value: function toggleEditPage() {
-      this.setState({
-        editPageClicked: !this.state.editPageClicked
-      });
-    }
-  }, {
-    key: 'pageSummaryBox',
-    value: function pageSummaryBox() {
-      var _props$page = this.props.page,
-          name = _props$page.name,
-          text = _props$page.text;
-
-      return _react2.default.createElement(
-        'div',
-        { className: 'page-box input-group' },
-        _react2.default.createElement(
-          'div',
-          { className: 'page-index-item-buttons input-group-prepend mr-3' },
-          _react2.default.createElement(
-            'span',
-            { className: 'mr-3' },
-            _react2.default.createElement('img', { className: 'page-index-item-button', onClick: this.toggleEditPage, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423463/edit_qif1lz.png' })
-          ),
-          _react2.default.createElement(
-            'span',
-            null,
-            _react2.default.createElement('img', { className: 'page-index-item-button', src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423844/x_bkgfwz.png' })
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'page-index-item-details' },
-          _react2.default.createElement(
-            'div',
-            { className: 'row' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-12' },
-              _react2.default.createElement(
-                'span',
-                { className: 'page-index-item-name' },
-                name
-              )
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'row' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-12' },
-              _react2.default.createElement(
-                'span',
-                null,
-                text
-              )
-            )
-          )
-        )
-      );
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var page = this.props.page;
-
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        this.state.editPageClicked ? _react2.default.createElement(_page_form2.default, { page: page, handleSubmit: this.editPage, toggleEditPage: this.toggleEditPage }) : this.pageSummaryBox()
-      );
-    }
-  }]);
-
-  return PagesIndexItem;
-}(_react2.default.Component);
-
-;
-
-exports.default = PagesIndexItem;
-
-/***/ }),
+/* 170 */,
 /* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -28807,10 +28665,21 @@ var OptionForm = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (OptionForm.__proto__ || Object.getPrototypeOf(OptionForm)).call(this, props));
 
-    _this.state = {
-      text: '',
-      destination_id: false
-    };
+    if (_this.props.option) {
+      var _this$props$option = _this.props.option,
+          text = _this$props$option.text,
+          destination_id = _this$props$option.destination_id;
+
+      _this.state = {
+        text: text,
+        destination_id: destination_id
+      };
+    } else {
+      _this.state = {
+        text: '',
+        destination_id: false
+      };
+    }
     return _this;
   }
 
@@ -31326,6 +31195,10 @@ var _option_form = __webpack_require__(171);
 
 var _option_form2 = _interopRequireDefault(_option_form);
 
+var _option_index_item = __webpack_require__(252);
+
+var _option_index_item2 = _interopRequireDefault(_option_index_item);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31363,12 +31236,13 @@ var Options = function (_React$Component) {
     value: function createOption(attributes, e) {
       e.preventDefault();
       var option = Object.assign({ page_id: this.props.page.id }, attributes);
-      debugger;
       this.props.createOption({ option: option });
+      // TODO: clear state
     }
   }, {
     key: 'render',
     value: function render() {
+      var page = this.props.page;
       var hasNewOption = this.state.hasNewOption;
 
 
@@ -31394,6 +31268,17 @@ var Options = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'col-12' },
+            page.options.map(function (option) {
+              return _react2.default.createElement(_option_index_item2.default, { key: option.id, option: option, page: page });
+            })
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col-12' },
             _react2.default.createElement(
               'div',
               { className: 'add-option-button toggle-button', onClick: this.toggleHasNewOption },
@@ -31410,7 +31295,7 @@ var Options = function (_React$Component) {
                 ' Add New Option'
               )
             ),
-            hasNewOption ? _react2.default.createElement(_option_form2.default, { page: this.props.page, handleSubmit: this.createOption }) : ""
+            hasNewOption ? _react2.default.createElement(_option_form2.default, { page: page, handleSubmit: this.createOption }) : ""
           )
         )
       );
@@ -31518,6 +31403,288 @@ var createOption = exports.createOption = function createOption(data) {
     data: data
   });
 };
+
+/***/ }),
+/* 251 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _page_form = __webpack_require__(76);
+
+var _page_form2 = _interopRequireDefault(_page_form);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PagesIndexItem = function (_React$Component) {
+  _inherits(PagesIndexItem, _React$Component);
+
+  function PagesIndexItem(props) {
+    _classCallCheck(this, PagesIndexItem);
+
+    var _this = _possibleConstructorReturn(this, (PagesIndexItem.__proto__ || Object.getPrototypeOf(PagesIndexItem)).call(this, props));
+
+    _this.state = {
+      editPageClicked: false
+    };
+    _this.editPage = _this.editPage.bind(_this);
+    _this.editPageCallback = _this.editPageCallback.bind(_this);
+    _this.toggleEditPage = _this.toggleEditPage.bind(_this);
+    return _this;
+  }
+
+  _createClass(PagesIndexItem, [{
+    key: 'editPage',
+    value: function editPage(attributes, e) {
+      e.preventDefault();
+      var page = Object.assign({ id: this.props.page.id }, attributes);
+      this.props.editPage({ page: page }, this.editPageCallback);
+    }
+  }, {
+    key: 'editPageCallback',
+    value: function editPageCallback() {
+      this.toggleEditPage();
+      this.props.updateAdventure();
+    }
+  }, {
+    key: 'toggleEditPage',
+    value: function toggleEditPage() {
+      this.setState({
+        editPageClicked: !this.state.editPageClicked
+      });
+    }
+  }, {
+    key: 'pageSummaryBox',
+    value: function pageSummaryBox() {
+      var _props$page = this.props.page,
+          name = _props$page.name,
+          text = _props$page.text;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'page-box input-group' },
+        _react2.default.createElement(
+          'div',
+          { className: 'page-index-item-buttons input-group-prepend mr-3' },
+          _react2.default.createElement(
+            'span',
+            { className: 'mr-3' },
+            _react2.default.createElement('img', { className: 'page-index-item-button', onClick: this.toggleEditPage, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423463/edit_qif1lz.png' })
+          ),
+          _react2.default.createElement(
+            'span',
+            null,
+            _react2.default.createElement('img', { className: 'page-index-item-button', src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423844/x_bkgfwz.png' })
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'page-index-item-details' },
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-12' },
+              _react2.default.createElement(
+                'span',
+                { className: 'page-index-item-name' },
+                name
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-12' },
+              _react2.default.createElement(
+                'span',
+                null,
+                text
+              )
+            )
+          )
+        )
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var page = this.props.page;
+
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        this.state.editPageClicked ? _react2.default.createElement(_page_form2.default, { page: page, handleSubmit: this.editPage, toggleEditPage: this.toggleEditPage }) : this.pageSummaryBox()
+      );
+    }
+  }]);
+
+  return PagesIndexItem;
+}(_react2.default.Component);
+
+;
+
+exports.default = PagesIndexItem;
+
+/***/ }),
+/* 252 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _option_form = __webpack_require__(171);
+
+var _option_form2 = _interopRequireDefault(_option_form);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var OptionsIndexItem = function (_React$Component) {
+  _inherits(OptionsIndexItem, _React$Component);
+
+  function OptionsIndexItem(props) {
+    _classCallCheck(this, OptionsIndexItem);
+
+    var _this = _possibleConstructorReturn(this, (OptionsIndexItem.__proto__ || Object.getPrototypeOf(OptionsIndexItem)).call(this, props));
+
+    _this.state = {
+      editOptionClicked: false
+    };
+    _this.toggleEditOption = _this.toggleEditOption.bind(_this);
+    return _this;
+  }
+
+  _createClass(OptionsIndexItem, [{
+    key: 'editPage',
+    value: function editPage(attributes, e) {
+      e.preventDefault();
+      var option = Object.assign({ id: this.props.option.id }, attributes);
+      this.props.editPage({ option: option }, this.editPageCallback);
+    }
+
+    // editPageCallback() {
+    //   this.toggleEditOption();
+    //   this.props.updateAdventure();
+    // }
+
+  }, {
+    key: 'toggleEditOption',
+    value: function toggleEditOption() {
+      this.setState({
+        editOptionClicked: !this.state.editOptionClicked
+      });
+    }
+  }, {
+    key: 'optionSummaryBox',
+    value: function optionSummaryBox() {
+      var _props$option = this.props.option,
+          text = _props$option.text,
+          destination = _props$option.destination;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'option-box input-group' },
+        _react2.default.createElement(
+          'div',
+          { className: 'option-index-item-buttons input-group-prepend mr-3' },
+          _react2.default.createElement(
+            'span',
+            { onClick: this.toggleEditOption },
+            'Edit'
+          ),
+          _react2.default.createElement(
+            'span',
+            null,
+            'Delete'
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'option-index-item-details form-control' },
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-10' },
+              _react2.default.createElement(
+                'span',
+                { className: 'option-index-item-name' },
+                text
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-2' },
+              _react2.default.createElement(
+                'span',
+                null,
+                destination.name
+              )
+            )
+          )
+        )
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          option = _props.option,
+          page = _props.page;
+
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        this.state.editOptionClicked ? _react2.default.createElement(_option_form2.default, { option: option, page: page, handleSubmit: this.editPage, toggleEditOption: this.toggleEditOption }) : this.optionSummaryBox()
+      );
+    }
+  }]);
+
+  return OptionsIndexItem;
+}(_react2.default.Component);
+
+;
+
+exports.default = OptionsIndexItem;
 
 /***/ })
 /******/ ]);

@@ -1,5 +1,5 @@
 import React from 'react';
-import PagesIndexItem from './pages_index_item';
+import PageIndexItem from './page_index_item';
 
 class Pages extends React.Component {
   constructor(props) {
@@ -52,7 +52,7 @@ class Pages extends React.Component {
         <div className="row">
           <div className="col-12">
             {pages.map(page => (
-              <PagesIndexItem key={page.id} page={page} editPage={this.props.editPage} updateAdventure={this.props.updateAdventure}/>
+              <PageIndexItem key={page.id} page={page} editPage={this.props.editPage} updateAdventure={this.props.updateAdventure}/>
             ))}
           </div>
         </div>

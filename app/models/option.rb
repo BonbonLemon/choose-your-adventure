@@ -3,5 +3,6 @@ class Option < ApplicationRecord
 
   has_one :destination,
     class_name: "Page",
-    primary_key: :destination_id
+    primary_key: :destination_id,
+    foreign_key: :id
 end

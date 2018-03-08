@@ -4,10 +4,18 @@ class OptionForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      text: '',
-      destination_id: false
-    };
+    if (this.props.option) {
+      const { text, destination_id } = this.props.option;
+      this.state = {
+        text: text,
+        destination_id: destination_id
+      };
+    } else {
+      this.state = {
+        text: '',
+        destination_id: false
+      };
+    }
   }
 
   update(property) {
