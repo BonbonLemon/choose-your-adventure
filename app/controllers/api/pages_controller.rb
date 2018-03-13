@@ -20,6 +20,12 @@ class Api::PagesController < ApplicationController
     end
   end
 
+  def destroy
+    @page = Page.find(params[:id])
+
+    debugger
+  end
+
   private
   def page_params
     params.require(:page).permit(:name, :text, :adventure_id)

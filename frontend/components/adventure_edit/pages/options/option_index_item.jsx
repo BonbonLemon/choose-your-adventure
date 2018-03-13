@@ -8,12 +8,14 @@ class OptionsIndexItem extends React.Component {
     this.state = {
       editOptionClicked: false
     };
+    this.editPage = this.editPage.bind(this);
     this.toggleEditOption = this.toggleEditOption.bind(this);
   }
 
   editPage(attributes, e) {
     e.preventDefault();
     const option = Object.assign({id: this.props.option.id}, attributes);
+    // TODO: create editpage actions
     this.props.editPage({option}, this.editPageCallback);
   }
 
@@ -29,7 +31,16 @@ class OptionsIndexItem extends React.Component {
   }
 
   optionSummaryBox() {
-    const { text, destination } = this.props.option;
+    const { option } = this.props;
+    const { text } = option;
+
+    let destination_name;
+    if (option.destination_id) {
+      destination_name = option.destination.name;
+    } else {
+      destination_name = 'The End';
+    }
+    // debugger;
     return (
       <div className="option-box input-group">
         <div className="option-index-item-buttons input-group-prepend mr-3">
@@ -42,7 +53,7 @@ class OptionsIndexItem extends React.Component {
               <span className="option-index-item-name">{text}</span>
             </div>
             <div className="col-2">
-              <span>{destination.name}</span>
+              <span>{destination_name}</span>
             </div>
           </div>
         </div>

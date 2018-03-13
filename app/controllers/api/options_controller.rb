@@ -1,5 +1,6 @@
 class Api::OptionsController < ApplicationController
   def create
+    debugger
     @option = Option.new(option_params)
 
     if @option.save
@@ -11,6 +12,7 @@ class Api::OptionsController < ApplicationController
 
   def update
     @option = Option.find(params[:id])
+    debugger
 
     if @option.update_attributes(option_params)
       render :show

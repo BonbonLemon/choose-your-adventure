@@ -13,3 +13,10 @@ export const editPage = data => (
     data
   })
 );
+
+export const deletePage = id => (
+  $.ajax({
+    method: 'DELETE',
+    url: `api/pages/${id}`
+  })
+)

@@ -25,7 +25,7 @@ class Options extends React.Component {
     e.preventDefault();
     const option = Object.assign({page_id: this.props.page.id}, attributes);
     this.props.createOption({option});
-    // TODO: clear state
+    // TODO: update page
   }
 
   render() {

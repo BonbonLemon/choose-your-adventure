@@ -52,7 +52,7 @@ class Pages extends React.Component {
         <div className="row">
           <div className="col-12">
             {pages.map(page => (
-              <PageIndexItem key={page.id} page={page} editPage={this.props.editPage} updateAdventure={this.props.updateAdventure}/>
+              <PageIndexItem key={page.id} page={page} editPage={this.props.editPage} updateAdventure={this.props.updateAdventure} deletePage={this.props.deletePage}/>
             ))}
           </div>
         </div>

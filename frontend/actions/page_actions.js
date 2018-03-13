@@ -19,4 +19,8 @@ export const editPage = (page, callback) => dispatch => (
     if (callback) { callback(page); }
     dispatch(receivePage(page));
   })
-)
+);
+
+export const deletePage = (page, callback) => dispatch => (
+  APIUtil.deletePage(page)
+);
