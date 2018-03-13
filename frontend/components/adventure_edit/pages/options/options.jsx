@@ -8,11 +8,11 @@ class Options extends React.Component {
     super(props);
 
     this.state = {
-      hasNewOption: false,
-      options: []
+      hasNewOption: false
     }
     this.toggleHasNewOption = this.toggleHasNewOption.bind(this);
     this.createOption = this.createOption.bind(this);
+    this.updatePage = this.updatePage.bind(this);
   }
 
   toggleHasNewOption() {
@@ -24,8 +24,15 @@ class Options extends React.Component {
   createOption(attributes, e) {
     e.preventDefault();
     const option = Object.assign({page_id: this.props.page.id}, attributes);
-    this.props.createOption({option});
+    this.props.createOption({option}, this.updatePage);
+    debugger;
     // TODO: update page
+  }
+
+  updatePage() {
+    this.props.fetchPage(this.props.page.id);
+    this.toggleHasNewOption();
+    debugger;
   }
 
   render() {

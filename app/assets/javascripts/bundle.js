@@ -28391,7 +28391,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deletePage = exports.editPage = exports.createPage = exports.receivePage = exports.RECEIVE_PAGE = undefined;
+exports.deletePage = exports.editPage = exports.createPage = exports.fetchPage = exports.receivePage = exports.RECEIVE_PAGE = undefined;
 
 var _page_api_util = __webpack_require__(168);
 
@@ -28405,6 +28405,17 @@ var receivePage = exports.receivePage = function receivePage(page) {
   return {
     type: RECEIVE_PAGE,
     page: page
+  };
+};
+
+var fetchPage = exports.fetchPage = function fetchPage(id, callback) {
+  return function (dispatch) {
+    return APIUtil.fetchPage(id).then(function (page) {
+      if (callback) {
+        callback(page);
+      }
+      dispatch(receivePage(page));
+    });
   };
 };
 
@@ -28446,6 +28457,13 @@ var deletePage = exports.deletePage = function deletePage(page, callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var fetchPage = exports.fetchPage = function fetchPage(id) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/pages/' + id
+  });
+};
+
 var createPage = exports.createPage = function createPage(data) {
   return $.ajax({
     method: 'POST',
@@ -28963,6 +28981,8 @@ var _reactRedux = __webpack_require__(5);
 
 var _option_actions = __webpack_require__(173);
 
+var _page_actions = __webpack_require__(167);
+
 var _options = __webpack_require__(175);
 
 var _options2 = _interopRequireDefault(_options);
@@ -28972,6 +28992,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   // TODO: how does deep component get its state?
   // const adventure = ownProps.adventure;
+  debugger;
   return {
     // adventure: adventure
   };
@@ -28981,6 +29002,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     createOption: function createOption(option, callback) {
       return dispatch((0, _option_actions.createOption)(option, callback));
+    },
+    fetchPage: function fetchPage(id, callback) {
+      return dispatch((0, _page_actions.fetchPage)(id, callback));
     }
   };
 };
@@ -29085,11 +29109,11 @@ var Options = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).call(this, props));
 
     _this.state = {
-      hasNewOption: false,
-      options: []
+      hasNewOption: false
     };
     _this.toggleHasNewOption = _this.toggleHasNewOption.bind(_this);
     _this.createOption = _this.createOption.bind(_this);
+    _this.updatePage = _this.updatePage.bind(_this);
     return _this;
   }
 
@@ -29105,8 +29129,16 @@ var Options = function (_React$Component) {
     value: function createOption(attributes, e) {
       e.preventDefault();
       var option = Object.assign({ page_id: this.props.page.id }, attributes);
-      this.props.createOption({ option: option });
+      this.props.createOption({ option: option }, this.updatePage);
+      debugger;
       // TODO: update page
+    }
+  }, {
+    key: 'updatePage',
+    value: function updatePage() {
+      this.props.fetchPage(this.props.page.id);
+      this.toggleHasNewOption();
+      debugger;
     }
   }, {
     key: 'render',

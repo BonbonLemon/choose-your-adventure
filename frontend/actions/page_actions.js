@@ -7,6 +7,13 @@ export const receivePage = page => ({
   page
 });
 
+export const fetchPage = (id, callback) => dispatch => (
+  APIUtil.fetchPage(id).then(page => {
+    if (callback) { callback(page); }
+    dispatch(receivePage(page));
+  })
+);
+
 export const createPage = (page, callback) => dispatch => (
   APIUtil.createPage(page).then(page => {
     if (callback) { callback(page); }

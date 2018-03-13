@@ -1,4 +1,8 @@
 class Api::PagesController < ApplicationController
+  def show
+    @page = Page.find(params[:id])
+    render :show
+  end
 
   def create
     @page = Page.new(page_params)
