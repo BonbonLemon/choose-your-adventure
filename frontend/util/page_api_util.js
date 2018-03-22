@@ -1,3 +1,10 @@
+export const fetchPages = () => (
+  $.ajax({
+    method: 'GET',
+    url: 'api/pages'
+  })
+);
+
 export const fetchPage = id => (
   $.ajax({
     method: 'GET',

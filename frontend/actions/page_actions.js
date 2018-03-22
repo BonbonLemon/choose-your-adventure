@@ -1,11 +1,24 @@
 import * as APIUtil from '../util/page_api_util';
 
+export const RECEIVE_PAGES = 'RECEIVE_PAGES';
+
 export const RECEIVE_PAGE = 'RECEIVE_PAGE';
+
+export const receivePages = pages => ({
+  type: RECEIVE_PAGES,
+  pages
+});
 
 export const receivePage = page => ({
   type: RECEIVE_PAGE,
   page
 });
+
+export const fetchPages = () => dispatch => (
+  APIUtil.fetchPages().then(pages => (
+    dispatch(receivePages(pages))
+  ))
+);
 
 export const fetchPage = (id, callback) => dispatch => (
   APIUtil.fetchPage(id).then(page => {

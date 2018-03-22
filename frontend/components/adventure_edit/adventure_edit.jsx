@@ -16,7 +16,9 @@ class AdventureEdit extends React.Component {
   }
 
   componentDidMount() {
-    this.updateAdventure();
+    if (!this.props.adventure.title) {
+      this.updateAdventure();
+    }
   }
 
   updateAdventure() {

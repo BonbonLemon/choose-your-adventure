@@ -6,24 +6,27 @@ class Pages extends React.Component {
     super(props);
 
     this.state = {
-      pages: [],
       name: ""
     }
-    this.updatePages = this.updatePages.bind(this);
+    // this.updatePages = this.updatePages.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.state.pages !== nextProps.adventure.pages) {
-      this.updatePages(nextProps);
-    }
-  }
+  // componentDidMount() {
+  //   this.props.fetchPages();
+  // }
 
-  updatePages(nextProps) {
-    this.setState({
-      pages: nextProps.adventure.pages
-    });
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.state.pages !== nextProps.adventure.pages) {
+  //     this.updatePages(nextProps);
+  //   }
+  // }
+
+  // updatePages(nextProps) {
+  //   this.setState({
+  //     pages: nextProps.adventure.pages
+  //   });
+  // }
 
   update(property) {
     return e => this.setState({
@@ -34,13 +37,33 @@ class Pages extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const page = Object.assign({adventure_id: this.props.adventure.id, name: this.state.name});
-    this.props.createPage({page});
-    this.props.updateAdventure();
+    this.props.createPage({page}, this.props.updateAdventure);
     this.setState({name: ""});
   }
 
+  miniPageForm() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>Create A New Page</label>
+        <div className="input-group">
+          <input
+            type="text"
+            value={this.state.name}
+            className="form-control"
+            placeholder="Page Name"
+            onChange={this.update("name")}
+            required
+          />
+          <div className="input-group-append">
+            <button className="btn btn-primary" type="submit">Create Page</button>
+          </div>
+        </div>
+      </form>
+    );
+  }
+
   render() {
-    const { name, pages } = this.state;
+    const pages = this.props.adventure.pages || [];
 
     return (
       <div>
@@ -58,22 +81,7 @@ class Pages extends React.Component {
         </div>
         <div className="row">
           <div className="col-12">
-            <form onSubmit={this.handleSubmit}>
-              <label>Create A New Page</label>
-              <div className="input-group">
-                <input
-                  type="text"
-                  value={name}
-                  className="form-control"
-                  placeholder="Page Name"
-                  onChange={this.update("name")}
-                  required
-                />
-                <div className="input-group-append">
-                  <button className="btn btn-primary" type="submit">Create Page</button>
-                </div>
-              </div>
-            </form>
+            { this.miniPageForm() }
           </div>
         </div>
       </div>

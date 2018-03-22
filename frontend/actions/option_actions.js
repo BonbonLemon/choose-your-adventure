@@ -9,7 +9,8 @@ export const receiveOption = option => ({
 
 export const createOption = (option, callback) => dispatch => (
   APIUtil.createOption(option).then(option => {
-    if (callback) {callback(option); }
+    // if (callback) {callback(option); }
+    // TODO: fetchPage
     dispatch(receiveOption(option));
   })
 )
