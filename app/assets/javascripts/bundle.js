@@ -5151,6 +5151,7 @@ var OptionForm = function (_React$Component) {
           text = _state.text,
           destination_id = _state.destination_id;
 
+      debugger;
 
       return _react2.default.createElement(
         'form',
@@ -29015,8 +29016,6 @@ var _reactRedux = __webpack_require__(5);
 
 var _option_actions = __webpack_require__(173);
 
-var _page_actions = __webpack_require__(76);
-
 var _options = __webpack_require__(175);
 
 var _options2 = _interopRequireDefault(_options);
@@ -29035,8 +29034,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     createOption: function createOption(option, callback) {
       return dispatch((0, _option_actions.createOption)(option, callback));
     },
-    fetchPage: function fetchPage(id, callback) {
-      return dispatch((0, _page_actions.fetchPage)(id, callback));
+    editOption: function editOption(option, callback) {
+      return dispatch((0, _option_actions.editOption)(option, callback));
     }
   };
 };
@@ -29166,7 +29165,6 @@ var Options = function (_React$Component) {
     };
     _this.toggleHasNewOption = _this.toggleHasNewOption.bind(_this);
     _this.createOption = _this.createOption.bind(_this);
-    _this.updatePage = _this.updatePage.bind(_this);
     return _this;
   }
 
@@ -29182,17 +29180,14 @@ var Options = function (_React$Component) {
     value: function createOption(attributes, e) {
       e.preventDefault();
       var option = Object.assign({ page_id: this.props.page.id }, attributes);
-      this.props.createOption({ option: option }, this.updatePage);
+      this.props.createOption({ option: option }, this.toggleHasNewOption);
       // TODO: update page
-    }
-  }, {
-    key: 'updatePage',
-    value: function updatePage() {
-      this.toggleHasNewOption();
     }
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var page = this.props.page;
       var hasNewOption = this.state.hasNewOption;
 
@@ -29220,7 +29215,7 @@ var Options = function (_React$Component) {
             'div',
             { className: 'col-12' },
             page.options.map(function (option) {
-              return _react2.default.createElement(_option_index_item2.default, { key: option.id, option: option, page: page });
+              return _react2.default.createElement(_option_index_item2.default, { key: option.id, option: option, editOption: _this2.props.editOption });
             })
           )
         ),
@@ -29300,20 +29295,11 @@ var OptionsIndexItem = function (_React$Component) {
     _this.state = {
       editOptionClicked: false
     };
-    _this.editPage = _this.editPage.bind(_this);
     _this.toggleEditOption = _this.toggleEditOption.bind(_this);
     return _this;
   }
 
   _createClass(OptionsIndexItem, [{
-    key: 'editPage',
-    value: function editPage(attributes, e) {
-      e.preventDefault();
-      var option = Object.assign({ id: this.props.option.id }, attributes);
-      // TODO: create editpage actions
-      this.props.editOption({ option: option }, this.toggleEditOption);
-    }
-  }, {
     key: 'toggleEditOption',
     value: function toggleEditOption() {
       this.setState({
@@ -29382,15 +29368,13 @@ var OptionsIndexItem = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _props = this.props,
-          option = _props.option,
-          page = _props.page;
+      var option = this.props.option;
 
 
       return _react2.default.createElement(
         'div',
         null,
-        this.state.editOptionClicked ? _react2.default.createElement(_option_form2.default, { option: option, page: page, handleSubmit: this.editPage, toggleEditOption: this.toggleEditOption }) : this.optionSummaryBox()
+        this.state.editOptionClicked ? _react2.default.createElement(_option_form2.default, { option: option, page: option.page, handleSubmit: this.props.editOption, toggleEditOption: this.toggleEditOption }) : this.optionSummaryBox()
       );
     }
   }]);

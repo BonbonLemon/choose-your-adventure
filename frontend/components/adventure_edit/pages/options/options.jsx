@@ -12,7 +12,6 @@ class Options extends React.Component {
     }
     this.toggleHasNewOption = this.toggleHasNewOption.bind(this);
     this.createOption = this.createOption.bind(this);
-    this.updatePage = this.updatePage.bind(this);
   }
 
   toggleHasNewOption() {
@@ -24,12 +23,8 @@ class Options extends React.Component {
   createOption(attributes, e) {
     e.preventDefault();
     const option = Object.assign({page_id: this.props.page.id}, attributes);
-    this.props.createOption({option}, this.updatePage);
+    this.props.createOption({option}, this.toggleHasNewOption);
     // TODO: update page
-  }
-
-  updatePage() {
-    this.toggleHasNewOption();
   }
 
   render() {
@@ -46,7 +41,7 @@ class Options extends React.Component {
         <div className="row">
           <div className="col-12">
             {page.options.map(option => (
-              <OptionsIndexItem key={option.id} option={option} page={page} />
+              <OptionsIndexItem key={option.id} option={option} editOption={this.props.editOption} />
             ))}
           </div>
         </div>

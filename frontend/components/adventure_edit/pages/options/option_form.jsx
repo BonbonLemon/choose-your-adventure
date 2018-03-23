@@ -31,6 +31,7 @@ class OptionForm extends React.Component {
   render() {
     const thisPage = this.props.page;
     const { text, destination_id } = this.state;
+    debugger;
 
     return (
       <form className="new-option-form" onSubmit={(e) => this.props.handleSubmit(this.state, e)}>

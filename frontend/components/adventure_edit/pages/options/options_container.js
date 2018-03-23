@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
-import { createOption } from '../../../../actions/option_actions';
-import { fetchPage } from '../../../../actions/page_actions';
+import { createOption, editOption } from '../../../../actions/option_actions';
 import Options from './options';
 
 const mapStateToProps = (state, ownProps) => {
@@ -13,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   createOption: (option, callback) => dispatch(createOption(option, callback)),
-  fetchPage: (id, callback) => dispatch(fetchPage(id, callback))
+  editOption: (option, callback) => dispatch(editOption(option,callback)),
 });
 
 export default connect(
