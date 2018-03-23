@@ -6,6 +6,7 @@ import GenreInput from '../genre/genre_input';
 import GenreInputs from '../genre/genre_inputs';
 import PageContainer from './pages/pages_container';
 
+// TODO: turn this into functional component
 class AdventureEdit extends React.Component {
   constructor(props) {
     super(props);

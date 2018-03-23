@@ -29,7 +29,6 @@ class Options extends React.Component {
   }
 
   updatePage() {
-    this.props.fetchPage(this.props.page.id);
     this.toggleHasNewOption();
   }
 

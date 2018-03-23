@@ -1,4 +1,5 @@
 import * as APIUtil from '../util/page_api_util';
+import { fetchAdventure } from './adventure_actions';
 
 export const RECEIVE_PAGES = 'RECEIVE_PAGES';
 
@@ -29,8 +30,8 @@ export const fetchPage = (id, callback) => dispatch => (
 
 export const createPage = (page, callback) => dispatch => (
   APIUtil.createPage(page).then(page => {
-    if (callback) { callback(page); }
-    dispatch(receivePage(page));
+    dispatch(fetchAdventure(page.adventure.id));
+    // fetchAdventure(page.adventure.id);
   })
 );
 

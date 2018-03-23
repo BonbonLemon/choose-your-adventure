@@ -37,7 +37,7 @@ class Pages extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const page = Object.assign({adventure_id: this.props.adventure.id, name: this.state.name});
-    this.props.createPage({page}, this.props.updateAdventure);
+    this.props.createPage({page});
     this.setState({name: ""});
   }
 

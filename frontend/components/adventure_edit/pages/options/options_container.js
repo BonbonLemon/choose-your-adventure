@@ -6,7 +6,6 @@ import Options from './options';
 
 const mapStateToProps = (state, ownProps) => {
   // const adventure = ownProps.adventure;
-  debugger;
   return {
     // adventure: adventure
   };

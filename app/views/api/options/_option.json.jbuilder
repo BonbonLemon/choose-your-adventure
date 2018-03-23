@@ -7,3 +7,7 @@ json.destination do
     false
   end
 end
+
+json.page do
+  json.extract! option.page, :id, :name, :text, :adventure
+end

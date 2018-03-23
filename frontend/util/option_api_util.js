@@ -5,3 +5,11 @@ export const createOption = data => (
     data
   })
 );
+
+export const editOption = data => (
+  $.ajax({
+    method: 'PATCH',
+    url: `api/adventures/${data.option.id}`,
+    data
+  })
+)

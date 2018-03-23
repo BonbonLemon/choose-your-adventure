@@ -16,13 +16,8 @@ class OptionsIndexItem extends React.Component {
     e.preventDefault();
     const option = Object.assign({id: this.props.option.id}, attributes);
     // TODO: create editpage actions
-    this.props.editPage({option}, this.editPageCallback);
+    this.props.editOption({option}, this.toggleEditOption);
   }
-
-  // editPageCallback() {
-  //   this.toggleEditOption();
-  //   this.props.updateAdventure();
-  // }
 
   toggleEditOption() {
     this.setState({
