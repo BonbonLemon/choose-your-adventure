@@ -16,7 +16,7 @@ export const createOption = (option, callback) => dispatch => (
 );
 
 export const editOption = (option, callback) => dispatch => (
-  APIUtil.createOption(option).then(option => {
+  APIUtil.editOption(option).then(option => {
     if (callback) { callback(option) ;}
     dispatch(fetchAdventure(option.page.adventure.id));
   })

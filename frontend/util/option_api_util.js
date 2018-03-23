@@ -9,7 +9,7 @@ export const createOption = data => (
 export const editOption = data => (
   $.ajax({
     method: 'PATCH',
-    url: `api/adventures/${data.option.id}`,
+    url: `api/options/${data.option.id}`,
     data
   })
 )

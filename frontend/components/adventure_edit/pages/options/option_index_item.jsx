@@ -9,12 +9,19 @@ class OptionsIndexItem extends React.Component {
       editOptionClicked: false
     };
     this.toggleEditOption = this.toggleEditOption.bind(this);
+    this.editOption = this.editOption.bind(this);
   }
 
   toggleEditOption() {
     this.setState({
       editOptionClicked: !this.state.editOptionClicked
     });
+  }
+
+  editOption(attributes, e) {
+    e.preventDefault();
+    const option = Object.assign({id: this.props.option.id}, attributes);
+    this.props.editOption({option}, this.toggleEditOption);
   }
 
   optionSummaryBox() {
@@ -53,7 +60,7 @@ class OptionsIndexItem extends React.Component {
 
     return (
       <div>
-        { this.state.editOptionClicked ? <OptionForm option={option} page={option.page} handleSubmit={this.props.editOption} toggleEditOption={this.toggleEditOption}/> : this.optionSummaryBox() }
+        { this.state.editOptionClicked ? <OptionForm option={option} page={option.page} handleSubmit={this.editOption} toggleEditOption={this.toggleEditOption}/> : this.optionSummaryBox() }
       </div>
     );
   }

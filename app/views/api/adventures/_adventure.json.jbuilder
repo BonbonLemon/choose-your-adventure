@@ -13,5 +13,22 @@ json.pages do
 end
 
 # json.pages adventure.pages do |page|
-#   json.extract! page, :id, :name, :text
+#   json.extract! page, :id, :name, :text, :adventure
+#
+#   json.options page.options do |option|
+#     json.extract! option, :id, :text, :destination_id
+#
+#     json.page do
+#       page.extract
+#     end
+#
+#     json.destination do
+#       if option.destination_id != 0
+#         json.extract! option.destination, :id, :name, :text
+#       else
+#         false
+#       end
+#     end
+#
+#   end
 # end

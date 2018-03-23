@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :adventures, only: [:index, :show, :create, :update]
     resources :genres, only: [:index, :create]
     resources :pages, only: [:index, :show, :create, :update, :destroy]
-    resources :options, only: [:create]
+    resources :options, only: [:create, :update]
     resource :user, only: [:create]
     resource :session, only: [:create, :destroy, :show]
   end

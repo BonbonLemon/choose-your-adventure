@@ -9,5 +9,9 @@ json.destination do
 end
 
 json.page do
-  json.extract! option.page, :id, :name, :text, :adventure, :options
+  json.extract! option.page, :id, :name, :text, :options
+
+  json.adventure do
+    json.extract! option.page.adventure, :id, :title, :description, :cover_url, :pages
+  end
 end

@@ -11,20 +11,14 @@ class AdventureEdit extends React.Component {
   constructor(props) {
     super(props);
 
-    this.updateAdventure = this.updateAdventure.bind(this);
     this.editAdventure = this.editAdventure.bind(this);
     this.navigateToAdventure = this.navigateToAdventure.bind(this);
   }
 
   componentDidMount() {
     if (!this.props.adventure.title) {
-      this.updateAdventure();
+      this.props.fetchAdventure(this.props.adventureId);
     }
-  }
-
-  updateAdventure() {
-    // TODO: Check with jeff is this needs an if statement
-    this.props.fetchAdventure(this.props.adventureId);
   }
 
   editAdventure(attributes, e) {
@@ -51,7 +45,7 @@ class AdventureEdit extends React.Component {
             <AdventureForm adventure={this.props.adventure} handleSubmit={this.editAdventure} />
           </div>
         </div>
-        <PageContainer adventure={this.props.adventure} updateAdventure={this.updateAdventure} />
+        <PageContainer adventure={this.props.adventure} />
       </div>
     );
   }

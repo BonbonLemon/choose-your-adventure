@@ -5151,7 +5151,6 @@ var OptionForm = function (_React$Component) {
           text = _state.text,
           destination_id = _state.destination_id;
 
-      debugger;
 
       return _react2.default.createElement(
         'form',
@@ -28352,7 +28351,6 @@ var AdventureEdit = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (AdventureEdit.__proto__ || Object.getPrototypeOf(AdventureEdit)).call(this, props));
 
-    _this.updateAdventure = _this.updateAdventure.bind(_this);
     _this.editAdventure = _this.editAdventure.bind(_this);
     _this.navigateToAdventure = _this.navigateToAdventure.bind(_this);
     return _this;
@@ -28362,14 +28360,8 @@ var AdventureEdit = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       if (!this.props.adventure.title) {
-        this.updateAdventure();
+        this.props.fetchAdventure(this.props.adventureId);
       }
-    }
-  }, {
-    key: 'updateAdventure',
-    value: function updateAdventure() {
-      // TODO: Check with jeff is this needs an if statement
-      this.props.fetchAdventure(this.props.adventureId);
     }
   }, {
     key: 'editAdventure',
@@ -28412,7 +28404,7 @@ var AdventureEdit = function (_React$Component) {
             _react2.default.createElement(_adventure_form2.default, { adventure: this.props.adventure, handleSubmit: this.editAdventure })
           )
         ),
-        _react2.default.createElement(_pages_container2.default, { adventure: this.props.adventure, updateAdventure: this.updateAdventure })
+        _react2.default.createElement(_pages_container2.default, { adventure: this.props.adventure })
       );
     }
   }]);
@@ -29084,7 +29076,7 @@ var createOption = exports.createOption = function createOption(option, callback
 
 var editOption = exports.editOption = function editOption(option, callback) {
   return function (dispatch) {
-    return APIUtil.createOption(option).then(function (option) {
+    return APIUtil.editOption(option).then(function (option) {
       if (callback) {
         callback(option);
       }
@@ -29114,7 +29106,7 @@ var createOption = exports.createOption = function createOption(data) {
 var editOption = exports.editOption = function editOption(data) {
   return $.ajax({
     method: 'PATCH',
-    url: 'api/adventures/' + data.option.id,
+    url: 'api/options/' + data.option.id,
     data: data
   });
 };
@@ -29181,7 +29173,6 @@ var Options = function (_React$Component) {
       e.preventDefault();
       var option = Object.assign({ page_id: this.props.page.id }, attributes);
       this.props.createOption({ option: option }, this.toggleHasNewOption);
-      // TODO: update page
     }
   }, {
     key: 'render',
@@ -29296,6 +29287,7 @@ var OptionsIndexItem = function (_React$Component) {
       editOptionClicked: false
     };
     _this.toggleEditOption = _this.toggleEditOption.bind(_this);
+    _this.editOption = _this.editOption.bind(_this);
     return _this;
   }
 
@@ -29305,6 +29297,13 @@ var OptionsIndexItem = function (_React$Component) {
       this.setState({
         editOptionClicked: !this.state.editOptionClicked
       });
+    }
+  }, {
+    key: 'editOption',
+    value: function editOption(attributes, e) {
+      e.preventDefault();
+      var option = Object.assign({ id: this.props.option.id }, attributes);
+      this.props.editOption({ option: option }, this.toggleEditOption);
     }
   }, {
     key: 'optionSummaryBox',
@@ -29374,7 +29373,7 @@ var OptionsIndexItem = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        this.state.editOptionClicked ? _react2.default.createElement(_option_form2.default, { option: option, page: option.page, handleSubmit: this.props.editOption, toggleEditOption: this.toggleEditOption }) : this.optionSummaryBox()
+        this.state.editOptionClicked ? _react2.default.createElement(_option_form2.default, { option: option, page: option.page, handleSubmit: this.editOption, toggleEditOption: this.toggleEditOption }) : this.optionSummaryBox()
       );
     }
   }]);
