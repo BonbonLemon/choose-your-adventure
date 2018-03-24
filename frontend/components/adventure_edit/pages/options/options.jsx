@@ -40,7 +40,7 @@ class Options extends React.Component {
         <div className="row">
           <div className="col-12">
             {page.options.map(option => (
-              <OptionsIndexItem key={option.id} option={option} editOption={this.props.editOption} />
+              <OptionsIndexItem key={option.id} option={option} editOption={this.props.editOption} deleteOption={this.props.deleteOption} />
             ))}
           </div>
         </div>

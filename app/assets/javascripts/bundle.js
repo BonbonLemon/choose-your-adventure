@@ -28460,9 +28460,9 @@ var editPage = exports.editPage = function editPage(page, callback) {
   };
 };
 
-var deletePage = exports.deletePage = function deletePage(page) {
+var deletePage = exports.deletePage = function deletePage(id) {
   return function (dispatch) {
-    return APIUtil.deletePage(page).then(function (page) {
+    return APIUtil.deletePage(id).then(function (page) {
       dispatch((0, _adventure_actions.fetchAdventure)(page.adventure.id));
     });
   };
@@ -28725,7 +28725,7 @@ var PagesIndexItem = function (_React$Component) {
     _this.editPage = _this.editPage.bind(_this);
     _this.editPageCallback = _this.editPageCallback.bind(_this);
     _this.toggleEditPage = _this.toggleEditPage.bind(_this);
-    _this.handleXClick = _this.handleXClick.bind(_this);
+    _this.deletePage = _this.deletePage.bind(_this);
     return _this;
   }
 
@@ -28750,8 +28750,8 @@ var PagesIndexItem = function (_React$Component) {
       });
     }
   }, {
-    key: 'handleXClick',
-    value: function handleXClick(e) {
+    key: 'deletePage',
+    value: function deletePage(e) {
       e.preventDefault();
       var isConfirmed = confirm('Are you sure you want to delete the "' + this.props.page.name + '" page?');
       if (isConfirmed) {
@@ -28779,7 +28779,7 @@ var PagesIndexItem = function (_React$Component) {
           _react2.default.createElement(
             'span',
             null,
-            _react2.default.createElement('img', { className: 'page-index-item-button', onClick: this.handleXClick, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423844/x_bkgfwz.png' })
+            _react2.default.createElement('img', { className: 'page-index-item-button', onClick: this.deletePage, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423844/x_bkgfwz.png' })
           )
         ),
         _react2.default.createElement(
@@ -29030,6 +29030,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     editOption: function editOption(option, callback) {
       return dispatch((0, _option_actions.editOption)(option, callback));
+    },
+    deleteOption: function deleteOption(id) {
+      return dispatch((0, _option_actions.deleteOption)(id));
     }
   };
 };
@@ -29046,7 +29049,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.editOption = exports.createOption = exports.receiveOption = exports.RECEIVE_OPTION = undefined;
+exports.deleteOption = exports.editOption = exports.createOption = exports.receiveOption = exports.RECEIVE_OPTION = undefined;
 
 var _option_api_util = __webpack_require__(174);
 
@@ -29087,6 +29090,15 @@ var editOption = exports.editOption = function editOption(option, callback) {
   };
 };
 
+var deleteOption = exports.deleteOption = function deleteOption(id) {
+  return function (dispatch) {
+    return APIUtil.deleteOption(id).then(function (option) {
+      debugger;
+      dispatch((0, _adventure_actions.fetchAdventure)(option.page.adventure.id));
+    });
+  };
+};
+
 /***/ }),
 /* 174 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -29110,6 +29122,13 @@ var editOption = exports.editOption = function editOption(data) {
     method: 'PATCH',
     url: 'api/options/' + data.option.id,
     data: data
+  });
+};
+
+var deleteOption = exports.deleteOption = function deleteOption(id) {
+  return $.ajax({
+    method: 'DELETE',
+    url: 'api/options/' + id
   });
 };
 
@@ -29208,7 +29227,7 @@ var Options = function (_React$Component) {
             'div',
             { className: 'col-12' },
             page.options.map(function (option) {
-              return _react2.default.createElement(_option_index_item2.default, { key: option.id, option: option, editOption: _this2.props.editOption });
+              return _react2.default.createElement(_option_index_item2.default, { key: option.id, option: option, editOption: _this2.props.editOption, deleteOption: _this2.props.deleteOption });
             })
           )
         ),
@@ -29290,6 +29309,7 @@ var OptionsIndexItem = function (_React$Component) {
     };
     _this.toggleEditOption = _this.toggleEditOption.bind(_this);
     _this.editOption = _this.editOption.bind(_this);
+    _this.deleteOption = _this.deleteOption.bind(_this);
     return _this;
   }
 
@@ -29306,6 +29326,15 @@ var OptionsIndexItem = function (_React$Component) {
       e.preventDefault();
       var option = Object.assign({ id: this.props.option.id }, attributes);
       this.props.editOption({ option: option }, this.toggleEditOption);
+    }
+  }, {
+    key: 'deleteOption',
+    value: function deleteOption(e) {
+      e.preventDefault();
+      var isConfirmed = confirm('Are you sure you want to delete the "' + this.props.option.text + '" option?');
+      if (isConfirmed) {
+        this.props.deleteOption(this.props.option.id);
+      }
     }
   }, {
     key: 'optionSummaryBox',
@@ -29334,7 +29363,7 @@ var OptionsIndexItem = function (_React$Component) {
           ),
           _react2.default.createElement(
             'span',
-            null,
+            { onClick: this.deleteOption },
             'Delete'
           )
         ),

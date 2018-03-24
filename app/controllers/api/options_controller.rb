@@ -19,6 +19,17 @@ class Api::OptionsController < ApplicationController
     end
   end
 
+  def destroy
+    @option = Option.find(params[:id])
+
+    if @option.destroy
+      render :show
+    else
+      render json: @option.errors.full_messages, status: 422
+    end
+
+  end
+
   private
   def option_params
     params.require(:option).permit(:page_id, :text, :destination_id)

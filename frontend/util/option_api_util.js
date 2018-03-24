@@ -13,3 +13,10 @@ export const editOption = data => (
     data
   })
 )
+
+export const deleteOption = id => (
+  $.ajax({
+    method: 'DELETE',
+    url: `api/options/${id}`
+  })
+)

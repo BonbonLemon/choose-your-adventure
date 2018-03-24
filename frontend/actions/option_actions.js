@@ -21,3 +21,10 @@ export const editOption = (option, callback) => dispatch => (
     dispatch(fetchAdventure(option.page.adventure.id));
   })
 );
+
+export const deleteOption = (id) => dispatch => (
+  APIUtil.deleteOption(id).then(option => {
+    debugger;
+    dispatch(fetchAdventure(option.page.adventure.id));
+  })
+)

@@ -10,6 +10,7 @@ class OptionsIndexItem extends React.Component {
     };
     this.toggleEditOption = this.toggleEditOption.bind(this);
     this.editOption = this.editOption.bind(this);
+    this.deleteOption = this.deleteOption.bind(this);
   }
 
   toggleEditOption() {
@@ -22,6 +23,14 @@ class OptionsIndexItem extends React.Component {
     e.preventDefault();
     const option = Object.assign({id: this.props.option.id}, attributes);
     this.props.editOption({option}, this.toggleEditOption);
+  }
+
+  deleteOption(e) {
+    e.preventDefault();
+    const isConfirmed = confirm(`Are you sure you want to delete the \"${this.props.option.text}\" option?`);
+    if (isConfirmed) {
+      this.props.deleteOption(this.props.option.id);
+    }
   }
 
   optionSummaryBox() {
@@ -39,7 +48,7 @@ class OptionsIndexItem extends React.Component {
       <div className="option-box input-group">
         <div className="option-index-item-buttons input-group-prepend mr-3">
           <span onClick={this.toggleEditOption}>Edit</span>
-          <span>Delete</span>
+          <span onClick={this.deleteOption}>Delete</span>
         </div>
         <div className="option-index-item-details form-control">
           <div className="row">

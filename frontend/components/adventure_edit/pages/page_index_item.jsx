@@ -11,7 +11,7 @@ class PagesIndexItem extends React.Component {
     this.editPage = this.editPage.bind(this);
     this.editPageCallback = this.editPageCallback.bind(this);
     this.toggleEditPage = this.toggleEditPage.bind(this);
-    this.handleXClick = this.handleXClick.bind(this);
+    this.deletePage = this.deletePage.bind(this);
   }
 
   editPage(attributes, e) {
@@ -31,7 +31,7 @@ class PagesIndexItem extends React.Component {
     });
   }
 
-  handleXClick(e) {
+  deletePage(e) {
     e.preventDefault();
     const isConfirmed = confirm(`Are you sure you want to delete the \"${this.props.page.name}\" page?`);
     if (isConfirmed) {
@@ -45,7 +45,7 @@ class PagesIndexItem extends React.Component {
       <div className="page-box input-group">
         <div className="page-index-item-buttons input-group-prepend mr-3">
           <span className="mr-3"><img className="page-index-item-button" onClick={this.toggleEditPage} src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423463/edit_qif1lz.png" /></span>
-          <span><img className="page-index-item-button" onClick={this.handleXClick} src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423844/x_bkgfwz.png" /></span>
+          <span><img className="page-index-item-button" onClick={this.deletePage} src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423844/x_bkgfwz.png" /></span>
         </div>
         <div className="page-index-item-details">
           <div className="row">
