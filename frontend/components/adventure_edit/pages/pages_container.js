@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
   fetchPages: (adventureId) => dispatch(fetchPages(adventureId)),
   createPage: page => dispatch(createPage(page)),
   editPage: (page, callback) => dispatch(editPage(page, callback)),
-  deletePage: (page, callback) => dispatch(deletePage(page, callback))
+  deletePage: (page) => dispatch(deletePage(page))
 });
 
 export default connect(

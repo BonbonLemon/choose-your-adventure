@@ -33,7 +33,7 @@ class PagesIndexItem extends React.Component {
 
   handleXClick(e) {
     e.preventDefault();
-    const isConfirmed = confirm(`Are you sure you want to delete \"${this.props.page.name}\" page?`);
+    const isConfirmed = confirm(`Are you sure you want to delete the \"${this.props.page.name}\" page?`);
     if (isConfirmed) {
       this.props.deletePage(this.props.page.id);
     }

@@ -28375,8 +28375,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     editPage: function editPage(page, callback) {
       return dispatch((0, _page_actions.editPage)(page, callback));
     },
-    deletePage: function deletePage(page, callback) {
-      return dispatch((0, _page_actions.deletePage)(page, callback));
+    deletePage: function deletePage(page) {
+      return dispatch((0, _page_actions.deletePage)(page));
     }
   };
 };
@@ -28460,9 +28460,11 @@ var editPage = exports.editPage = function editPage(page, callback) {
   };
 };
 
-var deletePage = exports.deletePage = function deletePage(page, callback) {
+var deletePage = exports.deletePage = function deletePage(page) {
   return function (dispatch) {
-    return APIUtil.deletePage(page);
+    return APIUtil.deletePage(page).then(function (page) {
+      dispatch((0, _adventure_actions.fetchAdventure)(page.adventure.id));
+    });
   };
 };
 
@@ -28751,7 +28753,7 @@ var PagesIndexItem = function (_React$Component) {
     key: 'handleXClick',
     value: function handleXClick(e) {
       e.preventDefault();
-      var isConfirmed = confirm('Are you sure you want to delete "' + this.props.page.name + '" page?');
+      var isConfirmed = confirm('Are you sure you want to delete the "' + this.props.page.name + '" page?');
       if (isConfirmed) {
         this.props.deletePage(this.props.page.id);
       }

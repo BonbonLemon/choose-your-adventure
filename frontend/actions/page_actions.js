@@ -42,6 +42,8 @@ export const editPage = (page, callback) => dispatch => (
   })
 );
 
-export const deletePage = (page, callback) => dispatch => (
-  APIUtil.deletePage(page)
+export const deletePage = (page) => dispatch => (
+  APIUtil.deletePage(page).then(page => {
+    dispatch(fetchAdventure(page.adventure.id));
+  })
 );
