@@ -27,7 +27,7 @@ class Options extends React.Component {
   }
 
   render() {
-    const { page } = this.props
+    const { page, options } = this.props
     const { hasNewOption } = this.state;
 
     return (
@@ -39,7 +39,7 @@ class Options extends React.Component {
         </div>
         <div className="row">
           <div className="col-12">
-            {page.options.map(option => (
+            {options.map(option => (
               <OptionsIndexItem key={option.id} option={option} editOption={this.props.editOption} deleteOption={this.props.deleteOption} />
             ))}
           </div>

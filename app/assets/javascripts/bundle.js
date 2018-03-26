@@ -29004,6 +29004,8 @@ var _reactRedux = __webpack_require__(5);
 
 var _option_actions = __webpack_require__(173);
 
+var _selectors = __webpack_require__(40);
+
 var _options = __webpack_require__(175);
 
 var _options2 = _interopRequireDefault(_options);
@@ -29013,6 +29015,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   // const adventure = ownProps.adventure;
   return {
+    options: (0, _selectors.asArray)(ownProps.page.options)
     // adventure: adventure
   };
 };
@@ -29204,7 +29207,9 @@ var Options = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var page = this.props.page;
+      var _props = this.props,
+          page = _props.page,
+          options = _props.options;
       var hasNewOption = this.state.hasNewOption;
 
 
@@ -29230,7 +29235,7 @@ var Options = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'col-12' },
-            page.options.map(function (option) {
+            options.map(function (option) {
               return _react2.default.createElement(_option_index_item2.default, { key: option.id, option: option, editOption: _this2.props.editOption, deleteOption: _this2.props.deleteOption });
             })
           )
