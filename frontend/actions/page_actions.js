@@ -5,6 +5,8 @@ export const RECEIVE_PAGES = 'RECEIVE_PAGES';
 
 export const RECEIVE_PAGE = 'RECEIVE_PAGE';
 
+export const REMOVE_PAGE = 'REMOVE_PAGE';
+
 export const receivePages = pages => ({
   type: RECEIVE_PAGES,
   pages
@@ -13,6 +15,12 @@ export const receivePages = pages => ({
 export const receivePage = page => ({
   type: RECEIVE_PAGE,
   page
+});
+
+export const removePage = (adventureId, pageId) => ({
+  type: REMOVE_PAGE,
+  adventureId: adventureId,
+  pageId: pageId
 });
 
 export const fetchPages = () => dispatch => (
@@ -44,6 +52,6 @@ export const editPage = (page, callback) => dispatch => (
 
 export const deletePage = (id) => dispatch => (
   APIUtil.deletePage(id).then(page => {
-    dispatch(fetchAdventure(page.adventure.id));
+    dispatch(removePage(page.adventure.id, page.id));
   })
 );

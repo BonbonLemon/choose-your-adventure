@@ -31,17 +31,13 @@ class Api::PagesController < ApplicationController
 
   def destroy
     @page = Page.find(params[:id])
-
-    if @page.destroy
-      Option.where(destination_id: @page.id).each do |option|
-        option.destination_id = 0
-        option.save
-      end
-      render :show
-    else
-      render json: @page.errors.full_messages, status: 422
+    @page.destroy
+    Option.where(destination_id: @page.id).each do |option|
+      option.destination_id = 0
+      option.save
     end
-
+    
+    render :show
   end
 
   private

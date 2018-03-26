@@ -24,7 +24,6 @@ export const editOption = (option, callback) => dispatch => (
 
 export const deleteOption = (id) => dispatch => (
   APIUtil.deleteOption(id).then(option => {
-    debugger;
     dispatch(fetchAdventure(option.page.adventure.id));
   })
 )
