@@ -2401,7 +2401,6 @@ var GenreInput = function (_React$Component) {
     value: function render() {
       var genre = this.state.genre;
 
-      // onKeyDown={this.updateGenre}
       return _react2.default.createElement(
         'div',
         { className: 'input-group' },
@@ -4822,7 +4821,7 @@ var AdventureEdit = function (_React$Component) {
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
-      // TODO: check if there is a better way to update the adventure
+      // maybe there is a better way to do this...
       if (nextProps.adventure.title && nextProps.adventure.title !== this.state.title) {
         this.setAdventureProperties(nextProps.adventure);
       }
@@ -5002,7 +5001,7 @@ exports.default = (0, _reactRouterDom.withRouter)(AdventureEdit);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deletePage = exports.editPage = exports.createPage = exports.fetchPage = exports.fetchPages = exports.removePage = exports.receivePage = exports.receivePages = exports.REMOVE_PAGE = exports.RECEIVE_PAGE = exports.RECEIVE_PAGES = undefined;
+exports.deletePage = exports.editPage = exports.createPage = exports.removePage = exports.REMOVE_PAGE = undefined;
 
 var _page_api_util = __webpack_require__(168);
 
@@ -5012,25 +5011,7 @@ var _adventure_actions = __webpack_require__(8);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var RECEIVE_PAGES = exports.RECEIVE_PAGES = 'RECEIVE_PAGES';
-
-var RECEIVE_PAGE = exports.RECEIVE_PAGE = 'RECEIVE_PAGE';
-
 var REMOVE_PAGE = exports.REMOVE_PAGE = 'REMOVE_PAGE';
-
-var receivePages = exports.receivePages = function receivePages(pages) {
-  return {
-    type: RECEIVE_PAGES,
-    pages: pages
-  };
-};
-
-var receivePage = exports.receivePage = function receivePage(page) {
-  return {
-    type: RECEIVE_PAGE,
-    page: page
-  };
-};
 
 var removePage = exports.removePage = function removePage(adventureId, pageId) {
   return {
@@ -5040,30 +5021,10 @@ var removePage = exports.removePage = function removePage(adventureId, pageId) {
   };
 };
 
-var fetchPages = exports.fetchPages = function fetchPages() {
-  return function (dispatch) {
-    return APIUtil.fetchPages().then(function (pages) {
-      return dispatch(receivePages(pages));
-    });
-  };
-};
-
-var fetchPage = exports.fetchPage = function fetchPage(id, callback) {
-  return function (dispatch) {
-    return APIUtil.fetchPage(id).then(function (page) {
-      if (callback) {
-        callback(page);
-      }
-      dispatch(receivePage(page));
-    });
-  };
-};
-
 var createPage = exports.createPage = function createPage(page, callback) {
   return function (dispatch) {
     return APIUtil.createPage(page).then(function (page) {
       dispatch((0, _adventure_actions.fetchAdventure)(page.adventure.id));
-      // fetchAdventure(page.adventure.id);
     });
   };
 };
@@ -5074,7 +5035,7 @@ var editPage = exports.editPage = function editPage(page, callback) {
       if (callback) {
         callback(page);
       }
-      dispatch(receivePage(page));
+      dispatch((0, _adventure_actions.fetchAdventure)(page.adventure.id));
     });
   };
 };
@@ -5120,10 +5081,6 @@ var OptionForm = function (_React$Component) {
   function OptionForm(props) {
     _classCallCheck(this, OptionForm);
 
-    // this.state = {
-    //   text: text || '',
-    //   destination_id: destination_id || 0
-    // };
     var _this = _possibleConstructorReturn(this, (OptionForm.__proto__ || Object.getPrototypeOf(OptionForm)).call(this, props));
 
     if (_this.props.option) {
@@ -5710,10 +5667,6 @@ var _store = __webpack_require__(178);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _adventure_api_util = __webpack_require__(74);
-
-var _adventure_api_util2 = _interopRequireDefault(_adventure_api_util);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -5726,17 +5679,9 @@ document.addEventListener('DOMContentLoaded', function () {
     store = (0, _store2.default)();
   }
 
-  // TODO: remove testing stuff
-  window.store = store;
-  // window.fart = fart;
-  window.fetchAdventures = _adventure_api_util2.default;
-
   var root = document.getElementById('root');
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 });
-
-// TODO: remove after testing
-// import * as fart from './actions/adventure_actions';
 
 /***/ }),
 /* 95 */
@@ -28158,8 +28103,11 @@ var AdventureShow = function (_React$Component) {
   _createClass(AdventureShow, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      // TODO: Check with jeff is this needs an if statement
-      this.props.fetchAdventure(this.props.adventureId, this.checkCurrentUser);
+      if (!this.props.adventure.title) {
+        this.props.fetchAdventure(this.props.adventureId, this.checkCurrentUser);
+      } else {
+        this.checkCurrentUser(this.props.adventure);
+      }
     }
   }, {
     key: 'checkCurrentUser',
@@ -28354,7 +28302,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// TODO: turn this into functional component
 var AdventureEdit = function (_React$Component) {
   _inherits(AdventureEdit, _React$Component);
 
@@ -28380,7 +28327,6 @@ var AdventureEdit = function (_React$Component) {
     value: function editAdventure(attributes, e) {
       e.preventDefault();
       var adventure = Object.assign({}, attributes);
-      // TODO:
       this.props.editAdventure({ adventure: adventure }, this.navigateToAdventure);
     }
   }, {
@@ -28455,9 +28401,6 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     pages: (0, _selectors.asArray)(pages)
   };
 };
-
-// import { fetchAdventure } from '../../../actions/adventure_actions';
-
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
@@ -28717,7 +28660,6 @@ var PagesIndexItem = function (_React$Component) {
       editPageClicked: false
     };
     _this.editPage = _this.editPage.bind(_this);
-    _this.editPageCallback = _this.editPageCallback.bind(_this);
     _this.toggleEditPage = _this.toggleEditPage.bind(_this);
     _this.deletePage = _this.deletePage.bind(_this);
     return _this;
@@ -28728,13 +28670,7 @@ var PagesIndexItem = function (_React$Component) {
     value: function editPage(attributes, e) {
       e.preventDefault();
       var page = Object.assign({ id: this.props.page.id }, attributes);
-      this.props.editPage({ page: page }, this.editPageCallback);
-    }
-  }, {
-    key: 'editPageCallback',
-    value: function editPageCallback() {
-      this.toggleEditPage();
-      this.props.updateAdventure();
+      this.props.editPage({ page: page }, this.toggleEditPage);
     }
   }, {
     key: 'toggleEditPage',
@@ -29356,7 +29292,6 @@ var OptionsIndexItem = function (_React$Component) {
       } else {
         destination_name = 'The End';
       }
-      // debugger;
       return _react2.default.createElement(
         'div',
         { className: 'option-box input-group' },

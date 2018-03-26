@@ -6,7 +6,6 @@ import GenreInput from '../genre/genre_input';
 import GenreInputs from '../genre/genre_inputs';
 import PageContainer from './pages/pages_container';
 
-// TODO: turn this into functional component
 class AdventureEdit extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +23,6 @@ class AdventureEdit extends React.Component {
   editAdventure(attributes, e) {
     e.preventDefault();
     const adventure = Object.assign({}, attributes);
-    // TODO:
     this.props.editAdventure({adventure}, this.navigateToAdventure);
   }
 

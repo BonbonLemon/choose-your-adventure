@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 
-// import { fetchAdventure } from '../../../actions/adventure_actions';
 import { fetchPages, createPage, editPage, deletePage } from '../../../actions/page_actions';
 import { asArray } from '../../../reducers/selectors';
 import Pages from './pages';

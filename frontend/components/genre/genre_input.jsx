@@ -30,7 +30,6 @@ class GenreInput extends React.Component {
   render() {
     const genre = this.state.genre;
 
-    // onKeyDown={this.updateGenre}
     return (
       <div className="input-group">
         <input

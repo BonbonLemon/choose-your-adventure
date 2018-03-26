@@ -26,7 +26,7 @@ class AdventureEdit extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // TODO: check if there is a better way to update the adventure
+    // maybe there is a better way to do this...
     if (nextProps.adventure.title && nextProps.adventure.title !== this.state.title) {
       this.setAdventureProperties(nextProps.adventure);
     }

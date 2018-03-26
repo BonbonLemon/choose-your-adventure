@@ -43,7 +43,6 @@ class OptionsIndexItem extends React.Component {
     } else {
       destination_name = 'The End';
     }
-    // debugger;
     return (
       <div className="option-box input-group">
         <div className="option-index-item-buttons input-group-prepend mr-3">

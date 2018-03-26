@@ -9,7 +9,6 @@ class PagesIndexItem extends React.Component {
       editPageClicked: false
     };
     this.editPage = this.editPage.bind(this);
-    this.editPageCallback = this.editPageCallback.bind(this);
     this.toggleEditPage = this.toggleEditPage.bind(this);
     this.deletePage = this.deletePage.bind(this);
   }
@@ -17,12 +16,7 @@ class PagesIndexItem extends React.Component {
   editPage(attributes, e) {
     e.preventDefault();
     const page = Object.assign({id: this.props.page.id}, attributes);
-    this.props.editPage({page}, this.editPageCallback);
-  }
-
-  editPageCallback() {
-    this.toggleEditPage();
-    this.props.updateAdventure();
+    this.props.editPage({page}, this.toggleEditPage);
   }
 
   toggleEditPage() {

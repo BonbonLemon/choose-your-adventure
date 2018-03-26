@@ -12,8 +12,11 @@ class AdventureShow extends React.Component {
   }
 
   componentDidMount() {
-    // TODO: Check with jeff is this needs an if statement
-    this.props.fetchAdventure(this.props.adventureId, this.checkCurrentUser);
+    if (!this.props.adventure.title) {
+      this.props.fetchAdventure(this.props.adventureId, this.checkCurrentUser);
+    } else {
+      this.checkCurrentUser(this.props.adventure);
+    }
   }
 
   checkCurrentUser(adventure) {
