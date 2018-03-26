@@ -8,25 +8,8 @@ class Pages extends React.Component {
     this.state = {
       name: ""
     }
-    // this.updatePages = this.updatePages.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  // componentDidMount() {
-  //   this.props.fetchPages();
-  // }
-
-  // componentWillReceiveProps(nextProps) {
-  //   if (this.state.pages !== nextProps.adventure.pages) {
-  //     this.updatePages(nextProps);
-  //   }
-  // }
-
-  // updatePages(nextProps) {
-  //   this.setState({
-  //     pages: nextProps.adventure.pages
-  //   });
-  // }
 
   update(property) {
     return e => this.setState({
@@ -63,7 +46,7 @@ class Pages extends React.Component {
   }
 
   render() {
-    const pages = this.props.adventure.pages || [];
+    const pages = this.props.pages || [];
 
     return (
       <div>

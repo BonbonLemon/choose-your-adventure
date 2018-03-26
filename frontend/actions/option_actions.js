@@ -3,10 +3,19 @@ import { fetchAdventure } from './adventure_actions';
 
 export const RECEIVE_OPTION = 'RECEIVE_OPTION';
 
+export const REMOVE_OPTION = 'REMOVE_OPTION'
+
 export const receiveOption = option => ({
   type: RECEIVE_OPTION,
   option
 });
+
+export const removeOption = (adventureId, pageId, optionId) => ({
+  type: REMOVE_OPTION,
+  adventureId: adventureId,
+  pageId: pageId,
+  optionId: optionId
+})
 
 export const createOption = (option, callback) => dispatch => (
   APIUtil.createOption(option).then(option => {
@@ -24,6 +33,6 @@ export const editOption = (option, callback) => dispatch => (
 
 export const deleteOption = (id) => dispatch => (
   APIUtil.deleteOption(id).then(option => {
-    dispatch(fetchAdventure(option.page.adventure.id));
+    dispatch(removeOption(option.page.adventure.id, option.page.id, option.id));
   })
 )

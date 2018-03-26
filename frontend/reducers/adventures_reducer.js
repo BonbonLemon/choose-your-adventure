@@ -9,6 +9,10 @@ import {
   REMOVE_PAGE
 } from '../actions/page_actions';
 
+import {
+  REMOVE_OPTION
+} from '../actions/option_actions';
+
 const adventuresReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState = merge({}, state);
@@ -20,12 +24,15 @@ const adventuresReducer = (state = {}, action) => {
       const newAdventure = {[action.adventure.id]: action.adventure};
       return merge({}, state, newAdventure);
     case REMOVE_PAGE:
-      newState = merge({}, state);
-      const indexOfPageToRemove = newState[action.adventureId].pages.findIndex(page => {
+      const newPages = newState[action.adventureId].pages;
+      const indexOfPageToRemove = newPages.findIndex(page => {
         return page.id == action.pageId
       });
-      newState[action.adventureId].pages.splice(indexOfPageToRemove, 1);
+      newPages.splice(indexOfPageToRemove, 1);
       return newState;
+    case REMOVE_OPTION:
+      newState[action.adventureId].pages
+      // state[adventureId].pages.findIndex(page => { return page.id == action.pageId})
     default:
       return state;
   }

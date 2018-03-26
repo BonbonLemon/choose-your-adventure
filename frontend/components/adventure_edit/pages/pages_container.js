@@ -2,18 +2,15 @@ import { connect } from 'react-redux';
 
 // import { fetchAdventure } from '../../../actions/adventure_actions';
 import { fetchPages, createPage, editPage, deletePage } from '../../../actions/page_actions';
+import { asArray } from '../../../reducers/selectors';
 import Pages from './pages';
 
 const mapStateToProps = (state, ownProps) => {
-  // TODO: how does deep component get its state?
-  // const adventure = ownProps.adventure;
-  // const pages = state.pages
-  // debugger;
+  const pages = ownProps.adventure.pages || {};
   return {
-    // pages: pages
-    // adventure: adventure
+    pages: asArray(pages)
   };
-};
+}
 
 const mapDispatchToProps = dispatch => ({
   fetchPages: (adventureId) => dispatch(fetchPages(adventureId)),
