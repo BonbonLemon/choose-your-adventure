@@ -24,15 +24,11 @@ const adventuresReducer = (state = {}, action) => {
       const newAdventure = {[action.adventure.id]: action.adventure};
       return merge({}, state, newAdventure);
     case REMOVE_PAGE:
-      const newPages = newState[action.adventureId].pages;
-      const indexOfPageToRemove = newPages.findIndex(page => {
-        return page.id == action.pageId
-      });
-      newPages.splice(indexOfPageToRemove, 1);
+      delete newState[action.adventureId].pages[action.pageId];
       return newState;
     case REMOVE_OPTION:
-      newState[action.adventureId].pages
-      // state[adventureId].pages.findIndex(page => { return page.id == action.pageId})
+      delete newState[action.adventureId].pages[action.pageId].options[action.optionId];
+      return newState;
     default:
       return state;
   }

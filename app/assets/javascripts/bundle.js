@@ -29013,10 +29013,8 @@ var _options2 = _interopRequireDefault(_options);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  // const adventure = ownProps.adventure;
   return {
     options: (0, _selectors.asArray)(ownProps.page.options)
-    // adventure: adventure
   };
 };
 
@@ -31817,15 +31815,11 @@ var adventuresReducer = function adventuresReducer() {
       var newAdventure = _defineProperty({}, action.adventure.id, action.adventure);
       return (0, _merge2.default)({}, state, newAdventure);
     case _page_actions.REMOVE_PAGE:
-      var newPages = newState[action.adventureId].pages;
-      var indexOfPageToRemove = newPages.findIndex(function (page) {
-        return page.id == action.pageId;
-      });
-      newPages.splice(indexOfPageToRemove, 1);
+      delete newState[action.adventureId].pages[action.pageId];
       return newState;
     case _option_actions.REMOVE_OPTION:
-      newState[action.adventureId].pages;
-    // state[adventureId].pages.findIndex(page => { return page.id == action.pageId})
+      delete newState[action.adventureId].pages[action.pageId].options[action.optionId];
+      return newState;
     default:
       return state;
   }

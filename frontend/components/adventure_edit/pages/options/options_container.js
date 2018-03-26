@@ -5,10 +5,8 @@ import { asArray } from '../../../../reducers/selectors';
 import Options from './options';
 
 const mapStateToProps = (state, ownProps) => {
-  // const adventure = ownProps.adventure;
   return {
     options: asArray(ownProps.page.options)
-    // adventure: adventure
   };
 };
 
