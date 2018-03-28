@@ -31797,6 +31797,8 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(6);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31823,16 +31825,32 @@ var Page = function (_React$Component) {
   _createClass(Page, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      if (!this.props.adventure.title) {
-        this.props.fetchAdventure(this.props.adventureId, this.setPage);
+      var _this2 = this;
+
+      var _props = this.props,
+          adventure = _props.adventure,
+          adventureId = _props.adventureId;
+
+      var pageId = this.props.match.params.pageId;
+
+      if (!adventure.title) {
+        this.props.fetchAdventure(adventureId, function (adventure) {
+          return _this2.setPage(adventure, pageId);
+        });
+      } else {
+        this.setPage(adventure, pageId);
       }
     }
   }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      this.setPage(nextProps.adventure, nextProps.match.params.pageId);
+    }
+  }, {
     key: 'setPage',
-    value: function setPage(adventure) {
-      debugger;
+    value: function setPage(adventure, pageId) {
       this.setState({
-        page: adventure.pages[this.props.match.params.pageId]
+        page: adventure.pages[pageId]
       });
     }
   }, {
@@ -31840,11 +31858,35 @@ var Page = function (_React$Component) {
     value: function render() {
       var page = this.state.page;
 
+      var options = page.options || {};
 
       return _react2.default.createElement(
         'div',
-        null,
-        page.name
+        { className: 'container-fluid' },
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col-12' },
+            _react2.default.createElement(
+              'h3',
+              null,
+              page.name
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          Object.keys(options).map(function (optionId) {
+            return _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: options[optionId].destination_id.toString(), className: 'col-12', key: optionId },
+              options[optionId].text
+            );
+          })
+        )
       );
     }
   }]);
