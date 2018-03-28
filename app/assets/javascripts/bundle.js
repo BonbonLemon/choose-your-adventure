@@ -5095,7 +5095,7 @@ var OptionForm = function (_React$Component) {
     } else {
       _this.state = {
         text: '',
-        destination_id: 0
+        destination_id: ''
       };
     }
     return _this;
@@ -5156,10 +5156,15 @@ var OptionForm = function (_React$Component) {
             ),
             _react2.default.createElement(
               'select',
-              { className: 'custom-select', value: destination_id, onChange: this.update("destination_id") },
+              {
+                className: 'custom-select',
+                value: destination_id,
+                onChange: this.update("destination_id"),
+                required: true
+              },
               _react2.default.createElement(
                 'option',
-                { value: 0 },
+                { value: '' },
                 'No Destination Selected'
               ),
               thisPage.adventure.pages.map(function (page) {

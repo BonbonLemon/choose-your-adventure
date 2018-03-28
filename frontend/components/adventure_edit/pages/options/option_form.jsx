@@ -13,7 +13,7 @@ class OptionForm extends React.Component {
     } else {
       this.state = {
         text: '',
-        destination_id: 0
+        destination_id: ''
       };
     }
   }
@@ -44,8 +44,13 @@ class OptionForm extends React.Component {
           </div>
           <div className="col-4">
             <label>Destination</label>
-              <select className="custom-select" value={destination_id} onChange={this.update("destination_id")}>
-                <option value={0}>No Destination Selected</option>
+              <select
+                className="custom-select"
+                value={destination_id}
+                onChange={this.update("destination_id")}
+                required
+              >
+                <option value="">No Destination Selected</option>
                 {thisPage.adventure.pages.map(page => {
                   if (page.id !== thisPage.id) {
                     return (
