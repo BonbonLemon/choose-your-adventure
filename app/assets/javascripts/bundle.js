@@ -27192,8 +27192,8 @@ var App = function App() {
       _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
       _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { path: '/adventures/new', component: _adventure_new_container2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/adventures/:adventureId', component: _adventure_show_container2.default }),
-      _react2.default.createElement(_route_util.ProtectedRoute, { path: '/adventures/:adventureId/edit', component: _adventure_edit_container2.default })
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId', component: _adventure_show_container2.default }),
+      _react2.default.createElement(_route_util.ProtectedRoute, { path: '/adventureeditor/:adventureId', component: _adventure_edit_container2.default })
     )
   );
 };
@@ -28076,6 +28076,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(6);
 
+var _page_container = __webpack_require__(253);
+
+var _page_container2 = _interopRequireDefault(_page_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28096,7 +28100,6 @@ var AdventureShow = function (_React$Component) {
       currentUserIsAuthor: false
     };
     _this.checkCurrentUser = _this.checkCurrentUser.bind(_this);
-    _this.handleEditClick = _this.handleEditClick.bind(_this);
     return _this;
   }
 
@@ -28137,15 +28140,14 @@ var AdventureShow = function (_React$Component) {
     key: 'editButton',
     value: function editButton() {
       return _react2.default.createElement(
-        'button',
-        { onClick: this.handleEditClick, type: 'button', className: 'edit-button btn btn-danger btn-sm' },
-        'Edit'
+        _reactRouterDom.Link,
+        { to: "/adventureeditor/" + this.props.adventureId },
+        _react2.default.createElement(
+          'button',
+          { type: 'button', className: 'edit-button btn btn-danger btn-sm' },
+          'Edit'
+        )
       );
-    }
-  }, {
-    key: 'handleEditClick',
-    value: function handleEditClick() {
-      this.props.history.push(this.props.history.location.pathname + "/edit");
     }
   }, {
     key: 'render',
@@ -28154,6 +28156,13 @@ var AdventureShow = function (_React$Component) {
       var currentUserIsAuthor = this.state.currentUserIsAuthor;
 
       var author = adventure.author || {};
+      var firstPageId = void 0;
+      if (adventure.pages) {
+        firstPageId = Object.keys(adventure.pages)[0];
+      } else {
+        firstPageId = 1;
+      }
+
       return _react2.default.createElement(
         'div',
         { className: 'container' },
@@ -28190,7 +28199,7 @@ var AdventureShow = function (_React$Component) {
           { className: 'row' },
           _react2.default.createElement(
             'div',
-            { className: 'adventure-show-cover-box col-12', style: { padding: 0 } },
+            { className: 'adventure-show-cover-box col-12' },
             adventure.cover_url ? this.coverImage(adventure.cover_url) : this.defaultImage()
           )
         ),
@@ -28200,7 +28209,16 @@ var AdventureShow = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'col-12' },
-            '// TODO: Page stuff'
+            _react2.default.createElement(
+              'div',
+              { className: 'adventure-page-box' },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: this.props.location.pathname + "/pages/" + firstPageId },
+                'Start Adventure'
+              ),
+              _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId/pages/:pageId', adventure: adventure, component: _page_container2.default })
+            )
           )
         )
       );
@@ -31761,6 +31779,122 @@ var adventuresReducer = function adventuresReducer() {
 };
 
 exports.default = adventuresReducer;
+
+/***/ }),
+/* 252 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Page = function (_React$Component) {
+  _inherits(Page, _React$Component);
+
+  function Page(props) {
+    _classCallCheck(this, Page);
+
+    var _this = _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this, props));
+
+    _this.state = {
+      page: {}
+    };
+    _this.setPage = _this.setPage.bind(_this);
+    return _this;
+  }
+
+  _createClass(Page, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (!this.props.adventure.title) {
+        this.props.fetchAdventure(this.props.adventureId, this.setPage);
+      }
+    }
+  }, {
+    key: 'setPage',
+    value: function setPage(adventure) {
+      debugger;
+      this.setState({
+        page: adventure.pages[this.props.match.params.pageId]
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var page = this.state.page;
+
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        page.name
+      );
+    }
+  }]);
+
+  return Page;
+}(_react2.default.Component);
+
+exports.default = Page;
+
+/***/ }),
+/* 253 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(5);
+
+var _page = __webpack_require__(252);
+
+var _page2 = _interopRequireDefault(_page);
+
+var _adventure_actions = __webpack_require__(8);
+
+var _selectors = __webpack_require__(40);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var adventureId = parseInt(ownProps.match.params.adventureId);
+  var adventure = (0, _selectors.selectAdventure)(state.adventures, adventureId);
+  return {
+    adventure: adventure,
+    adventureId: adventureId
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchAdventure: function fetchAdventure(id, callback) {
+      return dispatch((0, _adventure_actions.fetchAdventure)(id, callback));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_page2.default);
 
 /***/ })
 /******/ ]);

@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, Route, withRouter } from 'react-router-dom';
+
+import PageContainer from './page_container';
 
 class AdventureShow extends React.Component {
   constructor(props) {
@@ -8,7 +10,6 @@ class AdventureShow extends React.Component {
       currentUserIsAuthor: false
     }
     this.checkCurrentUser = this.checkCurrentUser.bind(this);
-    this.handleEditClick = this.handleEditClick.bind(this);
   }
 
   componentDidMount() {
@@ -42,18 +43,23 @@ class AdventureShow extends React.Component {
 
   editButton() {
     return (
-      <button onClick={this.handleEditClick} type="button" className="edit-button btn btn-danger btn-sm">Edit</button>
+      <Link to={"/adventureeditor/" + this.props.adventureId}>
+        <button type="button" className="edit-button btn btn-danger btn-sm">Edit</button>
+      </Link>
     );
   }
 
-  handleEditClick() {
-    this.props.history.push(this.props.history.location.pathname + "/edit");
-  }
-
   render() {
-    const {adventure} = this.props;
-    const {currentUserIsAuthor} = this.state;
+    const { adventure } = this.props;
+    const { currentUserIsAuthor } = this.state;
     const author = adventure.author || {};
+    let firstPageId;
+    if (adventure.pages) {
+      firstPageId = Object.keys(adventure.pages)[0];
+    } else {
+      firstPageId = 1;
+    }
+
     return (
       <div className="container">
         <div className="row">
@@ -68,13 +74,16 @@ class AdventureShow extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className="adventure-show-cover-box col-12" style={{padding: 0}}>
+          <div className="adventure-show-cover-box col-12">
             { adventure.cover_url ? this.coverImage(adventure.cover_url) : this.defaultImage() }
           </div>
         </div>
         <div className="row">
           <div className="col-12">
-            // TODO: Page stuff
+            <div className="adventure-page-box">
+              <Link to={this.props.location.pathname + "/pages/" + firstPageId}>Start Adventure</Link>
+              <Route path="/adventures/:adventureId/pages/:pageId" adventure={adventure} component={PageContainer} />
+            </div>
           </div>
         </div>
       </div>

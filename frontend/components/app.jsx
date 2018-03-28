@@ -28,8 +28,8 @@ const App = () => (
       <AuthRoute path="/login" component={SessionFormContainer} />
       <AuthRoute path="/signup" component={SessionFormContainer} />
       <ProtectedRoute path="/adventures/new" component={AdventureNewContainer} />
-      <Route exact path="/adventures/:adventureId" component={AdventureShowContainer} />
-      <ProtectedRoute path="/adventures/:adventureId/edit" component={AdventureEditContainer} />
+      <Route path="/adventures/:adventureId" component={AdventureShowContainer} />
+      <ProtectedRoute path="/adventureeditor/:adventureId" component={AdventureEditContainer} />
     </Switch>
   </div>
 );
