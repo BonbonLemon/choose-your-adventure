@@ -91,16 +91,18 @@ class AdventureShow extends React.Component {
             <h4 className="adventure-show-author">By {author.username}</h4>
           </div>
         </div>
-        <div className="row">
-          <div className="adventure-show-cover-box col-12">
-            { adventure.cover_url ? this.coverImage(adventure.cover_url) : this.defaultImage() }
+        <div className="adventure-show-box">
+          <div className="row">
+            <div className="adventure-show-cover-box col-12">
+              { adventure.cover_url ? this.coverImage(adventure.cover_url) : this.defaultImage() }
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col-12">
-            <div className="adventure-page-box">
-              { this.state.adventureStarted ? "" : this.startAdventureButton() }
-              <Route path="/adventures/:adventureId/pages/:pageId" adventure={adventure} component={PageContainer} />
+          <div className="row">
+            <div className="col-12">
+              <div className="adventure-page-box">
+                { this.state.adventureStarted ? "" : this.startAdventureButton() }
+                <Route path="/adventures/:adventureId/pages/:pageId" adventure={adventure} component={PageContainer} />
+              </div>
             </div>
           </div>
         </div>

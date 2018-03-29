@@ -28294,24 +28294,28 @@ var AdventureShow = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'row' },
+          { className: 'adventure-show-box' },
           _react2.default.createElement(
             'div',
-            { className: 'adventure-show-cover-box col-12' },
-            adventure.cover_url ? this.coverImage(adventure.cover_url) : this.defaultImage()
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-12' },
+            { className: 'row' },
             _react2.default.createElement(
               'div',
-              { className: 'adventure-page-box' },
-              this.state.adventureStarted ? "" : this.startAdventureButton(),
-              _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId/pages/:pageId', adventure: adventure, component: _page_container2.default })
+              { className: 'adventure-show-cover-box col-12' },
+              adventure.cover_url ? this.coverImage(adventure.cover_url) : this.defaultImage()
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-12' },
+              _react2.default.createElement(
+                'div',
+                { className: 'adventure-page-box' },
+                this.state.adventureStarted ? "" : this.startAdventureButton(),
+                _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId/pages/:pageId', adventure: adventure, component: _page_container2.default })
+              )
             )
           )
         )
@@ -28444,8 +28448,16 @@ var Page = function (_React$Component) {
       }
     }
   }, {
+    key: 'handleOptionClick',
+    value: function handleOptionClick(e, optionId) {
+      e.preventDefault();
+      this.props.history.push(this.state.page.options[optionId].destination_id.toString());
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
       var page = this.state.page;
 
       var options = page.options || {};
@@ -28461,8 +28473,8 @@ var Page = function (_React$Component) {
             { className: 'col-12' },
             _react2.default.createElement(
               'h3',
-              null,
-              page.name
+              { className: 'page-box-text' },
+              page.text
             )
           )
         ),
@@ -28471,9 +28483,15 @@ var Page = function (_React$Component) {
           { className: 'row' },
           Object.keys(options).map(function (optionId) {
             return _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: options[optionId].destination_id.toString(), className: 'col-12', key: optionId },
-              options[optionId].text
+              'div',
+              { className: 'col-12', key: optionId },
+              _react2.default.createElement(
+                'div',
+                { className: 'option', onClick: function onClick(e) {
+                    return _this3.handleOptionClick(e, optionId);
+                  } },
+                options[optionId].text
+              )
             );
           })
         )

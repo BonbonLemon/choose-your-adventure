@@ -33,6 +33,11 @@ class Page extends React.Component {
     }
   }
 
+  handleOptionClick(e, optionId) {
+    e.preventDefault()
+    this.props.history.push(this.state.page.options[optionId].destination_id.toString());
+  }
+
   render() {
     const { page } = this.state;
     const options = page.options || {};
@@ -41,16 +46,17 @@ class Page extends React.Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
-            <h3>{page.name}</h3>
+            <h3 className="page-box-text">{page.text}</h3>
           </div>
         </div>
         <div className="row">
           {Object.keys(options).map(optionId => {
             return (
-
-              <Link to={options[optionId].destination_id.toString()} className="col-12" key={optionId}>
-                {options[optionId].text}
-              </Link>
+              <div className="col-12" key={optionId}>
+                <div className="option" onClick={e => this.handleOptionClick(e, optionId)}>
+                  {options[optionId].text}
+                </div>
+              </div>
             );
           }
           )}
