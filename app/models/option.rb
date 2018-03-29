@@ -1,4 +1,6 @@
 class Option < ApplicationRecord
+  validates :text, :page_id, :destination_id, presence: true
+
   belongs_to :page
 
   has_one :destination,

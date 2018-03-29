@@ -26,9 +26,11 @@ class Page extends React.Component {
   }
 
   setPage(adventure, pageId) {
-    this.setState({
-      page: adventure.pages[pageId]
-    });
+    if (adventure.pages) {
+      this.setState({
+        page: adventure.pages[pageId]
+      });
+    }
   }
 
   render() {

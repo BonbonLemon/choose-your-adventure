@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180306015229) do
+ActiveRecord::Schema.define(version: 20180328103530) do
 
   create_table "adventures", force: :cascade do |t|
     t.string "title", null: false
@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 20180306015229) do
   end
 
   create_table "options", force: :cascade do |t|
-    t.string "text"
+    t.string "text", null: false
     t.integer "page_id", null: false
-    t.integer "destination_id"
+    t.integer "destination_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["page_id"], name: "index_options_on_page_id"

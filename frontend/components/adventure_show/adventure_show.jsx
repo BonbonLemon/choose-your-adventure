@@ -7,9 +7,11 @@ class AdventureShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUserIsAuthor: false
+      currentUserIsAuthor: false,
+      adventureStarted: false
     }
     this.checkCurrentUser = this.checkCurrentUser.bind(this);
+    this.startAdventure = this.startAdventure.bind(this);
   }
 
   componentDidMount() {
@@ -17,6 +19,10 @@ class AdventureShow extends React.Component {
       this.props.fetchAdventure(this.props.adventureId, this.checkCurrentUser);
     } else {
       this.checkCurrentUser(this.props.adventure);
+    }
+
+    if (this.props.location.pathname.indexOf("pages") !== -1) {
+      this.startAdventure();
     }
   }
 
@@ -49,16 +55,28 @@ class AdventureShow extends React.Component {
     );
   }
 
-  render() {
+  startAdventure() {
+    this.setState({adventureStarted: true});
+  }
+
+  startAdventureButton() {
     const { adventure } = this.props;
-    const { currentUserIsAuthor } = this.state;
-    const author = adventure.author || {};
     let firstPageId;
     if (adventure.pages) {
       firstPageId = Object.keys(adventure.pages)[0];
     } else {
       firstPageId = 1;
     }
+
+    return (
+      <Link to={this.props.location.pathname + "/pages/" + firstPageId} onClick={this.startAdventure}>Start Adventure</Link>
+    );
+  }
+
+  render() {
+    const { adventure } = this.props;
+    const { currentUserIsAuthor } = this.state;
+    const author = adventure.author || {};
 
     return (
       <div className="container">
@@ -81,7 +99,7 @@ class AdventureShow extends React.Component {
         <div className="row">
           <div className="col-12">
             <div className="adventure-page-box">
-              <Link to={this.props.location.pathname + "/pages/" + firstPageId}>Start Adventure</Link>
+              { this.state.adventureStarted ? "" : this.startAdventureButton() }
               <Route path="/adventures/:adventureId/pages/:pageId" adventure={adventure} component={PageContainer} />
             </div>
           </div>
