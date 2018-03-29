@@ -18,8 +18,13 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+html, body {
+  height: 100%;
+}
+
 #root {
   background-color: #e9ebee;
+  min-height: 100%;
 }
 
  ul {
@@ -37,8 +42,10 @@
 
 /*adventure index*/
 .adventure-index-item {
+  margin: 0 auto;
   margin-bottom: 30px;
   background-color: white;
+  width: 275px;
   box-shadow: 5px 5px 5px #888888;
 }
 

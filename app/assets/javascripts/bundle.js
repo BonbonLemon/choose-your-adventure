@@ -27837,7 +27837,7 @@ var AdventureIndexItem = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'col-lg-4 col-sm-6 col-12' },
+        { className: 'col-12 col-md-6 col-lg-4 col-xl-3' },
         _react2.default.createElement(
           'div',
           { className: 'adventure-index-item', onClick: this.handleAdventureClick },
