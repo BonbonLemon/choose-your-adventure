@@ -50,35 +50,40 @@ class SessionForm extends React.Component {
   }
 
   render() {
+    const { username, password } = this.state;
+
     return (
-      <div className="login-form-container">
-        <form onSubmit={this.handleSubmit} className="login-form-box">
-          Welcome to BenchBnB!
-          <br/>
-          Please {this.props.formType} or {this.navLink()}
-          {this.renderErrors()}
-          <div className="login-form">
-            <br/>
-            <label>Username:
-              <input type="text"
-                value={this.state.username}
-                onChange={this.update('username')}
-                className="login-input"
-              />
-            </label>
-            <br/>
-            <label>Password:
-              <input type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                className="login-input"
-              />
-            </label>
-            <br/>
-            <input type="submit" value="Submit" />
-          </div>
-        </form>
-      </div>
+      <form onSubmit={this.handleSubmit} className="login-form-box">
+        Welcome to Choose Your Adventure!
+        <br/>
+        Please {this.props.formType} or {this.navLink()}
+        {this.renderErrors()}
+        <div className="form-group col-6 offset-3">
+          <label>Username</label>
+            <input
+              type="text"
+              className="form-control"
+              value={username}
+              placeholder="Enter Username"
+              onChange={this.update('username')}
+              required
+            />
+        </div>
+        <div className="form-group col-6 offset-3">
+          <label>Password</label>
+            <input
+              type="password"
+              className="form-control"
+              value={password}
+              placeholder="Enter Password"
+              onChange={this.update('password')}
+              required
+            />
+        </div>
+        <div className="form-group col-12 offset-3">
+          <input type="submit" value="Submit" />
+        </div>
+      </form>
     );
   }
 }
