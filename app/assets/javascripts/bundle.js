@@ -27264,8 +27264,9 @@ var mapStateToProps = function mapStateToProps(_ref) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    logout: function logout() {
-      return dispatch((0, _session_actions.logout)());
+    logout: function logout(e) {
+      e.preventDefault();
+      dispatch((0, _session_actions.logout)());
     }
   };
 };
@@ -27329,21 +27330,12 @@ var sessionLinks = function sessionLinks() {
     'ul',
     { className: 'navbar-nav' },
     _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/login', className: 'session-links' },
+      'li',
+      { className: 'nav-item' },
       _react2.default.createElement(
-        'button',
-        { className: 'btn btn-outline-info my-2 my-sm-0' },
+        _reactRouterDom.Link,
+        { to: '/login', className: 'session-links nav-link' },
         'Login'
-      )
-    ),
-    _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/signup', className: 'session-links' },
-      _react2.default.createElement(
-        'button',
-        { className: 'btn btn-outline-info my-2 my-sm-0' },
-        'Sign up'
       )
     )
   );
@@ -27355,11 +27347,25 @@ var logoutLink = function logoutLink(currentUser, logout) {
     { className: 'navbar-nav' },
     _react2.default.createElement(
       'li',
-      { className: 'nav-item' },
+      { className: 'nav-item dropdown' },
       _react2.default.createElement(
-        'button',
-        { className: 'btn btn-outline-info my-2 my-sm-0', type: 'submit', onClick: logout },
-        'Log Out'
+        'a',
+        { className: 'nav-link dropdown-toggle', href: '#', id: 'navbarDropdown', role: 'button', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
+        currentUser.username
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'dropdown-menu dropdown-menu-right', 'aria-labelledby': 'navbarDropdown' },
+        _react2.default.createElement(
+          'a',
+          { className: 'dropdown-item', href: '#' },
+          'My Profile'
+        ),
+        _react2.default.createElement(
+          'a',
+          { className: 'dropdown-item', href: '#', onClick: logout },
+          'Log Out'
+        )
       )
     )
   );
@@ -27370,7 +27376,7 @@ var Navbar = function Navbar(_ref) {
       logout = _ref.logout;
   return _react2.default.createElement(
     'nav',
-    { className: 'navbar navbar-expand-md navbar-light bg-light' },
+    { className: 'navbar navbar-expand-md navbar-dark bg-success' },
     _react2.default.createElement(
       _reactRouterDom.Link,
       { to: '/', className: 'navbar-brand' },
@@ -27384,57 +27390,7 @@ var Navbar = function Navbar(_ref) {
     _react2.default.createElement(
       'div',
       { className: 'collapse navbar-collapse', id: 'navbarSupportedContent' },
-      _react2.default.createElement(
-        'ul',
-        { className: 'navbar-nav mr-auto' },
-        _react2.default.createElement(
-          'li',
-          { className: 'nav-item' },
-          _react2.default.createElement(
-            'a',
-            { className: 'nav-link', href: '#' },
-            'Link'
-          )
-        ),
-        _react2.default.createElement(
-          'li',
-          { className: 'nav-item dropdown' },
-          _react2.default.createElement(
-            'a',
-            { className: 'nav-link dropdown-toggle', href: '#', id: 'navbarDropdown', role: 'button', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
-            'Dropdown'
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'dropdown-menu', 'aria-labelledby': 'navbarDropdown' },
-            _react2.default.createElement(
-              'a',
-              { className: 'dropdown-item', href: '#' },
-              'Action'
-            ),
-            _react2.default.createElement(
-              'a',
-              { className: 'dropdown-item', href: '#' },
-              'Another action'
-            ),
-            _react2.default.createElement('div', { className: 'dropdown-divider' }),
-            _react2.default.createElement(
-              'a',
-              { className: 'dropdown-item', href: '#' },
-              'Something else here'
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'li',
-          { className: 'nav-item' },
-          _react2.default.createElement(
-            'a',
-            { className: 'nav-link disabled' },
-            'Disabled'
-          )
-        )
-      ),
+      _react2.default.createElement('ul', { className: 'navbar-nav mr-auto' }),
       currentUser ? logoutLink(currentUser, logout) : sessionLinks()
     )
   );
@@ -29251,8 +29207,9 @@ var _options2 = _interopRequireDefault(_options);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var options = ownProps.page.options || {};
   return {
-    options: (0, _selectors.asArray)(ownProps.page.options)
+    options: (0, _selectors.asArray)(options)
   };
 };
 
