@@ -33,7 +33,7 @@ class AdventureNew extends React.Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
-            <h1>Create An Adventure</h1>
+            <h1 className="adventure-form-header">Create An Adventure</h1>
           </div>
         </div>
         <div className="row">

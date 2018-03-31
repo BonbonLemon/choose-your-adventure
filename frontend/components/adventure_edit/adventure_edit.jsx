@@ -35,7 +35,7 @@ class AdventureEdit extends React.Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
-            <h1>Edit An Adventure</h1>
+            <h1 className="adventure-form-header">Edit An Adventure</h1>
           </div>
         </div>
         <div className="row">

@@ -4857,12 +4857,12 @@ var AdventureEdit = function (_React$Component) {
 
       return _react2.default.createElement(
         'form',
-        { onSubmit: function onSubmit(e) {
+        { className: 'adventure-form', onSubmit: function onSubmit(e) {
             return _this4.props.handleSubmit(_this4.state, e);
           } },
         _react2.default.createElement(
           'div',
-          { className: 'form-group col-6' },
+          { className: 'form-group' },
           _react2.default.createElement(
             'label',
             null,
@@ -4879,7 +4879,7 @@ var AdventureEdit = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'form-group col-6' },
+          { className: 'form-group' },
           _react2.default.createElement(
             'label',
             null,
@@ -4890,7 +4890,7 @@ var AdventureEdit = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'form-group col-12' },
+          { className: 'form-group' },
           _react2.default.createElement(
             'label',
             null,
@@ -4906,7 +4906,7 @@ var AdventureEdit = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'form-group col-6' },
+          { className: 'form-group' },
           cover,
           _react2.default.createElement(
             'div',
@@ -4934,7 +4934,7 @@ var AdventureEdit = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'form-group col-12' },
+          { className: 'form-group' },
           _react2.default.createElement(
             'button',
             { type: 'submit', className: 'btn btn-primary' },
@@ -27376,7 +27376,7 @@ var Navbar = function Navbar(_ref) {
       logout = _ref.logout;
   return _react2.default.createElement(
     'nav',
-    { className: 'navbar navbar-expand-md navbar-dark bg-success' },
+    { className: 'navbar navbar-expand-md navbar-dark bg-primary' },
     _react2.default.createElement(
       _reactRouterDom.Link,
       { to: '/', className: 'navbar-brand' },
@@ -27990,7 +27990,7 @@ var AdventureNew = function (_React$Component) {
             { className: 'col-12' },
             _react2.default.createElement(
               'h1',
-              null,
+              { className: 'adventure-form-header' },
               'Create An Adventure'
             )
           )
@@ -28606,7 +28606,7 @@ var AdventureEdit = function (_React$Component) {
             { className: 'col-12' },
             _react2.default.createElement(
               'h1',
-              null,
+              { className: 'adventure-form-header' },
               'Edit An Adventure'
             )
           )

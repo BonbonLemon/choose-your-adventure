@@ -82,8 +82,8 @@ class AdventureEdit extends React.Component {
     }
 
     return (
-      <form onSubmit={(e) => this.props.handleSubmit(this.state, e)}>
-        <div className="form-group col-6">
+      <form className="adventure-form" onSubmit={(e) => this.props.handleSubmit(this.state, e)}>
+        <div className="form-group">
           <label>Title</label>
           <input
             type="text"
@@ -95,13 +95,13 @@ class AdventureEdit extends React.Component {
           />
         </div>
 
-        <div className="form-group col-6">
+        <div className="form-group">
           <label>Genres</label>
           <GenreInput addGenre={this.addGenre} />
           <GenreInputs genres={this.state.genres} removeGenre={this.removeGenre} />
         </div>
 
-        <div className="form-group col-12">
+        <div className="form-group">
           <label>Description</label>
           <textarea
             className="form-control"
@@ -112,7 +112,7 @@ class AdventureEdit extends React.Component {
           />
         </div>
 
-        <div className="form-group col-6">
+        <div className="form-group">
           { cover }
           <div className="input-group">
             <div className="input-group-prepend">
@@ -133,7 +133,7 @@ class AdventureEdit extends React.Component {
           </div>
         </div>
 
-        <div className="form-group col-12">
+        <div className="form-group">
           <button type="submit" className="btn btn-primary">Save</button>
         </div>
       </form>

@@ -1,5 +1,5 @@
 class Page < ApplicationRecord
-  validates :name, :text, :adventure_id, presence: true
+  validates :name, :adventure_id, presence: true
 
   belongs_to :adventure,
     foreign_key: :adventure_id,
