@@ -98,6 +98,12 @@ html, body {
 
 }
 
+.back-to-list-button {
+  text-align: center;
+  font-size: 24px;
+  margin-right: 580px;
+}
+
 .adventure-show-box {
   outline: thin black solid;
   width: 700px;
@@ -106,7 +112,7 @@ html, body {
 }
 
 .adventure-show-title {
-  margin-top: 30px;
+  /*margin-top: 30px;*/
 }
 
 .author-and-edit-box {
@@ -158,7 +164,15 @@ html, body {
 }
 
 .start-adventure-button {
-  margin-left: 294px;
+  margin-left: 268px;
+}
+
+.the-end {
+  margin: 0 auto;
+  margin-top: 30px;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: fantasy;
 }
 
 .option {

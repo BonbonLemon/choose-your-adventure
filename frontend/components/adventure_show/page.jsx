@@ -38,6 +38,26 @@ class Page extends React.Component {
     this.props.history.push(this.state.page.options[optionId].destination_id.toString());
   }
 
+  optionsIndex(options) {
+    const optionButtons =
+    Object.keys(options).map(optionId => {
+      return (
+        <div className="col-12" key={optionId}>
+          <div className="option" onClick={e => this.handleOptionClick(e, optionId)}>
+            {options[optionId].text}
+          </div>
+        </div>
+      );
+    });
+    return optionButtons;
+  }
+
+  theEnd() {
+    return (
+      <div className="the-end">The End</div>
+    );
+  }
+
   render() {
     const { page } = this.state;
     const options = page.options || {};
@@ -50,16 +70,7 @@ class Page extends React.Component {
           </div>
         </div>
         <div className="row">
-          {Object.keys(options).map(optionId => {
-            return (
-              <div className="col-12" key={optionId}>
-                <div className="option" onClick={e => this.handleOptionClick(e, optionId)}>
-                  {options[optionId].text}
-                </div>
-              </div>
-            );
-          }
-          )}
+          { Object.keys(options).length === 0 ? this.theEnd() : this.optionsIndex(options) }
         </div>
       </div>
     );

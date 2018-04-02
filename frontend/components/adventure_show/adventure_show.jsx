@@ -76,7 +76,7 @@ class AdventureShow extends React.Component {
           <span className="font-weight-bold">Description: </span>{ adventure.description }
         </p>
         <Link to={this.props.location.pathname + "/pages/" + firstPageId} onClick={this.startAdventure}>
-          <button type="button" className="start-adventure-button btn btn-warning btn-sm">Start Adventure</button>
+          <button type="button" className="start-adventure-button btn btn-warning btn-lg">Start Adventure</button>
         </Link>
       </div>
     );
@@ -89,6 +89,15 @@ class AdventureShow extends React.Component {
 
     return (
       <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <div className="back-to-list-button mt-2">
+              <Link to="/">
+                <span className="">Back to list</span>
+              </Link>
+            </div>
+          </div>
+        </div>
         <div className="row">
           <div className="col-12">
             <h2 className="adventure-show-title text-center">{adventure.title}</h2>
