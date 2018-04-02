@@ -41,6 +41,10 @@ html, body {
  }
 
 /*adventure index*/
+.create-adventure-button {
+  margin: 25px 20px;
+}
+
 .adventure-index-item {
   margin: 0 auto;
   margin-bottom: 30px;

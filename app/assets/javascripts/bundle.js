@@ -27700,7 +27700,11 @@ var AdventureIndex = function (_React$Component) {
         _react2.default.createElement(
           _reactRouterDom.Link,
           { to: 'adventures/new' },
-          'Create New Adventure'
+          _react2.default.createElement(
+            'button',
+            { type: 'button', 'class': 'btn btn-info create-adventure-button' },
+            'Create New Adventure'
+          )
         ),
         _react2.default.createElement(
           'div',

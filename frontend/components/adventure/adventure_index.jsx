@@ -15,7 +15,9 @@ class AdventureIndex extends React.Component {
   render() {
     return (
       <div className="container-fluid">
-        <Link to="adventures/new">Create New Adventure</Link>
+        <Link to="adventures/new">
+          <button type="button" class="btn btn-info create-adventure-button">Create New Adventure</button>
+        </Link>
         <div className="row">
           {this.props.adventures.map((adventure) => (
             <AdventureIndexItem
