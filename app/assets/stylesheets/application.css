@@ -279,6 +279,40 @@ html, body {
 
 }
 
+.options-index {
+  margin-top: 10px;
+}
+
+.option-index-item {
+  background-color: #a1c5d6;
+  margin-bottom: 10px;
+  padding: 7px;
+}
+
+.option-index-item-buttons {
+  line-height: 40px;
+}
+
+.option-index-item-button {
+  height: 25px;
+}
+
+.option-index-item-button:hover {
+  cursor: pointer;
+}
+
+.option-index-item-details {
+  line-height: 40px;
+}
+
+.option-index-item-text {
+  width: 550px;
+}
+
+.option-index-item-destination-name {
+  width: 100px;
+}
+
 .add-option-button {
   background-color: #a1c5d6;
   height: 40px;

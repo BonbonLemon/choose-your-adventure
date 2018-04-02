@@ -10,7 +10,7 @@ class PageForm extends React.Component {
     this.state = {
       hasNewOption: false,
       name: name,
-      text: text
+      text: text || ""
     };
     this.toggleHasNewOption = this.toggleHasNewOption.bind(this);
   }

@@ -39,9 +39,11 @@ class Options extends React.Component {
         </div>
         <div className="row">
           <div className="col-12">
-            {options.map(option => (
-              <OptionsIndexItem key={option.id} option={option} editOption={this.props.editOption} deleteOption={this.props.deleteOption} />
-            ))}
+            <div className="options-index">
+              {options.map(option => (
+                <OptionsIndexItem key={option.id} option={option} editOption={this.props.editOption} deleteOption={this.props.deleteOption} />
+              ))}
+            </div>
           </div>
         </div>
         <div className="row">

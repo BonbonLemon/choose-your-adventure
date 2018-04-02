@@ -38,7 +38,7 @@ class PagesIndexItem extends React.Component {
     return (
       <div className="page-box page-summary-box input-group">
         <div className="page-index-item-buttons input-group-prepend mr-3">
-          <span className="mr-3"><img className="page-index-item-button" onClick={this.toggleEditPage} src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423463/edit_qif1lz.png" /></span>
+          <span><img className="page-index-item-button mr-3" onClick={this.toggleEditPage} src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423463/edit_qif1lz.png" /></span>
           <span><img className="page-index-item-button" onClick={this.deletePage} src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423844/x_bkgfwz.png" /></span>
         </div>
         <div className="page-index-item-details">

@@ -28957,8 +28957,8 @@ var PagesIndexItem = function (_React$Component) {
           { className: 'page-index-item-buttons input-group-prepend mr-3' },
           _react2.default.createElement(
             'span',
-            { className: 'mr-3' },
-            _react2.default.createElement('img', { className: 'page-index-item-button', onClick: this.toggleEditPage, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423463/edit_qif1lz.png' })
+            null,
+            _react2.default.createElement('img', { className: 'page-index-item-button mr-3', onClick: this.toggleEditPage, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423463/edit_qif1lz.png' })
           ),
           _react2.default.createElement(
             'span',
@@ -29066,7 +29066,7 @@ var PageForm = function (_React$Component) {
     _this.state = {
       hasNewOption: false,
       name: name,
-      text: text
+      text: text || ""
     };
     _this.toggleHasNewOption = _this.toggleHasNewOption.bind(_this);
     return _this;
@@ -29354,9 +29354,13 @@ var Options = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'col-12' },
-            options.map(function (option) {
-              return _react2.default.createElement(_option_index_item2.default, { key: option.id, option: option, editOption: _this2.props.editOption, deleteOption: _this2.props.deleteOption });
-            })
+            _react2.default.createElement(
+              'div',
+              { className: 'options-index' },
+              options.map(function (option) {
+                return _react2.default.createElement(_option_index_item2.default, { key: option.id, option: option, editOption: _this2.props.editOption, deleteOption: _this2.props.deleteOption });
+              })
+            )
           )
         ),
         _react2.default.createElement(
@@ -29479,39 +29483,39 @@ var OptionsIndexItem = function (_React$Component) {
       }
       return _react2.default.createElement(
         'div',
-        { className: 'option-box input-group' },
+        { className: 'option-index-item input-group' },
         _react2.default.createElement(
           'div',
           { className: 'option-index-item-buttons input-group-prepend mr-3' },
           _react2.default.createElement(
             'span',
-            { onClick: this.toggleEditOption },
-            'Edit'
+            { className: 'option-edit-button mr-2', onClick: this.toggleEditOption },
+            _react2.default.createElement('img', { className: 'option-index-item-button', onClick: this.toggleEditPage, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1522659498/61776_ah30jf.svg' })
           ),
           _react2.default.createElement(
             'span',
-            { onClick: this.deleteOption },
-            'Delete'
+            { className: 'option-delete-button mr-3', onClick: this.deleteOption },
+            _react2.default.createElement('img', { className: 'option-index-item-button', onClick: this.toggleEditPage, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1522660345/trash_can_wulwhz.svg' })
           )
         ),
         _react2.default.createElement(
           'div',
-          { className: 'option-index-item-details form-control' },
+          { className: 'option-index-item-details' },
           _react2.default.createElement(
             'div',
             { className: 'row' },
             _react2.default.createElement(
               'div',
-              { className: 'col-10' },
+              { className: 'option-index-item-text' },
               _react2.default.createElement(
                 'span',
-                { className: 'option-index-item-name' },
+                null,
                 text
               )
             ),
             _react2.default.createElement(
               'div',
-              { className: 'col-2' },
+              { className: 'option-index-item-destination-name' },
               _react2.default.createElement(
                 'span',
                 null,

@@ -44,17 +44,21 @@ class OptionsIndexItem extends React.Component {
       destination_name = 'The End';
     }
     return (
-      <div className="option-box input-group">
+      <div className="option-index-item input-group">
         <div className="option-index-item-buttons input-group-prepend mr-3">
-          <span onClick={this.toggleEditOption}>Edit</span>
-          <span onClick={this.deleteOption}>Delete</span>
+          <span className="option-edit-button mr-2" onClick={this.toggleEditOption}>
+            <img className="option-index-item-button" onClick={this.toggleEditPage} src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1522659498/61776_ah30jf.svg" />
+          </span>
+          <span className="option-delete-button mr-3" onClick={this.deleteOption}>
+            <img className="option-index-item-button" onClick={this.toggleEditPage} src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1522660345/trash_can_wulwhz.svg" />
+          </span>
         </div>
-        <div className="option-index-item-details form-control">
+        <div className="option-index-item-details">
           <div className="row">
-            <div className="col-10">
-              <span className="option-index-item-name">{text}</span>
+            <div className="option-index-item-text">
+              <span>{text}</span>
             </div>
-            <div className="col-2">
+            <div className="option-index-item-destination-name">
               <span>{destination_name}</span>
             </div>
           </div>
