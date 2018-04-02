@@ -24,7 +24,7 @@ const logoutLink = (currentUser, logout) => (
 );
 
 const Navbar = ({ currentUser, logout }) => (
-  <nav className="navbar navbar-expand-md navbar-dark bg-primary">
+  <nav className="navbar navbar-expand-md navbar-dark bg-dark">
     <Link to="/" className="navbar-brand">Choose Your Adventure</Link>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>

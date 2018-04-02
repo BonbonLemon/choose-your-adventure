@@ -27376,7 +27376,7 @@ var Navbar = function Navbar(_ref) {
       logout = _ref.logout;
   return _react2.default.createElement(
     'nav',
-    { className: 'navbar navbar-expand-md navbar-dark bg-primary' },
+    { className: 'navbar navbar-expand-md navbar-dark bg-dark' },
     _react2.default.createElement(
       _reactRouterDom.Link,
       { to: '/', className: 'navbar-brand' },
@@ -27702,7 +27702,7 @@ var AdventureIndex = function (_React$Component) {
           { to: 'adventures/new' },
           _react2.default.createElement(
             'button',
-            { type: 'button', 'class': 'btn btn-info create-adventure-button' },
+            { type: 'button', className: 'btn btn-info create-adventure-button' },
             'Create New Adventure'
           )
         ),
@@ -28193,12 +28193,16 @@ var AdventureShow = function (_React$Component) {
     key: 'editButton',
     value: function editButton() {
       return _react2.default.createElement(
-        _reactRouterDom.Link,
-        { to: "/adventureeditor/" + this.props.adventureId },
+        'div',
+        { className: 'adventure-edit-button' },
         _react2.default.createElement(
-          'button',
-          { type: 'button', className: 'edit-button btn btn-danger btn-sm' },
-          'Edit'
+          _reactRouterDom.Link,
+          { to: "/adventureeditor/" + this.props.adventureId },
+          _react2.default.createElement(
+            'button',
+            { type: 'button', className: 'edit-button btn btn-danger btn-sm' },
+            'Edit'
+          )
         )
       );
     }
@@ -28208,8 +28212,8 @@ var AdventureShow = function (_React$Component) {
       this.setState({ adventureStarted: true });
     }
   }, {
-    key: 'startAdventureButton',
-    value: function startAdventureButton() {
+    key: 'adventureShowDetail',
+    value: function adventureShowDetail() {
       var adventure = this.props.adventure;
 
       var firstPageId = void 0;
@@ -28220,9 +28224,27 @@ var AdventureShow = function (_React$Component) {
       }
 
       return _react2.default.createElement(
-        _reactRouterDom.Link,
-        { to: this.props.location.pathname + "/pages/" + firstPageId, onClick: this.startAdventure },
-        'Start Adventure'
+        'div',
+        { className: 'adventure-show-details' },
+        _react2.default.createElement(
+          'p',
+          { className: 'adventure-show-description' },
+          _react2.default.createElement(
+            'span',
+            { className: 'font-weight-bold' },
+            'Description: '
+          ),
+          adventure.description
+        ),
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: this.props.location.pathname + "/pages/" + firstPageId, onClick: this.startAdventure },
+          _react2.default.createElement(
+            'button',
+            { type: 'button', className: 'start-adventure-button btn btn-warning btn-sm' },
+            'Start Adventure'
+          )
+        )
       );
     }
   }, {
@@ -28255,12 +28277,16 @@ var AdventureShow = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'col-12' },
-            currentUserIsAuthor ? this.editButton() : null,
             _react2.default.createElement(
-              'h4',
-              { className: 'adventure-show-author' },
-              'By ',
-              author.username
+              'div',
+              { className: 'author-and-edit-box' },
+              currentUserIsAuthor ? this.editButton() : null,
+              _react2.default.createElement(
+                'h4',
+                { className: 'adventure-show-author' },
+                'By ',
+                author.username
+              )
             )
           )
         ),
@@ -28285,7 +28311,7 @@ var AdventureShow = function (_React$Component) {
               _react2.default.createElement(
                 'div',
                 { className: 'adventure-page-box' },
-                this.state.adventureStarted ? "" : this.startAdventureButton(),
+                this.state.adventureStarted ? "" : this.adventureShowDetail(),
                 _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId/pages/:pageId', adventure: adventure, component: _page_container2.default })
               )
             )

@@ -49,9 +49,11 @@ class AdventureShow extends React.Component {
 
   editButton() {
     return (
-      <Link to={"/adventureeditor/" + this.props.adventureId}>
-        <button type="button" className="edit-button btn btn-danger btn-sm">Edit</button>
-      </Link>
+      <div className="adventure-edit-button">
+        <Link to={"/adventureeditor/" + this.props.adventureId}>
+          <button type="button" className="edit-button btn btn-danger btn-sm">Edit</button>
+        </Link>
+      </div>
     );
   }
 
@@ -59,7 +61,7 @@ class AdventureShow extends React.Component {
     this.setState({adventureStarted: true});
   }
 
-  startAdventureButton() {
+  adventureShowDetail() {
     const { adventure } = this.props;
     let firstPageId;
     if (adventure.pages) {
@@ -69,7 +71,14 @@ class AdventureShow extends React.Component {
     }
 
     return (
-      <Link to={this.props.location.pathname + "/pages/" + firstPageId} onClick={this.startAdventure}>Start Adventure</Link>
+      <div className="adventure-show-details">
+        <p className="adventure-show-description">
+          <span className="font-weight-bold">Description: </span>{ adventure.description }
+        </p>
+        <Link to={this.props.location.pathname + "/pages/" + firstPageId} onClick={this.startAdventure}>
+          <button type="button" className="start-adventure-button btn btn-warning btn-sm">Start Adventure</button>
+        </Link>
+      </div>
     );
   }
 
@@ -87,8 +96,10 @@ class AdventureShow extends React.Component {
         </div>
         <div className="row">
           <div className="col-12">
-            {currentUserIsAuthor ? this.editButton() : null }
-            <h4 className="adventure-show-author">By {author.username}</h4>
+            <div className="author-and-edit-box">
+              {currentUserIsAuthor ? this.editButton() : null }
+              <h4 className="adventure-show-author">By {author.username}</h4>
+            </div>
           </div>
         </div>
         <div className="adventure-show-box">
@@ -100,7 +111,7 @@ class AdventureShow extends React.Component {
           <div className="row">
             <div className="col-12">
               <div className="adventure-page-box">
-                { this.state.adventureStarted ? "" : this.startAdventureButton() }
+                { this.state.adventureStarted ? "" : this.adventureShowDetail() }
                 <Route path="/adventures/:adventureId/pages/:pageId" adventure={adventure} component={PageContainer} />
               </div>
             </div>

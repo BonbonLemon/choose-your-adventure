@@ -19,6 +19,7 @@
 }
 
 html, body {
+  background-color: #e9ebee;
   height: 100%;
 }
 
@@ -99,10 +100,22 @@ html, body {
 
 .adventure-show-box {
   outline: thin black solid;
+  width: 700px;
+  margin: 0 auto;
+  margin-bottom: 200px;
 }
 
 .adventure-show-title {
   margin-top: 30px;
+}
+
+.author-and-edit-box {
+  width: 700px;
+  margin: 0 auto;
+}
+
+.adventure-edit-button {
+  float: left;
 }
 
 .adventure-show-author {
@@ -133,6 +146,19 @@ html, body {
   height: 500px;
   width: 100%;
   background-color: white;
+  outline: thin solid black;
+}
+
+.adventure-show-details {
+
+}
+
+.adventure-show-description {
+  padding: 20px;
+}
+
+.start-adventure-button {
+  margin-left: 294px;
 }
 
 .option {
