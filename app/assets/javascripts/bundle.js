@@ -28834,17 +28834,9 @@ var Pages = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(
-          'div',
-          { className: 'row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-12' },
-            _react2.default.createElement(
-              'h2',
-              { className: 'text-left' },
-              'Pages'
-            )
-          )
+          'h2',
+          { className: 'text-left pages-header' },
+          'Pages'
         ),
         _react2.default.createElement(
           'div',
@@ -28852,9 +28844,13 @@ var Pages = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'col-12' },
-            pages.map(function (page) {
-              return _react2.default.createElement(_page_index_item2.default, { key: page.id, page: page, editPage: _this3.props.editPage, updateAdventure: _this3.props.updateAdventure, deletePage: _this3.props.deletePage });
-            })
+            _react2.default.createElement(
+              'div',
+              { className: 'pages-index' },
+              pages.map(function (page) {
+                return _react2.default.createElement(_page_index_item2.default, { key: page.id, page: page, editPage: _this3.props.editPage, updateAdventure: _this3.props.updateAdventure, deletePage: _this3.props.deletePage });
+              })
+            )
           )
         ),
         _react2.default.createElement(
@@ -28955,7 +28951,7 @@ var PagesIndexItem = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'page-box input-group' },
+        { className: 'page-box page-summary-box input-group' },
         _react2.default.createElement(
           'div',
           { className: 'page-index-item-buttons input-group-prepend mr-3' },
@@ -28994,7 +28990,7 @@ var PagesIndexItem = function (_React$Component) {
               { className: 'col-12' },
               _react2.default.createElement(
                 'span',
-                null,
+                { className: 'page-index-item-text' },
                 text
               )
             )

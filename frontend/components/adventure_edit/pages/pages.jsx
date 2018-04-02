@@ -50,16 +50,15 @@ class Pages extends React.Component {
 
     return (
       <div>
+        <h2 className="text-left pages-header">Pages</h2>
+
         <div className="row">
           <div className="col-12">
-            <h2 className="text-left">Pages</h2>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12">
-            {pages.map(page => (
-              <PageIndexItem key={page.id} page={page} editPage={this.props.editPage} updateAdventure={this.props.updateAdventure} deletePage={this.props.deletePage}/>
-            ))}
+            <div className="pages-index">
+              {pages.map(page => (
+                <PageIndexItem key={page.id} page={page} editPage={this.props.editPage} updateAdventure={this.props.updateAdventure} deletePage={this.props.deletePage}/>
+              ))}
+            </div>
           </div>
         </div>
         <div className="row">

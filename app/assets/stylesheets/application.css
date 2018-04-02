@@ -214,10 +214,24 @@ html, body {
   cursor: pointer;
 }
 
+.pages-index {
+  margin: 10px;
+  width: 800px;
+}
+
+.page-summary-box {
+  height: 68px;
+
+}
+
 .page-box {
   background-color: #cee1ea;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.32);
+  margin-bottom: 20px;
   padding: 10px;
+}
+
+.pages-header {
+  margin: 10px;
 }
 
 .page-box-text {
@@ -229,6 +243,10 @@ html, body {
   font-family: serif;
 }
 
+.page-index-item-buttons {
+  line-height: 42px;
+}
+
 .page-index-item-button {
   height: 28px;
 }
@@ -237,8 +255,20 @@ html, body {
   cursor: pointer;
 }
 
+.page-index-item-details {
+  width: 692px;
+}
+
 .page-index-item-name {
   font-weight: bolder;
+}
+
+.page-index-item-text {
+  position: absolute;
+  width: 692px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .add-page-button {
