@@ -63,7 +63,7 @@ class OptionForm extends React.Component {
         </div>
         <div className="form-row">
           <div className="col-12 mt-3">
-            <button type="submit" className="btn btn-success">Save Option</button>
+            <button type="submit" className="btn btn-success mr-3">Save Option</button>
           </div>
         </div>
       </form>

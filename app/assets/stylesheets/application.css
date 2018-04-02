@@ -276,7 +276,7 @@ html, body {
 }
 
 .new-page-form {
-
+  padding-bottom: 15px;
 }
 
 .options-index {
@@ -316,12 +316,11 @@ html, body {
 .add-option-button {
   background-color: #a1c5d6;
   height: 40px;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.16);
   padding: 10px;
 }
 
 .new-option-form {
   background-color: #a1c5d6;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.16);
+  border-top: thin solid #0000001f;
   padding: 10px;
 }

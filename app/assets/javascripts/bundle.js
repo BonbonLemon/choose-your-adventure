@@ -5216,7 +5216,7 @@ var OptionForm = function (_React$Component) {
             { className: 'col-12 mt-3' },
             _react2.default.createElement(
               'button',
-              { type: 'submit', className: 'btn btn-success' },
+              { type: 'submit', className: 'btn btn-success mr-3' },
               'Save Option'
             )
           )
