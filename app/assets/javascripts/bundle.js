@@ -28794,10 +28794,10 @@ var Pages = function (_React$Component) {
     value: function miniPageForm() {
       return _react2.default.createElement(
         'form',
-        { onSubmit: this.handleSubmit },
+        { className: 'mini-page-form', onSubmit: this.handleSubmit },
         _react2.default.createElement(
-          'label',
-          null,
+          'h5',
+          { className: 'mini-page-form-header' },
           'Create A New Page'
         ),
         _react2.default.createElement(

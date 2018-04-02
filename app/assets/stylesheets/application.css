@@ -324,3 +324,13 @@ html, body {
   border-top: thin solid #0000001f;
   padding: 10px;
 }
+
+.mini-page-form {
+  width: 800px;
+  margin: 10px;
+  margin-bottom: 50px;
+}
+
+.mini-page-form-header {
+
+}
