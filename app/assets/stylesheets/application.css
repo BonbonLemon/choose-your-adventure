@@ -37,6 +37,10 @@ html, body {
    padding: 0;
  }
 
+ .full-height {
+   height: 100%;
+ }
+
  .session-links {
    margin-left: 10px;
  }
@@ -100,8 +104,8 @@ html, body {
 
 .back-to-list-button {
   text-align: center;
-  font-size: 24px;
-  margin-right: 580px;
+  font-size: 20px;
+  margin-right: 595px;
 }
 
 .adventure-show-box {
@@ -168,11 +172,18 @@ html, body {
 }
 
 .the-end {
+  text-align: center;
   margin: 0 auto;
   margin-top: 30px;
   font-size: 40px;
   font-weight: bold;
   font-family: fantasy;
+}
+
+.page-buttons {
+  position: absolute;
+  bottom: 30px;
+  left: 45px;
 }
 
 .option {

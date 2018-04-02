@@ -28427,9 +28427,11 @@ var Page = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this, props));
 
     _this.state = {
-      page: {}
+      page: {},
+      firstPageId: null
     };
     _this.setPage = _this.setPage.bind(_this);
+    _this.tryAgain = _this.tryAgain.bind(_this);
     return _this;
   }
 
@@ -28464,6 +28466,10 @@ var Page = function (_React$Component) {
         this.setState({
           page: adventure.pages[pageId]
         });
+
+        if (!this.state.firstPageId) {
+          this.setState({ firstPageId: Object.keys(adventure.pages)[0] });
+        }
       }
     }
   }, {
@@ -28502,6 +28508,33 @@ var Page = function (_React$Component) {
       );
     }
   }, {
+    key: 'tryAgain',
+    value: function tryAgain() {
+      this.props.history.push(this.state.firstPageId);
+    }
+  }, {
+    key: 'pageButtons',
+    value: function pageButtons(options) {
+      var isFirstPage = false;
+      if (this.state.page.id === parseInt(this.state.firstPageId)) {
+        isFirstPage = true;
+      }
+      return _react2.default.createElement(
+        'div',
+        { className: 'page-buttons' },
+        isFirstPage ? "" : _react2.default.createElement(
+          'button',
+          { type: 'button', className: 'btn btn-info mr-3', onClick: this.props.history.goBack },
+          'Back'
+        ),
+        Object.keys(options).length === 0 ? _react2.default.createElement(
+          'button',
+          { type: 'button', className: 'btn btn-info', onClick: this.tryAgain },
+          'Try Again'
+        ) : ""
+      );
+    }
+  }, {
     key: 'render',
     value: function render() {
       var page = this.state.page;
@@ -28510,7 +28543,7 @@ var Page = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'container-fluid' },
+        { className: 'container-fluid full-height' },
         _react2.default.createElement(
           'div',
           { className: 'row' },
@@ -28528,7 +28561,8 @@ var Page = function (_React$Component) {
           'div',
           { className: 'row' },
           Object.keys(options).length === 0 ? this.theEnd() : this.optionsIndex(options)
-        )
+        ),
+        this.pageButtons(options)
       );
     }
   }]);

@@ -5,9 +5,11 @@ class Page extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: {}
+      page: {},
+      firstPageId: null
     };
     this.setPage = this.setPage.bind(this);
+    this.tryAgain = this.tryAgain.bind(this);
   }
 
   componentDidMount() {
@@ -30,7 +32,12 @@ class Page extends React.Component {
       this.setState({
         page: adventure.pages[pageId]
       });
+
+      if (!this.state.firstPageId) {
+        this.setState({firstPageId: Object.keys(adventure.pages)[0]})
+      }
     }
+
   }
 
   handleOptionClick(e, optionId) {
@@ -58,12 +65,29 @@ class Page extends React.Component {
     );
   }
 
+  tryAgain() {
+    this.props.history.push(this.state.firstPageId);
+  }
+
+  pageButtons(options) {
+    let isFirstPage = false;
+    if (this.state.page.id === parseInt(this.state.firstPageId)) {
+      isFirstPage = true;
+    }
+    return (
+      <div className="page-buttons">
+        { isFirstPage ? "" : <button type="button" className="btn btn-info mr-3" onClick={this.props.history.goBack}>Back</button> }
+        { Object.keys(options).length === 0 ? <button type="button" className="btn btn-info" onClick={this.tryAgain}>Try Again</button> : "" }
+      </div>
+    );
+  }
+
   render() {
     const { page } = this.state;
     const options = page.options || {};
 
     return (
-      <div className="container-fluid">
+      <div className="container-fluid full-height">
         <div className="row">
           <div className="col-12">
             <h3 className="page-box-text">{page.text}</h3>
@@ -72,6 +96,7 @@ class Page extends React.Component {
         <div className="row">
           { Object.keys(options).length === 0 ? this.theEnd() : this.optionsIndex(options) }
         </div>
+        { this.pageButtons(options) }
       </div>
     );
   }
