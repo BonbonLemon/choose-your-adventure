@@ -28216,11 +28216,9 @@ var AdventureShow = function (_React$Component) {
     value: function adventureShowDetail() {
       var adventure = this.props.adventure;
 
-      var firstPageId = void 0;
+      var firstPageId = 0;
       if (adventure.pages) {
-        firstPageId = Object.keys(adventure.pages)[0];
-      } else {
-        firstPageId = 1;
+        firstPageId = adventure.pages[0].id;
       }
 
       return _react2.default.createElement(
@@ -28427,8 +28425,8 @@ var Page = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this, props));
 
     _this.state = {
-      page: {},
-      firstPageId: null
+      page: {}
+      // firstPageId: null
     };
     _this.setPage = _this.setPage.bind(_this);
     _this.tryAgain = _this.tryAgain.bind(_this);
@@ -28463,36 +28461,39 @@ var Page = function (_React$Component) {
     key: 'setPage',
     value: function setPage(adventure, pageId) {
       if (adventure.pages) {
+        var page = adventure.pages.find(function (page) {
+          return page.id == pageId;
+        });
         this.setState({
-          page: adventure.pages[pageId]
+          page: page
         });
 
-        if (!this.state.firstPageId) {
-          this.setState({ firstPageId: Object.keys(adventure.pages)[0] });
-        }
+        // if (!this.state.firstPageId) {
+        //   this.setState({firstPageId: Object.keys(adventure.pages)[0]})
+        // }
       }
     }
   }, {
     key: 'handleOptionClick',
     value: function handleOptionClick(e, optionId) {
       e.preventDefault();
-      this.props.history.push(this.state.page.options[optionId].destination_id.toString());
+      this.props.history.push(optionId.toString());
     }
   }, {
     key: 'optionsIndex',
     value: function optionsIndex(options) {
       var _this3 = this;
 
-      var optionButtons = Object.keys(options).map(function (optionId) {
+      var optionButtons = options.map(function (option) {
         return _react2.default.createElement(
           'div',
-          { className: 'col-12', key: optionId },
+          { className: 'col-12', key: option.id },
           _react2.default.createElement(
             'div',
             { className: 'option', onClick: function onClick(e) {
-                return _this3.handleOptionClick(e, optionId);
+                return _this3.handleOptionClick(e, option.destination_id);
               } },
-            options[optionId].text
+            option.text
           )
         );
       });
@@ -28510,13 +28511,16 @@ var Page = function (_React$Component) {
   }, {
     key: 'tryAgain',
     value: function tryAgain() {
-      this.props.history.push(this.state.firstPageId);
+      this.props.history.push(this.props.adventure.pages[0].id.toString());
+      // this.props.history.push(this.state.firstPageId);
     }
   }, {
     key: 'pageButtons',
     value: function pageButtons(options) {
+      var adventure = this.props.adventure;
+
       var isFirstPage = false;
-      if (this.state.page.id === parseInt(this.state.firstPageId)) {
+      if (adventure.pages && this.state.page.id === this.props.adventure.pages[0].id) {
         isFirstPage = true;
       }
       return _react2.default.createElement(
@@ -28527,7 +28531,7 @@ var Page = function (_React$Component) {
           { type: 'button', className: 'btn btn-info mr-3', onClick: this.props.history.goBack },
           'Back'
         ),
-        Object.keys(options).length === 0 ? _react2.default.createElement(
+        options.length === 0 ? _react2.default.createElement(
           'button',
           { type: 'button', className: 'btn btn-info', onClick: this.tryAgain },
           'Try Again'
@@ -28539,7 +28543,7 @@ var Page = function (_React$Component) {
     value: function render() {
       var page = this.state.page;
 
-      var options = page.options || {};
+      var options = page.options || [];
 
       return _react2.default.createElement(
         'div',
@@ -28560,7 +28564,7 @@ var Page = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'row' },
-          Object.keys(options).length === 0 ? this.theEnd() : this.optionsIndex(options)
+          options.length === 0 ? this.theEnd() : this.optionsIndex(options)
         ),
         this.pageButtons(options)
       );

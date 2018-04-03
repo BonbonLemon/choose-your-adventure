@@ -5,13 +5,13 @@ json.adventure do
 end
 
 json.options do
-  page.options.each do |option|
-    json.set! option.id do
-      json.partial! 'api/options/option', option: option
-    end
-  end
+#   page.options.each do |option|
+#     json.set! option.id do
+#       json.partial! 'api/options/option', option: option
+#     end
+#   end
+  json.partial! 'api/options/option', collection: page.options, as: :option
 end
-# json.partial! 'api/options/option', collection: page.options, as: :option
 
 # json.pages adventure.pages do |page|
 #   json.extract! page, :id, :name, :text

@@ -63,11 +63,9 @@ class AdventureShow extends React.Component {
 
   adventureShowDetail() {
     const { adventure } = this.props;
-    let firstPageId;
+    let firstPageId = 0;
     if (adventure.pages) {
-      firstPageId = Object.keys(adventure.pages)[0];
-    } else {
-      firstPageId = 1;
+      firstPageId = adventure.pages[0].id;
     }
 
     return (

@@ -9,13 +9,13 @@ json.author do
 end
 
 json.pages do
-  adventure.pages.each do |page|
-    json.set! page.id do
-      json.partial! 'api/pages/page', page: page
-    end
-  end
+#   adventure.pages.each do |page|
+#     json.set! page.id do
+#       json.partial! 'api/pages/page', page: page
+#     end
+#   end
+  json.partial! 'api/pages/page', collection: adventure.pages, as: :page
 end
-# json.partial! 'api/pages/page', collection: adventure.pages, as: :page
 
 # json.pages adventure.pages do |page|
 #   json.extract! page, :id, :name, :text, :adventure

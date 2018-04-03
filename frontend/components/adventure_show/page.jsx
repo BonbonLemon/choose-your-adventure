@@ -6,7 +6,7 @@ class Page extends React.Component {
     super(props);
     this.state = {
       page: {},
-      firstPageId: null
+      // firstPageId: null
     };
     this.setPage = this.setPage.bind(this);
     this.tryAgain = this.tryAgain.bind(this);
@@ -29,29 +29,32 @@ class Page extends React.Component {
 
   setPage(adventure, pageId) {
     if (adventure.pages) {
+      const page = adventure.pages.find(function (page) {
+        return page.id == pageId;
+      });
       this.setState({
-        page: adventure.pages[pageId]
+        page: page
       });
 
-      if (!this.state.firstPageId) {
-        this.setState({firstPageId: Object.keys(adventure.pages)[0]})
-      }
+      // if (!this.state.firstPageId) {
+      //   this.setState({firstPageId: Object.keys(adventure.pages)[0]})
+      // }
     }
 
   }
 
   handleOptionClick(e, optionId) {
     e.preventDefault()
-    this.props.history.push(this.state.page.options[optionId].destination_id.toString());
+    this.props.history.push(optionId.toString());
   }
 
   optionsIndex(options) {
     const optionButtons =
-    Object.keys(options).map(optionId => {
+    options.map(option => {
       return (
-        <div className="col-12" key={optionId}>
-          <div className="option" onClick={e => this.handleOptionClick(e, optionId)}>
-            {options[optionId].text}
+        <div className="col-12" key={option.id}>
+          <div className="option" onClick={e => this.handleOptionClick(e, option.destination_id)}>
+            {option.text}
           </div>
         </div>
       );
@@ -66,25 +69,27 @@ class Page extends React.Component {
   }
 
   tryAgain() {
-    this.props.history.push(this.state.firstPageId);
+    this.props.history.push(this.props.adventure.pages[0].id.toString());
+    // this.props.history.push(this.state.firstPageId);
   }
 
   pageButtons(options) {
+    const { adventure } = this.props;
     let isFirstPage = false;
-    if (this.state.page.id === parseInt(this.state.firstPageId)) {
+    if (adventure.pages && this.state.page.id === this.props.adventure.pages[0].id) {
       isFirstPage = true;
     }
     return (
       <div className="page-buttons">
         { isFirstPage ? "" : <button type="button" className="btn btn-info mr-3" onClick={this.props.history.goBack}>Back</button> }
-        { Object.keys(options).length === 0 ? <button type="button" className="btn btn-info" onClick={this.tryAgain}>Try Again</button> : "" }
+        { options.length === 0 ? <button type="button" className="btn btn-info" onClick={this.tryAgain}>Try Again</button> : "" }
       </div>
     );
   }
 
   render() {
     const { page } = this.state;
-    const options = page.options || {};
+    const options = page.options || [];
 
     return (
       <div className="container-fluid full-height">
@@ -94,7 +99,7 @@ class Page extends React.Component {
           </div>
         </div>
         <div className="row">
-          { Object.keys(options).length === 0 ? this.theEnd() : this.optionsIndex(options) }
+          { options.length === 0 ? this.theEnd() : this.optionsIndex(options) }
         </div>
         { this.pageButtons(options) }
       </div>
