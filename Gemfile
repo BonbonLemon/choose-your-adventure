@@ -37,6 +37,7 @@ gem 'bcrypt'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
@@ -45,7 +46,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'sqlite3'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
