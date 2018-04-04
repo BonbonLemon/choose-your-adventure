@@ -28758,9 +28758,9 @@ var _pages2 = _interopRequireDefault(_pages);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var pages = ownProps.adventure.pages || {};
+  var pages = ownProps.adventure.pages || [];
   return {
-    pages: (0, _selectors.asArray)(pages)
+    pages: pages
   };
 };
 
@@ -29307,9 +29307,9 @@ var _options2 = _interopRequireDefault(_options);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var options = ownProps.page.options || {};
+  var options = ownProps.page.options || [];
   return {
-    options: (0, _selectors.asArray)(options)
+    options: options
   };
 };
 
@@ -32042,10 +32042,19 @@ var adventuresReducer = function adventuresReducer() {
       var newAdventure = _defineProperty({}, action.adventure.id, action.adventure);
       return (0, _merge2.default)({}, state, newAdventure);
     case _page_actions.REMOVE_PAGE:
-      delete newState[action.adventureId].pages[action.pageId];
+      var indexOfPageToDelete = newState[action.adventureId].pages.findIndex(function (page) {
+        return page.id == action.pageId;
+      });
+      newState[action.adventureId].pages.splice(indexOfPageToDelete, 1);
       return newState;
     case _option_actions.REMOVE_OPTION:
-      delete newState[action.adventureId].pages[action.pageId].options[action.optionId];
+      var pageToDeleteFrom = newState[action.adventureId].pages.find(function (page) {
+        return page.id == action.pageId;
+      });
+      var indexOfOptionToDelete = pageToDeleteFrom.options.findIndex(function (option) {
+        return option.id == action.optionId;
+      });
+      pageToDeleteFrom.options.splice(indexOfOptionToDelete, 1);
       return newState;
     default:
       return state;

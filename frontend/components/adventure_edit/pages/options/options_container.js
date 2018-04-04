@@ -5,9 +5,9 @@ import { asArray } from '../../../../reducers/selectors';
 import Options from './options';
 
 const mapStateToProps = (state, ownProps) => {
-  const options = ownProps.page.options || {};
+  const options = ownProps.page.options || [];
   return {
-    options: asArray(options)
+    options: options
   };
 };
 
