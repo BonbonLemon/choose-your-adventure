@@ -10,5 +10,8 @@ class Adventure < ApplicationRecord
     foreign_key: :adventure_id,
     dependent: :destroy
 
+  has_one :start_page,
+    class_name: "Page"
+
   has_and_belongs_to_many :genres
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328103530) do
+ActiveRecord::Schema.define(version: 20180404181148) do
 
   create_table "adventures", force: :cascade do |t|
     t.string "title", null: false
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20180328103530) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
+    t.boolean "published?", default: false
+    t.integer "start_page_id"
     t.index ["author_id"], name: "index_adventures_on_author_id"
     t.index ["title"], name: "index_adventures_on_title"
   end

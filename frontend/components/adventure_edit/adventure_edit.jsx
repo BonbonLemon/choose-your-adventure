@@ -12,6 +12,7 @@ class AdventureEdit extends React.Component {
 
     this.editAdventure = this.editAdventure.bind(this);
     this.navigateToAdventure = this.navigateToAdventure.bind(this);
+    this.togglePublished = this.togglePublished.bind(this);
   }
 
   componentDidMount() {
@@ -30,12 +31,40 @@ class AdventureEdit extends React.Component {
     this.props.history.push(`/adventures/${adventure.id}`);
   }
 
+  togglePublished(e) {
+    e.preventDefault();
+
+    let { adventure } = this.props;
+    const isPublished = {"published?": !adventure["published?"]};
+    adventure = Object.assign({id: adventure.id}, isPublished);
+    this.props.editAdventure({adventure});
+  }
+
+  publishButtons() {
+    const publish = (
+      <button type="button" className="btn btn-info margin-left-10" onClick={this.togglePublished}>Make Public</button>
+    );
+    const hidden = (
+      <button type="button" className="btn btn-secondary margin-left-10" onClick={this.togglePublished}>Hide From Public</button>
+    );
+    if (this.props.adventure["published?"]) {
+      return hidden;
+    } else {
+      return publish;
+    }
+  }
+
   render() {
     return (
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
             <h1 className="adventure-form-header">Edit An Adventure</h1>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            { this.publishButtons() }
           </div>
         </div>
         <div className="row">

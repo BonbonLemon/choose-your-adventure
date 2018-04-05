@@ -1,4 +1,4 @@
-json.extract! adventure, :id, :title, :description, :cover_url
+json.extract! adventure, :id, :title, :description, :cover_url, :published?, :start_page
 
 json.genres do
   json.partial! 'api/genres/genre', collection: adventure.genres, as: :genre

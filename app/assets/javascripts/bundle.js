@@ -28674,6 +28674,7 @@ var AdventureEdit = function (_React$Component) {
 
     _this.editAdventure = _this.editAdventure.bind(_this);
     _this.navigateToAdventure = _this.navigateToAdventure.bind(_this);
+    _this.togglePublished = _this.togglePublished.bind(_this);
     return _this;
   }
 
@@ -28697,6 +28698,36 @@ var AdventureEdit = function (_React$Component) {
       this.props.history.push('/adventures/' + adventure.id);
     }
   }, {
+    key: 'togglePublished',
+    value: function togglePublished(e) {
+      e.preventDefault();
+
+      var adventure = this.props.adventure;
+
+      var isPublished = { "published?": !adventure["published?"] };
+      adventure = Object.assign({ id: adventure.id }, isPublished);
+      this.props.editAdventure({ adventure: adventure });
+    }
+  }, {
+    key: 'publishButtons',
+    value: function publishButtons() {
+      var publish = _react2.default.createElement(
+        'button',
+        { type: 'button', className: 'btn btn-info margin-left-10', onClick: this.togglePublished },
+        'Make Public'
+      );
+      var hidden = _react2.default.createElement(
+        'button',
+        { type: 'button', className: 'btn btn-secondary margin-left-10', onClick: this.togglePublished },
+        'Hide From Public'
+      );
+      if (this.props.adventure["published?"]) {
+        return hidden;
+      } else {
+        return publish;
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -28713,6 +28744,15 @@ var AdventureEdit = function (_React$Component) {
               { className: 'adventure-form-header' },
               'Edit An Adventure'
             )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col-12' },
+            this.publishButtons()
           )
         ),
         _react2.default.createElement(

@@ -41,6 +41,10 @@ html, body {
    height: 100%;
  }
 
+ .margin-left-10 {
+   margin-left: 10px;
+ }
+
  .session-links {
    margin-left: 10px;
  }
@@ -102,6 +106,7 @@ html, body {
 
 }
 
+/*adventure-show*/
 .back-to-list-button {
   text-align: center;
   font-size: 20px;

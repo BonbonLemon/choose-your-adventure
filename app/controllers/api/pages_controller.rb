@@ -13,6 +13,10 @@ class Api::PagesController < ApplicationController
     @page = Page.new(page_params)
 
     if @page.save
+      if @page.adventure.pages.length == 1
+        @page.adventure.start_page_id = @page.id
+      end
+      
       render :show
     else
       render json: @page.errors.full_messages, status: 422
@@ -36,7 +40,7 @@ class Api::PagesController < ApplicationController
       option.destination_id = 0
       option.save
     end
-    
+
     render :show
   end
 

@@ -35,14 +35,17 @@ class Api::AdventuresController < ApplicationController
   def update
     @adventure = current_user.adventures.find(params[:id])
 
-    @adventure.genres.delete_all()
     genre_names = params['adventure']['genres']
-    genre_names.each do |name|
-      name.capitalize!
-      genre = Genre.find_by(name: name)
-      genre = Genre.create({name: name}) unless genre
-      @adventure.genres << genre unless @adventure.genres.include?(genre)
+    if genre_names
+      @adventure.genres.delete_all()
+      genre_names.each do |name|
+        name.capitalize!
+        genre = Genre.find_by(name: name)
+        genre = Genre.create({name: name}) unless genre
+        @adventure.genres << genre unless @adventure.genres.include?(genre)
+      end
     end
+
     if @adventure.update_attributes(adventure_params)
       render json: @adventure, include: [:author, :pages]
     else
@@ -52,6 +55,6 @@ class Api::AdventuresController < ApplicationController
 
   private
   def adventure_params
-    params.require(:adventure).permit(:title, :description, :cover_url)
+    params.require(:adventure).permit(:title, :description, :cover_url, :published?)
   end
 end
