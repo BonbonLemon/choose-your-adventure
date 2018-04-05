@@ -30,8 +30,17 @@ class AdventureEdit extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { adventure } = nextProps
+    if (adventure.start_page_id !== this.state.startPageId) {
+      this.setState({startPageId: adventure.start_page_id});
+    }
+  }
+
   setStartPageId(adventure) {
-    this.setState({startPageId: adventure.start_page.id})
+    if (adventure.start_page_id) {
+      this.setState({startPageId: adventure.start_page_id});
+    }
   }
 
   update(property) {

@@ -28693,9 +28693,20 @@ var AdventureEdit = function (_React$Component) {
       }
     }
   }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var adventure = nextProps.adventure;
+
+      if (adventure.start_page_id !== this.state.startPageId) {
+        this.setState({ startPageId: adventure.start_page_id });
+      }
+    }
+  }, {
     key: 'setStartPageId',
     value: function setStartPageId(adventure) {
-      this.setState({ startPageId: adventure.start_page.id });
+      if (adventure.start_page_id) {
+        this.setState({ startPageId: adventure.start_page_id });
+      }
     }
   }, {
     key: 'update',

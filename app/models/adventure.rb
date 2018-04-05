@@ -11,8 +11,8 @@ class Adventure < ApplicationRecord
     dependent: :destroy
 
   belongs_to :start_page,
-    class_name: "Page"
-
+    class_name: "Page",
+    optional: true
 
   has_and_belongs_to_many :genres
 end

@@ -7,4 +7,9 @@ class Page < ApplicationRecord
 
   has_many :options,
     dependent: :destroy
+
+  has_one :adventure_starting_for,
+    class_name: "Adventure",
+    foreign_key: :start_page_id,
+    primary_key: :id
 end

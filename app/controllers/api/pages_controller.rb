@@ -15,8 +15,9 @@ class Api::PagesController < ApplicationController
     if @page.save
       if @page.adventure.pages.length == 1
         @page.adventure.start_page_id = @page.id
+        @page.adventure.save
       end
-      
+
       render :show
     else
       render json: @page.errors.full_messages, status: 422
@@ -35,6 +36,12 @@ class Api::PagesController < ApplicationController
 
   def destroy
     @page = Page.find(params[:id])
+
+    if @page.adventure_starting_for
+      @page.adventure_starting_for.start_page_id = nil
+      @page.adventure_starting_for.save
+    end
+
     @page.destroy
     Option.where(destination_id: @page.id).each do |option|
       option.destination_id = 0
