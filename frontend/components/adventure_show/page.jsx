@@ -69,7 +69,7 @@ class Page extends React.Component {
   }
 
   tryAgain() {
-    this.props.history.push(this.props.adventure.pages[0].id.toString());
+    this.props.history.push(this.props.adventure.start_page_id.toString());
     // this.props.history.push(this.state.firstPageId);
   }
 
