@@ -28216,10 +28216,6 @@ var AdventureShow = function (_React$Component) {
     value: function adventureShowDetail() {
       var adventure = this.props.adventure;
 
-      var firstPageId = 0;
-      if (adventure.pages) {
-        firstPageId = adventure.pages[0].id;
-      }
 
       return _react2.default.createElement(
         'div',
@@ -28236,7 +28232,7 @@ var AdventureShow = function (_React$Component) {
         ),
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: this.props.location.pathname + "/pages/" + firstPageId, onClick: this.startAdventure },
+          { to: this.props.location.pathname + "/pages/" + adventure.start_page_id, onClick: this.startAdventure },
           _react2.default.createElement(
             'button',
             { type: 'button', className: 'start-adventure-button btn btn-warning btn-lg' },

@@ -63,17 +63,13 @@ class AdventureShow extends React.Component {
 
   adventureShowDetail() {
     const { adventure } = this.props;
-    let firstPageId = 0;
-    if (adventure.pages) {
-      firstPageId = adventure.pages[0].id;
-    }
 
     return (
       <div className="adventure-show-details">
         <p className="adventure-show-description">
           <span className="font-weight-bold">Description: </span>{ adventure.description }
         </p>
-        <Link to={this.props.location.pathname + "/pages/" + firstPageId} onClick={this.startAdventure}>
+        <Link to={this.props.location.pathname + "/pages/" + adventure.start_page_id} onClick={this.startAdventure}>
           <button type="button" className="start-adventure-button btn btn-warning btn-lg">Start Adventure</button>
         </Link>
       </div>
