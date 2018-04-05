@@ -28690,6 +28690,8 @@ var AdventureEdit = function (_React$Component) {
     value: function componentDidMount() {
       if (!this.props.adventure.title) {
         this.props.fetchAdventure(this.props.adventureId, this.setStartPageId);
+      } else {
+        this.setStartPageId(this.props.adventure);
       }
     }
   }, {

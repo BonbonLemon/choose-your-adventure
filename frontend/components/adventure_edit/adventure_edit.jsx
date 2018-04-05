@@ -27,6 +27,8 @@ class AdventureEdit extends React.Component {
   componentDidMount() {
     if (!this.props.adventure.title) {
       this.props.fetchAdventure(this.props.adventureId, this.setStartPageId);
+    } else {
+      this.setStartPageId(this.props.adventure);
     }
   }
 
