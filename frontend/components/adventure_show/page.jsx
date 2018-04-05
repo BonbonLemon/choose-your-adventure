@@ -76,7 +76,7 @@ class Page extends React.Component {
   pageButtons(options) {
     const { adventure } = this.props;
     let isFirstPage = false;
-    if (adventure.pages && this.state.page.id === this.props.adventure.pages[0].id) {
+    if (adventure.start_page_id && this.state.page.id === adventure.start_page_id) {
       isFirstPage = true;
     }
     return (

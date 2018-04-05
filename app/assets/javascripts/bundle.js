@@ -28516,7 +28516,7 @@ var Page = function (_React$Component) {
       var adventure = this.props.adventure;
 
       var isFirstPage = false;
-      if (adventure.pages && this.state.page.id === this.props.adventure.pages[0].id) {
+      if (adventure.start_page_id && this.state.page.id === adventure.start_page_id) {
         isFirstPage = true;
       }
       return _react2.default.createElement(
