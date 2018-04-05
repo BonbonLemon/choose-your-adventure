@@ -28658,6 +28658,8 @@ var _pages_container2 = _interopRequireDefault(_pages_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -28672,8 +28674,17 @@ var AdventureEdit = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (AdventureEdit.__proto__ || Object.getPrototypeOf(AdventureEdit)).call(this, props));
 
+    _this.state = {
+      startPageId: "",
+      isSaved: false
+    };
+
+    _this.setStartPageId = _this.setStartPageId.bind(_this);
+    _this.saveStartPage = _this.saveStartPage.bind(_this);
     _this.editAdventure = _this.editAdventure.bind(_this);
     _this.navigateToAdventure = _this.navigateToAdventure.bind(_this);
+    _this.startingPageLabel = _this.startingPageLabel.bind(_this);
+    _this.alertSaved = _this.alertSaved.bind(_this);
     _this.togglePublished = _this.togglePublished.bind(_this);
     return _this;
   }
@@ -28682,8 +28693,41 @@ var AdventureEdit = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       if (!this.props.adventure.title) {
-        this.props.fetchAdventure(this.props.adventureId);
+        this.props.fetchAdventure(this.props.adventureId, this.setStartPageId);
       }
+    }
+  }, {
+    key: 'setStartPageId',
+    value: function setStartPageId(adventure) {
+      this.setState({ startPageId: adventure.start_page.id });
+    }
+  }, {
+    key: 'update',
+    value: function update(property) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, property, e.target.value));
+      };
+    }
+  }, {
+    key: 'saveStartPage',
+    value: function saveStartPage(e) {
+      e.preventDefault();
+
+      var adventure = this.props.adventure;
+
+      adventure = Object.assign({ id: adventure.id, start_page_id: this.state.startPageId });
+      this.props.editAdventure({ adventure: adventure }, this.alertSaved);
+    }
+  }, {
+    key: 'alertSaved',
+    value: function alertSaved() {
+      this.setState({ isSaved: true });
+
+      setTimeout(function () {
+        this.setState({ isSaved: false });
+      }.bind(this), 1500);
     }
   }, {
     key: 'editAdventure',
@@ -28696,6 +28740,31 @@ var AdventureEdit = function (_React$Component) {
     key: 'navigateToAdventure',
     value: function navigateToAdventure(adventure) {
       this.props.history.push('/adventures/' + adventure.id);
+    }
+  }, {
+    key: 'startingPageLabel',
+    value: function startingPageLabel() {
+      if (this.state.isSaved) {
+        return _react2.default.createElement(
+          'button',
+          {
+            className: 'btn btn-success starting-page-label',
+            type: 'button',
+            disabled: true
+          },
+          'Saved!'
+        );
+      } else {
+        return _react2.default.createElement(
+          'button',
+          {
+            className: 'btn btn-secondary starting-page-label',
+            type: 'button',
+            disabled: true
+          },
+          'Starting Page'
+        );
+      }
     }
   }, {
     key: 'togglePublished',
@@ -28730,6 +28799,10 @@ var AdventureEdit = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var startPageId = this.state.startPageId;
+
+      var pages = this.props.adventure.pages || [];
+
       return _react2.default.createElement(
         'div',
         { className: 'container-fluid' },
@@ -28764,6 +28837,62 @@ var AdventureEdit = function (_React$Component) {
             _react2.default.createElement(_adventure_form2.default, { adventure: this.props.adventure, handleSubmit: this.editAdventure })
           )
         ),
+        _react2.default.createElement(
+          'h2',
+          { className: 'text-left pages-header' },
+          'Pages'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col-12' },
+            _react2.default.createElement(
+              'div',
+              { className: 'starting-page-select' },
+              _react2.default.createElement(
+                'div',
+                { className: 'input-group' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'input-group-prepend' },
+                  this.startingPageLabel()
+                ),
+                _react2.default.createElement(
+                  'select',
+                  {
+                    className: 'custom-select form-control',
+                    value: startPageId,
+                    onChange: this.update("startPageId"),
+                    required: true
+                  },
+                  _react2.default.createElement(
+                    'option',
+                    { value: '' },
+                    'No Page Selected'
+                  ),
+                  pages.map(function (page) {
+                    return _react2.default.createElement(
+                      'option',
+                      { key: page.id, value: page.id },
+                      page.name
+                    );
+                  })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'input-group-append' },
+                  _react2.default.createElement(
+                    'button',
+                    { className: 'btn btn-primary', type: 'button', onClick: this.saveStartPage },
+                    'Save'
+                  )
+                )
+              )
+            )
+          )
+        ),
         _react2.default.createElement(_pages_container2.default, { adventure: this.props.adventure })
       );
     }
@@ -28787,6 +28916,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(4);
 
+var _adventure_actions = __webpack_require__(8);
+
 var _page_actions = __webpack_require__(75);
 
 var _selectors = __webpack_require__(10);
@@ -28806,6 +28937,9 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    editAdventure: function editAdventure(id, callback) {
+      return dispatch((0, _adventure_actions.editAdventure)(id, callback));
+    },
     fetchPages: function fetchPages(adventureId) {
       return dispatch((0, _page_actions.fetchPages)(adventureId));
     },
@@ -28912,6 +29046,7 @@ var Pages = function (_React$Component) {
     _this.state = {
       name: ""
     };
+
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     return _this;
   }
@@ -28973,15 +29108,12 @@ var Pages = function (_React$Component) {
       var _this3 = this;
 
       var pages = this.props.pages || [];
+      var adventure = this.props.adventure;
+
 
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(
-          'h2',
-          { className: 'text-left pages-header' },
-          'Pages'
-        ),
         _react2.default.createElement(
           'div',
           { className: 'row' },

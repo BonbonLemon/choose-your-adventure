@@ -44,21 +44,21 @@ class OptionForm extends React.Component {
           </div>
           <div className="col-4">
             <label>Destination</label>
-              <select
-                className="custom-select"
-                value={destination_id}
-                onChange={this.update("destination_id")}
-                required
-              >
-                <option value="">No Destination Selected</option>
-                {thisPage.adventure.pages.map(page => {
-                  if (page.id !== thisPage.id) {
-                    return (
-                      <option key={page.id} value={page.id}>{page.name}</option>
-                    );
-                  }
-                })}
-              </select>
+            <select
+              className="custom-select"
+              value={destination_id}
+              onChange={this.update("destination_id")}
+              required
+            >
+              <option value="">No Destination Selected</option>
+              {thisPage.adventure.pages.map(page => {
+                if (page.id !== thisPage.id) {
+                  return (
+                    <option key={page.id} value={page.id}>{page.name}</option>
+                  );
+                }
+              })}
+            </select>
           </div>
         </div>
         <div className="form-row">

@@ -6,8 +6,9 @@ class Pages extends React.Component {
     super(props);
 
     this.state = {
-      name: ""
+      name: "",
     }
+
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -47,11 +48,10 @@ class Pages extends React.Component {
 
   render() {
     const pages = this.props.pages || [];
+    const { adventure } = this.props;
 
     return (
       <div>
-        <h2 className="text-left pages-header">Pages</h2>
-
         <div className="row">
           <div className="col-12">
             <div className="pages-index">

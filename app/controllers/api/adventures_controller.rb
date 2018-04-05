@@ -47,7 +47,7 @@ class Api::AdventuresController < ApplicationController
     end
 
     if @adventure.update_attributes(adventure_params)
-      render json: @adventure, include: [:author, :pages]
+      render json: @adventure, include: [:author, :pages, :start_page]
     else
       render json: @adventure.errors.full_messages, status: 422
     end
@@ -55,6 +55,6 @@ class Api::AdventuresController < ApplicationController
 
   private
   def adventure_params
-    params.require(:adventure).permit(:title, :description, :cover_url, :published?)
+    params.require(:adventure).permit(:title, :description, :cover_url, :published?, :start_page_id)
   end
 end
