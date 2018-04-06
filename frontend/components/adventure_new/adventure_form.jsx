@@ -37,7 +37,12 @@ class AdventureEdit extends React.Component {
       genre.name
     ));
     const properties = Object.assign({}, adventure, {genres});
-    this.setState(properties);
+    this.setState({
+      title: properties.title,
+      genres: properties.genres,
+      description: properties.description,
+      cover_url: properties.cover_url
+    });
   }
 
   update(property) {

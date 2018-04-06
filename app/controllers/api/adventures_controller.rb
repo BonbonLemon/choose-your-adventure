@@ -34,6 +34,7 @@ class Api::AdventuresController < ApplicationController
 
   def update
     @adventure = current_user.adventures.find(params[:id])
+    # debugger
 
     genre_names = params['adventure']['genres']
     if genre_names
@@ -47,7 +48,7 @@ class Api::AdventuresController < ApplicationController
     end
 
     if @adventure.update_attributes(adventure_params)
-      render json: @adventure, include: [:author, :pages, :start_page]
+      render :show
     else
       render json: @adventure.errors.full_messages, status: 422
     end

@@ -69,7 +69,7 @@ class AdventureEdit extends React.Component {
 
   editAdventure(attributes, e) {
     e.preventDefault();
-    const adventure = Object.assign({}, attributes);
+    const adventure = Object.assign({id: this.props.adventureId}, attributes);
     this.props.editAdventure({adventure}, this.navigateToAdventure);
   }
 

@@ -4792,7 +4792,12 @@ var AdventureEdit = function (_React$Component) {
         return genre.name;
       });
       var properties = Object.assign({}, adventure, { genres: genres });
-      this.setState(properties);
+      this.setState({
+        title: properties.title,
+        genres: properties.genres,
+        description: properties.description,
+        cover_url: properties.cover_url
+      });
     }
   }, {
     key: 'update',
@@ -28742,7 +28747,7 @@ var AdventureEdit = function (_React$Component) {
     key: 'editAdventure',
     value: function editAdventure(attributes, e) {
       e.preventDefault();
-      var adventure = Object.assign({}, attributes);
+      var adventure = Object.assign({ id: this.props.adventureId }, attributes);
       this.props.editAdventure({ adventure: adventure }, this.navigateToAdventure);
     }
   }, {
