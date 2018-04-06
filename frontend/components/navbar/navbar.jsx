@@ -16,7 +16,7 @@ const logoutLink = (currentUser, logout) => (
         { currentUser.username }
       </a>
       <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <a className="dropdown-item" href="#">My Profile</a>
+        <Link to={ "/users/" + currentUser.username } className="dropdown-item">My Profile</Link>
         <a className="dropdown-item" href="#" onClick={logout}>Log Out</a>
       </div>
     </li>
