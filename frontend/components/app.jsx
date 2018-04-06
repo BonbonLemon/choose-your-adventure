@@ -15,7 +15,7 @@ import AdventureNewContainer from './adventure_new/adventure_new_container';
 import AdventureShowContainer from './adventure_show/adventure_show_container';
 import AdventureEditContainer from './adventure_edit/adventure_edit_container';
 
-import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import { AuthRoute, ProtectedRoute, OwnerProtectedRoute } from '../util/route_util';
 
 const App = () => (
   <div>
@@ -29,7 +29,7 @@ const App = () => (
       <AuthRoute path="/signup" component={SessionFormContainer} />
       <ProtectedRoute path="/adventures/new" component={AdventureNewContainer} />
       <Route path="/adventures/:adventureId" component={AdventureShowContainer} />
-      <ProtectedRoute path="/adventureeditor/:adventureId" component={AdventureEditContainer} />
+      <OwnerProtectedRoute path="/adventureeditor/:adventureId" component={AdventureEditContainer} />
     </Switch>
   </div>
 );

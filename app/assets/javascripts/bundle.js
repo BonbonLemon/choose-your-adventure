@@ -515,48 +515,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 
 
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-function makeEmptyFunction(arg) {
-  return function () {
-    return arg;
-  };
-}
-
-/**
- * This function accepts and discards inputs; it has no side effects. This is
- * primarily useful idiomatically for overridable function endpoints which
- * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
- */
-var emptyFunction = function emptyFunction() {};
-
-emptyFunction.thatReturns = makeEmptyFunction;
-emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-emptyFunction.thatReturnsThis = function () {
-  return this;
-};
-emptyFunction.thatReturnsArgument = function (arg) {
-  return arg;
-};
-
-module.exports = emptyFunction;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -627,6 +585,48 @@ var editAdventure = exports.editAdventure = function editAdventure(adventure, ca
     });
   };
 };
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * 
+ */
+
+function makeEmptyFunction(arg) {
+  return function () {
+    return arg;
+  };
+}
+
+/**
+ * This function accepts and discards inputs; it has no side effects. This is
+ * primarily useful idiomatically for overridable function endpoints which
+ * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+ */
+var emptyFunction = function emptyFunction() {};
+
+emptyFunction.thatReturns = makeEmptyFunction;
+emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+emptyFunction.thatReturnsThis = function () {
+  return this;
+};
+emptyFunction.thatReturnsArgument = function (arg) {
+  return arg;
+};
+
+module.exports = emptyFunction;
 
 /***/ }),
 /* 9 */
@@ -1070,7 +1070,7 @@ module.exports = emptyObject;
 
 
 
-var emptyFunction = __webpack_require__(7);
+var emptyFunction = __webpack_require__(8);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -2667,7 +2667,7 @@ module.exports = ExecutionEnvironment;
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(7);
+var emptyFunction = __webpack_require__(8);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -4966,7 +4966,7 @@ var _page_api_util = __webpack_require__(171);
 
 var APIUtil = _interopRequireWildcard(_page_api_util);
 
-var _adventure_actions = __webpack_require__(8);
+var _adventure_actions = __webpack_require__(7);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -5023,7 +5023,7 @@ var _option_api_util = __webpack_require__(176);
 
 var APIUtil = _interopRequireWildcard(_option_api_util);
 
-var _adventure_actions = __webpack_require__(8);
+var _adventure_actions = __webpack_require__(7);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -5731,7 +5731,7 @@ document.addEventListener('DOMContentLoaded', function () {
  * LICENSE file in the root directory of this source tree.
  */
 
-var m=__webpack_require__(12),n=__webpack_require__(17),p=__webpack_require__(7),q="function"===typeof Symbol&&Symbol["for"],r=q?Symbol["for"]("react.element"):60103,t=q?Symbol["for"]("react.call"):60104,u=q?Symbol["for"]("react.return"):60105,v=q?Symbol["for"]("react.portal"):60106,w=q?Symbol["for"]("react.fragment"):60107,x="function"===typeof Symbol&&Symbol.iterator;
+var m=__webpack_require__(12),n=__webpack_require__(17),p=__webpack_require__(8),q="function"===typeof Symbol&&Symbol["for"],r=q?Symbol["for"]("react.element"):60103,t=q?Symbol["for"]("react.call"):60104,u=q?Symbol["for"]("react.return"):60105,v=q?Symbol["for"]("react.portal"):60106,w=q?Symbol["for"]("react.fragment"):60107,x="function"===typeof Symbol&&Symbol.iterator;
 function y(a){for(var b=arguments.length-1,e="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,c=0;c<b;c++)e+="\x26args[]\x3d"+encodeURIComponent(arguments[c+1]);b=Error(e+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var z={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function A(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}A.prototype.isReactComponent={};A.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?y("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};A.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function B(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}function C(){}C.prototype=A.prototype;var D=B.prototype=new C;D.constructor=B;m(D,A.prototype);D.isPureReactComponent=!0;function E(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||z}var F=E.prototype=new C;F.constructor=E;m(F,A.prototype);F.unstable_isAsyncReactComponent=!0;F.render=function(){return this.props.children};var G={current:null},H=Object.prototype.hasOwnProperty,I={key:!0,ref:!0,__self:!0,__source:!0};
@@ -5771,7 +5771,7 @@ var _assign = __webpack_require__(12);
 var emptyObject = __webpack_require__(17);
 var invariant = __webpack_require__(13);
 var warning = __webpack_require__(18);
-var emptyFunction = __webpack_require__(7);
+var emptyFunction = __webpack_require__(8);
 var checkPropTypes = __webpack_require__(32);
 
 // TODO: this is special because it gets imported during build.
@@ -7173,7 +7173,7 @@ if (process.env.NODE_ENV === 'production') {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0),l=__webpack_require__(47),B=__webpack_require__(12),C=__webpack_require__(7),ba=__webpack_require__(48),da=__webpack_require__(49),ea=__webpack_require__(50),fa=__webpack_require__(51),ia=__webpack_require__(52),D=__webpack_require__(17);
+var aa=__webpack_require__(0),l=__webpack_require__(47),B=__webpack_require__(12),C=__webpack_require__(8),ba=__webpack_require__(48),da=__webpack_require__(49),ea=__webpack_require__(50),fa=__webpack_require__(51),ia=__webpack_require__(52),D=__webpack_require__(17);
 function E(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:E("227");
 var oa={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function pa(a,b){return(a&b)===b}
 var ta={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ta,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){ua.hasOwnProperty(f)?E("48",f):void 0;var g=f.toLowerCase(),h=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:pa(h,b.MUST_USE_PROPERTY),
@@ -7475,7 +7475,7 @@ var invariant = __webpack_require__(13);
 var warning = __webpack_require__(18);
 var ExecutionEnvironment = __webpack_require__(47);
 var _assign = __webpack_require__(12);
-var emptyFunction = __webpack_require__(7);
+var emptyFunction = __webpack_require__(8);
 var EventListener = __webpack_require__(48);
 var getActiveElement = __webpack_require__(49);
 var shallowEqual = __webpack_require__(50);
@@ -23146,7 +23146,7 @@ function createProvider() {
 
 
 
-var emptyFunction = __webpack_require__(7);
+var emptyFunction = __webpack_require__(8);
 var invariant = __webpack_require__(13);
 var warning = __webpack_require__(18);
 var assign = __webpack_require__(12);
@@ -23696,7 +23696,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 
 
-var emptyFunction = __webpack_require__(7);
+var emptyFunction = __webpack_require__(8);
 var invariant = __webpack_require__(13);
 var ReactPropTypesSecret = __webpack_require__(33);
 
@@ -27227,7 +27227,7 @@ var App = function App() {
       _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { path: '/adventures/new', component: _adventure_new_container2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId', component: _adventure_show_container2.default }),
-      _react2.default.createElement(_route_util.ProtectedRoute, { path: '/adventureeditor/:adventureId', component: _adventure_edit_container2.default })
+      _react2.default.createElement(_route_util.OwnerProtectedRoute, { path: '/adventureeditor/:adventureId', component: _adventure_edit_container2.default })
     )
   );
 };
@@ -27624,7 +27624,7 @@ var _adventure_index = __webpack_require__(158);
 
 var _adventure_index2 = _interopRequireDefault(_adventure_index);
 
-var _adventure_actions = __webpack_require__(8);
+var _adventure_actions = __webpack_require__(7);
 
 var _selectors = __webpack_require__(10);
 
@@ -27886,7 +27886,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(4);
 
-var _adventure_actions = __webpack_require__(8);
+var _adventure_actions = __webpack_require__(7);
 
 var _adventure_new = __webpack_require__(162);
 
@@ -28077,7 +28077,7 @@ var _adventure_show = __webpack_require__(165);
 
 var _adventure_show2 = _interopRequireDefault(_adventure_show);
 
-var _adventure_actions = __webpack_require__(8);
+var _adventure_actions = __webpack_require__(7);
 
 var _selectors = __webpack_require__(10);
 
@@ -28360,7 +28360,7 @@ var _page = __webpack_require__(167);
 
 var _page2 = _interopRequireDefault(_page);
 
-var _adventure_actions = __webpack_require__(8);
+var _adventure_actions = __webpack_require__(7);
 
 var _selectors = __webpack_require__(10);
 
@@ -28589,7 +28589,7 @@ var _adventure_edit = __webpack_require__(169);
 
 var _adventure_edit2 = _interopRequireDefault(_adventure_edit);
 
-var _adventure_actions = __webpack_require__(8);
+var _adventure_actions = __webpack_require__(7);
 
 var _selectors = __webpack_require__(10);
 
@@ -28925,7 +28925,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(4);
 
-var _adventure_actions = __webpack_require__(8);
+var _adventure_actions = __webpack_require__(7);
 
 var _page_actions = __webpack_require__(75);
 
@@ -29842,7 +29842,7 @@ exports.default = OptionsIndexItem;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ProtectedRoute = exports.AuthRoute = undefined;
+exports.OwnerProtectedRoute = exports.ProtectedRoute = exports.AuthRoute = undefined;
 
 var _react = __webpack_require__(0);
 
@@ -29872,13 +29872,35 @@ var Protected = function Protected(_ref2) {
     } });
 };
 
+var OwnerProtected = function OwnerProtected(_ref3) {
+  var Component = _ref3.component,
+      path = _ref3.path,
+      isOwner = _ref3.isOwner;
+  return _react2.default.createElement(_reactRouterDom.Route, { path: path, render: function render(props) {
+      return isOwner(props) ? _react2.default.createElement(Component, props) : _react2.default.createElement(_reactRouterDom.Redirect, { to: '/' });
+    } });
+};
+
 var mapStateToProps = function mapStateToProps(state) {
-  return { loggedIn: Boolean(state.session.currentUser) };
+  return {
+    loggedIn: Boolean(state.session.currentUser),
+    isOwner: function isOwner(props) {
+      return Boolean(state.session.currentUser && state.session.currentUser.adventures.find(function (adventure) {
+        return adventure.id == parseInt(props.match.params.adventureId);
+      }));
+    }
+    // Boolean(state.session.currentUser && state.session.currentUser.adventures.find(function (adventure) {
+    //   debugger;
+    //   return adventure.id === a;
+    // }.bind(state)))
+  };
 };
 
 var AuthRoute = exports.AuthRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(Auth));
 
 var ProtectedRoute = exports.ProtectedRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(Protected));
+
+var OwnerProtectedRoute = exports.OwnerProtectedRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(OwnerProtected));
 
 /***/ }),
 /* 180 */
@@ -32199,7 +32221,7 @@ var _merge = __webpack_require__(78);
 
 var _merge2 = _interopRequireDefault(_merge);
 
-var _adventure_actions = __webpack_require__(8);
+var _adventure_actions = __webpack_require__(7);
 
 var _page_actions = __webpack_require__(75);
 
