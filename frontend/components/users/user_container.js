@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
-
+import { fetchUser } from '../../actions/user_actions';
 import User from './user';
-// import { fetchAdventure } from '../../actions/adventure_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const username = ownProps.match.params.username;
+  const user = state.user || {};
   return {
+    user: user,
     username: username
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  // fetchAdventure: (id, callback) => dispatch(fetchAdventure(id, callback))
-  
+  fetchUser: id => dispatch(fetchUser(id))
 });
 
 export default connect(

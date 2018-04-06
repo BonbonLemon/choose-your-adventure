@@ -6,19 +6,31 @@ class User extends React.Component {
     super(props);
 
     this.state = {
+
     }
   }
 
   componentDidMount() {
-
+    this.props.fetchUser(this.props.username);
   }
 
 
   render() {
+    const { user } = this.props;
+    const adventures = user.adventures || [];
 
     return (
       <div>
-        hi
+        <div>
+          <h2>Adventures</h2>
+          <ul>
+            {
+              adventures.map(function (adventure) {
+                return <li key={adventure.id}>{adventure.title}</li>
+              })
+            }
+          </ul>
+        </div>
       </div>
     );
   }

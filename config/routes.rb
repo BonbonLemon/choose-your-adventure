@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create]
     resources :pages, only: [:index, :show, :create, :update, :destroy]
     resources :options, only: [:create, :update, :destroy]
-    resource :user, only: [:create]
+    resource :user, only: [:create, :show]
     resource :session, only: [:create, :destroy, :show]
   end
 

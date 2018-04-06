@@ -8,7 +8,12 @@ class Api::UsersController < ApplicationController
       render json: @user.errors.full_messages, status: 422
     end
   end
-  
+
+  def show
+    @user = User.find_by(username: user_params[:username])
+    render :show
+  end
+
   private
   def user_params
     params.require(:user).permit(:username, :password)
