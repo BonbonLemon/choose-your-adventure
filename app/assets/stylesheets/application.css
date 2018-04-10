@@ -405,3 +405,39 @@ html, body {
 .mini-page-form-header {
 
 }
+
+/*profile*/
+
+.profile-adventure-box {
+  margin: 25px;
+  width: 750px;
+  height: 275px;
+  outline: thin solid black;
+}
+
+.profile-adventure-details {
+  width: 500px;
+  height: 100%;
+  padding: 15px;
+  float: left;
+  color: black;
+}
+
+.profile-adventure-title {
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: thin solid black;
+}
+
+.profile-adventure-cover {
+  width: 250px;
+  height: 100%;
+  float: left;
+}
+
+.profile-adventure-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}

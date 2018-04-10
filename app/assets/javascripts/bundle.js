@@ -29990,25 +29990,54 @@ var User = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(
-          'div',
+          'h1',
           null,
-          _react2.default.createElement(
-            'h2',
-            null,
-            'Adventures'
-          ),
-          _react2.default.createElement(
-            'ul',
-            null,
-            adventures.map(function (adventure) {
-              return _react2.default.createElement(
-                'li',
-                { key: adventure.id },
-                adventure.title
-              );
-            })
-          )
-        )
+          user.username + "'s",
+          ' Profile'
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          'More coming soon...'
+        ),
+        _react2.default.createElement(
+          'h2',
+          null,
+          'Adventures'
+        ),
+        adventures.map(function (adventure) {
+          return _react2.default.createElement(
+            'div',
+            { key: adventure.id, className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'profile-adventure-box' },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: "/adventures/" + adventure.id },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'profile-adventure-details' },
+                  _react2.default.createElement(
+                    'h3',
+                    { className: 'profile-adventure-title' },
+                    adventure.title
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'profile-adventure-description' },
+                    adventure.description
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'profile-adventure-cover' },
+                  _react2.default.createElement('img', { src: adventure.cover_url })
+                )
+              )
+            )
+          );
+        })
       );
     }
   }]);
