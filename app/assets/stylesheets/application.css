@@ -441,3 +441,20 @@ html, body {
   object-fit: cover;
   object-position: center;
 }
+
+.release-notes {
+  text-align: center;
+}
+
+.known-bugs {
+  text-align: left;
+  margin-left: 20px;
+}
+
+.known-bugs ul {
+  list-style: inside;
+}
+
+.known-bugs ul li {
+  padding-left: 15px;
+}

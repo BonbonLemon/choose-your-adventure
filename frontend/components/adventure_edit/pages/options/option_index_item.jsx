@@ -41,7 +41,7 @@ class OptionsIndexItem extends React.Component {
     if (option.destination_id) {
       destination_name = option.destination.name;
     } else {
-      destination_name = 'The End';
+      destination_name = 'No Destination';
     }
     return (
       <div className="option-index-item input-group">

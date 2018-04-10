@@ -10,6 +10,8 @@ import {
 
 import NavbarContainer from './navbar/navbar_container';
 import Footer from './footer/footer';
+import ReleaseNotes from './footer/links/release_notes';
+
 import SessionFormContainer from './session_form/session_form_container';
 import AdventureIndexContainer from './adventure/adventure_index_container';
 import AdventureNewContainer from './adventure_new/adventure_new_container';
@@ -33,6 +35,8 @@ const App = () => (
       <Route path="/adventures/:adventureId" component={AdventureShowContainer} />
       <OwnerProtectedRoute path="/adventureeditor/:adventureId" component={AdventureEditContainer} />
       <Route path="/users/:username" component={UserContainer} />
+
+      <Route path="/release-notes" component={ReleaseNotes} />
     </Switch>
 
     <Footer />
