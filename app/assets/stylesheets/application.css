@@ -474,3 +474,15 @@ html, body {
 .known-bugs ul li {
   padding-left: 15px;
 }
+
+.about {
+  margin: 15px auto;
+  text-align: center;
+  width: 700px;
+}
+
+.about-the-developer {
+  margin-top: 20px;
+  text-align: left;
+  text-indent: 50px;
+}

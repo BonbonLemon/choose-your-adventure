@@ -10,6 +10,7 @@ import {
 
 import NavbarContainer from './navbar/navbar_container';
 import Footer from './footer/footer';
+import About from './footer/links/about';
 import ReleaseNotes from './footer/links/release_notes';
 
 import SessionFormContainer from './session_form/session_form_container';
@@ -37,6 +38,7 @@ const App = () => (
         <OwnerProtectedRoute path="/adventureeditor/:adventureId" component={AdventureEditContainer} />
         <Route path="/users/:username" component={UserContainer} />
 
+        <Route path="/about" component={About} />
         <Route path="/release-notes" component={ReleaseNotes} />
       </Switch>
     </div>
