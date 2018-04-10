@@ -27265,23 +27265,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var App = function App() {
   return _react2.default.createElement(
     'div',
-    null,
+    { className: 'root-container' },
     _react2.default.createElement(
-      'header',
-      null,
-      _react2.default.createElement(_navbar_container2.default, null)
-    ),
-    _react2.default.createElement(
-      _reactRouterDom.Switch,
-      null,
-      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _adventure_index_container2.default }),
-      _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
-      _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default }),
-      _react2.default.createElement(_route_util.ProtectedRoute, { path: '/adventures/new', component: _adventure_new_container2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId', component: _adventure_show_container2.default }),
-      _react2.default.createElement(_route_util.OwnerProtectedRoute, { path: '/adventureeditor/:adventureId', component: _adventure_edit_container2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/users/:username', component: _user_container2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/release-notes', component: _release_notes2.default })
+      'div',
+      { className: 'wrapper' },
+      _react2.default.createElement(
+        'header',
+        null,
+        _react2.default.createElement(_navbar_container2.default, null)
+      ),
+      _react2.default.createElement(
+        _reactRouterDom.Switch,
+        null,
+        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _adventure_index_container2.default }),
+        _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
+        _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default }),
+        _react2.default.createElement(_route_util.ProtectedRoute, { path: '/adventures/new', component: _adventure_new_container2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId', component: _adventure_show_container2.default }),
+        _react2.default.createElement(_route_util.OwnerProtectedRoute, { path: '/adventureeditor/:adventureId', component: _adventure_edit_container2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/users/:username', component: _user_container2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/release-notes', component: _release_notes2.default })
+      )
     ),
     _react2.default.createElement(_footer2.default, null)
   );
@@ -27475,7 +27479,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Footer = function Footer() {
   return _react2.default.createElement(
     'div',
-    { className: 'card bg-light' },
+    { className: 'footer card bg-light' },
     _react2.default.createElement(
       'div',
       { className: 'card-body' },
@@ -32626,7 +32630,7 @@ var ReleaseNotes = function ReleaseNotes() {
         _react2.default.createElement(
           'li',
           null,
-          'Going BACK does not allow certain pages to load contents'
+          'Going BACK does not allow certain pages to load contents (Refreshing will load contents)'
         ),
         _react2.default.createElement(
           'li',

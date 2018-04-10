@@ -22,22 +22,24 @@ import UserContainer from './users/user_container';
 import { AuthRoute, ProtectedRoute, OwnerProtectedRoute } from '../util/route_util';
 
 const App = () => (
-  <div>
-    <header>
-      <NavbarContainer />
-    </header>
+  <div className="root-container">
+    <div className="wrapper">
+      <header>
+        <NavbarContainer />
+      </header>
 
-    <Switch>
-      <Route exact path="/" component={AdventureIndexContainer} />
-      <AuthRoute path="/login" component={SessionFormContainer} />
-      <AuthRoute path="/signup" component={SessionFormContainer} />
-      <ProtectedRoute path="/adventures/new" component={AdventureNewContainer} />
-      <Route path="/adventures/:adventureId" component={AdventureShowContainer} />
-      <OwnerProtectedRoute path="/adventureeditor/:adventureId" component={AdventureEditContainer} />
-      <Route path="/users/:username" component={UserContainer} />
+      <Switch>
+        <Route exact path="/" component={AdventureIndexContainer} />
+        <AuthRoute path="/login" component={SessionFormContainer} />
+        <AuthRoute path="/signup" component={SessionFormContainer} />
+        <ProtectedRoute path="/adventures/new" component={AdventureNewContainer} />
+        <Route path="/adventures/:adventureId" component={AdventureShowContainer} />
+        <OwnerProtectedRoute path="/adventureeditor/:adventureId" component={AdventureEditContainer} />
+        <Route path="/users/:username" component={UserContainer} />
 
-      <Route path="/release-notes" component={ReleaseNotes} />
-    </Switch>
+        <Route path="/release-notes" component={ReleaseNotes} />
+      </Switch>
+    </div>
 
     <Footer />
   </div>
