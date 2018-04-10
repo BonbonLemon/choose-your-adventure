@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 
 import NavbarContainer from './navbar/navbar_container';
+import Footer from './footer/footer';
 import SessionFormContainer from './session_form/session_form_container';
 import AdventureIndexContainer from './adventure/adventure_index_container';
 import AdventureNewContainer from './adventure_new/adventure_new_container';
@@ -33,6 +34,8 @@ const App = () => (
       <OwnerProtectedRoute path="/adventureeditor/:adventureId" component={AdventureEditContainer} />
       <Route path="/users/:username" component={UserContainer} />
     </Switch>
+
+    <Footer />
   </div>
 );
 

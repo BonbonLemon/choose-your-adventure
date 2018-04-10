@@ -27,22 +27,20 @@ class User extends React.Component {
         {
           adventures.map(function (adventure) {
             return (
-              <div key={ adventure.id } className="row">
-                <div className="profile-adventure-box">
-                  <Link to={"/adventures/" + adventure.id }>
-                    <div className="profile-adventure-details">
-                      <h3 className="profile-adventure-title">
-                        { adventure.title }
-                      </h3>
-                      <div className="profile-adventure-description">
-                        { adventure.description }
-                      </div>
+              <div key={ adventure.id } className="profile-adventure-box">
+                <Link to={"/adventures/" + adventure.id }>
+                  <div className="profile-adventure-details">
+                    <h3 className="profile-adventure-title">
+                      { adventure.title }
+                    </h3>
+                    <div className="profile-adventure-description">
+                      { adventure.description }
                     </div>
-                    <div className="profile-adventure-cover">
-                      <img src={ adventure.cover_url } />
-                    </div>
-                  </Link>
-                </div>
+                  </div>
+                  <div className="profile-adventure-cover">
+                    <img src={ adventure.cover_url } />
+                  </div>
+                </Link>
               </div>
             );
           })
