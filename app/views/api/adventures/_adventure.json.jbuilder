@@ -14,7 +14,7 @@ json.pages do
 #       json.partial! 'api/pages/page', page: page
 #     end
 #   end
-  json.partial! 'api/pages/page', collection: adventure.pages, as: :page
+  json.partial! 'api/pages/page', collection: adventure.pages.sort_by{|page| page.id}, as: :page
 end
 
 # json.pages adventure.pages do |page|

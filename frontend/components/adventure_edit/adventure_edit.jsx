@@ -84,7 +84,7 @@ class AdventureEdit extends React.Component {
           className="btn btn-success starting-page-label"
           type="button"
           disabled
-          >
+        >
           Saved!
         </button>
       );
@@ -94,7 +94,7 @@ class AdventureEdit extends React.Component {
           className="btn btn-secondary starting-page-label"
           type="button"
           disabled
-          >
+        >
           Starting Page
         </button>
       );
@@ -167,7 +167,7 @@ class AdventureEdit extends React.Component {
                   })}
                 </select>
                 <div className="input-group-append">
-                  <button className="btn btn-primary" type="button" onClick={this.saveStartPage}>Save</button>
+                  <button className="btn btn-primary" type="button" onClick={this.saveStartPage}>Set</button>
                 </div>
               </div>
             </div>

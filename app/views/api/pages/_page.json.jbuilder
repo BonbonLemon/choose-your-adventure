@@ -10,7 +10,7 @@ json.options do
 #       json.partial! 'api/options/option', option: option
 #     end
 #   end
-  json.partial! 'api/options/option', collection: page.options, as: :option
+  json.partial! 'api/options/option', collection: page.options.sort_by{|option| option.id}, as: :option
 end
 
 # json.pages adventure.pages do |page|

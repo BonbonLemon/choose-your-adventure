@@ -124,9 +124,9 @@ html, body {
 
 /*adventure-show*/
 .back-to-list-button {
-  text-align: center;
+  width: 700px;
+  margin: 0 auto;
   font-size: 20px;
-  margin-right: 595px;
 }
 
 .adventure-show-box {

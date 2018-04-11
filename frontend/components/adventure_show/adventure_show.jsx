@@ -15,11 +15,7 @@ class AdventureShow extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.adventure.title) {
-      this.props.fetchAdventure(this.props.adventureId, this.checkCurrentUser);
-    } else {
-      this.checkCurrentUser(this.props.adventure);
-    }
+    this.props.fetchAdventure(this.props.adventureId, this.checkCurrentUser);
 
     if (this.props.location.pathname.indexOf("pages") !== -1) {
       this.startAdventure();
