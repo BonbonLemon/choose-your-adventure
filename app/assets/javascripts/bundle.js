@@ -27607,12 +27607,7 @@ var ReleaseNotes = function ReleaseNotes() {
         _react2.default.createElement(
           'li',
           null,
-          'Editing and creating pages is difficult as pages will jumble around and not save correctly at times'
-        ),
-        _react2.default.createElement(
-          'li',
-          null,
-          'The "Back to list" button does not fit on a single line when page width gets too small'
+          'Editing and creating pages is sometimes difficult as pages will jumble around and not save correctly at times'
         ),
         _react2.default.createElement(
           'li',
