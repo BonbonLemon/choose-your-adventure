@@ -12,6 +12,7 @@ json.page do
   json.extract! option.page, :id, :name, :text, :options
 
   json.adventure do
-    json.extract! option.page.adventure, :id, :title, :description, :cover_url, :pages
+    json.extract! option.page.adventure, :id, :title, :description, :cover_url
+    json.pages  option.page.adventure.pages.sort_by{|page| page.id}
   end
 end
