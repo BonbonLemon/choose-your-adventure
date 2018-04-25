@@ -25,17 +25,23 @@ class AdventureEdit extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.adventure.title) {
-      this.props.fetchAdventure(this.props.adventureId, this.setStartPageId);
-    } else {
-      this.setStartPageId(this.props.adventure);
-    }
+    this.props.fetchAdventure(this.props.adventureId, adventure => {
+      this.setStartPageId(adventure);
+      this.checkCurrentUser(adventure);
+    });
   }
 
   componentWillReceiveProps(nextProps) {
     const { adventure } = nextProps
     if (adventure.start_page_id !== this.state.startPageId) {
       this.setState({startPageId: adventure.start_page_id});
+    }
+  }
+
+  checkCurrentUser(adventure) {
+    const currentUser = this.props.currentUser;
+    if (!currentUser || currentUser.id !== adventure.author.id) {
+      this.props.history.push('/');
     }
   }
 

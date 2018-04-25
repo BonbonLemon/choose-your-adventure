@@ -27286,7 +27286,7 @@ var App = function App() {
         _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default }),
         _react2.default.createElement(_route_util.ProtectedRoute, { path: '/adventures/new', component: _adventure_new_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId', component: _adventure_show_container2.default }),
-        _react2.default.createElement(_route_util.OwnerProtectedRoute, { path: '/adventureeditor/:adventureId', component: _adventure_edit_container2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/adventureeditor/:adventureId', component: _adventure_edit_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/users/:username', component: _user_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/about', component: _about2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/release-notes', component: _release_notes2.default })
@@ -28217,7 +28217,7 @@ var AdventureNew = function (_React$Component) {
       cover_url: ''
     };
     _this.createAdventure = _this.createAdventure.bind(_this);
-    _this.navigateToAdventure = _this.navigateToAdventure.bind(_this);
+    _this.navigateToAdventureEdit = _this.navigateToAdventureEdit.bind(_this);
     return _this;
   }
 
@@ -28226,12 +28226,12 @@ var AdventureNew = function (_React$Component) {
     value: function createAdventure(attributes, e) {
       e.preventDefault();
       var adventure = Object.assign({}, attributes);
-      this.props.createAdventure({ adventure: adventure }, this.navigateToAdventure);
+      this.props.createAdventure({ adventure: adventure }, this.navigateToAdventureEdit);
     }
   }, {
-    key: 'navigateToAdventure',
-    value: function navigateToAdventure(adventure) {
-      this.props.history.push('/adventures/' + adventure.id);
+    key: 'navigateToAdventureEdit',
+    value: function navigateToAdventureEdit(adventure) {
+      this.props.history.push('/adventureeditor/' + adventure.id);
     }
   }, {
     key: 'render',
@@ -28847,9 +28847,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var adventureId = parseInt(ownProps.match.params.adventureId);
   var adventure = (0, _selectors.selectAdventure)(state.adventures, adventureId);
+  var currentUser = state.session.currentUser;
   return {
     adventure: adventure,
-    adventureId: adventureId
+    adventureId: adventureId,
+    currentUser: currentUser
   };
 };
 
@@ -28937,11 +28939,12 @@ var AdventureEdit = function (_React$Component) {
   _createClass(AdventureEdit, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      if (!this.props.adventure.title) {
-        this.props.fetchAdventure(this.props.adventureId, this.setStartPageId);
-      } else {
-        this.setStartPageId(this.props.adventure);
-      }
+      var _this2 = this;
+
+      this.props.fetchAdventure(this.props.adventureId, function (adventure) {
+        _this2.setStartPageId(adventure);
+        _this2.checkCurrentUser(adventure);
+      });
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -28950,6 +28953,14 @@ var AdventureEdit = function (_React$Component) {
 
       if (adventure.start_page_id !== this.state.startPageId) {
         this.setState({ startPageId: adventure.start_page_id });
+      }
+    }
+  }, {
+    key: 'checkCurrentUser',
+    value: function checkCurrentUser(adventure) {
+      var currentUser = this.props.currentUser;
+      if (!currentUser || currentUser.id !== adventure.author.id) {
+        this.props.history.push('/');
       }
     }
   }, {
@@ -28962,10 +28973,10 @@ var AdventureEdit = function (_React$Component) {
   }, {
     key: 'update',
     value: function update(property) {
-      var _this2 = this;
+      var _this3 = this;
 
       return function (e) {
-        return _this2.setState(_defineProperty({}, property, e.target.value));
+        return _this3.setState(_defineProperty({}, property, e.target.value));
       };
     }
   }, {
@@ -30259,7 +30270,7 @@ exports.default = (0, _reactRouterDom.withRouter)(User);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.OwnerProtectedRoute = exports.ProtectedRoute = exports.AuthRoute = undefined;
+exports.ProtectedRoute = exports.AuthRoute = undefined;
 
 var _react = __webpack_require__(0);
 
@@ -30300,12 +30311,13 @@ var OwnerProtected = function OwnerProtected(_ref3) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    loggedIn: Boolean(state.session.currentUser),
-    isOwner: function isOwner(props) {
-      return Boolean(state.session.currentUser && state.session.currentUser.adventures.find(function (adventure) {
-        return adventure.id == parseInt(props.match.params.adventureId);
-      }));
-    }
+    loggedIn: Boolean(state.session.currentUser)
+    // isOwner: props => {
+    //   return Boolean(state.session.currentUser && state.session.currentUser.adventures.find(function (adventure) {
+    //     return adventure.id == parseInt(props.match.params.adventureId);
+    //   }));
+    // }
+    // state.adventures[props.match.params.adventureId].author.id == state.session.currentUser.id;
     // Boolean(state.session.currentUser && state.session.currentUser.adventures.find(function (adventure) {
     //   debugger;
     //   return adventure.id === a;
@@ -30317,7 +30329,7 @@ var AuthRoute = exports.AuthRoute = (0, _reactRouterDom.withRouter)((0, _reactRe
 
 var ProtectedRoute = exports.ProtectedRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(Protected));
 
-var OwnerProtectedRoute = exports.OwnerProtectedRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(OwnerProtected));
+// export const OwnerProtectedRoute = withRouter(connect(mapStateToProps, null)(OwnerProtected));
 
 /***/ }),
 /* 187 */

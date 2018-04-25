@@ -15,17 +15,17 @@ class AdventureNew extends React.Component {
       cover_url: ''
     };
     this.createAdventure = this.createAdventure.bind(this);
-    this.navigateToAdventure = this.navigateToAdventure.bind(this);
+    this.navigateToAdventureEdit = this.navigateToAdventureEdit.bind(this);
   }
 
   createAdventure(attributes, e) {
     e.preventDefault();
     const adventure = Object.assign({}, attributes);
-    this.props.createAdventure({adventure}, this.navigateToAdventure);
+    this.props.createAdventure({adventure}, this.navigateToAdventureEdit);
   }
 
-  navigateToAdventure(adventure) {
-    this.props.history.push(`/adventures/${adventure.id}`);
+  navigateToAdventureEdit(adventure) {
+    this.props.history.push(`/adventureeditor/${adventure.id}`);
   }
 
   render() {
