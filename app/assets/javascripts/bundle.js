@@ -27586,7 +27586,7 @@ var ReleaseNotes = function ReleaseNotes() {
     _react2.default.createElement(
       'span',
       null,
-      'Last updated April 9, 2018'
+      'Last updated April 25, 2018'
     ),
     _react2.default.createElement(
       'div',

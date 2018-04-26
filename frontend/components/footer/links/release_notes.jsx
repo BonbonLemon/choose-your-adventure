@@ -5,7 +5,7 @@ const ReleaseNotes = () => {
   return (
     <div className="release-notes">
       <h1>Release Notes</h1>
-      <span>Last updated April 9, 2018</span>
+      <span>Last updated April 25, 2018</span>
 
       <div className="known-bugs">
         <h3>Known Bugs</h3>
