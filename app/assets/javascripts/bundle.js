@@ -27934,13 +27934,22 @@ var AdventureIndex = function (_React$Component) {
   function AdventureIndex(props) {
     _classCallCheck(this, AdventureIndex);
 
-    return _possibleConstructorReturn(this, (AdventureIndex.__proto__ || Object.getPrototypeOf(AdventureIndex)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (AdventureIndex.__proto__ || Object.getPrototypeOf(AdventureIndex)).call(this, props));
+
+    _this.handleCreateClick = _this.handleCreateClick.bind(_this);
+    return _this;
   }
 
   _createClass(AdventureIndex, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.fetchAdventures();
+    }
+  }, {
+    key: 'handleCreateClick',
+    value: function handleCreateClick(e) {
+      e.preventDefault();
+      this.props.history.push('/adventures/new');
     }
   }, {
     key: 'render',
@@ -27950,7 +27959,7 @@ var AdventureIndex = function (_React$Component) {
         { id: 'adventure-index-wrapper' },
         _react2.default.createElement(
           'div',
-          { className: 'adventure-index-item-wrapper' },
+          { className: 'adventure-index-item-wrapper', onClick: this.handleCreateClick },
           _react2.default.createElement(
             'div',
             { className: 'adventure-index-item' },
