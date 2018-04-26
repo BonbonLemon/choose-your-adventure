@@ -20,10 +20,10 @@ import AdventureShowContainer from './adventure_show/adventure_show_container';
 import AdventureEditContainer from './adventure_edit/adventure_edit_container';
 import UserContainer from './users/user_container';
 
-import { AuthRoute, ProtectedRoute, OwnerProtectedRoute } from '../util/route_util';
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => (
-  <div className="root-container">
+  <div id="root-container">
     <div className="wrapper">
       <header>
         <NavbarContainer />

@@ -27269,7 +27269,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var App = function App() {
   return _react2.default.createElement(
     'div',
-    { className: 'root-container' },
+    { id: 'root-container' },
     _react2.default.createElement(
       'div',
       { className: 'wrapper' },
@@ -27947,28 +27947,41 @@ var AdventureIndex = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { className: 'container-fluid' },
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: 'adventures/new' },
-          _react2.default.createElement(
-            'button',
-            { type: 'button', className: 'btn btn-info create-adventure-button' },
-            'Create New Adventure'
-          )
-        ),
+        { id: 'adventure-index-wrapper' },
         _react2.default.createElement(
           'div',
-          { className: 'row' },
-          this.props.adventures.map(function (adventure) {
-            if (adventure["published?"]) {
-              return _react2.default.createElement(_adventure_index_item2.default, {
-                adventure: adventure,
-                key: adventure.id
-              });
-            }
-          })
-        )
+          { className: 'adventure-index-item-wrapper' },
+          _react2.default.createElement(
+            'div',
+            { className: 'adventure-index-item' },
+            _react2.default.createElement(
+              'div',
+              { className: 'adventure-index-item-cover' },
+              _react2.default.createElement(
+                'div',
+                { className: 'default-cover' },
+                '+'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'adventure-index-item-description' },
+              _react2.default.createElement(
+                'div',
+                { className: 'adventure-index-item-title' },
+                'Create New Adventure'
+              )
+            )
+          )
+        ),
+        this.props.adventures.map(function (adventure) {
+          if (adventure["published?"]) {
+            return _react2.default.createElement(_adventure_index_item2.default, {
+              adventure: adventure,
+              key: adventure.id
+            });
+          }
+        })
       );
     }
   }]);
@@ -28050,7 +28063,7 @@ var AdventureIndexItem = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'col-12 col-md-6 col-lg-4 col-xl-3' },
+        { className: 'adventure-index-item-wrapper' },
         _react2.default.createElement(
           'div',
           { className: 'adventure-index-item', onClick: this.handleAdventureClick },
