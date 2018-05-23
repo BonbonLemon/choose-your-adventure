@@ -28,6 +28,7 @@ module.exports = {
     path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
     filename: "bundle.js"
   },
+  plugins: plugins,
   module: {
     loaders: [
       {
@@ -35,7 +36,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015', 'react']
+          presets: ['env', 'react']
         }
       }
     ]
