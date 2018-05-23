@@ -27586,7 +27586,7 @@ var ReleaseNotes = function ReleaseNotes() {
     _react2.default.createElement(
       'span',
       null,
-      'Last updated April 25, 2018'
+      'Last updated May 23, 2018'
     ),
     _react2.default.createElement(
       'div',
@@ -27599,6 +27599,11 @@ var ReleaseNotes = function ReleaseNotes() {
       _react2.default.createElement(
         'ul',
         null,
+        _react2.default.createElement(
+          'li',
+          null,
+          'Adventures on homepage are REALLY slow to load. Need to rethink design.'
+        ),
         _react2.default.createElement(
           'li',
           null,
