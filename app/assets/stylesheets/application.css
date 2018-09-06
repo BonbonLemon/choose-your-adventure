@@ -78,6 +78,7 @@ html, body {
 
 .adventure-index-item {
   display: inline-block;
+  box-sizing: border-box;
   height: 375px;
   width: 300px;
   margin: 0 25px;
@@ -141,7 +142,8 @@ html, body {
   object-position: center;
 }
 
-.adventure-index-item-description {
+.adventure-index-item-details {
+  position: absolute;
   height: 100px;
   padding: 10px;
 }

@@ -28973,7 +28973,7 @@ var AdventureIndex = function (_React$Component) {
           ),
           _react2.default.createElement(
             'div',
-            { className: 'adventure-index-item-description' },
+            { className: 'adventure-index-item-details' },
             _react2.default.createElement(
               'div',
               { className: 'adventure-index-item-title' },
@@ -29078,7 +29078,7 @@ var AdventureIndexItem = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'adventure-index-item-description' },
+          { className: 'adventure-index-item-details' },
           _react2.default.createElement(
             'div',
             { className: 'adventure-index-item-title' },

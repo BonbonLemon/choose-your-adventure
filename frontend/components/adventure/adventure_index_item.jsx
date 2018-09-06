@@ -32,7 +32,7 @@ class AdventureIndexItem extends React.Component {
         <div className="adventure-index-item-cover">
           { cover_url ? this.coverImage(cover_url) : this.defaultImage() }
         </div>
-        <div className="adventure-index-item-description">
+        <div className="adventure-index-item-details">
           <div className="adventure-index-item-title">
             {title}
           </div>

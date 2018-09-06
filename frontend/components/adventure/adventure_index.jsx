@@ -25,7 +25,7 @@ class AdventureIndex extends React.Component {
           <div className="adventure-index-item-cover">
             <div className="default-cover">+</div>
           </div>
-          <div className="adventure-index-item-description">
+          <div className="adventure-index-item-details">
             <div className="adventure-index-item-title">
               Create New Adventure
             </div>
