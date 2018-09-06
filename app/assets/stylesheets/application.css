@@ -65,6 +65,76 @@ html, body {
    margin-left: 10px;
  }
 
+ /* sessions */
+ #session-box {
+  background: #bbc5d4;
+  width: 600px;
+  margin: 100px auto;
+  padding: 50px 60px;
+}
+
+#action-box {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.action-button {
+  height: 100%;
+  width: 50%;
+  border: 0;
+  font-size: 16px;
+  background: gray;
+  color: white;
+  float: left;
+  line-height: 40px;
+}
+
+.action-button:hover {
+  cursor: pointer;
+}
+
+.action-button[disabled] {
+  cursor: default;
+  background: #4aaad0;
+}
+
+#logo {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 36px;
+  height: 88px;
+  width: 88px;
+}
+
+.session-form-group {
+  margin-bottom: 30px;
+  color: #676e74;
+}
+
+.session-form-group > label {
+  display: inline-block;
+  margin-bottom: 6px;
+  color: #4e4e4e;
+}
+
+.session-form-group > input[type=text],
+.session-form-group > input[type=password] {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 6px;
+}
+
+#session-submit-button {
+ background: #4aaad0;
+ margin-top: 25px;
+ padding: 8px;
+ border: 0;
+ color: white;
+ font-size: 16px;
+}
+
 /*adventure index*/
 .create-adventure-button {
   margin: 25px 20px;

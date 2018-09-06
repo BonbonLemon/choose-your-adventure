@@ -28732,6 +28732,7 @@ var SessionForm = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (SessionForm.__proto__ || Object.getPrototypeOf(SessionForm)).call(this, props));
 
     _this.state = {
+      actionWord: "Sign In",
       username: '',
       password: ''
     };
@@ -28753,6 +28754,17 @@ var SessionForm = function (_React$Component) {
 
       return function (e) {
         return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
+  }, {
+    key: 'changeAction',
+    value: function changeAction(word) {
+      var _this3 = this;
+
+      return function (e) {
+        _this3.setState({
+          actionWord: word
+        });
       };
     }
   }, {
@@ -28798,58 +28810,96 @@ var SessionForm = function (_React$Component) {
     key: 'render',
     value: function render() {
       var _state = this.state,
+          actionWord = _state.actionWord,
           username = _state.username,
           password = _state.password;
 
+      // <form onSubmit={this.handleSubmit} className="login-form-box">
+      //   Welcome to Choose Your Adventure!
+      //   <br/>
+      //   Please {this.props.formType} or {this.navLink()}
+      //   {this.renderErrors()}
+      //   <div className="form-group col-6 offset-3">
+      //     <label>Username</label>
+      //       <input
+      //         type="text"
+      //         className="form-control"
+      //         value={username}
+      //         placeholder="Enter Username"
+      //         onChange={this.update('username')}
+      //         required
+      //       />
+      //   </div>
+      //   <div className="form-group col-6 offset-3">
+      //     <label>Password</label>
+      //       <input
+      //         type="password"
+      //         className="form-control"
+      //         value={password}
+      //         placeholder="Enter Password"
+      //         onChange={this.update('password')}
+      //         required
+      //       />
+      //   </div>
+      //   <div className="form-group col-12 offset-3">
+      //     <input type="submit" value="Submit" />
+      //   </div>
+      // </form>
 
       return _react2.default.createElement(
-        'form',
-        { onSubmit: this.handleSubmit, className: 'login-form-box' },
-        'Welcome to Choose Your Adventure!',
-        _react2.default.createElement('br', null),
-        'Please ',
-        this.props.formType,
-        ' or ',
-        this.navLink(),
-        this.renderErrors(),
+        'div',
+        { id: 'session-box' },
         _react2.default.createElement(
           'div',
-          { className: 'form-group col-6 offset-3' },
+          { id: 'action-box' },
           _react2.default.createElement(
-            'label',
-            null,
-            'Username'
+            'button',
+            { className: 'action-button', onClick: this.changeAction("Sign In"), disabled: actionWord == "Sign In" },
+            'Sign In'
+          ),
+          _react2.default.createElement(
+            'button',
+            { className: 'action-button', onClick: this.changeAction("Sign Up"), disabled: actionWord == "Sign Up" },
+            'Sign Up'
+          )
+        ),
+        _react2.default.createElement('img', { id: 'logo', src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1536261608/book_r0aisu.png' }),
+        _react2.default.createElement(
+          'form',
+          { onSubmit: this.handleSubmit },
+          _react2.default.createElement(
+            'div',
+            { className: 'session-form-group' },
+            _react2.default.createElement(
+              'label',
+              null,
+              'Username'
+            ),
+            _react2.default.createElement('input', {
+              type: 'text',
+              value: username,
+              onChange: this.update('username')
+            })
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'session-form-group' },
+            _react2.default.createElement(
+              'label',
+              null,
+              'Password'
+            ),
+            _react2.default.createElement('input', {
+              type: 'password',
+              value: password,
+              onChange: this.update('password')
+            })
           ),
           _react2.default.createElement('input', {
-            type: 'text',
-            className: 'form-control',
-            value: username,
-            placeholder: 'Enter Username',
-            onChange: this.update('username'),
-            required: true
+            type: 'submit',
+            id: 'session-submit-button',
+            value: actionWord
           })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'form-group col-6 offset-3' },
-          _react2.default.createElement(
-            'label',
-            null,
-            'Password'
-          ),
-          _react2.default.createElement('input', {
-            type: 'password',
-            className: 'form-control',
-            value: password,
-            placeholder: 'Enter Password',
-            onChange: this.update('password'),
-            required: true
-          })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'form-group col-12 offset-3' },
-          _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
         )
       );
     }

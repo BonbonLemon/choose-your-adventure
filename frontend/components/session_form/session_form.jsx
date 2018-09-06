@@ -5,6 +5,7 @@ class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      actionWord: "Sign In",
       username: '',
       password: ''
     };
@@ -21,6 +22,14 @@ class SessionForm extends React.Component {
     return e => this.setState({
       [field]: e.currentTarget.value
     });
+  }
+
+  changeAction(word) {
+    return e => {
+      this.setState({
+        actionWord: word
+      });
+    };
   }
 
   handleSubmit(e) {
@@ -50,40 +59,70 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { actionWord, username, password } = this.state;
 
+      // <form onSubmit={this.handleSubmit} className="login-form-box">
+      //   Welcome to Choose Your Adventure!
+      //   <br/>
+      //   Please {this.props.formType} or {this.navLink()}
+      //   {this.renderErrors()}
+      //   <div className="form-group col-6 offset-3">
+      //     <label>Username</label>
+      //       <input
+      //         type="text"
+      //         className="form-control"
+      //         value={username}
+      //         placeholder="Enter Username"
+      //         onChange={this.update('username')}
+      //         required
+      //       />
+      //   </div>
+      //   <div className="form-group col-6 offset-3">
+      //     <label>Password</label>
+      //       <input
+      //         type="password"
+      //         className="form-control"
+      //         value={password}
+      //         placeholder="Enter Password"
+      //         onChange={this.update('password')}
+      //         required
+      //       />
+      //   </div>
+      //   <div className="form-group col-12 offset-3">
+      //     <input type="submit" value="Submit" />
+      //   </div>
+      // </form>
     return (
-      <form onSubmit={this.handleSubmit} className="login-form-box">
-        Welcome to Choose Your Adventure!
-        <br/>
-        Please {this.props.formType} or {this.navLink()}
-        {this.renderErrors()}
-        <div className="form-group col-6 offset-3">
-          <label>Username</label>
-            <input
+      <div id="session-box">
+        <div id="action-box">
+          <button className="action-button" onClick={this.changeAction("Sign In")} disabled={actionWord == "Sign In"}>Sign In</button>
+          <button className="action-button" onClick={this.changeAction("Sign Up")} disabled={actionWord == "Sign Up"}>Sign Up</button>
+        </div>
+        <img id="logo" src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1536261608/book_r0aisu.png"/>
+        <form onSubmit={this.handleSubmit}>
+          <div className="session-form-group">
+            <label>Username</label>
+            <input 
               type="text"
-              className="form-control"
               value={username}
-              placeholder="Enter Username"
               onChange={this.update('username')}
-              required
             />
-        </div>
-        <div className="form-group col-6 offset-3">
-          <label>Password</label>
-            <input
+          </div>
+          <div className="session-form-group">
+            <label>Password</label>
+            <input 
               type="password"
-              className="form-control"
               value={password}
-              placeholder="Enter Password"
               onChange={this.update('password')}
-              required
             />
-        </div>
-        <div className="form-group col-12 offset-3">
-          <input type="submit" value="Submit" />
-        </div>
-      </form>
+          </div>
+            <input 
+              type="submit"
+              id="session-submit-button"
+              value={actionWord}
+            />
+        </form>
+      </div>
     );
   }
 }
