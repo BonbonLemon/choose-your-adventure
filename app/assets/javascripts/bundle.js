@@ -28863,7 +28863,7 @@ var SessionForm = function (_React$Component) {
             'Sign Up'
           )
         ),
-        _react2.default.createElement('img', { id: 'logo', src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1536261608/book_r0aisu.png' }),
+        _react2.default.createElement('img', { id: 'logo', src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1536262539/d80ac68d4883a2b14b8e346fce09b5c6_z50qex.png' }),
         _react2.default.createElement(
           'form',
           { onSubmit: this.handleSubmit },

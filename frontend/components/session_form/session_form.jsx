@@ -98,7 +98,7 @@ class SessionForm extends React.Component {
           <button className="action-button" onClick={this.changeAction("Sign In")} disabled={actionWord == "Sign In"}>Sign In</button>
           <button className="action-button" onClick={this.changeAction("Sign Up")} disabled={actionWord == "Sign Up"}>Sign Up</button>
         </div>
-        <img id="logo" src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1536261608/book_r0aisu.png"/>
+        <img id="logo" src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1536262539/d80ac68d4883a2b14b8e346fce09b5c6_z50qex.png"/>
         <form onSubmit={this.handleSubmit}>
           <div className="session-form-group">
             <label>Username</label>

@@ -103,9 +103,8 @@ html, body {
 #logo {
   display: block;
   margin: 0 auto;
-  margin-bottom: 36px;
-  height: 88px;
-  width: 88px;
+  margin-bottom: 44px;
+  height: 96px;
 }
 
 .session-form-group {
@@ -128,7 +127,7 @@ html, body {
 
 #session-submit-button {
  background: #4aaad0;
- margin-top: 25px;
+ margin-top: 14px;
  padding: 8px;
  border: 0;
  color: white;
