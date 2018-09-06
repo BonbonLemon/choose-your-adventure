@@ -70,23 +70,44 @@ html, body {
   margin: 25px 20px;
 }
 
-#adventure-index-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+#adventure-index {
+  width: 1750px;
+  margin: 0 auto;
   margin-top: 15px;
 }
 
-.adventure-index-item-wrapper {
+.adventure-index-item {
+  display: inline-block;
   height: 375px;
   width: 300px;
-  margin: 0 14px;
+  margin: 0 25px;
   margin-top: 24px;
-}
-
-.adventure-index-item {
   background-color: white;
   box-shadow: 5px 5px 5px #888888;
+}
+
+@media screen and (max-width: 730px) {
+  #adventure-index {
+    width: 350px;
+  }
+}
+
+@media screen and (min-width: 731px) and (max-width: 1080px) {
+  #adventure-index {
+    width: 700px;
+  }
+}
+
+@media screen and (min-width: 1081px) and (max-width: 1430px) {
+  #adventure-index {
+    width: 1050px;
+  }
+}
+
+@media screen and (min-width: 1431px) and (max-width: 1780px) {
+  #adventure-index {
+    width: 1400px;
+  }
 }
 
 .adventure-index-item:hover {

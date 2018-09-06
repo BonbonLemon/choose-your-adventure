@@ -20,16 +20,14 @@ class AdventureIndex extends React.Component {
 
   render() {
     return (
-      <div id="adventure-index-wrapper">
-        <div className="adventure-index-item-wrapper" onClick={this.handleCreateClick}>
-          <div className="adventure-index-item">
-            <div className="adventure-index-item-cover">
-              <div className="default-cover">+</div>
-            </div>
-            <div className="adventure-index-item-description">
-              <div className="adventure-index-item-title">
-                Create New Adventure
-              </div>
+      <div id="adventure-index">
+        <div className="adventure-index-item" onClick={this.handleCreateClick}>
+          <div className="adventure-index-item-cover">
+            <div className="default-cover">+</div>
+          </div>
+          <div className="adventure-index-item-description">
+            <div className="adventure-index-item-title">
+              Create New Adventure
             </div>
           </div>
         </div>

@@ -28,18 +28,16 @@ class AdventureIndexItem extends React.Component {
     const { title, author, cover_url } = this.props.adventure;
 
     return (
-      <div className="adventure-index-item-wrapper">
-        <div className="adventure-index-item" onClick={this.handleAdventureClick}>
-          <div className="adventure-index-item-cover">
-            { cover_url ? this.coverImage(cover_url) : this.defaultImage() }
+      <div className="adventure-index-item" onClick={this.handleAdventureClick}>
+        <div className="adventure-index-item-cover">
+          { cover_url ? this.coverImage(cover_url) : this.defaultImage() }
+        </div>
+        <div className="adventure-index-item-description">
+          <div className="adventure-index-item-title">
+            {title}
           </div>
-          <div className="adventure-index-item-description">
-            <div className="adventure-index-item-title">
-              {title}
-            </div>
-            <div className="adventure-index-item-author">
-              {author.username}
-            </div>
+          <div className="adventure-index-item-author">
+            {author.username}
           </div>
         </div>
       </div>

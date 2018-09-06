@@ -28958,30 +28958,26 @@ var AdventureIndex = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { id: 'adventure-index-wrapper' },
+        { id: 'adventure-index' },
         _react2.default.createElement(
           'div',
-          { className: 'adventure-index-item-wrapper', onClick: this.handleCreateClick },
+          { className: 'adventure-index-item', onClick: this.handleCreateClick },
           _react2.default.createElement(
             'div',
-            { className: 'adventure-index-item' },
+            { className: 'adventure-index-item-cover' },
             _react2.default.createElement(
               'div',
-              { className: 'adventure-index-item-cover' },
-              _react2.default.createElement(
-                'div',
-                { className: 'default-cover' },
-                '+'
-              )
-            ),
+              { className: 'default-cover' },
+              '+'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'adventure-index-item-description' },
             _react2.default.createElement(
               'div',
-              { className: 'adventure-index-item-description' },
-              _react2.default.createElement(
-                'div',
-                { className: 'adventure-index-item-title' },
-                'Create New Adventure'
-              )
+              { className: 'adventure-index-item-title' },
+              'Create New Adventure'
             )
           )
         ),
@@ -29074,28 +29070,24 @@ var AdventureIndexItem = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'adventure-index-item-wrapper' },
+        { className: 'adventure-index-item', onClick: this.handleAdventureClick },
         _react2.default.createElement(
           'div',
-          { className: 'adventure-index-item', onClick: this.handleAdventureClick },
+          { className: 'adventure-index-item-cover' },
+          cover_url ? this.coverImage(cover_url) : this.defaultImage()
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'adventure-index-item-description' },
           _react2.default.createElement(
             'div',
-            { className: 'adventure-index-item-cover' },
-            cover_url ? this.coverImage(cover_url) : this.defaultImage()
+            { className: 'adventure-index-item-title' },
+            title
           ),
           _react2.default.createElement(
             'div',
-            { className: 'adventure-index-item-description' },
-            _react2.default.createElement(
-              'div',
-              { className: 'adventure-index-item-title' },
-              title
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'adventure-index-item-author' },
-              author.username
-            )
+            { className: 'adventure-index-item-author' },
+            author.username
           )
         )
       );
