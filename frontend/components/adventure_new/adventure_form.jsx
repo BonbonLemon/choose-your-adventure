@@ -120,15 +120,13 @@ class AdventureEdit extends React.Component {
         <div className="adventure-form-group">
           { cover }
           <div className="input-group">
-            <div className="input-group-prepend">
-              <button
-                onClick={this.handleCloudinary}
-                className="btn btn-secondary"
-                type="button"
-              >
-                Upload Image
-              </button>
-            </div>
+            <button
+              onClick={this.handleCloudinary}
+              className="btn btn-secondary"
+              type="button"
+            >
+              Upload Image
+            </button>
             <input
               type="text"
               className="form-control"

@@ -80,7 +80,7 @@ class AdventureEdit extends React.Component {
   }
 
   navigateToAdventure(adventure) {
-    this.props.history.push(`/adventures/${adventure.id}`);
+    this.props.history.push("/adventures/" + adventure.id);
   }
 
   startingPageLabel() {
@@ -118,10 +118,10 @@ class AdventureEdit extends React.Component {
 
   publishButtons() {
     const publish = (
-      <button type="button" className="btn btn-info margin-left-10" onClick={this.togglePublished}>Make Public</button>
+      <button type="button" className="btn btn-info" onClick={this.togglePublished}>Make Public</button>
     );
     const hidden = (
-      <button type="button" className="btn btn-secondary margin-left-10" onClick={this.togglePublished}>Hide From Public</button>
+      <button type="button" className="btn btn-secondary" onClick={this.togglePublished}>Hide From Public</button>
     );
     if (this.props.adventure["published?"]) {
       return hidden;
@@ -135,16 +135,10 @@ class AdventureEdit extends React.Component {
     const pages = this.props.adventure.pages || [];
 
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-12">
-            <h1 className="adventure-form-header">Edit An Adventure</h1>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12">
-            { this.publishButtons() }
-          </div>
+      <div>
+        <h1 id="adventure-form-header">Edit An Adventure</h1>
+        <div id="publish-button-wrapper">
+          { this.publishButtons() }
         </div>
         <div className="row">
           <div className="col-12">

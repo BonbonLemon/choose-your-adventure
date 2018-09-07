@@ -31,7 +31,7 @@ class GenreInput extends React.Component {
     const genre = this.state.genre;
 
     return (
-      <div className="adventure-form-group input-group">
+      <div id="genre-input" className="adventure-form-group input-group">
         <input
           type="text"
           className="form-control"

@@ -2287,7 +2287,7 @@ var GenreInput = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'adventure-form-group input-group' },
+        { id: 'genre-input', className: 'adventure-form-group input-group' },
         _react2.default.createElement('input', {
           type: 'text',
           className: 'form-control',
@@ -5029,17 +5029,13 @@ var AdventureEdit = function (_React$Component) {
             'div',
             { className: 'input-group' },
             _react2.default.createElement(
-              'div',
-              { className: 'input-group-prepend' },
-              _react2.default.createElement(
-                'button',
-                {
-                  onClick: this.handleCloudinary,
-                  className: 'btn btn-secondary',
-                  type: 'button'
-                },
-                'Upload Image'
-              )
+              'button',
+              {
+                onClick: this.handleCloudinary,
+                className: 'btn btn-secondary',
+                type: 'button'
+              },
+              'Upload Image'
             ),
             _react2.default.createElement('input', {
               type: 'text',
@@ -30050,7 +30046,7 @@ var AdventureEdit = function (_React$Component) {
   }, {
     key: 'navigateToAdventure',
     value: function navigateToAdventure(adventure) {
-      this.props.history.push('/adventures/' + adventure.id);
+      this.props.history.push("/adventures/" + adventure.id);
     }
   }, {
     key: 'startingPageLabel',
@@ -30093,12 +30089,12 @@ var AdventureEdit = function (_React$Component) {
     value: function publishButtons() {
       var publish = _react2.default.createElement(
         'button',
-        { type: 'button', className: 'btn btn-info margin-left-10', onClick: this.togglePublished },
+        { type: 'button', className: 'btn btn-info', onClick: this.togglePublished },
         'Make Public'
       );
       var hidden = _react2.default.createElement(
         'button',
-        { type: 'button', className: 'btn btn-secondary margin-left-10', onClick: this.togglePublished },
+        { type: 'button', className: 'btn btn-secondary', onClick: this.togglePublished },
         'Hide From Public'
       );
       if (this.props.adventure["published?"]) {
@@ -30116,28 +30112,16 @@ var AdventureEdit = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'container-fluid' },
+        null,
         _react2.default.createElement(
-          'div',
-          { className: 'row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-12' },
-            _react2.default.createElement(
-              'h1',
-              { className: 'adventure-form-header' },
-              'Edit An Adventure'
-            )
-          )
+          'h1',
+          { id: 'adventure-form-header' },
+          'Edit An Adventure'
         ),
         _react2.default.createElement(
           'div',
-          { className: 'row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-12' },
-            this.publishButtons()
-          )
+          { id: 'publish-button-wrapper' },
+          this.publishButtons()
         ),
         _react2.default.createElement(
           'div',

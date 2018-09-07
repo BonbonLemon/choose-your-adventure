@@ -148,8 +148,7 @@ html, body {
 
 #adventure-index {
   width: 1750px;
-  margin: 0 auto;
-  margin-top: 15px;
+  margin: 30px auto;
 }
 
 .adventure-index-item {
@@ -266,6 +265,10 @@ html, body {
   margin-top: 10px;
 }
 
+#genre-input {
+  margin-bottom: 12px;
+}
+
 .genre-box {
   display: inline-block;
   border-radius: 3px;
@@ -301,6 +304,12 @@ html, body {
 
 #adventure-new {
   text-align: center;
+}
+
+/*adventure-edit*/
+#publish-button-wrapper {
+  width: 700px;
+  margin: 0 auto;
 }
 
 /*adventure-show*/
