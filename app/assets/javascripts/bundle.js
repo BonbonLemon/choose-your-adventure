@@ -2287,7 +2287,7 @@ var GenreInput = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'input-group' },
+        { className: 'adventure-form-group input-group' },
         _react2.default.createElement('input', {
           type: 'text',
           className: 'form-control',
@@ -2298,7 +2298,7 @@ var GenreInput = function (_React$Component) {
         }),
         _react2.default.createElement(
           'div',
-          { className: 'input-group-append' },
+          null,
           _react2.default.createElement(
             'button',
             { className: 'btn btn-success', type: 'button', onClick: this.submitGenre },
@@ -4967,19 +4967,19 @@ var AdventureEdit = function (_React$Component) {
       if (cover_url) {
         cover = _react2.default.createElement(
           'div',
-          { className: 'upload-cover-image-wrapper form-group' },
+          { className: 'upload-cover-image-wrapper adventure-form-group' },
           _react2.default.createElement('img', { src: cover_url })
         );
       }
 
       return _react2.default.createElement(
         'form',
-        { className: 'adventure-form', onSubmit: function onSubmit(e) {
+        { id: 'adventure-form', onSubmit: function onSubmit(e) {
             return _this4.props.handleSubmit(_this4.state, e);
           } },
         _react2.default.createElement(
           'div',
-          { className: 'form-group' },
+          { className: 'adventure-form-group' },
           _react2.default.createElement(
             'label',
             null,
@@ -4987,7 +4987,7 @@ var AdventureEdit = function (_React$Component) {
           ),
           _react2.default.createElement('input', {
             type: 'text',
-            className: 'form-control',
+            className: 'adventure-form-text-input',
             value: title,
             placeholder: 'Add a Title',
             onChange: this.update("title"),
@@ -4996,7 +4996,7 @@ var AdventureEdit = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'form-group' },
+          { className: 'adventure-form-group' },
           _react2.default.createElement(
             'label',
             null,
@@ -5007,14 +5007,14 @@ var AdventureEdit = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'form-group' },
+          { className: 'adventure-form-group' },
           _react2.default.createElement(
             'label',
             null,
             'Description'
           ),
           _react2.default.createElement('textarea', {
-            className: 'form-control',
+            className: 'adventure-form-text-input',
             value: description,
             placeholder: 'Add a Description',
             rows: '3',
@@ -5023,7 +5023,7 @@ var AdventureEdit = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'form-group' },
+          { className: 'adventure-form-group' },
           cover,
           _react2.default.createElement(
             'div',
@@ -5050,13 +5050,9 @@ var AdventureEdit = function (_React$Component) {
           )
         ),
         _react2.default.createElement(
-          'div',
-          { className: 'form-group' },
-          _react2.default.createElement(
-            'button',
-            { type: 'submit', className: 'btn btn-primary' },
-            'Save'
-          )
+          'button',
+          { type: 'submit', className: 'btn btn-primary' },
+          'Save'
         )
       );
     }
@@ -28280,7 +28276,6 @@ var App = function App() {
         null,
         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _adventure_index_container2.default }),
         _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
-        _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default }),
         _react2.default.createElement(_route_util.ProtectedRoute, { path: '/adventures/new', component: _adventure_new_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId', component: _adventure_show_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/adventureeditor/:adventureId', component: _adventure_edit_container2.default }),
@@ -29297,29 +29292,13 @@ var AdventureNew = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { className: 'container-fluid' },
+        null,
         _react2.default.createElement(
-          'div',
-          { className: 'row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-12' },
-            _react2.default.createElement(
-              'h1',
-              { className: 'adventure-form-header' },
-              'Create An Adventure'
-            )
-          )
+          'h1',
+          { id: 'adventure-form-header' },
+          'Create An Adventure'
         ),
-        _react2.default.createElement(
-          'div',
-          { className: 'row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-12' },
-            _react2.default.createElement(_adventure_form2.default, { handleSubmit: this.createAdventure })
-          )
-        )
+        _react2.default.createElement(_adventure_form2.default, { handleSubmit: this.createAdventure })
       );
     }
   }]);

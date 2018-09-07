@@ -32,7 +32,6 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={AdventureIndexContainer} />
         <AuthRoute path="/login" component={SessionFormContainer} />
-        <AuthRoute path="/signup" component={SessionFormContainer} />
         <ProtectedRoute path="/adventures/new" component={AdventureNewContainer} />
         <Route path="/adventures/:adventureId" component={AdventureShowContainer} />
         <Route path="/adventureeditor/:adventureId" component={AdventureEditContainer} />

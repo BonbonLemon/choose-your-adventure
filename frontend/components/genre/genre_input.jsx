@@ -31,7 +31,7 @@ class GenreInput extends React.Component {
     const genre = this.state.genre;
 
     return (
-      <div className="input-group">
+      <div className="adventure-form-group input-group">
         <input
           type="text"
           className="form-control"
@@ -40,7 +40,7 @@ class GenreInput extends React.Component {
           onChange={this.updateGenre}
           onKeyDown={this.checkForEnter}
         />
-        <div className="input-group-append">
+        <div>
           <button className="btn btn-success" type="button" onClick={this.submitGenre}>Add</button>
         </div>
       </div>

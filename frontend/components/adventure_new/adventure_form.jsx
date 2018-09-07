@@ -81,18 +81,18 @@ class AdventureEdit extends React.Component {
     let cover;
     if (cover_url) {
       cover =
-        <div className="upload-cover-image-wrapper form-group">
+        <div className="upload-cover-image-wrapper adventure-form-group">
           <img src={cover_url}/>
         </div>;
     }
 
     return (
-      <form className="adventure-form" onSubmit={(e) => this.props.handleSubmit(this.state, e)}>
-        <div className="form-group">
+      <form id="adventure-form" onSubmit={(e) => this.props.handleSubmit(this.state, e)}>
+        <div className="adventure-form-group">
           <label>Title</label>
           <input
             type="text"
-            className="form-control"
+            className="adventure-form-text-input"
             value={title}
             placeholder="Add a Title"
             onChange={this.update("title")}
@@ -100,16 +100,16 @@ class AdventureEdit extends React.Component {
           />
         </div>
 
-        <div className="form-group">
+        <div className="adventure-form-group">
           <label>Genres</label>
           <GenreInput addGenre={this.addGenre} />
           <GenreInputs genres={this.state.genres} removeGenre={this.removeGenre} />
         </div>
 
-        <div className="form-group">
+        <div className="adventure-form-group">
           <label>Description</label>
           <textarea
-            className="form-control"
+            className="adventure-form-text-input"
             value={description}
             placeholder="Add a Description"
             rows="3"
@@ -117,7 +117,7 @@ class AdventureEdit extends React.Component {
           />
         </div>
 
-        <div className="form-group">
+        <div className="adventure-form-group">
           { cover }
           <div className="input-group">
             <div className="input-group-prepend">
@@ -138,9 +138,7 @@ class AdventureEdit extends React.Component {
           </div>
         </div>
 
-        <div className="form-group">
-          <button type="submit" className="btn btn-primary">Save</button>
-        </div>
+        <button type="submit" className="btn btn-primary">Save</button>
       </form>
     );
   }

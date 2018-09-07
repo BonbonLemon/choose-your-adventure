@@ -30,17 +30,9 @@ class AdventureNew extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-12">
-            <h1 className="adventure-form-header">Create An Adventure</h1>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12">
-            <AdventureForm handleSubmit={this.createAdventure}/>
-          </div>
-        </div>
+      <div>
+        <h1 id="adventure-form-header">Create An Adventure</h1>
+        <AdventureForm handleSubmit={this.createAdventure}/>
       </div>
     );
   }

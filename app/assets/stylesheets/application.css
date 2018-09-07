@@ -233,6 +233,76 @@ html, body {
 
 }
 
+/*adventure-form*/
+#adventure-form-header {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 44px;
+}
+
+#adventure-form {
+  background-color: #bbc5d4;
+  width: 700px;
+  margin: 10px auto;
+  padding: 24px;
+}
+
+.adventure-form-group {
+  margin-bottom: 30px;
+}
+
+.adventure-form-text-input {
+  display: block;
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 16px;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.genres-container {
+  margin-top: 10px;
+}
+
+.genre-box {
+  display: inline-block;
+  border-radius: 3px;
+  padding: 3px 8px;
+  margin: 0 4px 4px 0;
+  font-size: 13px;
+  font-weight: 500;
+  max-width: 100%;
+  background-color: rgba(122, 135, 228, 0.75);
+  color: #ffffff;
+}
+
+.genre-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.genre-remove-button {
+  color: #252525;
+  background: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0 0 0 4px;
+  transition: background-color .2s;
+  outline: 0;
+}
+
+.genre-remove-button:hover {
+  cursor: pointer;
+}
+
+
+#adventure-new {
+  text-align: center;
+}
+
 /*adventure-show*/
 .back-to-list-button {
   width: 700px;
@@ -349,52 +419,6 @@ html, body {
   float: left;
 }
 
-.adventure-form {
-  background-color: #bbc5d4;
-  width: 600px;
-  margin: 10px;
-  padding: 10px;
-}
-
-.adventure-form-header {
-  margin: 10px;
-}
-
-.genres-container {
-  margin-top: 10px;
-}
-
-.genre-box {
-  display: inline-block;
-  border-radius: 3px;
-  padding: 3px 8px;
-  margin: 0 4px 4px 0;
-  font-size: 13px;
-  font-weight: 500;
-  max-width: 100%;
-  background-color: rgba(122, 135, 228, 0.75);
-  color: #ffffff;
-}
-
-.genre-name {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.genre-remove-button {
-  color: #252525;
-  background: transparent;
-  border: 0;
-  margin: 0;
-  padding: 0 0 0 4px;
-  transition: background-color .2s;
-  outline: 0;
-}
-
-.genre-remove-button:hover {
-  cursor: pointer;
-}
 
 .toggle-button:hover {
   color: #ffa500;
