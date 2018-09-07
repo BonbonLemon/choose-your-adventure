@@ -1507,7 +1507,7 @@ var matchPath = function matchPath(pathname) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.logout = exports.login = exports.signup = exports.receiveErrors = exports.receiveCurrentUser = exports.RECEIVE_SESSION_ERRORS = exports.RECEIVE_CURRENT_USER = undefined;
+exports.logOut = exports.logIn = exports.signUp = exports.receiveErrors = exports.receiveCurrentUser = exports.RECEIVE_SESSION_ERRORS = exports.RECEIVE_CURRENT_USER = undefined;
 
 var _session_api_util = __webpack_require__(149);
 
@@ -1532,9 +1532,9 @@ var receiveErrors = exports.receiveErrors = function receiveErrors(errors) {
   };
 };
 
-var signup = exports.signup = function signup(user) {
+var signUp = exports.signUp = function signUp(user) {
   return function (dispatch) {
-    return APIUtil.signup(user).then(function (user) {
+    return APIUtil.signUp(user).then(function (user) {
       return dispatch(receiveCurrentUser(user));
     }, function (err) {
       return dispatch(receiveErrors(err.responseJSON));
@@ -1542,9 +1542,9 @@ var signup = exports.signup = function signup(user) {
   };
 };
 
-var login = exports.login = function login(user) {
+var logIn = exports.logIn = function logIn(user) {
   return function (dispatch) {
-    return APIUtil.login(user).then(function (user) {
+    return APIUtil.logIn(user).then(function (user) {
       return dispatch(receiveCurrentUser(user));
     }, function (err) {
       return dispatch(receiveErrors(err.responseJSON));
@@ -1552,9 +1552,9 @@ var login = exports.login = function login(user) {
   };
 };
 
-var logout = exports.logout = function logout() {
+var logOut = exports.logOut = function logOut() {
   return function (dispatch) {
-    return APIUtil.logout().then(function (user) {
+    return APIUtil.logOut().then(function (user) {
       return dispatch(receiveCurrentUser(null));
     });
   };
@@ -28325,9 +28325,9 @@ var mapStateToProps = function mapStateToProps(_ref) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    logout: function logout(e) {
+    logOut: function logOut(e) {
       e.preventDefault();
-      dispatch((0, _session_actions.logout)());
+      dispatch((0, _session_actions.logOut)());
     }
   };
 };
@@ -28344,23 +28344,23 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var login = exports.login = function login(user) {
+var logIn = exports.logIn = function logIn(user) {
   return $.ajax({
     method: 'POST',
     url: '/api/session',
-    data: user
+    data: { user: user }
   });
 };
 
-var signup = exports.signup = function signup(user) {
+var signUp = exports.signUp = function signUp(user) {
   return $.ajax({
     method: 'POST',
     url: '/api/user',
-    data: user
+    data: { user: user }
   });
 };
 
-var logout = exports.logout = function logout() {
+var logOut = exports.logOut = function logOut() {
   return $.ajax({
     method: 'DELETE',
     url: '/api/session'
@@ -28396,13 +28396,13 @@ var sessionLinks = function sessionLinks() {
       _react2.default.createElement(
         _reactRouterDom.Link,
         { to: '/login', className: 'session-links nav-link' },
-        'Login'
+        'Log In'
       )
     )
   );
 };
 
-var logoutLink = function logoutLink(currentUser, logout) {
+var logOutLink = function logOutLink(currentUser, logOut) {
   return _react2.default.createElement(
     'ul',
     { className: 'navbar-nav' },
@@ -28424,7 +28424,7 @@ var logoutLink = function logoutLink(currentUser, logout) {
         ),
         _react2.default.createElement(
           'a',
-          { className: 'dropdown-item', href: '#', onClick: logout },
+          { className: 'dropdown-item', href: '#', onClick: logOut },
           'Log Out'
         )
       )
@@ -28434,7 +28434,7 @@ var logoutLink = function logoutLink(currentUser, logout) {
 
 var Navbar = function Navbar(_ref) {
   var currentUser = _ref.currentUser,
-      logout = _ref.logout;
+      logOut = _ref.logOut;
   return _react2.default.createElement(
     'nav',
     { className: 'navbar navbar-expand-md navbar-dark bg-dark' },
@@ -28452,7 +28452,7 @@ var Navbar = function Navbar(_ref) {
       'div',
       { className: 'collapse navbar-collapse', id: 'navbarSupportedContent' },
       _react2.default.createElement('ul', { className: 'navbar-nav mr-auto' }),
-      currentUser ? logoutLink(currentUser, logout) : sessionLinks()
+      currentUser ? logOutLink(currentUser, logOut) : sessionLinks()
     )
   );
 };
@@ -28682,13 +28682,13 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch, _ref) {
   var location = _ref.location;
 
-  var formType = location.pathname.slice(1);
-  var _processForm = formType === 'login' ? _session_actions.login : _session_actions.signup;
   return {
-    processForm: function processForm(user) {
-      return dispatch(_processForm(user));
+    logIn: function logIn(user) {
+      return dispatch((0, _session_actions.logIn)(user));
     },
-    formType: formType
+    signUp: function signUp(user) {
+      return dispatch((0, _session_actions.signUp)(user));
+    }
   };
 };
 
@@ -28732,7 +28732,7 @@ var SessionForm = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (SessionForm.__proto__ || Object.getPrototypeOf(SessionForm)).call(this, props));
 
     _this.state = {
-      actionWord: "Sign In",
+      actionWord: "Log In",
       username: '',
       password: ''
     };
@@ -28771,35 +28771,27 @@ var SessionForm = function (_React$Component) {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
       e.preventDefault();
-      var user = this.state;
-      this.props.processForm({ user: user });
-    }
-  }, {
-    key: 'navLink',
-    value: function navLink() {
-      if (this.props.formType === 'login') {
-        return _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/signup' },
-          'sign up instead'
-        );
-      } else {
-        return _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/login' },
-          'log in instead'
-        );
+      var _state = this.state,
+          actionWord = _state.actionWord,
+          username = _state.username,
+          password = _state.password;
+
+
+      if (actionWord == "Log In") {
+        this.props.logIn({ username: username, password: password });
+      } else if (actionWord == "Sign Up") {
+        this.props.signUp({ username: username, password: password });
       }
     }
   }, {
     key: 'renderErrors',
     value: function renderErrors() {
       return _react2.default.createElement(
-        'ul',
-        null,
+        'div',
+        { id: 'session-errors' },
         this.props.errors.map(function (error, i) {
           return _react2.default.createElement(
-            'li',
+            'div',
             { key: 'error-' + i },
             error
           );
@@ -28809,10 +28801,10 @@ var SessionForm = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _state = this.state,
-          actionWord = _state.actionWord,
-          username = _state.username,
-          password = _state.password;
+      var _state2 = this.state,
+          actionWord = _state2.actionWord,
+          username = _state2.username,
+          password = _state2.password;
 
       // <form onSubmit={this.handleSubmit} className="login-form-box">
       //   Welcome to Choose Your Adventure!
@@ -28854,8 +28846,8 @@ var SessionForm = function (_React$Component) {
           { id: 'action-box' },
           _react2.default.createElement(
             'button',
-            { className: 'action-button', onClick: this.changeAction("Sign In"), disabled: actionWord == "Sign In" },
-            'Sign In'
+            { className: 'action-button', onClick: this.changeAction("Log In"), disabled: actionWord == "Log In" },
+            'Log In'
           ),
           _react2.default.createElement(
             'button',
@@ -28863,7 +28855,8 @@ var SessionForm = function (_React$Component) {
             'Sign Up'
           )
         ),
-        _react2.default.createElement('img', { id: 'logo', src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1536262539/d80ac68d4883a2b14b8e346fce09b5c6_z50qex.png' }),
+        _react2.default.createElement('img', { id: 'session-logo', src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1536262539/d80ac68d4883a2b14b8e346fce09b5c6_z50qex.png' }),
+        this.renderErrors(),
         _react2.default.createElement(
           'form',
           { onSubmit: this.handleSubmit },

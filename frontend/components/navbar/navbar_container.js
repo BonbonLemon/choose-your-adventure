@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { logout } from '../../actions/session_actions';
+import { logOut } from '../../actions/session_actions';
 import Navbar from './navbar';
 
 const mapStateToProps = ({ session }) => ({
@@ -8,9 +8,9 @@ const mapStateToProps = ({ session }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logout: (e) => {
+  logOut: (e) => {
     e.preventDefault();
-    dispatch(logout());
+    dispatch(logOut());
   }
 });
 

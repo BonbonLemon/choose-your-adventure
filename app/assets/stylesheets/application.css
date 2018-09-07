@@ -100,11 +100,17 @@ html, body {
   background: #4aaad0;
 }
 
-#logo {
+#session-logo {
   display: block;
   margin: 0 auto;
-  margin-bottom: 44px;
+  margin-bottom: 14px;
   height: 96px;
+}
+
+#session-errors {
+  color: red;
+  height: 52px;
+  margin-bottom: 18px;
 }
 
 .session-form-group {
@@ -132,6 +138,7 @@ html, body {
  border: 0;
  color: white;
  font-size: 16px;
+ cursor: pointer;
 }
 
 /*adventure index*/

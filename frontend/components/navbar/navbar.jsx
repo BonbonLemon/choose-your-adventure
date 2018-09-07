@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 const sessionLinks = () => (
   <ul className="navbar-nav">
     <li className="nav-item">
-      <Link to="/login" className="session-links nav-link">Login</Link>
+      <Link to="/login" className="session-links nav-link">Log In</Link>
     </li>
   </ul>
 );
 
-const logoutLink = (currentUser, logout) => (
+const logOutLink = (currentUser, logOut) => (
   <ul className="navbar-nav">
     <li className="nav-item dropdown">
       <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -17,13 +17,13 @@ const logoutLink = (currentUser, logout) => (
       </a>
       <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
         <Link to={ "/users/" + currentUser.username } className="dropdown-item">My Profile</Link>
-        <a className="dropdown-item" href="#" onClick={logout}>Log Out</a>
+        <a className="dropdown-item" href="#" onClick={logOut}>Log Out</a>
       </div>
     </li>
   </ul>
 );
 
-const Navbar = ({ currentUser, logout }) => (
+const Navbar = ({ currentUser, logOut }) => (
   <nav className="navbar navbar-expand-md navbar-dark bg-dark">
     <Link to="/" className="navbar-brand">Choose Your Adventure</Link>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@ const Navbar = ({ currentUser, logout }) => (
       <ul className="navbar-nav mr-auto">
 
       </ul>
-      { currentUser ? logoutLink(currentUser, logout) : sessionLinks() }
+      { currentUser ? logOutLink(currentUser, logOut) : sessionLinks() }
     </div>
   </nav>
 );

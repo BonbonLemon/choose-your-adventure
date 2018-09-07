@@ -5,7 +5,7 @@ class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      actionWord: "Sign In",
+      actionWord: "Log In",
       username: '',
       password: ''
     };
@@ -34,27 +34,24 @@ class SessionForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const user = this.state;
-    this.props.processForm({user});
-  }
+    const { actionWord, username, password } = this.state;
 
-  navLink() {
-    if (this.props.formType === 'login') {
-      return <Link to="/signup">sign up instead</Link>;
-    } else {
-      return <Link to="/login">log in instead</Link>;
+    if (actionWord == "Log In") {
+      this.props.logIn({username, password});
+    } else if (actionWord == "Sign Up") {
+      this.props.signUp({username, password});
     }
   }
 
   renderErrors() {
     return(
-      <ul>
+      <div id="session-errors">
         {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>
+          <div key={`error-${i}`}>
             {error}
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     );
   }
 
@@ -95,10 +92,11 @@ class SessionForm extends React.Component {
     return (
       <div id="session-box">
         <div id="action-box">
-          <button className="action-button" onClick={this.changeAction("Sign In")} disabled={actionWord == "Sign In"}>Sign In</button>
+          <button className="action-button" onClick={this.changeAction("Log In")} disabled={actionWord == "Log In"}>Log In</button>
           <button className="action-button" onClick={this.changeAction("Sign Up")} disabled={actionWord == "Sign Up"}>Sign Up</button>
         </div>
-        <img id="logo" src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1536262539/d80ac68d4883a2b14b8e346fce09b5c6_z50qex.png"/>
+        <img id="session-logo" src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1536262539/d80ac68d4883a2b14b8e346fce09b5c6_z50qex.png"/>
+        { this.renderErrors() }
         <form onSubmit={this.handleSubmit}>
           <div className="session-form-group">
             <label>Username</label>
