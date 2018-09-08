@@ -652,8 +652,9 @@ html, body {
 }
 
 .known-bugs {
+  width: 900px;
+  margin: 0 auto;
   text-align: left;
-  margin-left: 20px;
 }
 
 .known-bugs ul {
