@@ -33,37 +33,30 @@ class PageForm extends React.Component {
     return (
       <div className="page-box new-page-form">
         <form onSubmit={(e) => this.props.handleSubmit(this.state, e)}>
-          <div className="form-row">
-            <div className="form-group col-6">
-              <label>Name</label>
-              <input
-                type="text"
-                className="form-control"
-                value={name}
-                placeholder="Page Name"
-                onChange={this.update("name")}
-                required
-                />
-            </div>
+          <div className="pages-form-group">
+            <label>Name</label>
+            <input
+              type="text"
+              className="form-control"
+              value={name}
+              placeholder="Page Name"
+              onChange={this.update("name")}
+              required
+              />
           </div>
-          <div className="form-row">
-            <div className="form-group col-12">
-              <label>Text</label>
-              <textarea
-                className="form-control"
-                value={text}
-                placeholder="Page Text"
-                rows="3"
-                onChange={this.update("text")}
-                />
-            </div>
+          <div className="pages-form-group">
+            <label>Text</label>
+            <textarea
+              className="form-control"
+              value={text}
+              placeholder="Page Text"
+              rows="3"
+              onChange={this.update("text")}
+              />
           </div>
-
-          <div className="form-row">
-            <div className="form-group col-12">
-              <button type="submit" className="btn btn-info mr-3">Save Page</button>
-              <button type="button" className="btn btn-danger" onClick={this.props.toggleEditPage}>Cancel</button>
-            </div>
+          <div class="pages-form-group">
+            <button type="submit" className="btn btn-info mr-3">Save Page</button>
+            <button type="button" className="btn btn-danger" onClick={this.props.toggleEditPage}>Cancel</button>
           </div>
         </form>
 

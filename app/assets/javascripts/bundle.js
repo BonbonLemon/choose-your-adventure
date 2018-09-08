@@ -30123,72 +30123,60 @@ var AdventureEdit = function (_React$Component) {
           { id: 'publish-button-wrapper' },
           this.publishButtons()
         ),
+        _react2.default.createElement(_adventure_form2.default, { adventure: this.props.adventure, handleSubmit: this.editAdventure }),
         _react2.default.createElement(
           'div',
-          { className: 'row' },
+          { id: 'pages-container' },
+          _react2.default.createElement(
+            'h2',
+            null,
+            'Pages'
+          ),
           _react2.default.createElement(
             'div',
-            { className: 'col-12' },
-            _react2.default.createElement(_adventure_form2.default, { adventure: this.props.adventure, handleSubmit: this.editAdventure })
-          )
-        ),
-        _react2.default.createElement(
-          'h2',
-          { className: 'text-left pages-header' },
-          'Pages'
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-12' },
+            { className: 'starting-page-select' },
             _react2.default.createElement(
               'div',
-              { className: 'starting-page-select' },
+              { className: 'input-group' },
               _react2.default.createElement(
                 'div',
-                { className: 'input-group' },
+                { className: 'input-group-prepend' },
+                this.startingPageLabel()
+              ),
+              _react2.default.createElement(
+                'select',
+                {
+                  className: 'custom-select form-control',
+                  value: startPageId,
+                  onChange: this.update("startPageId"),
+                  required: true
+                },
                 _react2.default.createElement(
-                  'div',
-                  { className: 'input-group-prepend' },
-                  this.startingPageLabel()
+                  'option',
+                  { value: '' },
+                  'No Page Selected'
                 ),
-                _react2.default.createElement(
-                  'select',
-                  {
-                    className: 'custom-select form-control',
-                    value: startPageId,
-                    onChange: this.update("startPageId"),
-                    required: true
-                  },
-                  _react2.default.createElement(
+                pages.map(function (page) {
+                  return _react2.default.createElement(
                     'option',
-                    { value: '' },
-                    'No Page Selected'
-                  ),
-                  pages.map(function (page) {
-                    return _react2.default.createElement(
-                      'option',
-                      { key: page.id, value: page.id },
-                      page.name
-                    );
-                  })
-                ),
+                    { key: page.id, value: page.id },
+                    page.name
+                  );
+                })
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'input-group-append' },
                 _react2.default.createElement(
-                  'div',
-                  { className: 'input-group-append' },
-                  _react2.default.createElement(
-                    'button',
-                    { className: 'btn btn-primary', type: 'button', onClick: this.saveStartPage },
-                    'Set'
-                  )
+                  'button',
+                  { className: 'btn btn-primary', type: 'button', onClick: this.saveStartPage },
+                  'Set'
                 )
               )
             )
-          )
-        ),
-        _react2.default.createElement(_pages_container2.default, { adventure: this.props.adventure })
+          ),
+          _react2.default.createElement(_pages_container2.default, { adventure: this.props.adventure })
+        )
       );
     }
   }]);
@@ -30386,13 +30374,9 @@ var Pages = function (_React$Component) {
             required: true
           }),
           _react2.default.createElement(
-            'div',
-            { className: 'input-group-append' },
-            _react2.default.createElement(
-              'button',
-              { className: 'btn btn-primary', type: 'submit' },
-              'Create Page'
-            )
+            'button',
+            { className: 'btn btn-primary', type: 'submit' },
+            'Create Page'
           )
         )
       );
@@ -30411,28 +30395,12 @@ var Pages = function (_React$Component) {
         null,
         _react2.default.createElement(
           'div',
-          { className: 'row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-12' },
-            _react2.default.createElement(
-              'div',
-              { className: 'pages-index' },
-              pages.map(function (page) {
-                return _react2.default.createElement(_page_index_item2.default, { key: page.id, page: page, editPage: _this3.props.editPage, updateAdventure: _this3.props.updateAdventure, deletePage: _this3.props.deletePage });
-              })
-            )
-          )
+          { id: 'pages-index' },
+          pages.map(function (page) {
+            return _react2.default.createElement(_page_index_item2.default, { key: page.id, page: page, editPage: _this3.props.editPage, updateAdventure: _this3.props.updateAdventure, deletePage: _this3.props.deletePage });
+          })
         ),
-        _react2.default.createElement(
-          'div',
-          { className: 'row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-12' },
-            this.miniPageForm()
-          )
-        )
+        this.miniPageForm()
       );
     }
   }]);
@@ -30522,49 +30490,29 @@ var PagesIndexItem = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'page-box page-summary-box input-group' },
+        { className: 'page-index-item input-group' },
         _react2.default.createElement(
           'div',
-          { className: 'page-index-item-buttons input-group-prepend mr-3' },
-          _react2.default.createElement(
-            'span',
-            null,
-            _react2.default.createElement('img', { className: 'page-index-item-button mr-3', onClick: this.toggleEditPage, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423463/edit_qif1lz.png' })
-          ),
-          _react2.default.createElement(
-            'span',
-            null,
-            _react2.default.createElement('img', { className: 'page-index-item-button', onClick: this.deletePage, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423844/x_bkgfwz.png' })
-          )
+          { className: 'page-index-item-button' },
+          _react2.default.createElement('img', { onClick: this.toggleEditPage, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423463/edit_qif1lz.png' })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'page-index-item-button' },
+          _react2.default.createElement('img', { onClick: this.deletePage, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423844/x_bkgfwz.png' })
         ),
         _react2.default.createElement(
           'div',
           { className: 'page-index-item-details' },
           _react2.default.createElement(
             'div',
-            { className: 'row' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-12' },
-              _react2.default.createElement(
-                'span',
-                { className: 'page-index-item-name' },
-                name
-              )
-            )
+            { className: 'page-index-item-name' },
+            name
           ),
           _react2.default.createElement(
             'div',
-            { className: 'row' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-12' },
-              _react2.default.createElement(
-                'span',
-                { className: 'page-index-item-text' },
-                text
-              )
-            )
+            { className: 'page-index-item-text' },
+            text
           )
         )
       );
@@ -30680,61 +30628,49 @@ var PageForm = function (_React$Component) {
             } },
           _react2.default.createElement(
             'div',
-            { className: 'form-row' },
+            { className: 'pages-form-group' },
             _react2.default.createElement(
-              'div',
-              { className: 'form-group col-6' },
-              _react2.default.createElement(
-                'label',
-                null,
-                'Name'
-              ),
-              _react2.default.createElement('input', {
-                type: 'text',
-                className: 'form-control',
-                value: name,
-                placeholder: 'Page Name',
-                onChange: this.update("name"),
-                required: true
-              })
-            )
+              'label',
+              null,
+              'Name'
+            ),
+            _react2.default.createElement('input', {
+              type: 'text',
+              className: 'form-control',
+              value: name,
+              placeholder: 'Page Name',
+              onChange: this.update("name"),
+              required: true
+            })
           ),
           _react2.default.createElement(
             'div',
-            { className: 'form-row' },
+            { className: 'pages-form-group' },
             _react2.default.createElement(
-              'div',
-              { className: 'form-group col-12' },
-              _react2.default.createElement(
-                'label',
-                null,
-                'Text'
-              ),
-              _react2.default.createElement('textarea', {
-                className: 'form-control',
-                value: text,
-                placeholder: 'Page Text',
-                rows: '3',
-                onChange: this.update("text")
-              })
-            )
+              'label',
+              null,
+              'Text'
+            ),
+            _react2.default.createElement('textarea', {
+              className: 'form-control',
+              value: text,
+              placeholder: 'Page Text',
+              rows: '3',
+              onChange: this.update("text")
+            })
           ),
           _react2.default.createElement(
             'div',
-            { className: 'form-row' },
+            { 'class': 'pages-form-group' },
             _react2.default.createElement(
-              'div',
-              { className: 'form-group col-12' },
-              _react2.default.createElement(
-                'button',
-                { type: 'submit', className: 'btn btn-info mr-3' },
-                'Save Page'
-              ),
-              _react2.default.createElement(
-                'button',
-                { type: 'button', className: 'btn btn-danger', onClick: this.props.toggleEditPage },
-                'Cancel'
-              )
+              'button',
+              { type: 'submit', className: 'btn btn-info mr-3' },
+              'Save Page'
+            ),
+            _react2.default.createElement(
+              'button',
+              { type: 'button', className: 'btn btn-danger', onClick: this.props.toggleEditPage },
+              'Cancel'
             )
           )
         ),

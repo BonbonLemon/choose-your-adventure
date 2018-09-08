@@ -38,9 +38,7 @@ class Pages extends React.Component {
             onChange={this.update("name")}
             required
           />
-          <div className="input-group-append">
-            <button className="btn btn-primary" type="submit">Create Page</button>
-          </div>
+          <button className="btn btn-primary" type="submit">Create Page</button>
         </div>
       </form>
     );
@@ -52,20 +50,12 @@ class Pages extends React.Component {
 
     return (
       <div>
-        <div className="row">
-          <div className="col-12">
-            <div className="pages-index">
-              {pages.map(page => (
-                <PageIndexItem key={page.id} page={page} editPage={this.props.editPage} updateAdventure={this.props.updateAdventure} deletePage={this.props.deletePage}/>
-              ))}
-            </div>
-          </div>
+        <div id="pages-index">
+          {pages.map(page => (
+            <PageIndexItem key={page.id} page={page} editPage={this.props.editPage} updateAdventure={this.props.updateAdventure} deletePage={this.props.deletePage}/>
+          ))}
         </div>
-        <div className="row">
-          <div className="col-12">
-            { this.miniPageForm() }
-          </div>
-        </div>
+        { this.miniPageForm() }
       </div>
     );
   }

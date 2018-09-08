@@ -140,40 +140,35 @@ class AdventureEdit extends React.Component {
         <div id="publish-button-wrapper">
           { this.publishButtons() }
         </div>
-        <div className="row">
-          <div className="col-12">
-            <AdventureForm adventure={this.props.adventure} handleSubmit={this.editAdventure} />
-          </div>
-        </div>
-        <h2 className="text-left pages-header">Pages</h2>
-        <div className="row">
-          <div className="col-12">
-            <div className="starting-page-select">
-              <div className="input-group">
-                <div className="input-group-prepend">
-                  { this.startingPageLabel() }
-                </div>
-                <select
-                  className="custom-select form-control"
-                  value={startPageId}
-                  onChange={this.update("startPageId")}
-                  required
-                >
-                  <option value="">No Page Selected</option>
-                  { pages.map(page => {
-                    return (
-                      <option key={page.id} value={page.id}>{page.name}</option>
-                    );
-                  })}
-                </select>
-                <div className="input-group-append">
-                  <button className="btn btn-primary" type="button" onClick={this.saveStartPage}>Set</button>
-                </div>
+        <AdventureForm adventure={this.props.adventure} handleSubmit={this.editAdventure} />
+
+        <div id="pages-container">
+          <h2>Pages</h2>
+          <div className="starting-page-select">
+            <div className="input-group">
+              <div className="input-group-prepend">
+                { this.startingPageLabel() }
+              </div>
+              <select
+                className="custom-select form-control"
+                value={startPageId}
+                onChange={this.update("startPageId")}
+                required
+              >
+                <option value="">No Page Selected</option>
+                { pages.map(page => {
+                  return (
+                    <option key={page.id} value={page.id}>{page.name}</option>
+                  );
+                })}
+              </select>
+              <div className="input-group-append">
+                <button className="btn btn-primary" type="button" onClick={this.saveStartPage}>Set</button>
               </div>
             </div>
           </div>
+          <PageContainer adventure={this.props.adventure} />
         </div>
-        <PageContainer adventure={this.props.adventure} />
       </div>
     );
   }

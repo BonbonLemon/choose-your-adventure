@@ -309,7 +309,102 @@ html, body {
 /*adventure-edit*/
 #publish-button-wrapper {
   width: 700px;
-  margin: 0 auto;
+  margin: 18px auto;
+}
+
+/*pages*/
+
+#pages-container {
+  width: 800px;
+  margin: 20px auto;
+}
+
+.starting-page-select {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  width: 500px;
+}
+
+#pages-index {
+  width: 100%;
+}
+
+.input-group.page-index-item {
+  background-color: #cee1ea;
+  height: 68px;
+  margin-bottom: 20px;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 26px;
+  flex-wrap: nowrap;
+}
+
+.page-index-item-button {
+  flex-grow: 0;
+  height: 28px;
+  margin: auto 0;
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+.page-index-item-button > img {
+  height: 100%;
+}
+
+.page-index-item-details {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.page-index-item-name {
+  font-weight: bolder;
+}
+
+.page-index-item-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+
+
+
+
+.page-box-text {
+  font-size: 24px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: thin solid black;
+  white-space: pre-wrap;
+  font-family: serif;
+}
+
+
+
+
+
+
+
+
+
+
+.pages-form-group {
+  margin: 6px;
+  margin-bottom: 18px;
+}
+
+.pages-form-group > input {
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 16px;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 /*adventure-show*/
@@ -434,73 +529,13 @@ html, body {
   cursor: pointer;
 }
 
-.starting-page-select {
-  margin-top: 15px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  width: 500px;
-}
 
 .starting-page-label {
   width: 126px;
 }
 
-.pages-index {
-  margin: 10px;
-  width: 800px;
-}
 
-.page-summary-box {
-  height: 68px;
 
-}
-
-.page-box {
-  background-color: #cee1ea;
-  margin-bottom: 20px;
-  padding: 10px;
-}
-
-.pages-header {
-  margin: 10px;
-}
-
-.page-box-text {
-  font-size: 24px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-bottom: thin solid black;
-  white-space: pre-wrap;
-  font-family: serif;
-}
-
-.page-index-item-buttons {
-  line-height: 42px;
-}
-
-.page-index-item-button {
-  height: 28px;
-}
-
-.page-index-item-button:hover {
-  cursor: pointer;
-}
-
-.page-index-item-details {
-  width: 692px;
-}
-
-.page-index-item-name {
-  font-weight: bolder;
-}
-
-.page-index-item-text {
-  position: absolute;
-  width: 692px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
 .add-page-button {
   height: 40px;
