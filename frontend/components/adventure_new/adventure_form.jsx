@@ -92,7 +92,7 @@ class AdventureEdit extends React.Component {
           <label>Title</label>
           <input
             type="text"
-            className="adventure-form-text-input"
+            className="form-control"
             value={title}
             placeholder="Add a Title"
             onChange={this.update("title")}
@@ -109,7 +109,7 @@ class AdventureEdit extends React.Component {
         <div className="adventure-form-group">
           <label>Description</label>
           <textarea
-            className="adventure-form-text-input"
+            className="form-control"
             value={description}
             placeholder="Add a Description"
             rows="3"

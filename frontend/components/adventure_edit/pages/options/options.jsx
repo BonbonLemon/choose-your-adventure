@@ -32,29 +32,18 @@ class Options extends React.Component {
 
     return (
       <div>
-        <div className="row">
-          <div className="col-12">
-            <h4>Options</h4>
-          </div>
+        <h4>Options</h4>
+        <div className="options-index">
+          {options.map(option => (
+            <OptionsIndexItem key={option.id} option={option} editOption={this.props.editOption} deleteOption={this.props.deleteOption} />
+          ))}
         </div>
-        <div className="row">
-          <div className="col-12">
-            <div className="options-index">
-              {options.map(option => (
-                <OptionsIndexItem key={option.id} option={option} editOption={this.props.editOption} deleteOption={this.props.deleteOption} />
-              ))}
-            </div>
-          </div>
+        <div className="add-option-button toggle-button" onClick={this.toggleHasNewOption}>
+          <span>[{hasNewOption ? "-" : "+" }]</span>
+          <span> Add New Option</span>
+          { hasNewOption ? <div id="add-option-line" /> : "" }
         </div>
-        <div className="row">
-          <div className="col-12">
-            <div className="add-option-button toggle-button" onClick={this.toggleHasNewOption}>
-              <span>[{hasNewOption ? "-" : "+" }]</span>
-              <span> Add New Option</span>
-            </div>
-            { hasNewOption ? <OptionForm page={page} handleSubmit={this.createOption}/> : "" }
-          </div>
-        </div>
+        { hasNewOption ? <OptionForm page={page} handleSubmit={this.createOption}/> : "" }
       </div>
     );
   }

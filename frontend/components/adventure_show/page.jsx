@@ -82,7 +82,7 @@ class Page extends React.Component {
     return (
       <div className="page-buttons">
         { isFirstPage ? "" : <button type="button" className="btn btn-info mr-3" onClick={this.props.history.goBack}>Back</button> }
-        { options.length === 0 ? <button type="button" className="btn btn-info" onClick={this.tryAgain}>Try Again</button> : "" }
+        { options.length == 0 ? <button type="button" className="btn btn-info" onClick={this.tryAgain}>Try Again</button> : "" }
       </div>
     );
   }

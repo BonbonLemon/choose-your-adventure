@@ -58,37 +58,6 @@ class SessionForm extends React.Component {
   render() {
     const { actionWord, username, password } = this.state;
 
-      // <form onSubmit={this.handleSubmit} className="login-form-box">
-      //   Welcome to Choose Your Adventure!
-      //   <br/>
-      //   Please {this.props.formType} or {this.navLink()}
-      //   {this.renderErrors()}
-      //   <div className="form-group col-6 offset-3">
-      //     <label>Username</label>
-      //       <input
-      //         type="text"
-      //         className="form-control"
-      //         value={username}
-      //         placeholder="Enter Username"
-      //         onChange={this.update('username')}
-      //         required
-      //       />
-      //   </div>
-      //   <div className="form-group col-6 offset-3">
-      //     <label>Password</label>
-      //       <input
-      //         type="password"
-      //         className="form-control"
-      //         value={password}
-      //         placeholder="Enter Password"
-      //         onChange={this.update('password')}
-      //         required
-      //       />
-      //   </div>
-      //   <div className="form-group col-12 offset-3">
-      //     <input type="submit" value="Submit" />
-      //   </div>
-      // </form>
     return (
       <div id="session-box">
         <div id="action-box">
@@ -102,6 +71,7 @@ class SessionForm extends React.Component {
             <label>Username</label>
             <input 
               type="text"
+              className="form-control"
               value={username}
               onChange={this.update('username')}
             />
@@ -110,6 +80,7 @@ class SessionForm extends React.Component {
             <label>Password</label>
             <input 
               type="password"
+              className="form-control"
               value={password}
               onChange={this.update('password')}
             />

@@ -65,6 +65,7 @@ html, body {
    margin-left: 10px;
  }
 
+
  /* sessions */
  #session-box {
   background: #bbc5d4;
@@ -124,13 +125,6 @@ html, body {
   color: #4e4e4e;
 }
 
-.session-form-group > input[type=text],
-.session-form-group > input[type=password] {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 6px;
-}
-
 #session-submit-button {
  background: #4aaad0;
  margin-top: 14px;
@@ -141,7 +135,9 @@ html, body {
  cursor: pointer;
 }
 
+
 /*adventure index*/
+
 .create-adventure-button {
   margin: 25px 20px;
 }
@@ -232,7 +228,9 @@ html, body {
 
 }
 
+
 /*adventure-form*/
+
 #adventure-form-header {
   text-align: center;
   margin-top: 30px;
@@ -248,17 +246,6 @@ html, body {
 
 .adventure-form-group {
   margin-bottom: 30px;
-}
-
-.adventure-form-text-input {
-  display: block;
-  width: 100%;
-  padding: 6px 12px;
-  font-size: 16px;
-  color: #495057;
-  background-color: #fff;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
 }
 
 .genres-container {
@@ -306,11 +293,13 @@ html, body {
   text-align: center;
 }
 
+
 /*adventure-edit*/
 #publish-button-wrapper {
   width: 700px;
   margin: 18px auto;
 }
+
 
 /*pages*/
 
@@ -329,10 +318,13 @@ html, body {
   width: 100%;
 }
 
-.input-group.page-index-item {
+.page-box {
   background-color: #cee1ea;
-  height: 68px;
   margin-bottom: 20px;
+}
+
+.input-group.page-index-item {
+  height: 68px;
   padding: 10px;
   padding-left: 20px;
   padding-right: 26px;
@@ -366,6 +358,102 @@ html, body {
   text-overflow: ellipsis;
 }
 
+.mini-page-form {
+  width: 800px;
+  margin: 10px;
+  margin-bottom: 50px;
+}
+
+
+/*page form*/
+.page-form {
+  padding: 10px;
+}
+
+.pages-form-group {
+  margin: 6px;
+  margin-bottom: 18px;
+}
+
+
+/*options*/
+
+.options-index {
+  margin-top: 10px;
+}
+
+.option-index-item {
+  background-color: #a1c5d6;
+  margin-bottom: 10px;
+  padding: 14px;
+}
+
+.option-index-item-button {
+  height: 25px;
+  margin: auto 0;
+  margin-right: 10px;
+  flex-grow: 0;
+  cursor: pointer;
+}
+
+.option-index-item-button > img {
+  height: 100%;
+}
+
+.option-index-item-text {
+  flex: 4;
+}
+
+.option-index-item-destination-name {
+  flex: 1;
+}
+
+.add-option-button {
+  position: relative;
+  background-color: #a1c5d6;
+  height: 44px;
+  line-height: 22px;
+  padding: 10px;
+}
+
+.toggle-button:hover {
+  color: #ffa500;
+  cursor: pointer;
+}
+
+#add-option-line {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  border-top: thin solid #0000001f;
+}
+
+.option-form {
+  background-color: #a1c5d6;
+  padding: 12px;
+}
+
+.option-form-row {
+  display: flex;
+  margin-bottom: 22px;
+}
+
+.option-text-input {
+  flex: 2;
+  margin-right: 16px;
+}
+
+.option-destination-input {
+  flex: 1;
+}
+
+
+
+
+
+
+
 
 
 
@@ -390,22 +478,6 @@ html, body {
 
 
 
-.pages-form-group {
-  margin: 6px;
-  margin-bottom: 18px;
-}
-
-.pages-form-group > input {
-  width: 100%;
-  padding: 6px 12px;
-  font-size: 16px;
-  color: #495057;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
 
 /*adventure-show*/
 .back-to-list-button {
@@ -524,10 +596,6 @@ html, body {
 }
 
 
-.toggle-button:hover {
-  color: #ffa500;
-  cursor: pointer;
-}
 
 
 .starting-page-label {
@@ -541,65 +609,6 @@ html, body {
   height: 40px;
 }
 
-.new-page-form {
-  padding-bottom: 15px;
-}
-
-.options-index {
-  margin-top: 10px;
-}
-
-.option-index-item {
-  background-color: #a1c5d6;
-  margin-bottom: 10px;
-  padding: 7px;
-}
-
-.option-index-item-buttons {
-  line-height: 40px;
-}
-
-.option-index-item-button {
-  height: 25px;
-}
-
-.option-index-item-button:hover {
-  cursor: pointer;
-}
-
-.option-index-item-details {
-  line-height: 40px;
-}
-
-.option-index-item-text {
-  width: 550px;
-}
-
-.option-index-item-destination-name {
-  width: 100px;
-}
-
-.add-option-button {
-  background-color: #a1c5d6;
-  height: 40px;
-  padding: 10px;
-}
-
-.new-option-form {
-  background-color: #a1c5d6;
-  border-top: thin solid #0000001f;
-  padding: 10px;
-}
-
-.mini-page-form {
-  width: 800px;
-  margin: 10px;
-  margin-bottom: 50px;
-}
-
-.mini-page-form-header {
-
-}
 
 /*profile*/
 

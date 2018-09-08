@@ -31,13 +31,13 @@ class PageForm extends React.Component {
     const { hasNewOption, name, text } = this.state;
 
     return (
-      <div className="page-box new-page-form">
+      <div className="page-box page-form">
         <form onSubmit={(e) => this.props.handleSubmit(this.state, e)}>
           <div className="pages-form-group">
             <label>Name</label>
             <input
-              type="text"
               className="form-control"
+              type="text"
               value={name}
               placeholder="Page Name"
               onChange={this.update("name")}
@@ -54,7 +54,7 @@ class PageForm extends React.Component {
               onChange={this.update("text")}
               />
           </div>
-          <div class="pages-form-group">
+          <div className="pages-form-group">
             <button type="submit" className="btn btn-info mr-3">Save Page</button>
             <button type="button" className="btn btn-danger" onClick={this.props.toggleEditPage}>Cancel</button>
           </div>

@@ -28,7 +28,7 @@ class Pages extends React.Component {
   miniPageForm() {
     return (
       <form className="mini-page-form" onSubmit={this.handleSubmit}>
-        <h5 className="mini-page-form-header">Create A New Page</h5>
+        <h5>Create A New Page</h5>
         <div className="input-group">
           <input
             type="text"

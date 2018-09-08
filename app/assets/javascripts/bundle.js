@@ -4987,7 +4987,7 @@ var AdventureEdit = function (_React$Component) {
           ),
           _react2.default.createElement('input', {
             type: 'text',
-            className: 'adventure-form-text-input',
+            className: 'form-control',
             value: title,
             placeholder: 'Add a Title',
             onChange: this.update("title"),
@@ -5014,7 +5014,7 @@ var AdventureEdit = function (_React$Component) {
             'Description'
           ),
           _react2.default.createElement('textarea', {
-            className: 'adventure-form-text-input',
+            className: 'form-control',
             value: description,
             placeholder: 'Add a Description',
             rows: '3',
@@ -5261,15 +5261,15 @@ var OptionForm = function (_React$Component) {
 
       return _react2.default.createElement(
         'form',
-        { className: 'new-option-form', onSubmit: function onSubmit(e) {
+        { className: 'option-index-item option-form', onSubmit: function onSubmit(e) {
             return _this3.props.handleSubmit(_this3.state, e);
           } },
         _react2.default.createElement(
           'div',
-          { className: 'form-row' },
+          { className: 'option-form-row' },
           _react2.default.createElement(
             'div',
-            { className: 'col-8' },
+            { className: 'option-text-input' },
             _react2.default.createElement(
               'label',
               null,
@@ -5286,7 +5286,7 @@ var OptionForm = function (_React$Component) {
           ),
           _react2.default.createElement(
             'div',
-            { className: 'col-4' },
+            { className: 'option-destination-input' },
             _react2.default.createElement(
               'label',
               null,
@@ -5318,17 +5318,9 @@ var OptionForm = function (_React$Component) {
           )
         ),
         _react2.default.createElement(
-          'div',
-          { className: 'form-row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-12 mt-3' },
-            _react2.default.createElement(
-              'button',
-              { type: 'submit', className: 'btn btn-success mr-3' },
-              'Save Option'
-            )
-          )
+          'button',
+          { type: 'submit', className: 'btn btn-success' },
+          'Save Option'
         )
       );
     }
@@ -28797,37 +28789,6 @@ var SessionForm = function (_React$Component) {
           username = _state2.username,
           password = _state2.password;
 
-      // <form onSubmit={this.handleSubmit} className="login-form-box">
-      //   Welcome to Choose Your Adventure!
-      //   <br/>
-      //   Please {this.props.formType} or {this.navLink()}
-      //   {this.renderErrors()}
-      //   <div className="form-group col-6 offset-3">
-      //     <label>Username</label>
-      //       <input
-      //         type="text"
-      //         className="form-control"
-      //         value={username}
-      //         placeholder="Enter Username"
-      //         onChange={this.update('username')}
-      //         required
-      //       />
-      //   </div>
-      //   <div className="form-group col-6 offset-3">
-      //     <label>Password</label>
-      //       <input
-      //         type="password"
-      //         className="form-control"
-      //         value={password}
-      //         placeholder="Enter Password"
-      //         onChange={this.update('password')}
-      //         required
-      //       />
-      //   </div>
-      //   <div className="form-group col-12 offset-3">
-      //     <input type="submit" value="Submit" />
-      //   </div>
-      // </form>
 
       return _react2.default.createElement(
         'div',
@@ -28861,6 +28822,7 @@ var SessionForm = function (_React$Component) {
             ),
             _react2.default.createElement('input', {
               type: 'text',
+              className: 'form-control',
               value: username,
               onChange: this.update('username')
             })
@@ -28875,6 +28837,7 @@ var SessionForm = function (_React$Component) {
             ),
             _react2.default.createElement('input', {
               type: 'password',
+              className: 'form-control',
               value: password,
               onChange: this.update('password')
             })
@@ -29814,7 +29777,7 @@ var Page = function (_React$Component) {
           { type: 'button', className: 'btn btn-info mr-3', onClick: this.props.history.goBack },
           'Back'
         ),
-        options.length === 0 ? _react2.default.createElement(
+        options.length == 0 ? _react2.default.createElement(
           'button',
           { type: 'button', className: 'btn btn-info', onClick: this.tryAgain },
           'Try Again'
@@ -30359,7 +30322,7 @@ var Pages = function (_React$Component) {
         { className: 'mini-page-form', onSubmit: this.handleSubmit },
         _react2.default.createElement(
           'h5',
-          { className: 'mini-page-form-header' },
+          null,
           'Create A New Page'
         ),
         _react2.default.createElement(
@@ -30490,7 +30453,7 @@ var PagesIndexItem = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'page-index-item input-group' },
+        { className: 'page-index-item page-box input-group' },
         _react2.default.createElement(
           'div',
           { className: 'page-index-item-button' },
@@ -30620,7 +30583,7 @@ var PageForm = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'page-box new-page-form' },
+        { className: 'page-box page-form' },
         _react2.default.createElement(
           'form',
           { onSubmit: function onSubmit(e) {
@@ -30635,8 +30598,8 @@ var PageForm = function (_React$Component) {
               'Name'
             ),
             _react2.default.createElement('input', {
-              type: 'text',
               className: 'form-control',
+              type: 'text',
               value: name,
               placeholder: 'Page Name',
               onChange: this.update("name"),
@@ -30661,7 +30624,7 @@ var PageForm = function (_React$Component) {
           ),
           _react2.default.createElement(
             'div',
-            { 'class': 'pages-form-group' },
+            { className: 'pages-form-group' },
             _react2.default.createElement(
               'button',
               { type: 'submit', className: 'btn btn-info mr-3' },
@@ -30843,58 +30806,35 @@ var Options = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(
-          'div',
-          { className: 'row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-12' },
-            _react2.default.createElement(
-              'h4',
-              null,
-              'Options'
-            )
-          )
+          'h4',
+          null,
+          'Options'
         ),
         _react2.default.createElement(
           'div',
-          { className: 'row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-12' },
-            _react2.default.createElement(
-              'div',
-              { className: 'options-index' },
-              options.map(function (option) {
-                return _react2.default.createElement(_option_index_item2.default, { key: option.id, option: option, editOption: _this2.props.editOption, deleteOption: _this2.props.deleteOption });
-              })
-            )
-          )
+          { className: 'options-index' },
+          options.map(function (option) {
+            return _react2.default.createElement(_option_index_item2.default, { key: option.id, option: option, editOption: _this2.props.editOption, deleteOption: _this2.props.deleteOption });
+          })
         ),
         _react2.default.createElement(
           'div',
-          { className: 'row' },
+          { className: 'add-option-button toggle-button', onClick: this.toggleHasNewOption },
           _react2.default.createElement(
-            'div',
-            { className: 'col-12' },
-            _react2.default.createElement(
-              'div',
-              { className: 'add-option-button toggle-button', onClick: this.toggleHasNewOption },
-              _react2.default.createElement(
-                'span',
-                null,
-                '[',
-                hasNewOption ? "-" : "+",
-                ']'
-              ),
-              _react2.default.createElement(
-                'span',
-                null,
-                ' Add New Option'
-              )
-            ),
-            hasNewOption ? _react2.default.createElement(_option_form2.default, { page: page, handleSubmit: this.createOption }) : ""
-          )
-        )
+            'span',
+            null,
+            '[',
+            hasNewOption ? "-" : "+",
+            ']'
+          ),
+          _react2.default.createElement(
+            'span',
+            null,
+            ' Add New Option'
+          ),
+          hasNewOption ? _react2.default.createElement('div', { id: 'add-option-line' }) : ""
+        ),
+        hasNewOption ? _react2.default.createElement(_option_form2.default, { page: page, handleSubmit: this.createOption }) : ""
       );
     }
   }]);
@@ -30993,43 +30933,23 @@ var OptionsIndexItem = function (_React$Component) {
         { className: 'option-index-item input-group' },
         _react2.default.createElement(
           'div',
-          { className: 'option-index-item-buttons input-group-prepend mr-3' },
-          _react2.default.createElement(
-            'span',
-            { className: 'option-edit-button mr-2', onClick: this.toggleEditOption },
-            _react2.default.createElement('img', { className: 'option-index-item-button', onClick: this.toggleEditPage, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1522659498/61776_ah30jf.svg' })
-          ),
-          _react2.default.createElement(
-            'span',
-            { className: 'option-delete-button mr-3', onClick: this.deleteOption },
-            _react2.default.createElement('img', { className: 'option-index-item-button', onClick: this.toggleEditPage, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1522660345/trash_can_wulwhz.svg' })
-          )
+          { className: 'option-index-item-button', onClick: this.toggleEditOption },
+          _react2.default.createElement('img', { onClick: this.toggleEditPage, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1522659498/61776_ah30jf.svg' })
         ),
         _react2.default.createElement(
           'div',
-          { className: 'option-index-item-details' },
-          _react2.default.createElement(
-            'div',
-            { className: 'row' },
-            _react2.default.createElement(
-              'div',
-              { className: 'option-index-item-text' },
-              _react2.default.createElement(
-                'span',
-                null,
-                text
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'option-index-item-destination-name' },
-              _react2.default.createElement(
-                'span',
-                null,
-                destination_name
-              )
-            )
-          )
+          { className: 'option-index-item-button', onClick: this.deleteOption },
+          _react2.default.createElement('img', { onClick: this.toggleEditPage, src: 'http://res.cloudinary.com/dnyxuskhe/image/upload/v1522660345/trash_can_wulwhz.svg' })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'option-index-item-text' },
+          text
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'option-index-item-destination-name' },
+          destination_name
         )
       );
     }

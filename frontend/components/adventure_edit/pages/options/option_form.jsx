@@ -29,9 +29,9 @@ class OptionForm extends React.Component {
     const { text, destination_id } = this.state;
 
     return (
-      <form className="new-option-form" onSubmit={(e) => this.props.handleSubmit(this.state, e)}>
-        <div className="form-row">
-          <div className="col-8">
+      <form className="option-index-item option-form" onSubmit={(e) => this.props.handleSubmit(this.state, e)}>
+        <div className="option-form-row">
+          <div className="option-text-input">
             <label>Option Text</label>
             <input
               type="text"
@@ -42,7 +42,7 @@ class OptionForm extends React.Component {
               required
             />
           </div>
-          <div className="col-4">
+          <div className="option-destination-input">
             <label>Destination</label>
             <select
               className="custom-select"
@@ -51,7 +51,7 @@ class OptionForm extends React.Component {
               required
             >
               <option value="">No Destination Selected</option>
-              {thisPage.adventure.pages.map(page => {
+              { thisPage.adventure.pages.map(page => {
                 if (page.id !== thisPage.id) {
                   return (
                     <option key={page.id} value={page.id}>{page.name}</option>
@@ -61,11 +61,7 @@ class OptionForm extends React.Component {
             </select>
           </div>
         </div>
-        <div className="form-row">
-          <div className="col-12 mt-3">
-            <button type="submit" className="btn btn-success mr-3">Save Option</button>
-          </div>
-        </div>
+        <button type="submit" className="btn btn-success">Save Option</button>
       </form>
     );
   }

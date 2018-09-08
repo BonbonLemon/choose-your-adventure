@@ -36,7 +36,7 @@ class PagesIndexItem extends React.Component {
   pageSummaryBox() {
     const { name, text } = this.props.page;
     return (
-      <div className="page-index-item input-group">
+      <div className="page-index-item page-box input-group">
         <div className="page-index-item-button"><img onClick={this.toggleEditPage} src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423463/edit_qif1lz.png" /></div>
         <div className="page-index-item-button"><img onClick={this.deletePage} src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423844/x_bkgfwz.png" /></div>
         <div className="page-index-item-details">

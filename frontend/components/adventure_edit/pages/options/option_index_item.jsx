@@ -45,24 +45,14 @@ class OptionsIndexItem extends React.Component {
     }
     return (
       <div className="option-index-item input-group">
-        <div className="option-index-item-buttons input-group-prepend mr-3">
-          <span className="option-edit-button mr-2" onClick={this.toggleEditOption}>
-            <img className="option-index-item-button" onClick={this.toggleEditPage} src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1522659498/61776_ah30jf.svg" />
-          </span>
-          <span className="option-delete-button mr-3" onClick={this.deleteOption}>
-            <img className="option-index-item-button" onClick={this.toggleEditPage} src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1522660345/trash_can_wulwhz.svg" />
-          </span>
+        <div className="option-index-item-button" onClick={this.toggleEditOption}>
+          <img onClick={this.toggleEditPage} src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1522659498/61776_ah30jf.svg" />
         </div>
-        <div className="option-index-item-details">
-          <div className="row">
-            <div className="option-index-item-text">
-              <span>{text}</span>
-            </div>
-            <div className="option-index-item-destination-name">
-              <span>{destination_name}</span>
-            </div>
-          </div>
+        <div className="option-index-item-button" onClick={this.deleteOption}>
+          <img onClick={this.toggleEditPage} src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1522660345/trash_can_wulwhz.svg" />
         </div>
+        <div className="option-index-item-text">{text}</div>
+        <div className="option-index-item-destination-name">{destination_name}</div>
       </div>
     );
   }
