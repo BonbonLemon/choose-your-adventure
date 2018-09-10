@@ -150,6 +150,7 @@ html, body {
 .adventure-index-item {
   display: inline-block;
   box-sizing: border-box;
+  overflow: hidden;
   height: 375px;
   width: 300px;
   margin: 0 25px;
@@ -214,7 +215,6 @@ html, body {
 }
 
 .adventure-index-item-details {
-  position: absolute;
   height: 100px;
   padding: 10px;
 }
@@ -494,7 +494,9 @@ html, body {
 }
 
 .adventure-show-title {
-  /*margin-top: 30px;*/
+  text-align: center;
+  margin: 0 auto;
+  width: 700px;
 }
 
 .author-and-edit-box {
