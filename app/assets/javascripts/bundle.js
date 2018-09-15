@@ -4989,6 +4989,7 @@ var AdventureEdit = function (_React$Component) {
             type: 'text',
             className: 'form-control',
             value: title,
+            maxLength: 50,
             placeholder: 'Add a Title',
             onChange: this.update("title"),
             required: true
@@ -29444,7 +29445,7 @@ var AdventureShow = function (_React$Component) {
     value: function editButton() {
       return _react2.default.createElement(
         'div',
-        { className: 'adventure-edit-button' },
+        { id: 'adventure-show-edit-button' },
         _react2.default.createElement(
           _reactRouterDom.Link,
           { to: "/adventureeditor/" + this.props.adventureId },
@@ -29469,10 +29470,10 @@ var AdventureShow = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'adventure-show-details' },
+        { id: 'adventure-show-details' },
         _react2.default.createElement(
           'p',
-          { className: 'adventure-show-description' },
+          null,
           _react2.default.createElement(
             'span',
             { className: 'font-weight-bold' },
@@ -29481,12 +29482,16 @@ var AdventureShow = function (_React$Component) {
           adventure.description
         ),
         _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: this.props.location.pathname + "/pages/" + adventure.start_page_id, onClick: this.startAdventure },
+          'div',
+          { id: 'start-adventure-button' },
           _react2.default.createElement(
-            'button',
-            { type: 'button', className: 'start-adventure-button btn btn-warning btn-lg' },
-            'Start Adventure'
+            _reactRouterDom.Link,
+            { to: this.props.location.pathname + "/pages/" + adventure.start_page_id, onClick: this.startAdventure },
+            _react2.default.createElement(
+              'button',
+              { type: 'button', className: 'btn btn-warning btn-lg' },
+              'Start Adventure'
+            )
           )
         )
       );
@@ -29501,58 +29506,21 @@ var AdventureShow = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
+        { id: 'adventure-show' },
         _react2.default.createElement(
-          'div',
-          { className: 'row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-12' },
-            _react2.default.createElement(
-              'div',
-              { className: 'back-to-list-button mt-2' },
-              _react2.default.createElement(
-                _reactRouterDom.Link,
-                { to: '/' },
-                _react2.default.createElement(
-                  'span',
-                  { className: '' },
-                  'Back to list'
-                )
-              )
-            )
-          )
+          'h2',
+          { id: 'adventure-show-title' },
+          adventure.title
         ),
         _react2.default.createElement(
           'div',
-          { className: 'row' },
+          null,
+          currentUserIsAuthor ? this.editButton() : null,
           _react2.default.createElement(
-            'div',
-            { className: 'col-12' },
-            _react2.default.createElement(
-              'h2',
-              { className: 'adventure-show-title text-center' },
-              adventure.title
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-12' },
-            _react2.default.createElement(
-              'div',
-              { className: 'author-and-edit-box' },
-              currentUserIsAuthor ? this.editButton() : null,
-              _react2.default.createElement(
-                'h4',
-                { className: 'adventure-show-author' },
-                'By ',
-                author.username
-              )
-            )
+            'h4',
+            { className: 'adventure-show-author' },
+            'By ',
+            author.username
           )
         ),
         _react2.default.createElement(
@@ -29560,26 +29528,14 @@ var AdventureShow = function (_React$Component) {
           { className: 'adventure-show-box' },
           _react2.default.createElement(
             'div',
-            { className: 'row' },
-            _react2.default.createElement(
-              'div',
-              { className: 'adventure-show-cover-box col-12' },
-              adventure.cover_url ? this.coverImage(adventure.cover_url) : this.defaultImage()
-            )
+            { className: 'adventure-show-cover-box' },
+            adventure.cover_url ? this.coverImage(adventure.cover_url) : this.defaultImage()
           ),
           _react2.default.createElement(
             'div',
-            { className: 'row' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-12' },
-              _react2.default.createElement(
-                'div',
-                { className: 'adventure-page-box' },
-                this.state.adventureStarted ? "" : this.adventureShowDetail(),
-                _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId/pages/:pageId', adventure: adventure, component: _page_container2.default })
-              )
-            )
+            { id: 'adventure-show-page-box' },
+            this.state.adventureStarted ? "" : this.adventureShowDetail(),
+            _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId/pages/:pageId', adventure: adventure, component: _page_container2.default })
           )
         )
       );
@@ -29733,14 +29689,10 @@ var Page = function (_React$Component) {
       var optionButtons = options.map(function (option) {
         return _react2.default.createElement(
           'div',
-          { className: 'col-12', key: option.id },
-          _react2.default.createElement(
-            'div',
-            { className: 'option', onClick: function onClick(e) {
-                return _this3.handleOptionClick(e, option.destination_id);
-              } },
-            option.text
-          )
+          { className: 'option', key: option.id, onClick: function onClick(e) {
+              return _this3.handleOptionClick(e, option.destination_id);
+            } },
+          option.text
         );
       });
       return optionButtons;
@@ -29793,25 +29745,13 @@ var Page = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'container-fluid full-height' },
+        null,
         _react2.default.createElement(
-          'div',
-          { className: 'row' },
-          _react2.default.createElement(
-            'div',
-            { className: 'col-12' },
-            _react2.default.createElement(
-              'h3',
-              { className: 'page-box-text' },
-              page.text
-            )
-          )
+          'h3',
+          { className: 'page-box-text' },
+          page.text
         ),
-        _react2.default.createElement(
-          'div',
-          { className: 'row' },
-          options.length === 0 ? this.theEnd() : this.optionsIndex(options)
-        ),
+        options.length === 0 ? this.theEnd() : this.optionsIndex(options),
         this.pageButtons(options)
       );
     }

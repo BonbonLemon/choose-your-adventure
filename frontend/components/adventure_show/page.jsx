@@ -52,10 +52,8 @@ class Page extends React.Component {
     const optionButtons =
     options.map(option => {
       return (
-        <div className="col-12" key={option.id}>
-          <div className="option" onClick={e => this.handleOptionClick(e, option.destination_id)}>
-            {option.text}
-          </div>
+        <div className="option" key={option.id} onClick={e => this.handleOptionClick(e, option.destination_id)}>
+          {option.text}
         </div>
       );
     });
@@ -92,15 +90,9 @@ class Page extends React.Component {
     const options = page.options || [];
 
     return (
-      <div className="container-fluid full-height">
-        <div className="row">
-          <div className="col-12">
-            <h3 className="page-box-text">{page.text}</h3>
-          </div>
-        </div>
-        <div className="row">
-          { options.length === 0 ? this.theEnd() : this.optionsIndex(options) }
-        </div>
+      <div>
+        <h3 className="page-box-text">{page.text}</h3>
+        { options.length === 0 ? this.theEnd() : this.optionsIndex(options) }
         { this.pageButtons(options) }
       </div>
     );

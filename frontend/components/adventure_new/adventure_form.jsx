@@ -94,6 +94,7 @@ class AdventureEdit extends React.Component {
             type="text"
             className="form-control"
             value={title}
+            maxLength={50}
             placeholder="Add a Title"
             onChange={this.update("title")}
             required

@@ -225,7 +225,7 @@ html, body {
 }
 
 .adventure-index-item-title {
-
+  font-size: 18px;
 }
 
 
@@ -295,6 +295,7 @@ html, body {
 
 
 /*adventure-edit*/
+
 #publish-button-wrapper {
   width: 700px;
   margin: 18px auto;
@@ -449,67 +450,30 @@ html, body {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-.page-box-text {
-  font-size: 24px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-bottom: thin solid black;
-  white-space: pre-wrap;
-  font-family: serif;
-}
-
-
-
-
-
-
-
-
-
-
-
 /*adventure-show*/
-.back-to-list-button {
+
+#adventure-show {
+  margin-top: 14px;
   width: 700px;
   margin: 0 auto;
-  font-size: 20px;
 }
 
-.adventure-show-box {
-  outline: thin black solid;
-  width: 700px;
-  margin: 0 auto;
-  margin-bottom: 200px;
-}
-
-.adventure-show-title {
+#adventure-show-title {
   text-align: center;
   margin: 0 auto;
-  width: 700px;
 }
 
-.author-and-edit-box {
-  width: 700px;
-  margin: 0 auto;
-}
-
-.adventure-edit-button {
+.adventure-show-edit-button {
   float: left;
 }
 
 .adventure-show-author {
   text-align: center;
+}
+
+.adventure-show-box {
+  outline: thin black solid;
+  margin-bottom: 200px;
 }
 
 .adventure-show-cover-box {
@@ -532,23 +496,24 @@ html, body {
   font-size: 60px;
 }
 
-.adventure-page-box {
+#adventure-show-page-box {
   height: 500px;
-  width: 100%;
   background-color: white;
   outline: thin solid black;
-}
-
-.adventure-show-details {
-
-}
-
-.adventure-show-description {
   padding: 20px;
 }
 
-.start-adventure-button {
-  margin-left: 268px;
+
+
+
+
+
+
+
+
+
+#start-adventure-button {
+  text-align: center;
 }
 
 .the-end {
@@ -558,12 +523,6 @@ html, body {
   font-size: 40px;
   font-weight: bold;
   font-family: fantasy;
-}
-
-.page-buttons {
-  position: absolute;
-  bottom: 30px;
-  left: 45px;
 }
 
 .option {
@@ -597,8 +556,14 @@ html, body {
   float: left;
 }
 
-
-
+.page-box-text {
+  font-size: 24px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: thin solid black;
+  white-space: pre-wrap;
+  font-family: serif;
+}
 
 .starting-page-label {
   width: 126px;

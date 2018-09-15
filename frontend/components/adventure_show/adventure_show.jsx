@@ -45,7 +45,7 @@ class AdventureShow extends React.Component {
 
   editButton() {
     return (
-      <div className="adventure-edit-button">
+      <div id="adventure-show-edit-button">
         <Link to={"/adventureeditor/" + this.props.adventureId}>
           <button type="button" className="edit-button btn btn-danger btn-sm">Edit</button>
         </Link>
@@ -61,13 +61,15 @@ class AdventureShow extends React.Component {
     const { adventure } = this.props;
 
     return (
-      <div className="adventure-show-details">
-        <p className="adventure-show-description">
+      <div id="adventure-show-details">
+        <p>
           <span className="font-weight-bold">Description: </span>{ adventure.description }
         </p>
-        <Link to={this.props.location.pathname + "/pages/" + adventure.start_page_id} onClick={this.startAdventure}>
-          <button type="button" className="start-adventure-button btn btn-warning btn-lg">Start Adventure</button>
-        </Link>
+        <div id="start-adventure-button">
+          <Link to={this.props.location.pathname + "/pages/" + adventure.start_page_id} onClick={this.startAdventure}>
+            <button type="button" className="btn btn-warning btn-lg">Start Adventure</button>
+          </Link>
+        </div>
       </div>
     );
   }
@@ -78,42 +80,19 @@ class AdventureShow extends React.Component {
     const author = adventure.author || {};
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <div className="back-to-list-button mt-2">
-              <Link to="/">
-                <span className="">Back to list</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12">
-            <h2 className="adventure-show-title text-center">{adventure.title}</h2>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12">
-            <div className="author-and-edit-box">
-              {currentUserIsAuthor ? this.editButton() : null }
-              <h4 className="adventure-show-author">By {author.username}</h4>
-            </div>
-          </div>
+      <div id="adventure-show">
+        <h2 id="adventure-show-title">{adventure.title}</h2>
+        <div>
+          {currentUserIsAuthor ? this.editButton() : null }
+          <h4 className="adventure-show-author">By {author.username}</h4>
         </div>
         <div className="adventure-show-box">
-          <div className="row">
-            <div className="adventure-show-cover-box col-12">
-              { adventure.cover_url ? this.coverImage(adventure.cover_url) : this.defaultImage() }
-            </div>
+          <div className="adventure-show-cover-box">
+            { adventure.cover_url ? this.coverImage(adventure.cover_url) : this.defaultImage() }
           </div>
-          <div className="row">
-            <div className="col-12">
-              <div className="adventure-page-box">
-                { this.state.adventureStarted ? "" : this.adventureShowDetail() }
-                <Route path="/adventures/:adventureId/pages/:pageId" adventure={adventure} component={PageContainer} />
-              </div>
-            </div>
+          <div id="adventure-show-page-box">
+            { this.state.adventureStarted ? "" : this.adventureShowDetail() }
+            <Route path="/adventures/:adventureId/pages/:pageId" adventure={adventure} component={PageContainer} />
           </div>
         </div>
       </div>
