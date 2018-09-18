@@ -544,7 +544,6 @@ var AdventureIndex = function (_React$Component) {
           )
         ),
         this.props.adventures.map(function (adventure) {
-          debugger;
           if (adventure["published?"]) {
             return _react2.default.createElement(_adventure_index_item2.default, {
               adventure: adventure,

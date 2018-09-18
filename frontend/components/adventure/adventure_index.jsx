@@ -32,7 +32,6 @@ class AdventureIndex extends React.Component {
           </div>
         </div>
         {this.props.adventures.map((adventure) => {
-          debugger;
           if (adventure["published?"]) {
             return (
               <AdventureIndexItem
