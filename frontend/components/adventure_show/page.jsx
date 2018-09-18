@@ -5,9 +5,9 @@ class Page extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: {},
-      // firstPageId: null
+      page: {}
     };
+
     this.setPage = this.setPage.bind(this);
     this.tryAgain = this.tryAgain.bind(this);
   }
@@ -35,12 +35,7 @@ class Page extends React.Component {
       this.setState({
         page: page
       });
-
-      // if (!this.state.firstPageId) {
-      //   this.setState({firstPageId: Object.keys(adventure.pages)[0]})
-      // }
     }
-
   }
 
   handleOptionClick(e, optionId) {
@@ -49,20 +44,22 @@ class Page extends React.Component {
   }
 
   optionsIndex(options) {
-    const optionButtons =
-    options.map(option => {
-      return (
-        <div className="option" key={option.id} onClick={e => this.handleOptionClick(e, option.destination_id)}>
-          {option.text}
-        </div>
-      );
-    });
-    return optionButtons;
+    return (
+      <div id="options-list">
+        { 
+          options.map(option => (
+            <div className="option" key={option.id} onClick={e => this.handleOptionClick(e, option.destination_id)}>
+              {option.text}
+            </div>
+          ))
+        }
+      </div>
+    );
   }
 
   theEnd() {
     return (
-      <div className="the-end">The End</div>
+      <div id="the-end">The End</div>
     );
   }
 
@@ -78,7 +75,7 @@ class Page extends React.Component {
       isFirstPage = true;
     }
     return (
-      <div className="page-buttons">
+      <div id="page-buttons">
         { isFirstPage ? "" : <button type="button" className="btn btn-info mr-3" onClick={this.props.history.goBack}>Back</button> }
         { options.length == 0 ? <button type="button" className="btn btn-info" onClick={this.tryAgain}>Try Again</button> : "" }
       </div>
@@ -90,8 +87,8 @@ class Page extends React.Component {
     const options = page.options || [];
 
     return (
-      <div>
-        <h3 className="page-box-text">{page.text}</h3>
+      <div id="page-box">
+        <h3 id="page-box-text">{page.text}</h3>
         { options.length === 0 ? this.theEnd() : this.optionsIndex(options) }
         { this.pageButtons(options) }
       </div>

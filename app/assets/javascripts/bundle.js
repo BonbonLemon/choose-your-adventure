@@ -29533,7 +29533,7 @@ var AdventureShow = function (_React$Component) {
           ),
           _react2.default.createElement(
             'div',
-            { id: 'adventure-show-page-box' },
+            { id: 'adventure-show-content' },
             this.state.adventureStarted ? "" : this.adventureShowDetail(),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId/pages/:pageId', adventure: adventure, component: _page_container2.default })
           )
@@ -29628,8 +29628,8 @@ var Page = function (_React$Component) {
 
     _this.state = {
       page: {}
-      // firstPageId: null
     };
+
     _this.setPage = _this.setPage.bind(_this);
     _this.tryAgain = _this.tryAgain.bind(_this);
     return _this;
@@ -29669,10 +29669,6 @@ var Page = function (_React$Component) {
         this.setState({
           page: page
         });
-
-        // if (!this.state.firstPageId) {
-        //   this.setState({firstPageId: Object.keys(adventure.pages)[0]})
-        // }
       }
     }
   }, {
@@ -29686,23 +29682,26 @@ var Page = function (_React$Component) {
     value: function optionsIndex(options) {
       var _this3 = this;
 
-      var optionButtons = options.map(function (option) {
-        return _react2.default.createElement(
-          'div',
-          { className: 'option', key: option.id, onClick: function onClick(e) {
-              return _this3.handleOptionClick(e, option.destination_id);
-            } },
-          option.text
-        );
-      });
-      return optionButtons;
+      return _react2.default.createElement(
+        'div',
+        { id: 'options-list' },
+        options.map(function (option) {
+          return _react2.default.createElement(
+            'div',
+            { className: 'option', key: option.id, onClick: function onClick(e) {
+                return _this3.handleOptionClick(e, option.destination_id);
+              } },
+            option.text
+          );
+        })
+      );
     }
   }, {
     key: 'theEnd',
     value: function theEnd() {
       return _react2.default.createElement(
         'div',
-        { className: 'the-end' },
+        { id: 'the-end' },
         'The End'
       );
     }
@@ -29723,7 +29722,7 @@ var Page = function (_React$Component) {
       }
       return _react2.default.createElement(
         'div',
-        { className: 'page-buttons' },
+        { id: 'page-buttons' },
         isFirstPage ? "" : _react2.default.createElement(
           'button',
           { type: 'button', className: 'btn btn-info mr-3', onClick: this.props.history.goBack },
@@ -29745,10 +29744,10 @@ var Page = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
+        { id: 'page-box' },
         _react2.default.createElement(
           'h3',
-          { className: 'page-box-text' },
+          { id: 'page-box-text' },
           page.text
         ),
         options.length === 0 ? this.theEnd() : this.optionsIndex(options),

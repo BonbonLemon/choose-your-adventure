@@ -90,7 +90,7 @@ class AdventureShow extends React.Component {
           <div className="adventure-show-cover-box">
             { adventure.cover_url ? this.coverImage(adventure.cover_url) : this.defaultImage() }
           </div>
-          <div id="adventure-show-page-box">
+          <div id="adventure-show-content">
             { this.state.adventureStarted ? "" : this.adventureShowDetail() }
             <Route path="/adventures/:adventureId/pages/:pageId" adventure={adventure} component={PageContainer} />
           </div>

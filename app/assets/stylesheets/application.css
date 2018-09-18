@@ -496,48 +496,70 @@ html, body {
   font-size: 60px;
 }
 
-#adventure-show-page-box {
+#adventure-show-content {
   height: 500px;
   background-color: white;
   outline: thin solid black;
   padding: 20px;
 }
 
-
-
-
-
-
-
-
-
-
 #start-adventure-button {
   text-align: center;
 }
 
-.the-end {
-  text-align: center;
-  margin: 0 auto;
-  margin-top: 30px;
-  font-size: 40px;
-  font-weight: bold;
-  font-family: fantasy;
+
+/*adventure show pages*/
+
+#page-box {
+  position: relative;
+  height: 100%;
+}
+
+#page-box-text {
+  font-size: 24px;
+  margin: 0;
+  padding-bottom: 20px;
+  border-bottom: thin solid black;
+  white-space: pre-wrap;
+  font-family: serif;
+}
+
+#options-list {
+  padding: 14px 0;
 }
 
 .option {
   padding-left: 20px;
   font-size: 18px;
+  cursor: pointer;
 }
 
 .option:hover {
-  cursor: pointer;
   background-color: #e9ebf0;
 }
 
 .option:active {
   background-color: #ced1d8;
 }
+
+#the-end {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: fantasy;
+}
+
+#page-buttons {
+  position: absolute;
+  bottom: 0;
+}
+
+
+
+
+
+
 
 .upload-cover-image-wrapper {
   height: 275px;
@@ -556,14 +578,6 @@ html, body {
   float: left;
 }
 
-.page-box-text {
-  font-size: 24px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-bottom: thin solid black;
-  white-space: pre-wrap;
-  font-family: serif;
-}
 
 .starting-page-label {
   width: 126px;
