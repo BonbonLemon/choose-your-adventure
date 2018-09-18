@@ -584,7 +584,6 @@ html, body {
   display: flex;
   background-color: #cee1ea;
   height: 275px;
-  width: 100%;
   margin: 25px;
   border: thin solid black;
   cursor: pointer;

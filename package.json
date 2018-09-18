@@ -3,12 +3,12 @@
   "private": true,
   "dependencies": {
     "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
+    "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "lodash": "^4.17.10",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
+    "lodash": "^4.17.11",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^4.0.0",
@@ -17,8 +17,8 @@
   },
   "devDependencies": {
     "serviceworker-webpack-plugin": "^1.0.0-alpha02",
-    "webpack": "^4.19.0",
-    "webpack-cli": "^3.0.2"
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0"
   },
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
@@ -30,7 +30,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "webpack --optimize-minimize",
-    "start": "webpack --watch -d"
+    "start": "webpack --config webpack.config.js"
   },
   "engines": {
     "node": "8.9.4",
