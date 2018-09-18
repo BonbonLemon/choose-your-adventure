@@ -45,11 +45,9 @@ class AdventureShow extends React.Component {
 
   editButton() {
     return (
-      <div id="adventure-show-edit-button">
-        <Link to={"/adventureeditor/" + this.props.adventureId}>
-          <button type="button" className="edit-button btn btn-danger btn-sm">Edit</button>
-        </Link>
-      </div>
+      <Link to={"/adventureeditor/" + this.props.adventureId}>
+        <button type="button" className="edit-button btn btn-danger btn-sm">Edit</button>
+      </Link>
     );
   }
 

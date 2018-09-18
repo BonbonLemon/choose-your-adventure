@@ -367,6 +367,7 @@ html, body {
 
 
 /*page form*/
+
 .page-form {
   padding: 10px;
 }
@@ -374,6 +375,10 @@ html, body {
 .pages-form-group {
   margin: 6px;
   margin-bottom: 18px;
+}
+
+.starting-page-label {
+  width: 126px;
 }
 
 
@@ -463,7 +468,8 @@ html, body {
   margin: 0 auto;
 }
 
-.adventure-show-edit-button {
+.edit-button {
+  position: absolute;
   float: left;
 }
 
@@ -553,41 +559,6 @@ html, body {
 #page-buttons {
   position: absolute;
   bottom: 0;
-}
-
-
-
-
-
-
-
-.upload-cover-image-wrapper {
-  height: 275px;
-  width: 325px;
-}
-
-.upload-cover-image-wrapper img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.edit-button {
-  position: absolute;
-  float: left;
-}
-
-
-.starting-page-label {
-  width: 126px;
-}
-
-
-
-
-.add-page-button {
-  height: 40px;
 }
 
 

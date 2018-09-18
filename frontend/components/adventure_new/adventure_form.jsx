@@ -80,10 +80,11 @@ class AdventureEdit extends React.Component {
     const { title, genres, description, cover_url } = this.state;
     let cover;
     if (cover_url) {
-      cover =
-        <div className="upload-cover-image-wrapper adventure-form-group">
+      cover = (
+        <div className="adventure-form-group">
           <img src={cover_url}/>
-        </div>;
+        </div>
+      );
     }
 
     return (

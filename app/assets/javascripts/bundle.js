@@ -4967,7 +4967,7 @@ var AdventureEdit = function (_React$Component) {
       if (cover_url) {
         cover = _react2.default.createElement(
           'div',
-          { className: 'upload-cover-image-wrapper adventure-form-group' },
+          { className: 'adventure-form-group' },
           _react2.default.createElement('img', { src: cover_url })
         );
       }
@@ -29444,16 +29444,12 @@ var AdventureShow = function (_React$Component) {
     key: 'editButton',
     value: function editButton() {
       return _react2.default.createElement(
-        'div',
-        { id: 'adventure-show-edit-button' },
+        _reactRouterDom.Link,
+        { to: "/adventureeditor/" + this.props.adventureId },
         _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: "/adventureeditor/" + this.props.adventureId },
-          _react2.default.createElement(
-            'button',
-            { type: 'button', className: 'edit-button btn btn-danger btn-sm' },
-            'Edit'
-          )
+          'button',
+          { type: 'button', className: 'edit-button btn btn-danger btn-sm' },
+          'Edit'
         )
       );
     }
