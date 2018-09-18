@@ -288,9 +288,15 @@ html, body {
   cursor: pointer;
 }
 
-
-#adventure-new {
-  text-align: center;
+.upload-cover-image-wrapper {
+  height: 275px;
+  width: 325px;
+}
+ .upload-cover-image-wrapper img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 
@@ -564,20 +570,31 @@ html, body {
 
 /*profile*/
 
+
+#profile {
+  width: 900px;
+  margin: 16px auto;
+}
+
+#profile-header {
+  text-align: center;
+}
+
 .profile-adventure-box {
+  display: flex;
   background-color: #cee1ea;
-  margin: 25px;
-  width: 750px;
   height: 275px;
-  outline: thin solid black;
+  width: 100%;
+  margin: 25px;
+  border: thin solid black;
+  cursor: pointer;
 }
 
 .profile-adventure-details {
-  width: 500px;
   height: 100%;
   padding: 15px;
-  float: left;
   color: black;
+  flex: 1;
 }
 
 .profile-adventure-title {
@@ -589,7 +606,6 @@ html, body {
 .profile-adventure-cover {
   width: 250px;
   height: 100%;
-  float: left;
 }
 
 .profile-adventure-cover img {
@@ -598,6 +614,9 @@ html, body {
   object-fit: cover;
   object-position: center;
 }
+
+
+/*release notes*/
 
 .release-notes {
   text-align: center;

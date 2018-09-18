@@ -2,33 +2,39 @@
   "name": "choose-your-adventure",
   "private": true,
   "dependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "react": "^16.2.0",
-    "react-confirm-button": "^0.1.0",
-    "react-dom": "^16.2.0",
-    "react-redux": "^5.0.6",
+    "lodash": "^4.17.10",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "redux": "^3.7.2",
+    "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0",
-    "webpack": "^3.10.0"
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "serviceworker-webpack-plugin": "^1.0.0-alpha02",
+    "webpack": "^4.19.0",
+    "webpack-cli": "^3.0.2"
   },
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
   "main": "index.js",
   "directories": {
+    "lib": "lib",
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "webpack --optimize-minimize",
+    "start": "webpack --watch -d"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BonbonLemon/choose-your-adventure.git"
+  "engines": {
+    "node": "8.9.4",
+    "npm": "5.6.0"
   },
   "keywords": [],
   "author": "",
