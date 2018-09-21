@@ -671,7 +671,7 @@ var AdventureIndexItem = function (_React$Component) {
     key: 'handleAdventureClick',
     value: function handleAdventureClick(e) {
       e.preventDefault();
-      this.props.history.push('/adventures/' + this.props.adventure.id);
+      this.props.history.push('/adventures/' + this.props.adventure.id + '/page/0');
     }
   }, {
     key: 'defaultImage',
