@@ -1,6 +1,6 @@
 class Api::PagesController < ApplicationController
   def index
-    @pages = Page.all
+    @pages = Page.where(adventure_id: params["adventure_id"])
     render :index
   end
 

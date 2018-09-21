@@ -7,9 +7,13 @@ import { selectAdventure } from '../../reducers/selectors';
 const mapStateToProps = (state, ownProps) => {
   const adventureId = parseInt(ownProps.match.params.adventureId);
   const adventure = selectAdventure(state.adventures, adventureId);
+	const pageId = parseInt(ownProps.match.params.pageId);
+	const pages = state.pages;
   return {
-    adventure: adventure,
-    adventureId: adventureId
+    adventure,
+    adventureId,
+    pageId,
+    pages
   };
 };
 

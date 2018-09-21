@@ -1,7 +1,8 @@
-export const fetchPages = () => (
+export const fetchPages = (adventureId) => (
   $.ajax({
     method: 'GET',
-    url: 'api/pages'
+    url: 'api/pages',
+    data: {adventure_id: adventureId}
   })
 );
 

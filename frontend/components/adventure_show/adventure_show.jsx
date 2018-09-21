@@ -1,21 +1,22 @@
 import React from 'react';
 import { Link, Route, withRouter } from 'react-router-dom';
 
-import PageContainer from './page_container';
+import Page from './page';
 
 class AdventureShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       currentUserIsAuthor: false,
-      adventureStarted: false
     }
+
     this.checkCurrentUser = this.checkCurrentUser.bind(this);
-    this.startAdventure = this.startAdventure.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchAdventure(this.props.adventureId, this.checkCurrentUser);
+
+    this.props.fetchPages(this.props.adventureId);
 
     if (this.props.location.pathname.indexOf("pages") !== -1) {
       this.startAdventure();
@@ -51,10 +52,6 @@ class AdventureShow extends React.Component {
     );
   }
 
-  startAdventure() {
-    this.setState({adventureStarted: true});
-  }
-
   adventureShowDetail() {
     const { adventure } = this.props;
 
@@ -64,7 +61,7 @@ class AdventureShow extends React.Component {
           <span className="font-weight-bold">Description: </span>{ adventure.description }
         </p>
         <div id="start-adventure-button">
-          <Link to={this.props.location.pathname + "/pages/" + adventure.start_page_id} onClick={this.startAdventure}>
+          <Link to={"/adventures/" + adventure.id + "/page/" + adventure.start_page_id} onClick={this.startAdventure}>
             <button type="button" className="btn btn-warning btn-lg">Start Adventure</button>
           </Link>
         </div>
@@ -73,10 +70,11 @@ class AdventureShow extends React.Component {
   }
 
   render() {
-    const { adventure } = this.props;
+    const { adventure, adventureId, pages, pageId } = this.props;
     const { currentUserIsAuthor } = this.state;
     const author = adventure.author || {};
-
+    const page = pages[pageId];
+    
     return (
       <div id="adventure-show">
         <h2 id="adventure-show-title">{adventure.title}</h2>
@@ -89,8 +87,11 @@ class AdventureShow extends React.Component {
             { adventure.cover_url ? this.coverImage(adventure.cover_url) : this.defaultImage() }
           </div>
           <div id="adventure-show-content">
-            { this.state.adventureStarted ? "" : this.adventureShowDetail() }
-            <Route path="/adventures/:adventureId/pages/:pageId" adventure={adventure} component={PageContainer} />
+            { 
+              pageId == 0 ? 
+              this.adventureShowDetail() :
+              <Page props={this.props} />
+            }
           </div>
         </div>
       </div>

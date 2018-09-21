@@ -9,10 +9,23 @@ export const removePage = (adventureId, pageId) => ({
   pageId: pageId
 });
 
-export const createPage = (page, callback) => dispatch => (
-  APIUtil.createPage(page).then(page => {
-    dispatch(fetchAdventure(page.adventure.id));
+export const RECEIVE_PAGES = 'RECEIVE_PAGES';
+
+export const receivePages = (pages) => ({
+  type: RECEIVE_PAGES,
+  pages
+});
+
+export const fetchPages = (adventureId) => dispatch => (
+  APIUtil.fetchPages(adventureId).then(pages => {
+    dispatch(receivePages(pages));
   })
+);
+
+export const createPage = (page, callback) => dispatch => (
+  APIUtil.createPage(page).then(page => (
+    dispatch(fetchAdventure(page.adventure.id))
+  ))
 );
 
 export const editPage = (page, callback) => dispatch => (

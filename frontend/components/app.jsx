@@ -33,7 +33,7 @@ const App = () => (
         <Route exact path="/" component={AdventureIndexContainer} />
         <AuthRoute path="/login" component={SessionFormContainer} />
         <ProtectedRoute path="/adventures/new" component={AdventureNewContainer} />
-        <Route path="/adventures/:adventureId" component={AdventureShowContainer} />
+        <Route path="/adventures/:adventureId/page/:pageId" component={AdventureShowContainer} />
         <Route path="/adventureeditor/:adventureId" component={AdventureEditContainer} />
         <Route path="/users/:username" component={UserContainer} />
 

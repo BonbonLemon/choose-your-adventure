@@ -257,7 +257,7 @@ var deleteOption = exports.deleteOption = function deleteOption(id) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deletePage = exports.editPage = exports.createPage = exports.removePage = exports.REMOVE_PAGE = undefined;
+exports.deletePage = exports.editPage = exports.createPage = exports.fetchPages = exports.receivePages = exports.RECEIVE_PAGES = exports.removePage = exports.REMOVE_PAGE = undefined;
 
 var _page_api_util = __webpack_require__(/*! ../util/page_api_util */ "./frontend/util/page_api_util.js");
 
@@ -277,10 +277,27 @@ var removePage = exports.removePage = function removePage(adventureId, pageId) {
   };
 };
 
+var RECEIVE_PAGES = exports.RECEIVE_PAGES = 'RECEIVE_PAGES';
+
+var receivePages = exports.receivePages = function receivePages(pages) {
+  return {
+    type: RECEIVE_PAGES,
+    pages: pages
+  };
+};
+
+var fetchPages = exports.fetchPages = function fetchPages(adventureId) {
+  return function (dispatch) {
+    return APIUtil.fetchPages(adventureId).then(function (pages) {
+      dispatch(receivePages(pages));
+    });
+  };
+};
+
 var createPage = exports.createPage = function createPage(page, callback) {
   return function (dispatch) {
     return APIUtil.createPage(page).then(function (page) {
-      dispatch((0, _adventure_actions.fetchAdventure)(page.adventure.id));
+      return dispatch((0, _adventure_actions.fetchAdventure)(page.adventure.id));
     });
   };
 };
@@ -2384,9 +2401,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 
-var _page_container = __webpack_require__(/*! ./page_container */ "./frontend/components/adventure_show/page_container.js");
+var _page = __webpack_require__(/*! ./page */ "./frontend/components/adventure_show/page.jsx");
 
-var _page_container2 = _interopRequireDefault(_page_container);
+var _page2 = _interopRequireDefault(_page);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2405,11 +2422,10 @@ var AdventureShow = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (AdventureShow.__proto__ || Object.getPrototypeOf(AdventureShow)).call(this, props));
 
     _this.state = {
-      currentUserIsAuthor: false,
-      adventureStarted: false
+      currentUserIsAuthor: false
     };
+
     _this.checkCurrentUser = _this.checkCurrentUser.bind(_this);
-    _this.startAdventure = _this.startAdventure.bind(_this);
     return _this;
   }
 
@@ -2417,6 +2433,8 @@ var AdventureShow = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.fetchAdventure(this.props.adventureId, this.checkCurrentUser);
+
+      this.props.fetchPages(this.props.adventureId);
 
       if (this.props.location.pathname.indexOf("pages") !== -1) {
         this.startAdventure();
@@ -2460,11 +2478,6 @@ var AdventureShow = function (_React$Component) {
       );
     }
   }, {
-    key: 'startAdventure',
-    value: function startAdventure() {
-      this.setState({ adventureStarted: true });
-    }
-  }, {
     key: 'adventureShowDetail',
     value: function adventureShowDetail() {
       var adventure = this.props.adventure;
@@ -2488,7 +2501,7 @@ var AdventureShow = function (_React$Component) {
           { id: 'start-adventure-button' },
           _react2.default.createElement(
             _reactRouterDom.Link,
-            { to: this.props.location.pathname + "/pages/" + adventure.start_page_id, onClick: this.startAdventure },
+            { to: "/adventures/" + adventure.id + "/page/" + adventure.start_page_id, onClick: this.startAdventure },
             _react2.default.createElement(
               'button',
               { type: 'button', className: 'btn btn-warning btn-lg' },
@@ -2501,10 +2514,15 @@ var AdventureShow = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var adventure = this.props.adventure;
+      var _props = this.props,
+          adventure = _props.adventure,
+          adventureId = _props.adventureId,
+          pages = _props.pages,
+          pageId = _props.pageId;
       var currentUserIsAuthor = this.state.currentUserIsAuthor;
 
       var author = adventure.author || {};
+      var page = pages[pageId];
 
       return _react2.default.createElement(
         'div',
@@ -2536,8 +2554,7 @@ var AdventureShow = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { id: 'adventure-show-content' },
-            this.state.adventureStarted ? "" : this.adventureShowDetail(),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId/pages/:pageId', adventure: adventure, component: _page_container2.default })
+            pageId == 0 ? this.adventureShowDetail() : _react2.default.createElement(_page2.default, { props: this.props })
           )
         )
       );
@@ -2575,6 +2592,8 @@ var _adventure_show2 = _interopRequireDefault(_adventure_show);
 
 var _adventure_actions = __webpack_require__(/*! ../../actions/adventure_actions */ "./frontend/actions/adventure_actions.js");
 
+var _page_actions = __webpack_require__(/*! ../../actions/page_actions */ "./frontend/actions/page_actions.js");
+
 var _selectors = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -2582,10 +2601,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var adventureId = parseInt(ownProps.match.params.adventureId);
   var adventure = (0, _selectors.selectAdventure)(state.adventures, adventureId);
+  var pageId = parseInt(ownProps.match.params.pageId);
+  var pages = state.pages;
   var currentUser = state.session.currentUser;
   return {
-    adventure: adventure,
     adventureId: adventureId,
+    adventure: adventure,
+    pageId: pageId,
+    pages: pages,
     currentUser: currentUser
   };
 };
@@ -2594,6 +2617,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchAdventure: function fetchAdventure(id, callback) {
       return dispatch((0, _adventure_actions.fetchAdventure)(id, callback));
+    },
+    fetchPages: function fetchPages(adventureId) {
+      return dispatch((0, _page_actions.fetchPages)(adventureId));
     }
   };
 };
@@ -2616,8 +2642,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
@@ -2626,201 +2650,85 @@ var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_module
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Page = function (_React$Component) {
-  _inherits(Page, _React$Component);
-
-  function Page(props) {
-    _classCallCheck(this, Page);
-
-    var _this = _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this, props));
-
-    _this.state = {
-      page: {}
-    };
-
-    _this.setPage = _this.setPage.bind(_this);
-    _this.tryAgain = _this.tryAgain.bind(_this);
-    return _this;
-  }
-
-  _createClass(Page, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      var _props = this.props,
-          adventure = _props.adventure,
-          adventureId = _props.adventureId;
-
-      var pageId = this.props.match.params.pageId;
-
-      if (!adventure.title) {
-        this.props.fetchAdventure(adventureId, function (adventure) {
-          return _this2.setPage(adventure, pageId);
-        });
-      } else {
-        this.setPage(adventure, pageId);
-      }
-    }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      this.setPage(nextProps.adventure, nextProps.match.params.pageId);
-    }
-  }, {
-    key: 'setPage',
-    value: function setPage(adventure, pageId) {
-      if (adventure.pages) {
-        var page = adventure.pages.find(function (page) {
-          return page.id == pageId;
-        });
-        this.setState({
-          page: page
-        });
-      }
-    }
-  }, {
-    key: 'handleOptionClick',
-    value: function handleOptionClick(e, optionId) {
-      e.preventDefault();
-      this.props.history.push(optionId.toString());
-    }
-  }, {
-    key: 'optionsIndex',
-    value: function optionsIndex(options) {
-      var _this3 = this;
-
-      return _react2.default.createElement(
-        'div',
-        { id: 'options-list' },
-        options.map(function (option) {
-          return _react2.default.createElement(
-            'div',
-            { className: 'option', key: option.id, onClick: function onClick(e) {
-                return _this3.handleOptionClick(e, option.destination_id);
-              } },
-            option.text
-          );
-        })
-      );
-    }
-  }, {
-    key: 'theEnd',
-    value: function theEnd() {
-      return _react2.default.createElement(
-        'div',
-        { id: 'the-end' },
-        'The End'
-      );
-    }
-  }, {
-    key: 'tryAgain',
-    value: function tryAgain() {
-      this.props.history.push(this.props.adventure.start_page_id.toString());
-      // this.props.history.push(this.state.firstPageId);
-    }
-  }, {
-    key: 'pageButtons',
-    value: function pageButtons(options) {
-      var adventure = this.props.adventure;
-
-      var isFirstPage = false;
-      if (adventure.start_page_id && this.state.page.id === adventure.start_page_id) {
-        isFirstPage = true;
-      }
-      return _react2.default.createElement(
-        'div',
-        { id: 'page-buttons' },
-        isFirstPage ? "" : _react2.default.createElement(
-          'button',
-          { type: 'button', className: 'btn btn-info mr-3', onClick: this.props.history.goBack },
-          'Back'
-        ),
-        options.length == 0 ? _react2.default.createElement(
-          'button',
-          { type: 'button', className: 'btn btn-info', onClick: this.tryAgain },
-          'Try Again'
-        ) : ""
-      );
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var page = this.state.page;
-
-      var options = page.options || [];
-
-      return _react2.default.createElement(
-        'div',
-        { id: 'page-box' },
-        _react2.default.createElement(
-          'h3',
-          { id: 'page-box-text' },
-          page.text
-        ),
-        options.length === 0 ? this.theEnd() : this.optionsIndex(options),
-        this.pageButtons(options)
-      );
-    }
-  }]);
-
-  return Page;
-}(_react2.default.Component);
-
-exports.default = Page;
-
-/***/ }),
-
-/***/ "./frontend/components/adventure_show/page_container.js":
-/*!**************************************************************!*\
-  !*** ./frontend/components/adventure_show/page_container.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-
-var _page = __webpack_require__(/*! ./page */ "./frontend/components/adventure_show/page.jsx");
-
-var _page2 = _interopRequireDefault(_page);
-
-var _adventure_actions = __webpack_require__(/*! ../../actions/adventure_actions */ "./frontend/actions/adventure_actions.js");
-
-var _selectors = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var adventureId = parseInt(ownProps.match.params.adventureId);
-  var adventure = (0, _selectors.selectAdventure)(state.adventures, adventureId);
-  return {
-    adventure: adventure,
-    adventureId: adventureId
-  };
+var theEnd = function theEnd() {
+  return _react2.default.createElement(
+    'div',
+    { id: 'the-end' },
+    'The End'
+  );
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    fetchAdventure: function fetchAdventure(id, callback) {
-      return dispatch((0, _adventure_actions.fetchAdventure)(id, callback));
-    }
-  };
+var optionsIndex = function optionsIndex(props, adventure, page) {
+  var options = page.options;
+
+
+  return _react2.default.createElement(
+    'div',
+    { id: 'options-list' },
+    options.map(function (option) {
+      return _react2.default.createElement(
+        'div',
+        { className: 'option', key: option.id, onClick: function onClick(e) {
+            props.history.push(option.destination_id.toString());
+          } },
+        option.text
+      );
+    })
+  );
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_page2.default);
+var pageButtons = function pageButtons(props, adventure, page) {
+  var options = page.options;
+
+
+  return _react2.default.createElement(
+    'div',
+    { id: 'page-buttons' },
+    page.id == adventure.start_page_id ? "" : _react2.default.createElement(
+      'button',
+      { type: 'button', className: 'btn btn-info mr-3', onClick: props.history.goBack },
+      'Back'
+    ),
+    options.length == 0 ? _react2.default.createElement(
+      'button',
+      { type: 'button', className: 'btn btn-info', onClick: function onClick() {
+          tryAgain(props, adventure);
+        } },
+      'Try Again'
+    ) : ""
+  );
+};
+
+var tryAgain = function tryAgain(props, adventure) {
+  props.history.push(adventure.start_page_id.toString());
+};
+
+var Page = function Page(_ref) {
+  var props = _ref.props;
+  var adventure = props.adventure,
+      pageId = props.pageId,
+      pages = props.pages;
+
+  var page = pages[pageId];
+
+  return page ? _react2.default.createElement(
+    'div',
+    { id: 'page-box' },
+    _react2.default.createElement(
+      'h3',
+      { id: 'page-box-text' },
+      page.text
+    ),
+    page.options.length == 0 ? theEnd() : optionsIndex(props, adventure, page),
+    pageButtons(props, adventure, page)
+  ) : _react2.default.createElement(
+    'div',
+    null,
+    'Loading...'
+  );
+};
+
+exports.default = (0, _reactRouterDom.withRouter)(Page);
 
 /***/ }),
 
@@ -2908,7 +2816,7 @@ var App = function App() {
         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _adventure_index_container2.default }),
         _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
         _react2.default.createElement(_route_util.ProtectedRoute, { path: '/adventures/new', component: _adventure_new_container2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId', component: _adventure_show_container2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/adventures/:adventureId/page/:pageId', component: _adventure_show_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/adventureeditor/:adventureId', component: _adventure_edit_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/users/:username', component: _user_container2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/about', component: _about2.default }),
@@ -3960,6 +3868,47 @@ exports.default = (0, _redux.combineReducers)({
 
 /***/ }),
 
+/***/ "./frontend/reducers/pages_reducer.js":
+/*!********************************************!*\
+  !*** ./frontend/reducers/pages_reducer.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _merge = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+
+var _merge2 = _interopRequireDefault(_merge);
+
+var _page_actions = __webpack_require__(/*! ../actions/page_actions */ "./frontend/actions/page_actions.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var pagesReducer = function pagesReducer() {
+	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	var action = arguments[1];
+
+	Object.freeze(state);
+	var newState = (0, _merge2.default)({}, state);
+
+	switch (action.type) {
+		case _page_actions.RECEIVE_PAGES:
+			return (0, _merge2.default)({}, state, action.pages);
+		default:
+			return state;
+	}
+};
+
+exports.default = pagesReducer;
+
+/***/ }),
+
 /***/ "./frontend/reducers/root_reducer.js":
 /*!*******************************************!*\
   !*** ./frontend/reducers/root_reducer.js ***!
@@ -3992,13 +3941,18 @@ var _adventures_reducer = __webpack_require__(/*! ./adventures_reducer */ "./fro
 
 var _adventures_reducer2 = _interopRequireDefault(_adventures_reducer);
 
+var _pages_reducer = __webpack_require__(/*! ./pages_reducer */ "./frontend/reducers/pages_reducer.js");
+
+var _pages_reducer2 = _interopRequireDefault(_pages_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var rootReducer = (0, _redux.combineReducers)({
   session: _session_reducer2.default,
   errors: _errors_reducer2.default,
   user: _user_reducer2.default,
-  adventures: _adventures_reducer2.default
+  adventures: _adventures_reducer2.default,
+  pages: _pages_reducer2.default
 });
 
 exports.default = rootReducer;
@@ -4288,10 +4242,11 @@ var deleteOption = exports.deleteOption = function deleteOption(id) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var fetchPages = exports.fetchPages = function fetchPages() {
+var fetchPages = exports.fetchPages = function fetchPages(adventureId) {
   return $.ajax({
     method: 'GET',
-    url: 'api/pages'
+    url: 'api/pages',
+    data: { adventure_id: adventureId }
   });
 };
 
