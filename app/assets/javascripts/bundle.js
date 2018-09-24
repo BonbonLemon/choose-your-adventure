@@ -2419,35 +2419,17 @@ var AdventureShow = function (_React$Component) {
   function AdventureShow(props) {
     _classCallCheck(this, AdventureShow);
 
-    var _this = _possibleConstructorReturn(this, (AdventureShow.__proto__ || Object.getPrototypeOf(AdventureShow)).call(this, props));
-
-    _this.state = {
-      currentUserIsAuthor: false
-    };
-
-    _this.checkCurrentUser = _this.checkCurrentUser.bind(_this);
-    return _this;
+    return _possibleConstructorReturn(this, (AdventureShow.__proto__ || Object.getPrototypeOf(AdventureShow)).call(this, props));
   }
 
   _createClass(AdventureShow, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.props.fetchAdventure(this.props.adventureId, this.checkCurrentUser);
-
+      this.props.fetchAdventure(this.props.adventureId);
       this.props.fetchPages(this.props.adventureId);
 
       if (this.props.location.pathname.indexOf("pages") !== -1) {
         this.startAdventure();
-      }
-    }
-  }, {
-    key: 'checkCurrentUser',
-    value: function checkCurrentUser(adventure) {
-      var currentUser = this.props.currentUser;
-      if (currentUser && currentUser.id == adventure.author.id) {
-        this.setState({
-          currentUserIsAuthor: true
-        });
       }
     }
   }, {
@@ -2515,11 +2497,11 @@ var AdventureShow = function (_React$Component) {
     key: 'render',
     value: function render() {
       var _props = this.props,
+          currentUser = _props.currentUser,
           adventure = _props.adventure,
           adventureId = _props.adventureId,
           pages = _props.pages,
           pageId = _props.pageId;
-      var currentUserIsAuthor = this.state.currentUserIsAuthor;
 
       var author = adventure.author || {};
       var page = pages[pageId];
@@ -2535,7 +2517,7 @@ var AdventureShow = function (_React$Component) {
         _react2.default.createElement(
           'div',
           null,
-          currentUserIsAuthor ? this.editButton() : null,
+          currentUser && adventure.author && currentUser.id == adventure.author.id ? this.editButton() : null,
           _react2.default.createElement(
             'h4',
             { className: 'adventure-show-author' },

@@ -6,29 +6,14 @@ import Page from './page';
 class AdventureShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentUserIsAuthor: false,
-    }
-
-    this.checkCurrentUser = this.checkCurrentUser.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchAdventure(this.props.adventureId, this.checkCurrentUser);
-
+    this.props.fetchAdventure(this.props.adventureId);
     this.props.fetchPages(this.props.adventureId);
 
     if (this.props.location.pathname.indexOf("pages") !== -1) {
       this.startAdventure();
-    }
-  }
-
-  checkCurrentUser(adventure) {
-    const currentUser = this.props.currentUser;
-    if (currentUser && currentUser.id == adventure.author.id) {
-      this.setState({
-        currentUserIsAuthor: true
-      });
     }
   }
 
@@ -70,8 +55,7 @@ class AdventureShow extends React.Component {
   }
 
   render() {
-    const { adventure, adventureId, pages, pageId } = this.props;
-    const { currentUserIsAuthor } = this.state;
+    const { currentUser, adventure, adventureId, pages, pageId } = this.props;
     const author = adventure.author || {};
     const page = pages[pageId];
     
@@ -79,7 +63,7 @@ class AdventureShow extends React.Component {
       <div id="adventure-show">
         <h2 id="adventure-show-title">{adventure.title}</h2>
         <div>
-          {currentUserIsAuthor ? this.editButton() : null }
+          {currentUser && adventure.author && currentUser.id == adventure.author.id ? this.editButton() : null }
           <h4 className="adventure-show-author">By {author.username}</h4>
         </div>
         <div className="adventure-show-box">
