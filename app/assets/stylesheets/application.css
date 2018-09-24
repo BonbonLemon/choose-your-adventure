@@ -315,12 +315,6 @@ html, body {
   margin: 20px auto;
 }
 
-.starting-page-select {
-  margin-top: 15px;
-  margin-bottom: 10px;
-  width: 500px;
-}
-
 #pages-index {
   width: 100%;
 }
@@ -366,8 +360,6 @@ html, body {
 }
 
 .mini-page-form {
-  width: 800px;
-  margin: 10px;
   margin-bottom: 50px;
 }
 
@@ -381,6 +373,12 @@ html, body {
 .pages-form-group {
   margin: 6px;
   margin-bottom: 18px;
+}
+
+.starting-page-select {
+  margin-top: 15px;
+  margin-bottom: 16px;
+  width: 500px;
 }
 
 .starting-page-label {

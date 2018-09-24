@@ -811,6 +811,7 @@ var AdventureEdit = function (_React$Component) {
         _this2.setStartPageId(adventure);
         _this2.checkCurrentUser(adventure);
       });
+      this.props.fetchPages(this.props.adventureId);
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -935,8 +936,10 @@ var AdventureEdit = function (_React$Component) {
     key: 'render',
     value: function render() {
       var startPageId = this.state.startPageId;
+      var _props = this.props,
+          adventure = _props.adventure,
+          pages = _props.pages;
 
-      var pages = this.props.adventure.pages || [];
 
       return _react2.default.createElement(
         'div',
@@ -951,7 +954,7 @@ var AdventureEdit = function (_React$Component) {
           { id: 'publish-button-wrapper' },
           this.publishButtons()
         ),
-        _react2.default.createElement(_adventure_form2.default, { adventure: this.props.adventure, handleSubmit: this.editAdventure }),
+        _react2.default.createElement(_adventure_form2.default, { adventure: adventure, handleSubmit: this.editAdventure }),
         _react2.default.createElement(
           'div',
           { id: 'pages-container' },
@@ -1003,7 +1006,7 @@ var AdventureEdit = function (_React$Component) {
               )
             )
           ),
-          _react2.default.createElement(_pages_container2.default, { adventure: this.props.adventure })
+          _react2.default.createElement(_pages_container2.default, { pages: pages })
         )
       );
     }
@@ -1038,6 +1041,8 @@ var _adventure_edit2 = _interopRequireDefault(_adventure_edit);
 
 var _adventure_actions = __webpack_require__(/*! ../../actions/adventure_actions */ "./frontend/actions/adventure_actions.js");
 
+var _page_actions = __webpack_require__(/*! ../../actions/page_actions */ "./frontend/actions/page_actions.js");
+
 var _selectors = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -1045,10 +1050,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var adventureId = parseInt(ownProps.match.params.adventureId);
   var adventure = (0, _selectors.selectAdventure)(state.adventures, adventureId);
+  var pages = (0, _selectors.asArray)(state.pages);
   var currentUser = state.session.currentUser;
   return {
     adventure: adventure,
     adventureId: adventureId,
+    pages: pages,
     currentUser: currentUser
   };
 };
@@ -1060,6 +1067,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     editAdventure: function editAdventure(id, callback) {
       return dispatch((0, _adventure_actions.editAdventure)(id, callback));
+    },
+    fetchPages: function fetchPages(id) {
+      return dispatch((0, _page_actions.fetchPages)(id));
     }
   };
 };
@@ -1970,7 +1980,7 @@ var _pages2 = _interopRequireDefault(_pages);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var pages = ownProps.adventure.pages || [];
+  var pages = ownProps.pages || [];
   return {
     pages: pages
   };

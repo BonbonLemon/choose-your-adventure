@@ -29,6 +29,7 @@ class AdventureEdit extends React.Component {
       this.setStartPageId(adventure);
       this.checkCurrentUser(adventure);
     });
+    this.props.fetchPages(this.props.adventureId);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -132,7 +133,7 @@ class AdventureEdit extends React.Component {
 
   render() {
     const { startPageId } = this.state;
-    const pages = this.props.adventure.pages || [];
+    const { adventure, pages } = this.props;
 
     return (
       <div>
@@ -140,7 +141,7 @@ class AdventureEdit extends React.Component {
         <div id="publish-button-wrapper">
           { this.publishButtons() }
         </div>
-        <AdventureForm adventure={this.props.adventure} handleSubmit={this.editAdventure} />
+        <AdventureForm adventure={adventure} handleSubmit={this.editAdventure} />
 
         <div id="pages-container">
           <h2>Pages</h2>
@@ -167,7 +168,7 @@ class AdventureEdit extends React.Component {
               </div>
             </div>
           </div>
-          <PageContainer adventure={this.props.adventure} />
+          <PageContainer pages={pages} />
         </div>
       </div>
     );

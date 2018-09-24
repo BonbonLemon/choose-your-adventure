@@ -6,9 +6,9 @@ import { asArray } from '../../../reducers/selectors';
 import Pages from './pages';
 
 const mapStateToProps = (state, ownProps) => {
-  const pages = ownProps.adventure.pages || [];
+  const pages = ownProps.pages || [];
   return {
-    pages: pages
+    pages
   };
 }
 
