@@ -1,5 +1,5 @@
 import React from 'react';
-import PageIndexItem from './page_index_item';
+import PageIndexItemContainer from './page_index_item_container';
 
 class Pages extends React.Component {
   constructor(props) {
@@ -52,7 +52,7 @@ class Pages extends React.Component {
       <div>
         <div id="pages-index">
           {pages.map(page => (
-            <PageIndexItem key={page.id} page={page} editPage={this.props.editPage} updateAdventure={this.props.updateAdventure} deletePage={this.props.deletePage}/>
+            <PageIndexItemContainer key={page.id} pageId={page.id} />
           ))}
         </div>
         { this.miniPageForm() }

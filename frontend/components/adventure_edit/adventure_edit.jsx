@@ -81,7 +81,7 @@ class AdventureEdit extends React.Component {
   }
 
   navigateToAdventure(adventure) {
-    this.props.history.push("/adventures/" + adventure.id);
+    this.props.history.push("/adventures/" + adventure.id + "/page/0");
   }
 
   startingPageLabel() {
@@ -168,7 +168,7 @@ class AdventureEdit extends React.Component {
               </div>
             </div>
           </div>
-          <PageContainer pages={pages} />
+          <PageContainer adventure={adventure} pages={pages} />
         </div>
       </div>
     );

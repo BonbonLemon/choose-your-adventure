@@ -257,7 +257,7 @@ var deleteOption = exports.deleteOption = function deleteOption(id) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deletePage = exports.editPage = exports.createPage = exports.fetchPages = exports.receivePages = exports.RECEIVE_PAGES = exports.removePage = exports.REMOVE_PAGE = undefined;
+exports.deletePage = exports.editPage = exports.createPage = exports.fetchPages = exports.removePage = exports.receivePage = exports.receivePages = exports.REMOVE_PAGE = exports.RECEIVE_PAGE = exports.RECEIVE_PAGES = undefined;
 
 var _page_api_util = __webpack_require__(/*! ../util/page_api_util */ "./frontend/util/page_api_util.js");
 
@@ -267,22 +267,30 @@ var _adventure_actions = __webpack_require__(/*! ./adventure_actions */ "./front
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var REMOVE_PAGE = exports.REMOVE_PAGE = 'REMOVE_PAGE';
-
-var removePage = exports.removePage = function removePage(adventureId, pageId) {
-  return {
-    type: REMOVE_PAGE,
-    adventureId: adventureId,
-    pageId: pageId
-  };
-};
-
 var RECEIVE_PAGES = exports.RECEIVE_PAGES = 'RECEIVE_PAGES';
+
+var RECEIVE_PAGE = exports.RECEIVE_PAGE = 'RECEIVE_PAGE';
+
+var REMOVE_PAGE = exports.REMOVE_PAGE = 'REMOVE_PAGE';
 
 var receivePages = exports.receivePages = function receivePages(pages) {
   return {
     type: RECEIVE_PAGES,
     pages: pages
+  };
+};
+
+var receivePage = exports.receivePage = function receivePage(page) {
+  return {
+    type: RECEIVE_PAGE,
+    page: page
+  };
+};
+
+var removePage = exports.removePage = function removePage(pageId) {
+  return {
+    type: REMOVE_PAGE,
+    pageId: pageId
   };
 };
 
@@ -297,7 +305,7 @@ var fetchPages = exports.fetchPages = function fetchPages(adventureId) {
 var createPage = exports.createPage = function createPage(page, callback) {
   return function (dispatch) {
     return APIUtil.createPage(page).then(function (page) {
-      return dispatch((0, _adventure_actions.fetchAdventure)(page.adventure.id));
+      return dispatch(receivePage(page));
     });
   };
 };
@@ -308,7 +316,7 @@ var editPage = exports.editPage = function editPage(page, callback) {
       if (callback) {
         callback(page);
       }
-      dispatch((0, _adventure_actions.fetchAdventure)(page.adventure.id));
+      dispatch(receivePage(page));
     });
   };
 };
@@ -316,7 +324,7 @@ var editPage = exports.editPage = function editPage(page, callback) {
 var deletePage = exports.deletePage = function deletePage(id) {
   return function (dispatch) {
     return APIUtil.deletePage(id).then(function (page) {
-      dispatch(removePage(page.adventure.id, page.id));
+      dispatch(removePage(page.id));
     });
   };
 };
@@ -875,7 +883,7 @@ var AdventureEdit = function (_React$Component) {
   }, {
     key: 'navigateToAdventure',
     value: function navigateToAdventure(adventure) {
-      this.props.history.push("/adventures/" + adventure.id);
+      this.props.history.push("/adventures/" + adventure.id + "/page/0");
     }
   }, {
     key: 'startingPageLabel',
@@ -1006,7 +1014,7 @@ var AdventureEdit = function (_React$Component) {
               )
             )
           ),
-          _react2.default.createElement(_pages_container2.default, { pages: pages })
+          _react2.default.createElement(_pages_container2.default, { adventure: adventure, pages: pages })
         )
       );
     }
@@ -1757,17 +1765,17 @@ var PagesIndexItem = function (_React$Component) {
     key: 'deletePage',
     value: function deletePage(e) {
       e.preventDefault();
-      var isConfirmed = confirm('Are you sure you want to delete the "' + this.props.page.name + '" page?');
+      var page = this.props.page;
+
+      var isConfirmed = confirm('Are you sure you want to delete the "' + page.name + '" page?');
       if (isConfirmed) {
-        this.props.deletePage(this.props.page.id);
+        this.props.deletePage(page.id);
       }
     }
   }, {
     key: 'pageSummaryBox',
     value: function pageSummaryBox() {
-      var _props$page = this.props.page,
-          name = _props$page.name,
-          text = _props$page.text;
+      var page = this.props.page;
 
       return _react2.default.createElement(
         'div',
@@ -1788,12 +1796,12 @@ var PagesIndexItem = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'page-index-item-name' },
-            name
+            page.name
           ),
           _react2.default.createElement(
             'div',
             { className: 'page-index-item-text' },
-            text
+            page.text
           )
         )
       );
@@ -1821,6 +1829,51 @@ exports.default = PagesIndexItem;
 
 /***/ }),
 
+/***/ "./frontend/components/adventure_edit/pages/page_index_item_container.js":
+/*!*******************************************************************************!*\
+  !*** ./frontend/components/adventure_edit/pages/page_index_item_container.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _page_actions = __webpack_require__(/*! ../../../actions/page_actions */ "./frontend/actions/page_actions.js");
+
+var _page_index_item = __webpack_require__(/*! ./page_index_item */ "./frontend/components/adventure_edit/pages/page_index_item.jsx");
+
+var _page_index_item2 = _interopRequireDefault(_page_index_item);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    page: state.pages[ownProps.pageId]
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    editPage: function editPage(page, callback) {
+      return dispatch((0, _page_actions.editPage)(page, callback));
+    },
+    deletePage: function deletePage(page) {
+      return dispatch((0, _page_actions.deletePage)(page));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_page_index_item2.default);
+
+/***/ }),
+
 /***/ "./frontend/components/adventure_edit/pages/pages.jsx":
 /*!************************************************************!*\
   !*** ./frontend/components/adventure_edit/pages/pages.jsx ***!
@@ -1841,9 +1894,9 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _page_index_item = __webpack_require__(/*! ./page_index_item */ "./frontend/components/adventure_edit/pages/page_index_item.jsx");
+var _page_index_item_container = __webpack_require__(/*! ./page_index_item_container */ "./frontend/components/adventure_edit/pages/page_index_item_container.js");
 
-var _page_index_item2 = _interopRequireDefault(_page_index_item);
+var _page_index_item_container2 = _interopRequireDefault(_page_index_item_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1921,8 +1974,6 @@ var Pages = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
-
       var pages = this.props.pages || [];
       var adventure = this.props.adventure;
 
@@ -1934,7 +1985,7 @@ var Pages = function (_React$Component) {
           'div',
           { id: 'pages-index' },
           pages.map(function (page) {
-            return _react2.default.createElement(_page_index_item2.default, { key: page.id, page: page, editPage: _this3.props.editPage, updateAdventure: _this3.props.updateAdventure, deletePage: _this3.props.deletePage });
+            return _react2.default.createElement(_page_index_item_container2.default, { key: page.id, pageId: page.id });
           })
         ),
         this.miniPageForm()
@@ -1967,8 +2018,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
-var _adventure_actions = __webpack_require__(/*! ../../../actions/adventure_actions */ "./frontend/actions/adventure_actions.js");
-
 var _page_actions = __webpack_require__(/*! ../../../actions/page_actions */ "./frontend/actions/page_actions.js");
 
 var _selectors = __webpack_require__(/*! ../../../reducers/selectors */ "./frontend/reducers/selectors.js");
@@ -1988,20 +2037,11 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    editAdventure: function editAdventure(id, callback) {
-      return dispatch((0, _adventure_actions.editAdventure)(id, callback));
-    },
     fetchPages: function fetchPages(adventureId) {
       return dispatch((0, _page_actions.fetchPages)(adventureId));
     },
     createPage: function createPage(page) {
       return dispatch((0, _page_actions.createPage)(page));
-    },
-    editPage: function editPage(page, callback) {
-      return dispatch((0, _page_actions.editPage)(page, callback));
-    },
-    deletePage: function deletePage(page) {
-      return dispatch((0, _page_actions.deletePage)(page));
     }
   };
 };
@@ -3787,8 +3827,6 @@ var _merge2 = _interopRequireDefault(_merge);
 
 var _adventure_actions = __webpack_require__(/*! ../actions/adventure_actions */ "./frontend/actions/adventure_actions.js");
 
-var _page_actions = __webpack_require__(/*! ../actions/page_actions */ "./frontend/actions/page_actions.js");
-
 var _option_actions = __webpack_require__(/*! ../actions/option_actions */ "./frontend/actions/option_actions.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -3808,12 +3846,6 @@ var adventuresReducer = function adventuresReducer() {
     case _adventure_actions.RECEIVE_ADVENTURE:
       var newAdventure = _defineProperty({}, action.adventure.id, action.adventure);
       return (0, _merge2.default)({}, state, newAdventure);
-    case _page_actions.REMOVE_PAGE:
-      var indexOfPageToDelete = newState[action.adventureId].pages.findIndex(function (page) {
-        return page.id == action.pageId;
-      });
-      newState[action.adventureId].pages.splice(indexOfPageToDelete, 1);
-      return newState;
     case _option_actions.REMOVE_OPTION:
       var pageToDeleteFrom = newState[action.adventureId].pages.find(function (page) {
         return page.id == action.pageId;
@@ -3882,6 +3914,8 @@ var _page_actions = __webpack_require__(/*! ../actions/page_actions */ "./fronte
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var pagesReducer = function pagesReducer() {
 	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	var action = arguments[1];
@@ -3892,6 +3926,12 @@ var pagesReducer = function pagesReducer() {
 	switch (action.type) {
 		case _page_actions.RECEIVE_PAGES:
 			return (0, _merge2.default)({}, state, action.pages);
+		case _page_actions.RECEIVE_PAGE:
+			var newPage = _defineProperty({}, action.page.id, action.page);
+			return (0, _merge2.default)({}, state, newPage);
+		case _page_actions.REMOVE_PAGE:
+			delete newState[action.pageId];
+			return newState;
 		default:
 			return state;
 	}

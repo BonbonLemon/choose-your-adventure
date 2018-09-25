@@ -27,21 +27,22 @@ class PagesIndexItem extends React.Component {
 
   deletePage(e) {
     e.preventDefault();
-    const isConfirmed = confirm(`Are you sure you want to delete the \"${this.props.page.name}\" page?`);
+    const { page } = this.props;
+    const isConfirmed = confirm(`Are you sure you want to delete the \"${page.name}\" page?`);
     if (isConfirmed) {
-      this.props.deletePage(this.props.page.id);
+      this.props.deletePage(page.id);
     }
   }
 
   pageSummaryBox() {
-    const { name, text } = this.props.page;
+    const { page } = this.props;
     return (
       <div className="page-index-item page-box input-group">
         <div className="page-index-item-button"><img onClick={this.toggleEditPage} src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423463/edit_qif1lz.png" /></div>
         <div className="page-index-item-button"><img onClick={this.deletePage} src="http://res.cloudinary.com/dnyxuskhe/image/upload/v1519423844/x_bkgfwz.png" /></div>
         <div className="page-index-item-details">
-          <div className="page-index-item-name">{name}</div>
-          <div className="page-index-item-text">{text}</div>
+          <div className="page-index-item-name">{page.name}</div>
+          <div className="page-index-item-text">{page.text}</div>
         </div>
       </div>
     );
