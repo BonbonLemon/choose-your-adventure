@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import AdventureEdit from './adventure_edit';
 import { fetchAdventure, editAdventure } from '../../actions/adventure_actions';
 import { fetchPages } from '../../actions/page_actions';
-import { selectAdventure, asArray } from '../../reducers/selectors';
+import { selectAdventure, selectPages } from '../../reducers/selectors';
 
 const mapStateToProps = (state, ownProps) => {
   const adventureId = parseInt(ownProps.match.params.adventureId);
   const adventure = selectAdventure(state.adventures, adventureId);
-  const pages = asArray(state.pages);
+  const pages = selectPages(state.pages, adventureId);
   const currentUser = state.session.currentUser;
   return {
     adventure,

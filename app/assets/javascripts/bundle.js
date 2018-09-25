@@ -182,7 +182,7 @@ var editAdventure = exports.editAdventure = function editAdventure(adventure, ca
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteOption = exports.editOption = exports.createOption = exports.removeOption = exports.receiveOption = exports.REMOVE_OPTION = exports.RECEIVE_OPTION = undefined;
+exports.deleteOption = exports.editOption = exports.createOption = exports.removeOption = exports.REMOVE_OPTION = undefined;
 
 var _option_api_util = __webpack_require__(/*! ../util/option_api_util */ "./frontend/util/option_api_util.js");
 
@@ -190,25 +190,16 @@ var APIUtil = _interopRequireWildcard(_option_api_util);
 
 var _adventure_actions = __webpack_require__(/*! ./adventure_actions */ "./frontend/actions/adventure_actions.js");
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+var _page_actions = __webpack_require__(/*! ./page_actions */ "./frontend/actions/page_actions.js");
 
-var RECEIVE_OPTION = exports.RECEIVE_OPTION = 'RECEIVE_OPTION';
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var REMOVE_OPTION = exports.REMOVE_OPTION = 'REMOVE_OPTION';
 
-var receiveOption = exports.receiveOption = function receiveOption(option) {
-  return {
-    type: RECEIVE_OPTION,
-    option: option
-  };
-};
-
-var removeOption = exports.removeOption = function removeOption(adventureId, pageId, optionId) {
+var removeOption = exports.removeOption = function removeOption(option) {
   return {
     type: REMOVE_OPTION,
-    adventureId: adventureId,
-    pageId: pageId,
-    optionId: optionId
+    option: option
   };
 };
 
@@ -218,7 +209,7 @@ var createOption = exports.createOption = function createOption(option, callback
       if (callback) {
         callback(option);
       }
-      dispatch((0, _adventure_actions.fetchAdventure)(option.page.adventure.id));
+      dispatch((0, _page_actions.fetchPage)(option.page_id));
     });
   };
 };
@@ -229,7 +220,7 @@ var editOption = exports.editOption = function editOption(option, callback) {
       if (callback) {
         callback(option);
       }
-      dispatch((0, _adventure_actions.fetchAdventure)(option.page.adventure.id));
+      dispatch((0, _page_actions.fetchPage)(option.page_id));
     });
   };
 };
@@ -237,7 +228,7 @@ var editOption = exports.editOption = function editOption(option, callback) {
 var deleteOption = exports.deleteOption = function deleteOption(id) {
   return function (dispatch) {
     return APIUtil.deleteOption(id).then(function (option) {
-      dispatch(removeOption(option.page.adventure.id, option.page.id, option.id));
+      dispatch(removeOption(option));
     });
   };
 };
@@ -257,7 +248,7 @@ var deleteOption = exports.deleteOption = function deleteOption(id) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deletePage = exports.editPage = exports.createPage = exports.fetchPages = exports.removePage = exports.receivePage = exports.receivePages = exports.REMOVE_PAGE = exports.RECEIVE_PAGE = exports.RECEIVE_PAGES = undefined;
+exports.deletePage = exports.editPage = exports.createPage = exports.fetchPage = exports.fetchPages = exports.removePage = exports.receivePage = exports.receivePages = exports.REMOVE_PAGE = exports.RECEIVE_PAGE = exports.RECEIVE_PAGES = undefined;
 
 var _page_api_util = __webpack_require__(/*! ../util/page_api_util */ "./frontend/util/page_api_util.js");
 
@@ -298,6 +289,14 @@ var fetchPages = exports.fetchPages = function fetchPages(adventureId) {
   return function (dispatch) {
     return APIUtil.fetchPages(adventureId).then(function (pages) {
       dispatch(receivePages(pages));
+    });
+  };
+};
+
+var fetchPage = exports.fetchPage = function fetchPage(pageId) {
+  return function (dispatch) {
+    return APIUtil.fetchPage(pageId).then(function (page) {
+      return dispatch(receivePage(page));
     });
   };
 };
@@ -1058,7 +1057,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var adventureId = parseInt(ownProps.match.params.adventureId);
   var adventure = (0, _selectors.selectAdventure)(state.adventures, adventureId);
-  var pages = (0, _selectors.asArray)(state.pages);
+  var pages = (0, _selectors.selectPages)(state.pages, adventureId);
   var currentUser = state.session.currentUser;
   return {
     adventure: adventure,
@@ -1156,7 +1155,9 @@ var OptionForm = function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var thisPage = this.props.page;
+      var _props = this.props,
+          pages = _props.pages,
+          page = _props.page;
       var _state = this.state,
           text = _state.text,
           destination_id = _state.destination_id;
@@ -1208,12 +1209,13 @@ var OptionForm = function (_React$Component) {
                 { value: '' },
                 'No Destination Selected'
               ),
-              thisPage.adventure.pages.map(function (page) {
-                if (page.id !== thisPage.id) {
+              Object.keys(pages).map(function (pageId) {
+                var optionPage = pages[pageId];
+                if (pageId != page.id && optionPage.adventure_id == page.adventure_id) {
                   return _react2.default.createElement(
                     'option',
-                    { key: page.id, value: page.id },
-                    page.name
+                    { key: optionPage.id, value: optionPage.id },
+                    optionPage.name
                   );
                 }
               })
@@ -1351,13 +1353,16 @@ var OptionsIndexItem = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var option = this.props.option;
+      var _props = this.props,
+          option = _props.option,
+          pages = _props.pages,
+          page = _props.page;
 
 
       return _react2.default.createElement(
         'div',
         null,
-        this.state.editOptionClicked ? _react2.default.createElement(_option_form2.default, { option: option, page: option.page, handleSubmit: this.editOption, toggleEditOption: this.toggleEditOption }) : this.optionSummaryBox()
+        this.state.editOptionClicked ? _react2.default.createElement(_option_form2.default, { option: option, pages: pages, page: page, handleSubmit: this.editOption, toggleEditOption: this.toggleEditOption }) : this.optionSummaryBox()
       );
     }
   }]);
@@ -1440,11 +1445,12 @@ var Options = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       var _props = this.props,
           page = _props.page,
-          options = _props.options;
+          pages = _props.pages,
+          options = _props.options,
+          editOption = _props.editOption,
+          deleteOption = _props.deleteOption;
       var hasNewOption = this.state.hasNewOption;
 
 
@@ -1460,7 +1466,7 @@ var Options = function (_React$Component) {
           'div',
           { className: 'options-index' },
           options.map(function (option) {
-            return _react2.default.createElement(_option_index_item2.default, { key: option.id, option: option, editOption: _this2.props.editOption, deleteOption: _this2.props.deleteOption });
+            return _react2.default.createElement(_option_index_item2.default, { key: option.id, option: option, pages: pages, page: page, editOption: editOption, deleteOption: deleteOption });
           })
         ),
         _react2.default.createElement(
@@ -1480,7 +1486,7 @@ var Options = function (_React$Component) {
           ),
           hasNewOption ? _react2.default.createElement('div', { id: 'add-option-line' }) : ""
         ),
-        hasNewOption ? _react2.default.createElement(_option_form2.default, { page: page, handleSubmit: this.createOption }) : ""
+        hasNewOption ? _react2.default.createElement(_option_form2.default, { pages: pages, page: page, handleSubmit: this.createOption }) : ""
       );
     }
   }]);
@@ -1521,8 +1527,12 @@ var _options2 = _interopRequireDefault(_options);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var options = ownProps.page.options || [];
+  var page = ownProps.page;
+  var pages = state.pages;
+  var options = ownProps.page.options;
   return {
+    pages: pages,
+    page: page,
     options: options
   };
 };
@@ -3827,8 +3837,6 @@ var _merge2 = _interopRequireDefault(_merge);
 
 var _adventure_actions = __webpack_require__(/*! ../actions/adventure_actions */ "./frontend/actions/adventure_actions.js");
 
-var _option_actions = __webpack_require__(/*! ../actions/option_actions */ "./frontend/actions/option_actions.js");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3846,15 +3854,6 @@ var adventuresReducer = function adventuresReducer() {
     case _adventure_actions.RECEIVE_ADVENTURE:
       var newAdventure = _defineProperty({}, action.adventure.id, action.adventure);
       return (0, _merge2.default)({}, state, newAdventure);
-    case _option_actions.REMOVE_OPTION:
-      var pageToDeleteFrom = newState[action.adventureId].pages.find(function (page) {
-        return page.id == action.pageId;
-      });
-      var indexOfOptionToDelete = pageToDeleteFrom.options.findIndex(function (option) {
-        return option.id == action.optionId;
-      });
-      pageToDeleteFrom.options.splice(indexOfOptionToDelete, 1);
-      return newState;
     default:
       return state;
   }
@@ -3912,6 +3911,8 @@ var _merge2 = _interopRequireDefault(_merge);
 
 var _page_actions = __webpack_require__(/*! ../actions/page_actions */ "./frontend/actions/page_actions.js");
 
+var _option_actions = __webpack_require__(/*! ../actions/option_actions */ "./frontend/actions/option_actions.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3931,6 +3932,13 @@ var pagesReducer = function pagesReducer() {
 			return (0, _merge2.default)({}, state, newPage);
 		case _page_actions.REMOVE_PAGE:
 			delete newState[action.pageId];
+			return newState;
+		case _option_actions.REMOVE_OPTION:
+			var pageToDeleteFrom = newState[action.option.page_id];
+			var indexOfOptionToDelete = pageToDeleteFrom.options.findIndex(function (option) {
+				return option.id == action.option.id;
+			});
+			pageToDeleteFrom.options.splice(indexOfOptionToDelete, 1);
 			return newState;
 		default:
 			return state;
@@ -4004,14 +4012,20 @@ exports.default = rootReducer;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var asArray = exports.asArray = function asArray(entities) {
+  return Object.keys(entities).map(function (key) {
+    return entities[key];
+  });
+};
+
 var selectAdventure = exports.selectAdventure = function selectAdventure(adventures, id) {
   var adventure = adventures[id] || {};
   return adventure;
 };
 
-var asArray = exports.asArray = function asArray(entities) {
-  return Object.keys(entities).map(function (key) {
-    return entities[key];
+var selectPages = exports.selectPages = function selectPages(pages, adventureId) {
+  return asArray(pages).filter(function (page) {
+    return page.adventure_id == adventureId;
   });
 };
 

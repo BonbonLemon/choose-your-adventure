@@ -27,7 +27,7 @@ class Options extends React.Component {
   }
 
   render() {
-    const { page, options } = this.props
+    const { page, pages, options, editOption, deleteOption } = this.props;
     const { hasNewOption } = this.state;
 
     return (
@@ -35,7 +35,7 @@ class Options extends React.Component {
         <h4>Options</h4>
         <div className="options-index">
           {options.map(option => (
-            <OptionsIndexItem key={option.id} option={option} editOption={this.props.editOption} deleteOption={this.props.deleteOption} />
+            <OptionsIndexItem key={option.id} option={option} pages={pages} page={page} editOption={editOption} deleteOption={deleteOption} />
           ))}
         </div>
         <div className="add-option-button toggle-button" onClick={this.toggleHasNewOption}>
@@ -43,7 +43,7 @@ class Options extends React.Component {
           <span> Add New Option</span>
           { hasNewOption ? <div id="add-option-line" /> : "" }
         </div>
-        { hasNewOption ? <OptionForm page={page} handleSubmit={this.createOption}/> : "" }
+        { hasNewOption ? <OptionForm pages={pages} page={page} handleSubmit={this.createOption}/> : "" }
       </div>
     );
   }

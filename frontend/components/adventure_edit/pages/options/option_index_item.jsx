@@ -58,11 +58,11 @@ class OptionsIndexItem extends React.Component {
   }
 
   render() {
-    const { option } = this.props;
+    const { option, pages, page } = this.props;
 
     return (
       <div>
-        { this.state.editOptionClicked ? <OptionForm option={option} page={option.page} handleSubmit={this.editOption} toggleEditOption={this.toggleEditOption}/> : this.optionSummaryBox() }
+        { this.state.editOptionClicked ? <OptionForm option={option} pages={pages} page={page} handleSubmit={this.editOption} toggleEditOption={this.toggleEditOption}/> : this.optionSummaryBox() }
       </div>
     );
   }

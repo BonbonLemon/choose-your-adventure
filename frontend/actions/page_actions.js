@@ -28,6 +28,12 @@ export const fetchPages = (adventureId) => dispatch => (
   })
 );
 
+export const fetchPage = pageId => dispatch => (
+  APIUtil.fetchPage(pageId).then(page => (
+    dispatch(receivePage(page))
+  ))
+);
+
 export const createPage = (page, callback) => dispatch => (
   APIUtil.createPage(page).then(page => (
     dispatch(receivePage(page))

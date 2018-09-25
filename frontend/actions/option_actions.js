@@ -1,38 +1,30 @@
 import * as APIUtil from '../util/option_api_util';
 import { fetchAdventure } from './adventure_actions';
+import { fetchPage } from './page_actions';
 
-export const RECEIVE_OPTION = 'RECEIVE_OPTION';
+export const REMOVE_OPTION = 'REMOVE_OPTION';
 
-export const REMOVE_OPTION = 'REMOVE_OPTION'
-
-export const receiveOption = option => ({
-  type: RECEIVE_OPTION,
+export const removeOption = (option) => ({
+  type: REMOVE_OPTION,
   option
 });
-
-export const removeOption = (adventureId, pageId, optionId) => ({
-  type: REMOVE_OPTION,
-  adventureId: adventureId,
-  pageId: pageId,
-  optionId: optionId
-})
 
 export const createOption = (option, callback) => dispatch => (
   APIUtil.createOption(option).then(option => {
     if (callback) { callback(option); }
-    dispatch(fetchAdventure(option.page.adventure.id));
+    dispatch(fetchPage(option.page_id));
   })
 );
 
 export const editOption = (option, callback) => dispatch => (
   APIUtil.editOption(option).then(option => {
-    if (callback) { callback(option) ;}
-    dispatch(fetchAdventure(option.page.adventure.id));
+    if (callback) { callback(option); }
+    dispatch(fetchPage(option.page_id));
   })
 );
 
 export const deleteOption = (id) => dispatch => (
   APIUtil.deleteOption(id).then(option => {
-    dispatch(removeOption(option.page.adventure.id, option.page.id, option.id));
+    dispatch(removeOption(option));
   })
-)
+);

@@ -25,7 +25,7 @@ class OptionForm extends React.Component {
   }
 
   render() {
-    const thisPage = this.props.page;
+    const { pages, page } = this.props;
     const { text, destination_id } = this.state;
 
     return (
@@ -51,10 +51,11 @@ class OptionForm extends React.Component {
               required
             >
               <option value="">No Destination Selected</option>
-              { thisPage.adventure.pages.map(page => {
-                if (page.id !== thisPage.id) {
+              { Object.keys(pages).map(pageId => {
+                const optionPage = pages[pageId];
+                if (pageId != page.id && optionPage.adventure_id == page.adventure_id) {
                   return (
-                    <option key={page.id} value={page.id}>{page.name}</option>
+                    <option key={optionPage.id} value={optionPage.id}>{optionPage.name}</option>
                   );
                 }
               })}

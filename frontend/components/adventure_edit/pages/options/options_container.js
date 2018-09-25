@@ -5,15 +5,19 @@ import { asArray } from '../../../../reducers/selectors';
 import Options from './options';
 
 const mapStateToProps = (state, ownProps) => {
-  const options = ownProps.page.options || [];
+	const page = ownProps.page;
+	const pages = state.pages;
+  const options = ownProps.page.options;
   return {
-    options: options
+  	pages,
+  	page,
+    options
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   createOption: (option, callback) => dispatch(createOption(option, callback)),
-  editOption: (option, callback) => dispatch(editOption(option,callback)),
+  editOption: (option, callback) => dispatch(editOption(option, callback)),
   deleteOption: (id) => dispatch(deleteOption(id))
 });
 

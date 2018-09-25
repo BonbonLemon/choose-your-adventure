@@ -6,6 +6,10 @@ import {
 	REMOVE_PAGE
 } from '../actions/page_actions';
 
+import {
+	REMOVE_OPTION
+} from '../actions/option_actions';
+
 const pagesReducer = (state = {}, action) => {
 	Object.freeze(state);
 	let newState = merge({}, state);
@@ -19,6 +23,13 @@ const pagesReducer = (state = {}, action) => {
 		case REMOVE_PAGE:
       delete newState[action.pageId];
       return newState;
+    case REMOVE_OPTION:
+    	const pageToDeleteFrom = newState[action.option.page_id];
+    	const indexOfOptionToDelete = pageToDeleteFrom.options.findIndex(option => (
+				option.id == action.option.id
+  		));
+    	pageToDeleteFrom.options.splice(indexOfOptionToDelete, 1);
+    	return newState;
 		default:
 			return state;
 	}
