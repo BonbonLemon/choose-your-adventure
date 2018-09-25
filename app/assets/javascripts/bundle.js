@@ -3010,7 +3010,7 @@ var ReleaseNotes = function ReleaseNotes() {
     _react2.default.createElement(
       'span',
       null,
-      'Last updated September 8, 2018'
+      'Last updated September 25, 2018'
     ),
     _react2.default.createElement(
       'div',
@@ -3026,17 +3026,7 @@ var ReleaseNotes = function ReleaseNotes() {
         _react2.default.createElement(
           'li',
           null,
-          'Adventures on homepage are REALLY slow to load. Need to rethink design.'
-        ),
-        _react2.default.createElement(
-          'li',
-          null,
           'Going BACK does not allow certain pages to load contents (Refreshing will load contents)'
-        ),
-        _react2.default.createElement(
-          'li',
-          null,
-          'Editing and creating pages is sometimes difficult as pages will jumble around and not save correctly at times'
         ),
         _react2.default.createElement(
           'li',
